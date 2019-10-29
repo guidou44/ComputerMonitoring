@@ -1,0 +1,12 @@
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\ProcessMonitoring.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\ProcessMonitoring.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\PacketDotNet.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\SharpPcap.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.csprojAssemblyReference.cache
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.csproj.CopyComplete
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\Common.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\Common.pdb
