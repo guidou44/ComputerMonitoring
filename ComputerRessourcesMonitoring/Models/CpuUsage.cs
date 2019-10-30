@@ -11,5 +11,6 @@ namespace ComputerRessourcesMonitoring.Models
         public string Cpu_Name { get; set; }
         public double Cpu_Usage { get; set; }
         public float Cpu_Current_ClockSpeed { get; set; }
+
     }
 }

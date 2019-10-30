@@ -1,45 +1,56 @@
-﻿using Common.Reports;
+﻿using Common.DialogServices;
+using Common.Reports;
 using Common.UI;
-using ComputerRessourcesMonitoring.Interfaces;
+using Common.UIInterfaces;
+using ComputerRessourcesMonitoring.Events;
 using ComputerRessourcesMonitoring.Models;
+using Prism.Events;
 using ProcessMonitoring.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Input;
 
 
 /*TODO: 
-        evaluates the cpu precision with thread sleep vs await delay
-        Add possibility to activate/deactivate watchdog in UI
-        Add possibility to change the watchdog target*/
+Add all Cpu information on watchdog settings page (In list box or something like this). Also add clock speed overall, voltage, usage of each, etc...
+Add ram, Add network activiy, the most the better!
+See how to use the dispatcher class to begin invoke the close action for the wndow in order for the app to close appropriateley
+release
+ */
 
 
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
-    public class MainViewModel : NotifyPropertyChanged
+    public class MainViewModel : ComputerMonitoringViewModelBase
     {
         #region constructor
      
-        private bool done;
+        private readonly IDialogService _dialogService;
+        private IEventAggregator _eventsHub;
         private bool _watchdogIsUnsubsribed;
+        private bool _watchdogIsInitialized;
         private ProcessWatchDog _watchdog;
+        private string _watchdogTargetName;
 
-        public MainViewModel()
+        public MainViewModel(IDialogService dialogService)
         {
             _watchdog = new ProcessWatchDog();
-            ProcessWatchDog.PacketsExchangedEvent += ReportPacketExchange;
+            _watchdog.PacketsExchangedEvent += ReportPacketExchange;
 
-            WatchdogTargetName = "USBHelperLauncher";
-            //WatchdogTargetName = "chrome";
+            _watchdogTargetName = "USBHelperLauncher";
             IsMonitoringVisible = true;
             IsWatchdogRunning = true;
-            done = false;
-            StartMonitoring();
+
+            _dialogService = dialogService;
+            _eventsHub = new EventAggregator();
+
+            SubscribeToEvents();
+            SetMonitoringCounter(900);
         }
 
         #endregion
@@ -47,39 +58,61 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Methods
 
-        private Task Delay(int time_in_milliseconds)
+        private void ChangeWatchdogTarget(string newTarget)
         {
-            return Task.Delay(time_in_milliseconds);
+            if (IsWatchdogRunning) ToggleWatchdogRunStateCommandExecute();
+            _watchdogTargetName = newTarget;
+            ToggleWatchdogRunStateCommandExecute();
         }
 
-        public void ManageWatchdog(ref bool watchdog_is_initialized)
+        private void ManageWatchdog(ref bool watchdog_is_initialized)
         {
-            if (!(_watchdog.IsProcessCurrentlyRunning(WatchdogTargetName))) watchdog_is_initialized = false;
+            if (!(_watchdog.IsProcessCurrentlyRunning(_watchdogTargetName))) watchdog_is_initialized = false;
             else
             {
                 if (!watchdog_is_initialized)
                 {
-                    var pidAndPorts = _watchdog.GetOpenPortsForProcess(WatchdogTargetName);
+                    var pidAndPorts = _watchdog.GetOpenPortsForProcess(_watchdogTargetName);
                     _watchdog.InitializeWatchdog(pidAndPorts.Key, pidAndPorts.Value);
                     if (watchdog_is_initialized) Reporter.SendEmailReport(
-                                    subject: $"ALARM: Detected process start for {WatchdogTargetName}",
+                                    subject: $"ALARM: Detected process start for {_watchdogTargetName}",
                                     message: $"Activity detected report:\n" +
-                                    $"----------------{WatchdogTargetName}---------------\n\n" +
+                                    $"----------------{_watchdogTargetName}---------------\n\n" +
                                     "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n");
                     watchdog_is_initialized = true;
                 }
 
-                ProcessWatchDog.RefreshInfo();
+                _watchdog.RefreshInfo();
             }
-
         }
 
-        public async void ReportPacketExchange()
+        protected override void OnCounterCompletionEvent(Object source, ElapsedEventArgs e)
+        {
+            RefreshMonitoring();
+        }
+
+        protected override void RefreshMonitoring()
+        {
+            try
+            {
+                if (_watchdogIsUnsubsribed) _watchdogIsInitialized = false;
+                RamUsage = PerformanceInfo.GetCurrentRamMemoryUsage();
+                CpuUsage = PerformanceInfo.GetCurrentTotalCpuUsage();
+                CpuClockSpeed = PerformanceInfo.GetCpuClockSpeed();
+                if (IsWatchdogRunning) ManageWatchdog(ref _watchdogIsInitialized);
+            }
+            catch (Exception e)
+            {
+                Reporter.LogException(e);
+            }
+        }
+
+        private async void ReportPacketExchange()
         {
             await Task.Run(() => Reporter.SendEmailReport(
-                            subject: $"ALARM: Detected Activity for {WatchdogTargetName}",
+                            subject: $"ALARM: Detected Activity for {_watchdogTargetName}",
                             message: $"Activity detected report:\n" +
-                                        $"----------------{WatchdogTargetName}---------------\n\n" +
+                                        $"----------------{_watchdogTargetName}---------------\n\n" +
                                         "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n\nContent:\n" +
                                         $"Net send bytes : {ProcessWatchDog.ProccessInfo.NetSendBytes}\n" +
                                         $"Net Received bytes : {ProcessWatchDog.ProccessInfo.NetRecvBytes}\n" +
@@ -87,26 +120,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
                             ));
         }
 
-        private async void StartMonitoring()
+        private void SubscribeToEvents()
         {
-            var watchdog_is_initialized = false;
-
-            while (!done)
-            {
-                try
-                {
-                    if(_watchdogIsUnsubsribed) watchdog_is_initialized = false;
-                    RamUsage = PerformanceInfo.GetCurrentRamMemoryUsage();
-                    CpuUsage = PerformanceInfo.GetCurrentTotalCpuUsage();
-                    CpuClockSpeed = PerformanceInfo.GetCpuClockSpeed();
-                    await Delay(800);
-                    if (IsWatchdogRunning) await Task.Run(() => ManageWatchdog(ref watchdog_is_initialized));
-                }
-                catch (Exception e)
-                {
-                    Reporter.LogException(e);
-                }
-        }
+            _eventsHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe(ChangeWatchdogTarget);
         }
 
         #endregion
@@ -166,18 +182,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
         }
 
 
-        private string _watchdogTargetName;
-
-        public string WatchdogTargetName
-        {
-            get { return _watchdogTargetName; }
-            set 
-            { 
-                _watchdogTargetName = value;
-                RaisePropertyChanged(nameof(WatchdogTargetName));
-            }
-        }
-
         private bool _isWatchdogRunning;
 
         public bool IsWatchdogRunning
@@ -190,7 +194,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 RaisePropertyChanged(nameof(IsWatchdogRunning));
             }
         }
-
 
 
         #endregion
@@ -206,9 +209,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public void ToggleWatchdogRunStateCommandExecute()
         {
             IsWatchdogRunning = !IsWatchdogRunning;
-            ProcessWatchDog.StopCapturingPackets();
+            if (!IsWatchdogRunning) _watchdog.StopCapturingPackets();
         }
-
 
         public ICommand ShowComputerMonitoringCommand
         {
@@ -226,6 +228,29 @@ namespace ComputerRessourcesMonitoring.ViewModels
             IsMonitoringVisible = !IsMonitoringVisible;
         }
 
+        public ICommand OpenWatchdogManagerCommand
+        {
+            get { return new RelayCommand(OpenWatchdogManagerCommandExecute); }
+        }
+
+        public void OpenWatchdogManagerCommandExecute()
+        {
+            var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventsHub);
+
+            bool? result = _dialogService.ShowDialog(viewModel);
+
+            if (result.HasValue)
+            {
+                if (result.Value)
+                {
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine();
+                }
+            }
+        }
         public ICommand HideComputerMonitoringCommand
         {
             get { return new RelayCommand(ChangeComputerMonitoringCommandExecute, CanHideWatchdogCommandExecute); }
@@ -246,8 +271,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             if (window != null) window.Close();
         }
-
-
 
 
         #endregion

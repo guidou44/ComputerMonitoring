@@ -17,15 +17,15 @@ namespace ProcessMonitoring.Models
 {
     public class ProcessWatchDog
     {
-        private static CaptureFileWriterDevice _captureFilreWriterReceived;
-        private static CaptureFileWriterDevice _captureFilreWriterSend;
+        private static CaptureFileWriterDevice _captureFileWriterReceived;
+        private static CaptureFileWriterDevice _captureFileWriterSend;
         private CommandLineHelper _cmdHelper;
 
         private static ICaptureDevice _captureDevice;
 
         public static ProcessPacketInfo ProccessInfo;
         public delegate void PacketsExchanged();
-        public static event PacketsExchanged PacketsExchangedEvent;
+        public event PacketsExchanged PacketsExchangedEvent;
 
         public ProcessWatchDog()
         {
@@ -46,7 +46,7 @@ namespace ProcessMonitoring.Models
         {
             var len = e.Packet.Data.Length;
             ProccessInfo.NetSendBytes += len;
-            _captureFilreWriterSend.Write(e.Packet);
+            _captureFileWriterSend.Write(e.Packet);
         }
 
         private static void CaptureIncomingPackets(string IP, int portID, ICaptureDevice device)
@@ -66,7 +66,7 @@ namespace ProcessMonitoring.Models
         {
             var len = e.Packet.Data.Length;
             ProccessInfo.NetRecvBytes += len;
-            _captureFilreWriterReceived.Write(e.Packet);
+            _captureFileWriterReceived.Write(e.Packet);
         }
 
         public KeyValuePair<int, IEnumerable<int>> GetOpenPortsForProcess(string appProcessName)
@@ -134,8 +134,9 @@ namespace ProcessMonitoring.Models
             var localHostIpV4 = GetIpV4OfLocalHost();
             _captureDevice = CaptureDeviceList.Instance.Where(CD => !CD.Description.Contains("Atheros")).FirstOrDefault() ??
                                 throw new ArgumentNullException("No capture device found");
-            _captureFilreWriterReceived = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\packets_RCV_{DateTime.Now.Date}");
-            _captureFilreWriterSend = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\packets_SENT_{DateTime.Now.Date}");
+            var fileId = DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString();
+            _captureFileWriterReceived = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\packets_RCV_{fileId}.pcap");
+            _captureFileWriterSend = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\packets_SENT_{fileId}.pcap");
 
             foreach (var port in all_ports_for_process)
             {
@@ -151,7 +152,7 @@ namespace ProcessMonitoring.Models
             return true;
         }
 
-        public static async void RefreshInfo()
+        public async void RefreshInfo()
         {
             ProccessInfo.NetRecvBytes = 0;
             ProccessInfo.NetSendBytes = 0;
@@ -161,7 +162,7 @@ namespace ProcessMonitoring.Models
             if (ProccessInfo.NetTotalBytes > 0) PacketsExchangedEvent();
         }
 
-        public static void StopCapturingPackets()
+        public void StopCapturingPackets()
         {
             if (_captureDevice != null)
             {

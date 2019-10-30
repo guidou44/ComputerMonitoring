@@ -22,10 +22,9 @@ namespace ComputerRessourcesMonitoring.Models
             throw new ArgumentNullException("No memory was found in ManagementObjectSearcher"); ;
         }
 
-
         public static double GetCurrentTotalCpuUsage()
         {
-            return GetEachCpuUsage().Where(CU => CU.Cpu_Name == "_Total").SingleOrDefault().Cpu_Usage;
+            return GetEachCpuUsage(Win32_Processor : true).FirstOrDefault().Cpu_Usage;
         }
 
 
@@ -47,6 +46,22 @@ namespace ComputerRessourcesMonitoring.Models
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
         }
 
+        public static ICollection<CpuUsage> GetEachCpuUsage(bool Win32_Processor)
+        {
+            var wmiObject = new ManagementObjectSearcher("select * from Win32_Processor");
+
+            var cpuUsage = wmiObject.Get()
+                                   .Cast<ManagementObject>()
+                                   .Select(mo => new CpuUsage
+                                   {
+                                       Cpu_Usage = Double.Parse(mo["LoadPercentage"].ToString())
+                                   }
+                                   )
+                                   .ToList();
+
+            return (cpuUsage.Count() != 0) ? cpuUsage :
+                throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
+        }
 
         public static float GetCpuClockSpeed()
         {

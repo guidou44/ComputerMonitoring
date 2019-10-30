@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("views/settings_simple.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("eye2.ico")]
 
 

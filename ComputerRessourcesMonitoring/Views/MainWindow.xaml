@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerRessourcesMonitoring.Views"
-        xmlns:tb="http://www.hardcodet.net/taskbar" 
         xmlns:ViewModels="clr-namespace:ComputerRessourcesMonitoring.ViewModels"
+        xmlns:tb="http://www.hardcodet.net/taskbar" 
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         x:Name="WatchdogWindow"
@@ -18,9 +18,9 @@
         ResizeMode="NoResize"
         Topmost="True"
         >
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <ViewModels:MainViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
         <Style x:Key="{x:Type ProgressBar}"
@@ -52,18 +52,6 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
-        <Popup x:Key="TrayIconPopUp"
-            VerticalOffset="10" 
-            HorizontalOffset="200">
-            <Border BorderBrush="DarkGreen" 
-                Background="LightGreen"
-                BorderThickness="2" Width="200" Height="200">
-                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <TextBlock Text="Simple Popup" FontSize="24.667" HorizontalAlignment="Center"/>
-                    <Button Content="Close" HorizontalAlignment="Center"/>
-                </StackPanel>
-            </Border>
-        </Popup>
     </Window.Resources>
 
     <Border BorderBrush="DarkGreen"
@@ -80,11 +68,9 @@
             </Grid.RowDefinitions>
 
             <tb:TaskbarIcon
-              IconSource="Green_circle.ico"
+              IconSource="Images/Green_circle.ico"
                 MenuActivation="RightClick"
-                PopupActivation="LeftClick"
-                TrayPopup="{StaticResource TrayIconPopUp}"
-              >
+                PopupActivation="LeftClick">
                 <tb:TaskbarIcon.TrayToolTip>
                     <Border
 
@@ -112,19 +98,19 @@
                         BorderThickness="3">
                         <MenuItem Header="Show Monitoring" Command="{Binding ShowComputerMonitoringCommand}">
                             <MenuItem.Icon>
-                                <Image Source="plus.ico" Margin="1"/>
+                                <Image Source="Images/plus.ico" Margin="1"/>
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="Hide Monitoring" Command="{Binding HideComputerMonitoringCommand}">
                             <MenuItem.Icon>
-                                <Image Source="minus.ico" Margin="1"/>
+                                <Image Source="Images/minus.ico" Margin="1"/>
                             </MenuItem.Icon>
                         </MenuItem>
                         <MenuItem Header="Kill Monitoring" 
                                   Command="{Binding KillAppCommand, Mode=OneWay}"
                                   CommandParameter="{x:Reference Name=WatchdogWindow}">
                             <MenuItem.Icon>
-                                <Image Source="stop.ico" Margin="1"/>
+                                <Image Source="Images/stop.ico" Margin="1"/>
                             </MenuItem.Icon>
                         </MenuItem>
                     </ContextMenu>
@@ -135,7 +121,7 @@
             <DockPanel  Grid.Row="1"
                         Grid.Column="0">
                 <Grid Margin="0 0 20 10"  HorizontalAlignment="Right">
-                    <!--<Image Source="settings_simple.ico" 
+                    <!--<Image Source="Images/settings_simple.ico" 
                            Height="20"
                            Width="20"
                            >
@@ -159,8 +145,11 @@
                             </Ellipse.Style>
                         </Ellipse>
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:EventTrigger EventName="MouseRightButtonUp">
                                 <i:InvokeCommandAction Command="{Binding ToggleWatchdogRunStateCommand}"/>
+                            </i:EventTrigger>
+                            <i:EventTrigger EventName="MouseDoubleClick">
+                                <i:InvokeCommandAction Command="{Binding OpenWatchdogManagerCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </ContentControl>

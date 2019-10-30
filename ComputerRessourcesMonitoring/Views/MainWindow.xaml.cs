@@ -1,4 +1,4 @@
-﻿using ComputerRessourcesMonitoring.Interfaces;
+﻿using Common.UIInterfaces;
 using ComputerRessourcesMonitoring.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace ComputerRessourcesMonitoring.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IClosable
+    public partial class MainWindow : Window, IClosable, IWindow
     {
         public MainWindow()
         {
