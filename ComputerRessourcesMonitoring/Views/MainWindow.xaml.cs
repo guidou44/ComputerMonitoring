@@ -1,4 +1,4 @@
-﻿using Common.UIInterfaces;
+﻿using Common.UI.Interfaces;
 using ComputerRessourcesMonitoring.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -39,5 +39,6 @@ namespace ComputerRessourcesMonitoring.Views
             Window window = (Window)sender;
             window.Topmost = true;
         }
+
     }
 }

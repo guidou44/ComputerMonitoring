@@ -129,14 +129,14 @@ namespace ProcessMonitoring.Models
             return addrList.Where(IP => IP.AddressFamily == AddressFamily.InterNetwork).FirstOrDefault();
         }
 
-        public void InitializeWatchdog(int pid, IEnumerable<int> all_ports_for_process)
+        public void InitializeWatchdog(int pid, IEnumerable<int> all_ports_for_process, string processName)
         {
             var localHostIpV4 = GetIpV4OfLocalHost();
             _captureDevice = CaptureDeviceList.Instance.Where(CD => !CD.Description.Contains("Atheros")).FirstOrDefault() ??
                                 throw new ArgumentNullException("No capture device found");
             var fileId = DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString();
-            _captureFileWriterReceived = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\packets_RCV_{fileId}.pcap");
-            _captureFileWriterSend = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\packets_SENT_{fileId}.pcap");
+            _captureFileWriterReceived = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\{processName}_packets_RCV_{fileId}.pcap");
+            _captureFileWriterSend = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\{processName}_packets_SENT_{fileId}.pcap");
 
             foreach (var port in all_ports_for_process)
             {

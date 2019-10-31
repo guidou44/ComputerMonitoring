@@ -41,11 +41,11 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 FontFamily="Consola"
-                                FontSize="25"
+                                FontSize="20"
                                 Foreground="DarkGreen"
                                 TextDecorations="Underline"
                                 Text ="Process under watch"
-                                Margin="10 10 10 30"
+                                Margin="10 10 10 20"
                                 />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
@@ -69,7 +69,7 @@
                                              HorizontalAlignment="Center"
                                              VerticalAlignment="Center"
                                              FontFamily="Consola"
-                                             FontSize="20"
+                                             FontSize="18"
                                              Foreground="DarkGreen"
                                              Padding="0">
                         <TextBox.InputBindings>
@@ -93,6 +93,46 @@
                             </StackPanel>
                         </Border>
                     </Button>
+                </StackPanel>
+                <TextBlock      x:Name="ComputerResourcesTextBlock"
+                                Background="Transparent"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontFamily="Consola"
+                                FontSize="20"
+                                Foreground="DarkGreen"
+                                FontWeight="Bold"
+                                TextDecorations="Underline"
+                                Text ="Computer Resources Info"
+                                Margin="10 20 10 0"
+                                />
+                    <StackPanel Orientation="Vertical"
+                                Width="{Binding ElementName=ComputerResourcesTextBlock, Path=ActualWidth}">
+                    <ListBox HorizontalAlignment="Left"
+                                 VerticalAlignment="Center"
+                                 Background="Transparent"
+                                 BorderBrush="Transparent"
+                                 BorderThickness="0"
+                                 FontFamily="Consola"
+                                 FontSize="16"
+                                 Foreground="DarkGreen"
+                                 FontWeight="Bold"
+                                 ItemsSource="{Binding CpuUsageCollection, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Margin="0 10 0 0">
+                                    <TextBlock Text="CPU: " Margin="0 0 5 0"/>
+                                    <TextBlock Text="{Binding Cpu_Name}" Margin="0 0 5 0"/>
+                                    <TextBlock Text="{Binding Cpu_Usage, StringFormat={}{0}%}" Margin="0 0 5 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    
+
                 </StackPanel>
                 <DockPanel Margin="20 80 20 20">
                     <StackPanel 

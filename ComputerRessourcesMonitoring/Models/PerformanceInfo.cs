@@ -24,11 +24,10 @@ namespace ComputerRessourcesMonitoring.Models
 
         public static double GetCurrentTotalCpuUsage()
         {
-            return GetEachCpuUsage(Win32_Processor : true).FirstOrDefault().Cpu_Usage;
+            return GetGlobalCpuUsage().Cpu_Usage;
         }
 
-
-        public static ICollection<CpuUsage> GetEachCpuUsage()
+        public static IEnumerable<CpuUsage> GetEachCpuUsage()
         {
              var wmiObject = new ManagementObjectSearcher("select * from Win32_PerfFormattedData_PerfOS_Processor");
              
@@ -46,7 +45,7 @@ namespace ComputerRessourcesMonitoring.Models
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
         }
 
-        public static ICollection<CpuUsage> GetEachCpuUsage(bool Win32_Processor)
+        public static CpuUsage GetGlobalCpuUsage()
         {
             var wmiObject = new ManagementObjectSearcher("select * from Win32_Processor");
 
@@ -54,30 +53,27 @@ namespace ComputerRessourcesMonitoring.Models
                                    .Cast<ManagementObject>()
                                    .Select(mo => new CpuUsage
                                    {
-                                       Cpu_Usage = Double.Parse(mo["LoadPercentage"].ToString())
+                                       Cpu_Name = mo["Name"].ToString(),
+                                       Cpu_Usage = Double.Parse(mo["LoadPercentage"].ToString()),
+                                       Cpu_Current_ClockSpeed = 0.001f * UInt32.Parse(mo["CurrentClockSpeed"].ToString()),
+                                       Number_of_cores = UInt32.Parse(mo["NumberOfCores"].ToString()),
+                                       Thread_count = UInt32.Parse(mo["ThreadCount"].ToString())
                                    }
                                    )
-                                   .ToList();
+                                   .FirstOrDefault();
 
-            return (cpuUsage.Count() != 0) ? cpuUsage :
+            return (cpuUsage != null) ? cpuUsage :
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
         }
 
-        public static float GetCpuClockSpeed()
+        public static CpuUsage GetGlobalDetailedCpuUsage()
         {
             var wmiObject = new ManagementObjectSearcher("select * from Win32_Processor");
 
-            var cpuClockSpeed = wmiObject.Get()
-                                   .Cast<ManagementObject>()
-                                   .Select(mo => new CpuUsage
-                                   {
-                                       Cpu_Name = mo["Name"].ToString(),
-                                       Cpu_Current_ClockSpeed = 0.001f * UInt32.Parse(mo["CurrentClockSpeed"].ToString())
-                                   }
-                                   )
-                                   .ToList();
+            var cpuUsage = GetGlobalCpuUsage();
 
-            return (cpuClockSpeed.Count() > 0) ? cpuClockSpeed.FirstOrDefault().Cpu_Current_ClockSpeed : 
+
+            return (cpuUsage != null) ? cpuUsage :
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
         }
 

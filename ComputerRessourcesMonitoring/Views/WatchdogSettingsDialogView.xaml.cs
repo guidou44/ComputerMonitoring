@@ -1,5 +1,4 @@
-﻿using Common.DialogServices;
-using Common.UIInterfaces;
+﻿using Common.UI.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

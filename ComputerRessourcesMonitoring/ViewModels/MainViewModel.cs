@@ -1,7 +1,6 @@
-﻿using Common.DialogServices;
-using Common.Reports;
-using Common.UI;
-using Common.UIInterfaces;
+﻿using Common.Reports;
+using Common.UI.Infrastructure;
+using Common.UI.Interfaces;
 using ComputerRessourcesMonitoring.Events;
 using ComputerRessourcesMonitoring.Models;
 using Prism.Events;
@@ -16,10 +15,8 @@ using System.Windows.Input;
 
 
 /*TODO: 
-Add all Cpu information on watchdog settings page (In list box or something like this). Also add clock speed overall, voltage, usage of each, etc...
-Add ram, Add network activiy, the most the better!
-See how to use the dispatcher class to begin invoke the close action for the wndow in order for the app to close appropriateley
-release
+- Add an option to read packets in settings view
+- release
  */
 
 
@@ -29,7 +26,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
     public class MainViewModel : ComputerMonitoringViewModelBase
     {
         #region constructor
-     
+
         private readonly IDialogService _dialogService;
         private IEventAggregator _eventsHub;
         private bool _watchdogIsUnsubsribed;
@@ -40,6 +37,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public MainViewModel(IDialogService dialogService)
         {
             _watchdog = new ProcessWatchDog();
+            _eventsHub = new EventAggregator();
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
 
             _watchdogTargetName = "USBHelperLauncher";
@@ -47,7 +45,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
             IsWatchdogRunning = true;
 
             _dialogService = dialogService;
-            _eventsHub = new EventAggregator();
 
             SubscribeToEvents();
             SetMonitoringCounter(900);
@@ -73,7 +70,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 if (!watchdog_is_initialized)
                 {
                     var pidAndPorts = _watchdog.GetOpenPortsForProcess(_watchdogTargetName);
-                    _watchdog.InitializeWatchdog(pidAndPorts.Key, pidAndPorts.Value);
+                    _watchdog.InitializeWatchdog(pidAndPorts.Key, pidAndPorts.Value, _watchdogTargetName);
                     if (watchdog_is_initialized) Reporter.SendEmailReport(
                                     subject: $"ALARM: Detected process start for {_watchdogTargetName}",
                                     message: $"Activity detected report:\n" +
@@ -269,7 +266,13 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public void KillAppCommandExecute(IClosable window)
         {
-            if (window != null) window.Close();
+            if (window != null)
+            {
+                _watchdog.PacketsExchangedEvent -= ReportPacketExchange;
+                _monitoringRefreshCounter.Stop();
+                _monitoringRefreshCounter.Dispose();
+                window.Close();
+            }
         }
 
 

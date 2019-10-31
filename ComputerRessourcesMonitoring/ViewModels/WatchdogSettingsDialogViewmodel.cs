@@ -1,10 +1,12 @@
-﻿using Common.DialogServices;
-using Common.UI;
-using Common.UIInterfaces;
+﻿using Common.UI.DialogServices;
+using Common.UI.Infrastructure;
+using Common.UI.Interfaces;
 using ComputerRessourcesMonitoring.Events;
+using ComputerRessourcesMonitoring.Models;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +30,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public WatchdogSettingsDialogViewModel(IEventAggregator eventsHub) 
         {
             _eventsHub = eventsHub;
+            RefreshMonitoring();
             SetMonitoringCounter(900);
         }
 
@@ -43,13 +46,37 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         protected override void RefreshMonitoring()
         {
-            //set monitoring in settings view refresh
+            CpuUsageCollection = new ObservableCollection<CpuUsage>(PerformanceInfo.GetEachCpuUsage());
         }
 
         #endregion
 
 
         #region Properties
+
+        private ObservableCollection<CpuUsage> _cpuUsageCollection;
+
+        public ObservableCollection<CpuUsage> CpuUsageCollection
+        {
+            get { return _cpuUsageCollection; }
+            set 
+            {
+                _cpuUsageCollection = value;
+                RaisePropertyChanged(nameof(CpuUsageCollection));
+            }
+        }
+
+        private ObservableCollection<CpuUsage> _globalCpuUsage;
+
+        public ObservableCollection<CpuUsage> GlobalCpuUsage
+        {
+            get { return _globalCpuUsage; }
+            set
+            {
+                _globalCpuUsage = value;
+                RaisePropertyChanged(nameof(GlobalCpuUsage));
+            }
+        }
 
         private string _watchdogTargetName;
 

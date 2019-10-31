@@ -1,4 +1,4 @@
-﻿using Common.UI;
+﻿using Common.UI.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

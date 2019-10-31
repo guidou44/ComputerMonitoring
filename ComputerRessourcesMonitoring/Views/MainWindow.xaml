@@ -128,8 +128,8 @@
                     </Image>-->
                     <ContentControl>
                         <Ellipse x:Name="WatchdogStatus" 
-                                 Height="10"
-                                 Width="10"
+                                 Height="20"
+                                 Width="20"
                                  Opacity="0.9">
                             <Ellipse.Style>
                                 <Style TargetType="{x:Type Ellipse}">

@@ -11,6 +11,8 @@ namespace ComputerRessourcesMonitoring.Models
         public string Cpu_Name { get; set; }
         public double Cpu_Usage { get; set; }
         public float Cpu_Current_ClockSpeed { get; set; }
+        public uint Number_of_cores { get; set; }
+        public uint Thread_count { get; set; }
 
     }
 }

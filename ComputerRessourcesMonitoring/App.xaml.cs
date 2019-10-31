@@ -1,4 +1,5 @@
-﻿using Common.DialogServices;
+﻿using Common.UI.DialogServices;
+using Common.UI.Interfaces;
 using ComputerRessourcesMonitoring.ViewModels;
 using ComputerRessourcesMonitoring.Views;
 using System;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
+
 namespace ComputerRessourcesMonitoring
 {
     /// <summary>
@@ -18,7 +20,7 @@ namespace ComputerRessourcesMonitoring
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            IDialogService dialogService = new DialogService(MainWindow);
+            IDialogService dialogService = new DialogService(owner: MainWindow);
 
             dialogService.Register<WatchdogSettingsDialogViewModel, WatchdogSettingsDialogView>();
 
