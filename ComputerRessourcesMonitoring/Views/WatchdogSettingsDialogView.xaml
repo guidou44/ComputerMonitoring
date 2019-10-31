@@ -25,6 +25,43 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
         </Style>
+        <Style TargetType="{x:Type CheckBox}" x:Key="CheckBoxStyle">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name ="checkboxImage" 
+                                       CornerRadius="4"
+                                       Background="#9e0000"
+                                       Width="10"
+                                       Height="10"
+                                       Margin="0 0 5 0"
+                                       />
+                            <ContentPresenter/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checkboxImage" Property="Background" Value="#0f9900"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsChecked" Value="False"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="checkboxImage" Property="Background" Value="#ff6666"/>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsChecked" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="checkboxImage" Property="Background" Value="#8ffc83"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
     <Border BorderBrush="DarkGreen"
             BorderThickness="5"
@@ -144,6 +181,26 @@
                             Margin="10 20 10 0"
                             Width="{Binding ElementName=ComputerResourcesTextBlock, Path=ActualWidth}"
                                 />
+                        <CheckBox 
+                            Margin="0 20 0 0"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontFamily="Consola"
+                            FontSize="11"
+                            Foreground="DarkGreen"
+                            FontWeight="Bold"
+                            Style="{StaticResource CheckBoxStyle}"
+                            IsChecked="{Binding UsePerformanceCounterForCpuUsage}"
+                            >
+                        <CheckBox.Content>
+                            <TextBlock Text="Use Performance Counter"
+                                       VerticalAlignment="Center"
+                                       Margin="0"/>
+                        </CheckBox.Content>
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
 
 
 

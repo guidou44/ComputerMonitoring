@@ -29,6 +29,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private readonly IDialogService _dialogService;
         private IEventAggregator _eventsHub;
+        private bool _usePerformanceCounterForCpuUsage;
         private bool _watchdogIsUnsubsribed;
         private bool _watchdogIsInitialized;
         private ProcessWatchDog _watchdog;
@@ -43,6 +44,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _watchdogTargetName = "USBHelperLauncher";
             IsMonitoringVisible = true;
             IsWatchdogRunning = true;
+            _usePerformanceCounterForCpuUsage = true;
 
             _dialogService = dialogService;
 
@@ -94,7 +96,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             {
                 if (_watchdogIsUnsubsribed) _watchdogIsInitialized = false;
                 RamUsage = PerformanceInfo.GetCurrentRamMemoryUsage();
-                CpuUsage = PerformanceInfo.GetCurrentTotalCpuUsage();
+                CpuUsage = PerformanceInfo.GetCurrentTotalCpuUsage(_usePerformanceCounterForCpuUsage);
                 if (IsWatchdogRunning) ManageWatchdog(ref _watchdogIsInitialized);
             }
             catch (Exception e)
@@ -119,6 +121,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         private void SubscribeToEvents()
         {
             _eventsHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe(ChangeWatchdogTarget);
+            _eventsHub.GetEvent<OnUsePerformanceCounterChangedEvent>().Subscribe(delegate(bool newValue) { _usePerformanceCounterForCpuUsage = newValue; });
         }
 
         #endregion
@@ -231,22 +234,12 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public void OpenWatchdogManagerCommandExecute()
         {
-            var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventsHub);
+            var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventsHub, _usePerformanceCounterForCpuUsage);
 
             bool? result = _dialogService.ShowDialog(viewModel);
 
-            if (result.HasValue)
-            {
-                if (result.Value)
-                {
-                    Console.WriteLine();
-                }
-                else
-                {
-                    Console.WriteLine();
-                }
-            }
         }
+
         public ICommand HideComputerMonitoringCommand
         {
             get { return new RelayCommand(ChangeComputerMonitoringCommandExecute, CanHideWatchdogCommandExecute); }

@@ -22,16 +22,17 @@ namespace ComputerRessourcesMonitoring.ViewModels
         private IEventAggregator _eventsHub;
         public event EventHandler<DialogCloseRequestedEventArgs> CloseRequested;
 
-        public WatchdogSettingsDialogViewModel(string message, IEventAggregator eventsHub) : this(eventsHub)
+        public WatchdogSettingsDialogViewModel(string message, IEventAggregator eventsHub, bool usePerformanceCounter) : this(eventsHub, usePerformanceCounter)
         {
             WatchdogTargetName = message;
         }
 
-        public WatchdogSettingsDialogViewModel(IEventAggregator eventsHub) 
+        public WatchdogSettingsDialogViewModel(IEventAggregator eventsHub, bool usePerformanceCounter) 
         {
             var globalCpuUsage = PerformanceInfo.GetGlobalCpuUsage();
             CpuMake = globalCpuUsage.Cpu_Name + $" - {globalCpuUsage.Number_of_cores} cores";
             _eventsHub = eventsHub;
+            UsePerformanceCounterForCpuUsage = usePerformanceCounter;
             RefreshMonitoring();
             SetMonitoringCounter(900);
         }
@@ -77,6 +78,19 @@ namespace ComputerRessourcesMonitoring.ViewModels
             { 
                 _cpuMake = value;
                 RaisePropertyChanged(nameof(CpuMake));
+            }
+        }
+
+        private bool _usePerformanceCounterForCpuUsage;
+
+        public bool UsePerformanceCounterForCpuUsage
+        {
+            get { return _usePerformanceCounterForCpuUsage; }
+            set 
+            { 
+                _usePerformanceCounterForCpuUsage = value;
+                RaisePropertyChanged(nameof(UsePerformanceCounterForCpuUsage));
+                _eventsHub.GetEvent<OnUsePerformanceCounterChangedEvent>().Publish(_usePerformanceCounterForCpuUsage);
             }
         }
 

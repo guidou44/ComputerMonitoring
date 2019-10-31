@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Management;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ComputerRessourcesMonitoring.Models
 {
     public static class PerformanceInfo
     {
+        private static PerformanceCounter all_Cpu_Idle;
+
         public static double GetCurrentRamMemoryUsage()
         {
             var wmiObject = new ManagementObjectSearcher("select * from Win32_OperatingSystem");
@@ -25,6 +29,17 @@ namespace ComputerRessourcesMonitoring.Models
         public static double GetCurrentTotalCpuUsage()
         {
             return GetGlobalCpuUsage().Cpu_Usage;
+        }
+
+        public static double GetCurrentTotalCpuUsage(bool usePerformanceCounter)
+        {
+            if (!usePerformanceCounter) return GetCurrentTotalCpuUsage();
+            else
+            {
+                all_Cpu_Idle = (all_Cpu_Idle == null) ? new PerformanceCounter("Processor", "% Idle Time", "_Total") : all_Cpu_Idle;
+                var cpuUsage = all_Cpu_Idle.NextValue();
+                return Math.Round(100.0 - cpuUsage, 2);
+            }
         }
 
         public static IEnumerable<CpuUsage> GetEachCpuUsage()
