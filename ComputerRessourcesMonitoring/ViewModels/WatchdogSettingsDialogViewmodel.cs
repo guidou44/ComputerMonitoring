@@ -29,6 +29,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public WatchdogSettingsDialogViewModel(IEventAggregator eventsHub) 
         {
+            var globalCpuUsage = PerformanceInfo.GetGlobalCpuUsage();
+            CpuMake = globalCpuUsage.Cpu_Name + $" - {globalCpuUsage.Number_of_cores} cores";
             _eventsHub = eventsHub;
             RefreshMonitoring();
             SetMonitoringCounter(900);
@@ -66,17 +68,18 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        private ObservableCollection<CpuUsage> _globalCpuUsage;
+        private string _cpuMake;
 
-        public ObservableCollection<CpuUsage> GlobalCpuUsage
+        public string CpuMake
         {
-            get { return _globalCpuUsage; }
-            set
-            {
-                _globalCpuUsage = value;
-                RaisePropertyChanged(nameof(GlobalCpuUsage));
+            get { return _cpuMake; }
+            set 
+            { 
+                _cpuMake = value;
+                RaisePropertyChanged(nameof(CpuMake));
             }
         }
+
 
         private string _watchdogTargetName;
 

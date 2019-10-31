@@ -65,17 +65,5 @@ namespace ComputerRessourcesMonitoring.Models
             return (cpuUsage != null) ? cpuUsage :
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
         }
-
-        public static CpuUsage GetGlobalDetailedCpuUsage()
-        {
-            var wmiObject = new ManagementObjectSearcher("select * from Win32_Processor");
-
-            var cpuUsage = GetGlobalCpuUsage();
-
-
-            return (cpuUsage != null) ? cpuUsage :
-                throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
-        }
-
     }
 }

@@ -95,7 +95,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 if (_watchdogIsUnsubsribed) _watchdogIsInitialized = false;
                 RamUsage = PerformanceInfo.GetCurrentRamMemoryUsage();
                 CpuUsage = PerformanceInfo.GetCurrentTotalCpuUsage();
-                CpuClockSpeed = PerformanceInfo.GetCpuClockSpeed();
                 if (IsWatchdogRunning) ManageWatchdog(ref _watchdogIsInitialized);
             }
             catch (Exception e)
