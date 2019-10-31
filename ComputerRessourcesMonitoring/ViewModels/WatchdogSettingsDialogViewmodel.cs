@@ -46,9 +46,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
             RefreshMonitoring();
         }
 
-        protected override void RefreshMonitoring()
+        protected override async void RefreshMonitoring()
         {
-            CpuUsageCollection = new ObservableCollection<CpuUsage>(PerformanceInfo.GetEachCpuUsage());
+            CpuUsageCollection = new ObservableCollection<CpuUsage>(await Task.Run(() => PerformanceInfo.GetEachCpuUsage()));
         }
 
         #endregion
