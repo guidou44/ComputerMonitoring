@@ -2,7 +2,8 @@
 using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
 using ComputerRessourcesMonitoring.Events;
-using ComputerRessourcesMonitoring.Models;
+using HardwareManipulation.HardwareInformation;
+using HardwareManipulation.Models;
 using Prism.Events;
 using ProcessMonitoring.Models;
 using System;
@@ -12,13 +13,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
-
-
-/*TODO: 
-- Add an option to read packets in settings view
-- release
- */
-
 
 
 namespace ComputerRessourcesMonitoring.ViewModels
@@ -95,8 +89,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
             try
             {
                 if (_watchdogIsUnsubsribed) _watchdogIsInitialized = false;
-                RamUsage = PerformanceInfo.GetCurrentRamMemoryUsage();
-                CpuUsage = PerformanceInfo.GetCurrentTotalCpuUsage(_usePerformanceCounterForCpuUsage);
+                RamUsage = RAMPerformanceInfo.GetCurrentRamMemoryUsage();
+                CpuUsage = CPUPerformanceInfo.GetCurrentTotalCpuUsage(_usePerformanceCounterForCpuUsage);
                 if (IsWatchdogRunning) ManageWatchdog(ref _watchdogIsInitialized);
             }
             catch (Exception e)

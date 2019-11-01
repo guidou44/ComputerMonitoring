@@ -1,0 +1,5 @@
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\HardwareManipulation.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\HardwareManipulation.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.csprojAssemblyReference.cache
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.pdb

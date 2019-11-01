@@ -1,8 +1,10 @@
-﻿using Common.UI.DialogServices;
+﻿using Common.Reports;
+using Common.UI.DialogServices;
 using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
 using ComputerRessourcesMonitoring.Events;
-using ComputerRessourcesMonitoring.Models;
+using HardwareManipulation.HardwareInformation;
+using HardwareManipulation.Models;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
@@ -29,12 +31,28 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public WatchdogSettingsDialogViewModel(IEventAggregator eventsHub, bool usePerformanceCounter) 
         {
-            var globalCpuUsage = PerformanceInfo.GetGlobalCpuUsage();
+            var globalCpuUsage = CPUPerformanceInfo.GetGlobalCpuUsage();
             CpuMake = globalCpuUsage.Cpu_Name + $" - {globalCpuUsage.Number_of_cores} cores";
+            GPUPerformanceInfo.InitializeGpuWatcher();
+
             _eventsHub = eventsHub;
             UsePerformanceCounterForCpuUsage = usePerformanceCounter;
             RefreshMonitoring();
-            SetMonitoringCounter(900);
+            SetMonitoringCounter(1000);
+        }
+        ~WatchdogSettingsDialogViewModel()
+        {
+            GPUPerformanceInfo.ResetGpuWatcher();
+            _monitoringRefreshCounter.Elapsed -= OnCounterCompletionEvent;
+        }
+
+        #endregion
+
+        #region Events
+
+        protected override void OnCounterCompletionEvent(Object source, ElapsedEventArgs e)
+        {
+            RefreshMonitoring();
         }
 
         #endregion
@@ -42,14 +60,16 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Methods
 
-        protected override void OnCounterCompletionEvent(Object source, ElapsedEventArgs e)
-        {
-            RefreshMonitoring();
-        }
-
         protected override async void RefreshMonitoring()
         {
-            CpuUsageCollection = new ObservableCollection<CpuUsage>(await Task.Run(() => PerformanceInfo.GetEachCpuUsage()));
+                CpuUsageCollection = new ObservableCollection<CpuUsage>(await Task.Run(() => CPUPerformanceInfo.GetEachCpuUsage()));
+                var gpuRequestResult = await Task.Run(() => GPUPerformanceInfo.GetGpuTemperature());
+                if (gpuRequestResult != null)
+                {
+                    GpuUsageCollection = new ObservableCollection<GpuUsage>(gpuRequestResult);
+                    GpuMake = GpuUsageCollection.FirstOrDefault().Name;
+                }
+
         }
 
         #endregion
@@ -78,6 +98,30 @@ namespace ComputerRessourcesMonitoring.ViewModels
             { 
                 _cpuMake = value;
                 RaisePropertyChanged(nameof(CpuMake));
+            }
+        }
+
+        private string _gpuMake;
+
+        public string GpuMake
+        {
+            get { return _gpuMake; }
+            set 
+            { 
+                _gpuMake = value;
+                RaisePropertyChanged(nameof(GpuMake));
+            }
+        }
+
+        private ObservableCollection<GpuUsage> _gpuUsageCollection;
+
+        public ObservableCollection<GpuUsage> GpuUsageCollection
+        {
+            get { return _gpuUsageCollection; }
+            set
+            {
+                _gpuUsageCollection = value;
+                RaisePropertyChanged(nameof(GpuUsageCollection));
             }
         }
 

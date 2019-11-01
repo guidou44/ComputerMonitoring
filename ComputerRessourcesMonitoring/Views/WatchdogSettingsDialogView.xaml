@@ -13,55 +13,99 @@
         AllowsTransparency="True"
         Background="Transparent"
         SizeToContent="WidthAndHeight"
-        MinHeight="200"
+        MinHeight="800"
+        MinWidth="100"
         >
     <Window.Resources>
         <Style x:Key="{x:Type Button}"
                TargetType="{x:Type Button}">
-            <Setter Property="FontFamily" Value="Consola"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="Foreground" Value="DarkGreen"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="ButtonBorder"
+                                    BorderThickness="2" 
+                                    CornerRadius="2" 
+                                    Margin="0" 
+                                    Padding="6"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="Black"
+                                    Opacity="0.9">
+
+                                    <TextBlock x:Name="ButtonContentTemplate"
+                                               Text="{TemplateBinding Content}" 
+                                               FontSize="16"
+                                               FontFamily="Consola"
+                                               FontWeight="DemiBold"
+                                               Foreground="{TemplateBinding Foreground}"
+                                               Background="{TemplateBinding Background}"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Margin="0"
+                                               />
+
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.4"/>
+                                <Setter TargetName="ButtonContentTemplate" Property="Margin" Value="1"/>
+                                <Setter TargetName="ButtonContentTemplate" Property="FontSize" Value="18"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
         <Style TargetType="{x:Type CheckBox}" x:Key="CheckBoxStyle">
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type CheckBox}">
                         <StackPanel Orientation="Horizontal">
-                            <Border x:Name ="checkboxImage" 
+                            <Border x:Name ="checkboxImageParent" 
                                        CornerRadius="4"
-                                       Background="#9e0000"
-                                       Width="10"
-                                       Height="10"
+                                       Background="#0f9900"
+                                       Width="12"
+                                       Height="12"
                                        Margin="0 0 5 0"
-                                       />
+                                       >
+                                <Ellipse x:Name="checkboxImageChild"
+                                         Height="5"
+                                         Width="5"
+                                         Fill="Black"
+                                         Opacity="0.8"
+                                         HorizontalAlignment="Center"
+                                         VerticalAlignment="Center"/>
+                            </Border>
                             <ContentPresenter/>
                         </StackPanel>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="checkboxImage" Property="Background" Value="#0f9900"/>
+                                <Setter TargetName="checkboxImageChild" Property="Fill" Value="Black"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="checkboxImageChild" Property="Fill" Value="Transparent"/>
                             </Trigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsMouseOver" Value="True"/>
                                     <Condition Property="IsChecked" Value="False"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="checkboxImage" Property="Background" Value="#ff6666"/>
+                                <Setter TargetName="checkboxImageParent" Property="Background" Value="#8ffc83"/>
                             </MultiTrigger>
                             <MultiTrigger>
                                 <MultiTrigger.Conditions>
                                     <Condition Property="IsMouseOver" Value="True"/>
                                     <Condition Property="IsChecked" Value="True"/>
                                 </MultiTrigger.Conditions>
-                                <Setter TargetName="checkboxImage" Property="Background" Value="#8ffc83"/>
+                                <Setter TargetName="checkboxImageParent" Property="Background" Value="#8ffc83"/>
                             </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
     </Window.Resources>
     <Border BorderBrush="DarkGreen"
             BorderThickness="5"
@@ -70,9 +114,9 @@
             <SolidColorBrush Color="LightGreen" Opacity="0.8" />
         </Border.Background>
 
-        <Grid Margin="10">
+        <Grid Margin="30">
             <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <TextBlock  Background="Transparent"
                                 FontWeight="Bold"
                                 HorizontalAlignment="Center"
@@ -113,39 +157,29 @@
                             <KeyBinding Key="Return" Command="{Binding ChangeWatchdogTargetCommand}"/>
                         </TextBox.InputBindings>
                     </TextBox>
-                    <Button Command="{Binding ChangeWatchdogTargetCommand}" 
-                            Background="Transparent"
-                            BorderBrush="Transparent"
-                            Padding="0"
-                            >
-                        <Border BorderBrush="DarkGreen" 
-                                                BorderThickness="2" 
-                                                CornerRadius="2" 
-                                                Margin="0" 
-                                                Background="#B58628"
-                                                Opacity="0.9"
-                                                Padding="10 6">
-                            <StackPanel>
-                                <TextBlock Text="CHANGE" FontSize="14"/>
-                            </StackPanel>
-                        </Border>
-                    </Button>
+                    <Button Command="{Binding ChangeWatchdogTargetCommand}"
+                            Background="#B58628"
+                            Foreground="Black"
+                            Content="CHANGE"/>
                 </StackPanel>
-                <TextBlock      x:Name="ComputerResourcesTextBlock"
-                                Background="Transparent"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Center"
-                                FontFamily="Consola"
-                                FontSize="20"
-                                Foreground="DarkGreen"
-                                FontWeight="Bold"
-                                TextDecorations="Underline"
-                                Text ="Computer Resources Info"
-                                Margin="10 20 10 0"
-                                />
-                    <StackPanel Orientation="Vertical"
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <TextBlock      x:Name="ComputerResourcesTextBlock"
+                                    Background="Transparent"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    FontFamily="Consola"
+                                    FontSize="20"
+                                    Foreground="DarkGreen"
+                                    FontWeight="Bold"
+                                    TextDecorations="Underline"
+                                    Text ="CPU Resources Info"
+                                    Margin="10 20 10 0"
+                                    Width="300"
+                                    />
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
                                 Width="{Binding ElementName=ComputerResourcesTextBlock, Path=ActualWidth}">
-                        <ListBox HorizontalAlignment="Left"
+                        <ItemsControl HorizontalAlignment="Left"
                                          VerticalAlignment="Center"
                                          Background="Transparent"
                                          BorderBrush="Transparent"
@@ -154,8 +188,10 @@
                                          FontSize="16"
                                          Foreground="DarkGreen"
                                          FontWeight="Bold"
+                                         IsEnabled="False"
                                          ItemsSource="{Binding CpuUsageCollection, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                            <ListBox.ItemTemplate>
+
+                            <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel Orientation="Horizontal"
                                                         HorizontalAlignment="Left"
@@ -166,8 +202,8 @@
                                         <TextBlock Text="{Binding Cpu_Usage, StringFormat={}{0}%}" Margin="0 0 5 0"/>
                                     </StackPanel>
                                 </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                         <TextBlock
                             Background="Transparent"
                             HorizontalAlignment="Left"
@@ -205,6 +241,58 @@
 
 
                 </StackPanel>
+                <TextBlock      x:Name="GpuResourcesTextBlock"
+                                Background="Transparent"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                FontFamily="Consola"
+                                FontSize="20"
+                                Foreground="DarkGreen"
+                                FontWeight="Bold"
+                                TextDecorations="Underline"
+                                Text ="GPU Resources Info"
+                                Margin="10 20 10 0"
+                                Width="{Binding ElementName=ComputerResourcesTextBlock, Path=ActualWidth}"
+                                />
+                <StackPanel Orientation="Vertical"
+                                Width="{Binding ElementName=GpuResourcesTextBlock, Path=ActualWidth}">
+                    <ItemsControl HorizontalAlignment="Left"
+                                         VerticalAlignment="Center"
+                                         BorderThickness="0"
+                                         FontFamily="Consola"
+                                         FontSize="16"
+                                         FontWeight="Bold"
+                                         IsEnabled="False"
+                                         Background="Transparent"
+                                         BorderBrush="Transparent"
+                                         Foreground="DarkGreen"
+                                         ItemsSource="{Binding GpuUsageCollection, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Center"
+                                            Margin="0 10 0 0">
+                                    <TextBlock Text="{Binding Temperature, StringFormat={}GPU_Temp: {0}°C}" Margin="0 0 5 0"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <TextBlock
+                            Background="Transparent"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontFamily="Consola"
+                            FontSize="16"
+                            Foreground="DarkGreen"
+                            FontWeight="Bold"
+                            Text ="{Binding GpuMake}"
+                            TextWrapping="Wrap"
+                            Margin="0 20 10 0"
+                            Width="{Binding ElementName=ComputerResourcesTextBlock, Path=ActualWidth}"
+                                />
+                </StackPanel>
+
                 <DockPanel Margin="20 80 20 20">
                     <StackPanel 
                     DockPanel.Dock="Bottom" 
@@ -215,42 +303,16 @@
                         IsDefault="True" 
                         Command="{Binding OkCommand}" 
                         Margin="0 0 20 0" 
-                        Padding="0">
-                            <Button.Content>
-                                <Border BorderBrush="DarkGreen" 
-                                                BorderThickness="2" 
-                                                CornerRadius="2" 
-                                                Margin="0" 
-                                                Padding="10 6">
-                                    <Border.Background>
-                                        <SolidColorBrush Color="#328713" Opacity="0.8"/>
-                                    </Border.Background>
-                                    <StackPanel>
-                                        <TextBlock Text="OK" FontSize="14"/>
-                                    </StackPanel>
-                                </Border>
-                            </Button.Content>
-                        </Button>
+                        Padding="0"
+                        Content="OK"
+                        Background="Green"/>
+
                         <Button 
                         IsCancel="True" 
                         Command="{Binding CancelCommand}"
                         Margin="20 0 0 0"
-                        Padding="0">
-                            <Button.Content>
-                                <Border BorderBrush="DarkGreen" 
-                                                BorderThickness="2" 
-                                                CornerRadius="2" 
-                                                Margin="0" 
-                                                Padding="10 6">
-                                    <Border.Background>
-                                        <SolidColorBrush Color="#9e2020" Opacity="0.8"/>
-                                    </Border.Background>
-                                    <StackPanel>
-                                        <TextBlock Text="CANCEL" FontSize="14"/>
-                                    </StackPanel>
-                                </Border>
-                            </Button.Content>
-                        </Button>
+                        Background="#9e2020"
+                        Content="CANCEL"/>
                     </StackPanel>
                 </DockPanel>
             </StackPanel>

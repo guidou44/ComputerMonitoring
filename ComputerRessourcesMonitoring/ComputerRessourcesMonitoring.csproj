@@ -95,8 +95,6 @@
     </Compile>
     <Compile Include="Events\OnUsePerformanceCounterChangedEvent.cs" />
     <Compile Include="Events\OnWatchdogTargetChangedEvent.cs" />
-    <Compile Include="Models\CpuUsage.cs" />
-    <Compile Include="Models\PerformanceInfo.cs" />
     <Compile Include="ViewModels\ComputerMonitoringViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\WatchdogSettingsDialogViewModel.cs" />
@@ -161,6 +159,10 @@
     <ProjectReference Include="..\..\Common\Common\Common.csproj">
       <Project>{85B27C12-9BB0-4641-90D2-68EDD50580DA}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HardwareManipulation\HardwareManipulation.csproj">
+      <Project>{EACDD9E2-6A31-45D3-A281-57D3BE24219A}</Project>
+      <Name>HardwareManipulation</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProcessMonitoring\ProcessMonitoring.csproj">
       <Project>{cebc4844-0c7f-4a01-a799-0a149d87e960}</Project>
