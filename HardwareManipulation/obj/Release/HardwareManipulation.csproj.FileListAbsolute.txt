@@ -3,3 +3,8 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\b
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.csprojAssemblyReference.cache
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Cudafy.NET.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\NvAPIWrapper.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Cudafy.NET.xml
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.csproj.CopyComplete
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\NvAPIWrapper.xml

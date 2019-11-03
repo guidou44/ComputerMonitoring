@@ -1,0 +1,3 @@
+- Only work with windows
+- Only works with NVIDIA graphic cards, will probably break otherwise
+- Needs to be run as Administrator because of the higher privileges needed to access MSAcpi_ThermalZone

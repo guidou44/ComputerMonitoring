@@ -37,4 +37,5 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMoni
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\System.ValueTuple.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\HardwareManipulation.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\HardwareManipulation.pdb
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\OpenHardwareMonitorLib.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\NvAPIWrapper.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\NvAPIWrapper.xml

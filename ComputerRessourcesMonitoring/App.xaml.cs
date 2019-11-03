@@ -1,5 +1,7 @@
 ﻿using Common.UI.DialogServices;
 using Common.UI.Interfaces;
+using Common.UI.ViewModels;
+using Common.UI.Views;
 using ComputerRessourcesMonitoring.ViewModels;
 using ComputerRessourcesMonitoring.Views;
 using System;
@@ -23,11 +25,13 @@ namespace ComputerRessourcesMonitoring
             IDialogService dialogService = new DialogService(owner: MainWindow);
 
             dialogService.Register<WatchdogSettingsDialogViewModel, WatchdogSettingsDialogView>();
+            dialogService.Register<ErrorMessageViewModel, ErrorMessageView>();
 
             var viewModel = new MainViewModel(dialogService);
             var view = new MainWindow { DataContext = viewModel };
 
             view.ShowDialog();
+            
         }
     }
 }

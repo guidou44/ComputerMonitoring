@@ -135,8 +135,12 @@ namespace ProcessMonitoring.Models
             _captureDevice = CaptureDeviceList.Instance.Where(CD => !CD.Description.Contains("Atheros")).FirstOrDefault() ??
                                 throw new ArgumentNullException("No capture device found");
             var fileId = DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString();
-            _captureFileWriterReceived = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\{processName}_packets_RCV_{fileId}.pcap");
-            _captureFileWriterSend = new CaptureFileWriterDevice($@"D:\Guillaume\Desktop\Internet Explorer\Logs\PacketCaptures\{processName}_packets_SENT_{fileId}.pcap");
+
+            var currentDirectory = Directory.GetCurrentDirectory().ToString();
+            if (!Directory.Exists(Path.Combine(currentDirectory, "Packet_Captures"))) Directory.CreateDirectory(Path.Combine(currentDirectory, "Packet_Captures"));
+            
+            _captureFileWriterReceived = new CaptureFileWriterDevice(Path.Combine(currentDirectory, "Packet_Captures", $"{processName}_packets_RCV_{fileId}.pcap"));
+            _captureFileWriterSend = new CaptureFileWriterDevice(Path.Combine(currentDirectory, "Packet_Captures", $"{processName}_packets_SENT_{fileId}.pcap"));
 
             foreach (var port in all_ports_for_process)
             {

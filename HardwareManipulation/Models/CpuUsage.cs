@@ -6,13 +6,20 @@ using System.Threading.Tasks;
 
 namespace HardwareManipulation.Models
 {
-    public class CpuUsage
+    public class CpuUsage : HardwareUsageBase
     {
-        public string Cpu_Name { get; set; }
-        public double Cpu_Usage { get; set; }
-        public float Cpu_Current_ClockSpeed { get; set; }
+        public CpuUsage()
+        {
+            ShortName = "CPU";
+        }
+        public double Temperature { get; set; }
+        public float Current_ClockSpeed { get; set; }
         public uint Number_of_cores { get; set; }
         public uint Thread_count { get; set; }
 
+        public override string ToString()
+        {
+            return Main_Value.ToString() + " %";
+        }
     }
 }

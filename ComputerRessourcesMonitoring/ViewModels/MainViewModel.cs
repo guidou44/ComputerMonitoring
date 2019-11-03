@@ -10,10 +10,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
-
+using System.Runtime;
+using ComputerRessourcesMonitoring.Models;
+using Common.UI.ViewModels;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -23,25 +26,31 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private readonly IDialogService _dialogService;
         private IEventAggregator _eventsHub;
-        private bool _usePerformanceCounterForCpuUsage;
         private bool _watchdogIsUnsubsribed;
         private bool _watchdogIsInitialized;
         private ProcessWatchDog _watchdog;
         private string _watchdogTargetName;
 
+        private MonitoringTarget firstTargetEnum;
+        private MonitoringTarget secondTargetEnum;
+
+        private IDictionary<MonitoringTarget, Func<HardwareUsageBase>> targetToAction;
+
         public MainViewModel(IDialogService dialogService)
         {
+            targetToAction = InitializeResourceDictionary();
             _watchdog = new ProcessWatchDog();
             _eventsHub = new EventAggregator();
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
 
+            firstTargetEnum = MonitoringTarget.CPU_Usage_PC;
+            secondTargetEnum = MonitoringTarget.RAM_Usage;
+
             _watchdogTargetName = "USBHelperLauncher";
             IsMonitoringVisible = true;
             IsWatchdogRunning = true;
-            _usePerformanceCounterForCpuUsage = true;
-
             _dialogService = dialogService;
-
+            RefreshMonitoring();
             SubscribeToEvents();
             SetMonitoringCounter(900);
         }
@@ -51,11 +60,25 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Methods
 
-        private void ChangeWatchdogTarget(string newTarget)
+        private void SetWatchdogTarget(string newTarget)
         {
             if (IsWatchdogRunning) ToggleWatchdogRunStateCommandExecute();
             _watchdogTargetName = newTarget;
             ToggleWatchdogRunStateCommandExecute();
+        }
+
+        private IDictionary<MonitoringTarget, Func<HardwareUsageBase>> InitializeResourceDictionary()
+        {
+            return new Dictionary<MonitoringTarget, Func<HardwareUsageBase>>()
+            {
+                {MonitoringTarget.RAM_Usage, new Func<HardwareUsageBase>(RAMPerformanceInfo.GetCurrentRamMemoryUsage)},
+                {MonitoringTarget.CPU_Usage_PC, new Func<HardwareUsageBase>(CPUPerformanceInfo.GetCurrentGlobalCpuUsageWithPerfCounter)},
+                {MonitoringTarget.CPU_Usage, new Func<HardwareUsageBase>(CPUPerformanceInfo.GetCurrentGlobalCpuUsage)},
+                {MonitoringTarget.GPU_Usage, new Func<HardwareUsageBase>(GPUPerformanceInfo.GetFirstGpuInformation)},
+                {MonitoringTarget.GPU_Temp, new Func<HardwareUsageBase>(GPUPerformanceInfo.GetFirstGpuTempOnly)},
+                {MonitoringTarget.CPU_Temp, new Func<HardwareUsageBase>(CPUPerformanceInfo.GetCpuTemperature)},
+            };
+
         }
 
         private void ManageWatchdog(ref bool watchdog_is_initialized)
@@ -89,13 +112,20 @@ namespace ComputerRessourcesMonitoring.ViewModels
             try
             {
                 if (_watchdogIsUnsubsribed) _watchdogIsInitialized = false;
-                RamUsage = RAMPerformanceInfo.GetCurrentRamMemoryUsage();
-                CpuUsage = CPUPerformanceInfo.GetCurrentTotalCpuUsage(_usePerformanceCounterForCpuUsage);
+                var target_1 = targetToAction[firstTargetEnum].Invoke();
+                var target_2 = targetToAction[secondTargetEnum].Invoke();
+                FirstMonitoringTarget = target_1.Main_Value;
+                SecondMonitoringTarget = target_2.Main_Value;
+                if (FirstMonitoringTargetName != target_1.ShortName) FirstMonitoringTargetName = target_1.ShortName;
+                if (SecondMonitoringTargetName != target_2.ShortName) SecondMonitoringTargetName = target_2.ShortName;
+                FirstMonitoringTargetDisplay = target_1.ToString();
+                SecondMonitoringTargetDisplay = target_2.ToString();
                 if (IsWatchdogRunning) ManageWatchdog(ref _watchdogIsInitialized);
             }
             catch (Exception e)
             {
                 Reporter.LogException(e);
+                ShowErrorMessage(e);
             }
         }
 
@@ -112,10 +142,23 @@ namespace ComputerRessourcesMonitoring.ViewModels
                             ));
         }
 
+        private void ShowErrorMessage(Exception e)
+        {
+            var viewModel = new ErrorMessageViewModel(e);
+
+            bool? result =_dialogService.ShowDialog(viewModel);
+        }
+
+        private void SetMonitoringTargets(Queue<MonitoringTarget> targets)
+        {
+            firstTargetEnum = targets.Dequeue();
+            secondTargetEnum = targets.Dequeue();
+        }
+
         private void SubscribeToEvents()
         {
-            _eventsHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe(ChangeWatchdogTarget);
-            _eventsHub.GetEvent<OnUsePerformanceCounterChangedEvent>().Subscribe(delegate(bool newValue) { _usePerformanceCounterForCpuUsage = newValue; });
+            _eventsHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe(SetWatchdogTarget);
+            _eventsHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe(SetMonitoringTargets);
         }
 
         #endregion
@@ -123,44 +166,77 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region porperties
 
-        private double _cpuUsage;
+        private double _firstMonitoringTarget;
 
-        public double CpuUsage
+        public double FirstMonitoringTarget
         {
-            get { return _cpuUsage; }
+            get { return _firstMonitoringTarget; }
             set 
             { 
-                _cpuUsage = value;
-                RaisePropertyChanged(nameof(CpuUsage));
+                _firstMonitoringTarget = value;
+                RaisePropertyChanged(nameof(FirstMonitoringTarget));
             }
         }
 
+        private string _firstMonitoringTargetName;
 
-        private float _cpuClockSpeed;
-
-        public float CpuClockSpeed
+        public string FirstMonitoringTargetName
         {
-            get { return _cpuClockSpeed; }
+            get { return _firstMonitoringTargetName; }
             set 
             { 
-                _cpuClockSpeed = value;
-                RaisePropertyChanged(nameof(CpuClockSpeed));
+                _firstMonitoringTargetName = value;
+                RaisePropertyChanged(nameof(FirstMonitoringTargetName));
             }
         }
 
+        private string _firstMonitoringTargetDisplay;
 
-        private double _ramUsage;
-
-        public double RamUsage
+        public string FirstMonitoringTargetDisplay
         {
-            get { return _ramUsage; }
+            get { return _firstMonitoringTargetDisplay; }
             set
             {
-                _ramUsage = value;
-                RaisePropertyChanged(nameof(RamUsage));
+                _firstMonitoringTargetDisplay = value;
+                RaisePropertyChanged(nameof(FirstMonitoringTargetDisplay));
             }
         }
 
+        private double _secondMonitoringTarget;
+
+        public double SecondMonitoringTarget
+        {
+            get { return _secondMonitoringTarget; }
+            set
+            {
+                _secondMonitoringTarget = value;
+                RaisePropertyChanged(nameof(SecondMonitoringTarget));
+            }
+        }
+
+        private string _secondMonitoringTargetName;
+
+        public string SecondMonitoringTargetName
+        {
+            get { return _secondMonitoringTargetName; }
+            set
+            {
+                _secondMonitoringTargetName = value;
+                RaisePropertyChanged(nameof(SecondMonitoringTargetName));
+            }
+        }
+
+        private string _secondMonitoringTargetDisplay;
+
+        public string SecondMonitoringTargetDisplay
+        {
+            get { return _secondMonitoringTargetDisplay; }
+            set 
+            { 
+                _secondMonitoringTargetDisplay = value;
+                RaisePropertyChanged(nameof(SecondMonitoringTargetDisplay));
+            }
+        }
 
         private bool _isMonitoringVisible;
 
@@ -173,7 +249,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 RaisePropertyChanged(nameof(IsMonitoringVisible));
             }
         }
-
 
         private bool _isWatchdogRunning;
 
@@ -228,10 +303,17 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public void OpenWatchdogManagerCommandExecute()
         {
-            var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventsHub, _usePerformanceCounterForCpuUsage);
+            try
+            {
+                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventsHub, firstTargetEnum, secondTargetEnum);
 
-            bool? result = _dialogService.ShowDialog(viewModel);
-
+                bool? result = _dialogService.ShowDialog(viewModel);
+            }
+            catch (Exception e)
+            {
+                Reporter.LogException(e);
+                ShowErrorMessage(e);
+            }
         }
 
         public ICommand HideComputerMonitoringCommand

@@ -1,42 +1,56 @@
 ﻿using HardwareManipulation.Models;
-using OpenHardwareMonitor.Hardware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NvAPIWrapper;
+using NvAPIWrapper.Display;
+using NvAPIWrapper.GPU;
+using NvAPIWrapper.Mosaic;
 
 namespace HardwareManipulation.HardwareInformation
 {
     public static class GPUPerformanceInfo
     {
-        private static Computer localComputer;
-
         public static void InitializeGpuWatcher()
         {
-            localComputer = new Computer();
-            localComputer.GPUEnabled = true;
-            localComputer.Open();
+            NVIDIA.Initialize();
         }
 
-        public static IEnumerable<GpuUsage> GetGpuTemperature()
+        public static HardwareUsageBase GetFirstGpuInformation()
         {
-            var gpuHardware = localComputer.Hardware.Where(H => H.HardwareType == HardwareType.GpuNvidia)
-                                                    .FirstOrDefault();
-            if (gpuHardware == null) return null;
+            var myGPUs = PhysicalGPU.GetPhysicalGPUs();
+            if (myGPUs.Count() == 0) return null;
 
-            var gpuUsages =  gpuHardware.Sensors
-                                        .Where(S => S.SensorType == SensorType.Temperature)
-                                        .Select(S => new GpuUsage() { Temperature = Math.Round(Double.Parse(S.Value.ToString()), 2),
-                                                                      Name = gpuHardware.Name});
+            var gpuUsages = myGPUs.ToList().Select(gU => new GpuUsage()
+            { 
+                Id = gU.GPUId,
+                Name = gU.FullName,
+                Temperature = gU.ThermalInformation.ThermalSensors.First().CurrentTemperature,
+                Main_Value =gU.UsageInformation.GPU.Percentage
+            });
 
-            return (gpuUsages.Count() != 0) ? gpuUsages : throw new ArgumentNullException("Unable to find gpu information");
+            return gpuUsages.FirstOrDefault();
+        }
+
+        public static HardwareUsageBase GetFirstGpuTempOnly()
+        {
+            var myGPUs = PhysicalGPU.GetPhysicalGPUs();
+            if (myGPUs.Count() == 0) return null;
+
+            var gpuUsages = myGPUs.ToList().Select(gU => new GpuUsage()
+            {
+                Id = gU.GPUId,
+                Name = gU.FullName,
+                Temperature = gU.ThermalInformation.ThermalSensors.First().CurrentTemperature,
+                Main_Value = gU.UsageInformation.GPU.Percentage
+            });
+
+            return new GpuTemp() { Main_Value = (GetFirstGpuInformation() as GpuUsage).Temperature };
         }
 
         public static void ResetGpuWatcher()
         {
-            localComputer.Close();
-            localComputer = null;
+            NVIDIA.Unload();
         }
     }
 }

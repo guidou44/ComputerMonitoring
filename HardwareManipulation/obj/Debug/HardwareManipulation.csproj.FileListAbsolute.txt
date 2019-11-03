@@ -4,6 +4,7 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\o
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Cudafy.NET.dll
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\OpenHardwareMonitorLib.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Cudafy.NET.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.csproj.CopyComplete
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\NvAPIWrapper.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\NvAPIWrapper.xml

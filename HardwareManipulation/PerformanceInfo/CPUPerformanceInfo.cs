@@ -14,20 +14,11 @@ namespace HardwareManipulation.HardwareInformation
     {
         private static PerformanceCounter all_Cpu_Idle;
 
-        public static double GetCurrentTotalCpuUsage()
+        public static HardwareUsageBase GetCurrentGlobalCpuUsageWithPerfCounter()
         {
-            return GetGlobalCpuUsage().Cpu_Usage;
-        }
-
-        public static double GetCurrentTotalCpuUsage(bool usePerformanceCounter)
-        {
-            if (!usePerformanceCounter) return GetCurrentTotalCpuUsage();
-            else
-            {
                 all_Cpu_Idle = (all_Cpu_Idle == null) ? new PerformanceCounter("Processor", "% Idle Time", "_Total") : all_Cpu_Idle;
-                var cpuUsage = all_Cpu_Idle.NextValue();
-                return Math.Round(100.0 - cpuUsage, 2);
-            }
+                var cpuIdle = all_Cpu_Idle.NextValue();
+                return new CpuUsage() { Main_Value = Math.Round(100.0 - cpuIdle, 2) };
         }
 
         public static IEnumerable<CpuUsage> GetEachCpuUsage()
@@ -38,8 +29,8 @@ namespace HardwareManipulation.HardwareInformation
                                     .Cast<ManagementObject>()
                                     .Select(mo => new CpuUsage
                                     {
-                                        Cpu_Name = mo["Name"].ToString(),
-                                        Cpu_Usage = Double.Parse(mo["PercentProcessorTime"].ToString())
+                                        Name = mo["Name"].ToString(),
+                                        Main_Value = Double.Parse(mo["PercentProcessorTime"].ToString())
                                     }
                                     )
                                     .ToList();
@@ -48,7 +39,7 @@ namespace HardwareManipulation.HardwareInformation
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
         }
 
-        public static CpuUsage GetGlobalCpuUsage()
+        public static HardwareUsageBase GetCurrentGlobalCpuUsage()
         {
             var wmiObject = new ManagementObjectSearcher("select * from Win32_Processor");
 
@@ -56,9 +47,9 @@ namespace HardwareManipulation.HardwareInformation
                                    .Cast<ManagementObject>()
                                    .Select(mo => new CpuUsage
                                    {
-                                       Cpu_Name = mo["Name"].ToString(),
-                                       Cpu_Usage = Double.Parse(mo["LoadPercentage"].ToString()),
-                                       Cpu_Current_ClockSpeed = 0.001f * UInt32.Parse(mo["CurrentClockSpeed"].ToString()),
+                                       Name = mo["Name"].ToString(),
+                                       Main_Value = Double.Parse(mo["LoadPercentage"].ToString()),
+                                       Current_ClockSpeed = 0.001f * UInt32.Parse(mo["CurrentClockSpeed"].ToString()),
                                        Number_of_cores = UInt32.Parse(mo["NumberOfCores"].ToString()),
                                        Thread_count = UInt32.Parse(mo["ThreadCount"].ToString())
                                    }
@@ -67,6 +58,21 @@ namespace HardwareManipulation.HardwareInformation
 
             return (cpuUsage != null) ? cpuUsage :
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
+        }
+
+        public static HardwareUsageBase GetCpuTemperature()
+        {
+            var wmiObject = new ManagementObjectSearcher(@"root\WMI", "SELECT * FROM MSAcpi_ThermalZoneTemperature");
+            var cpuUsage = wmiObject.Get()
+                                   .Cast<ManagementObject>()
+                                   .Select(mo => new CpuUsage
+                                   {
+                                       Name = mo["InstanceName"].ToString(),
+                                       Temperature = (Double.Parse(mo["CurrentTemperature"].ToString()) - 2732) / 10.0
+                                   }
+                                   );
+
+            return new CpuTemp() { Main_Value = cpuUsage.FirstOrDefault().Temperature };
         }
     }
 }
