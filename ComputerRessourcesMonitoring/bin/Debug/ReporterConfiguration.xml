@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<Email>
+		<Sender>
+			<Id>YOUR_GOOGLE_ACCOUNT.YOUR_ADDRESS@gmail.com</Id>
+			<Password>YOUR_PASSWORD</Password>
+		</Sender>
+		<Receivers>
+			<Target>
+				<Address>YOUR_ADDRESS@hotmail.com</Address>
+			</Target>
+		</Receivers>
+	</Email>
+</configuration>

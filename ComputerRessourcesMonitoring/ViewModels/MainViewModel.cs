@@ -50,6 +50,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             IsMonitoringVisible = true;
             IsWatchdogRunning = true;
             _dialogService = dialogService;
+
             RefreshMonitoring();
             SubscribeToEvents();
             SetMonitoringCounter(900);
