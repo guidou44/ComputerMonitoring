@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "..\..\Common\Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HardwareManipulation", "..\HardwareManipulation\HardwareManipulation.csproj", "{EACDD9E2-6A31-45D3-A281-57D3BE24219A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing_Common_UI", "..\Testing_Common_UI\Testing_Common_UI.csproj", "{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,18 @@ Global
 		{EACDD9E2-6A31-45D3-A281-57D3BE24219A}.Release|x64.Build.0 = Release|x64
 		{EACDD9E2-6A31-45D3-A281-57D3BE24219A}.Release|x86.ActiveCfg = Release|x86
 		{EACDD9E2-6A31-45D3-A281-57D3BE24219A}.Release|x86.Build.0 = Release|x86
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Debug|x64.Build.0 = Debug|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Debug|x86.Build.0 = Debug|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Release|x64.ActiveCfg = Release|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Release|x64.Build.0 = Release|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Release|x86.ActiveCfg = Release|Any CPU
+		{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

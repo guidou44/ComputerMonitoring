@@ -44,7 +44,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
 
             firstTargetEnum = MonitoringTarget.CPU_Usage_PC;
-            secondTargetEnum = MonitoringTarget.RAM_Usage;
+            secondTargetEnum = MonitoringTarget.GPU_Temp;
 
             _watchdogTargetName = "USBHelperLauncher";
             IsMonitoringVisible = true;
