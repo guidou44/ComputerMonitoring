@@ -142,9 +142,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private void ShowErrorMessage(Exception e)
         {
-            var viewModel = new ErrorMessageViewModel(e);
-
-            bool? result =_dialogService.ShowDialog(viewModel);
+            _dialogService.ShowException(e);
         }
 
         private void SetMonitoringTargets(Queue<MonitoringTarget> targets)

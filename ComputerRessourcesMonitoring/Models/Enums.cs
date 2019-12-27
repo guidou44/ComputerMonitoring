@@ -14,6 +14,7 @@ namespace ComputerRessourcesMonitoring.Models
         RAM_Usage,
         CPU_Temp,
         GPU_Temp,
+        FAN_Speed,
         None
     }
 }
