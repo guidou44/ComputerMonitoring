@@ -22,5 +22,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public string displayName { get; set; }
         public MonitoringTarget type { get; set; }
+        //Console.WriteLine();
     }
 }
