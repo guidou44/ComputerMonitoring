@@ -25,7 +25,6 @@ namespace ComputerRessourcesMonitoring
             IDialogService dialogService = new DialogService(owner: MainWindow);
 
             dialogService.Register<WatchdogSettingsDialogViewModel, WatchdogSettingsDialogView>();
-            dialogService.Register<ErrorMessageViewModel, ErrorMessageView>();
 
             var viewModel = new MainViewModel(dialogService);
             var view = new MainWindow { DataContext = viewModel };

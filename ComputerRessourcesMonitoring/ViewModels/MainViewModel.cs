@@ -24,8 +24,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
     {
         #region constructor
 
-        private readonly IDialogService _dialogService;
-        private IEventAggregator _eventsHub;
         private bool _watchdogIsUnsubsribed;
         private bool _watchdogIsInitialized;
         private ProcessWatchDog _watchdog;
@@ -36,11 +34,10 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private IDictionary<MonitoringTarget, Func<HardwareUsageBase>> targetToAction;
 
-        public MainViewModel(IDialogService dialogService)
+        public MainViewModel(IDialogService dialogService) : base (dialogService)
         {
             targetToAction = InitializeResourceDictionary();
             _watchdog = new ProcessWatchDog();
-            _eventsHub = new EventAggregator();
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
 
             firstTargetEnum = MonitoringTarget.CPU_Usage_PC;
@@ -158,8 +155,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private void SubscribeToEvents()
         {
-            _eventsHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe(SetWatchdogTarget);
-            _eventsHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe(SetMonitoringTargets);
+            _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe(SetWatchdogTarget);
+            _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe(SetMonitoringTargets);
         }
 
         #endregion
@@ -306,7 +303,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             try
             {
-                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventsHub, firstTargetEnum, secondTargetEnum);
+                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, firstTargetEnum, secondTargetEnum);
 
                 bool? result = _dialogService.ShowDialog(viewModel);
             }

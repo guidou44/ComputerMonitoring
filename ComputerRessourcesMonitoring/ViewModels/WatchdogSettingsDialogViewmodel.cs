@@ -22,7 +22,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
     {
         #region Constructor
 
-        private IEventAggregator _eventsHub;
         private Queue<MonitoringTarget> targetQueue;
         public event EventHandler<DialogCloseRequestedEventArgs> CloseRequested;
 
@@ -34,11 +33,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
         }
 
         public WatchdogSettingsDialogViewModel(IEventAggregator eventsHub, 
-            MonitoringTarget firstTarget, MonitoringTarget secondTarget) 
+            MonitoringTarget firstTarget, MonitoringTarget secondTarget) : base()
         {
             var globalCpuUsage = CPUPerformanceInfo.GetCurrentGlobalCpuUsage();
             CpuMake = globalCpuUsage.Name + $" - {(globalCpuUsage as CpuUsage).Number_of_cores} cores";
-            _eventsHub = eventsHub;
+            _eventHub = eventsHub;
             targetQueue = new Queue<MonitoringTarget>(2);
             targetQueue.Enqueue(firstTarget);
             targetQueue.Enqueue(secondTarget);
@@ -103,7 +102,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             if (addToQueue) AddTargetToQueue(target);
             else RemoveTargetFromQueue(target);
             SetCheckboxValues();
-            if (targetQueue.Count() == 2) _eventsHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(new Queue<MonitoringTarget>(targetQueue));
+            if (targetQueue.Count() == 2) _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(new Queue<MonitoringTarget>(targetQueue));
             Console.WriteLine();
         }
 
@@ -211,7 +210,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public void ChangeWatchdogTargetCommandExecute()
         {
-            _eventsHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(WatchdogTargetName);
+            _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(WatchdogTargetName);
         }
 
         public bool CanChangeWatchdogTargetCommandExecute()
