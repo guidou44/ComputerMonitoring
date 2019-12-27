@@ -8,7 +8,6 @@ namespace ComputerRessourcesMonitoring.Models
 {
     public enum MonitoringTarget
     { 
-        CPU_Usage_PC,
         CPU_Usage,
         GPU_Usage,
         RAM_Usage,

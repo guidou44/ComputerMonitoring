@@ -35,18 +35,20 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public WatchdogSettingsDialogViewModel(IEventAggregator eventsHub, 
             MonitoringTarget firstTarget, MonitoringTarget secondTarget) : base()
         {
-            var globalCpuUsage = CPUPerformanceInfo.GetCurrentGlobalCpuUsage();
-            CpuMake = globalCpuUsage.Name + $" - {(globalCpuUsage as CpuUsage).Number_of_cores} cores";
-            _eventHub = eventsHub;
+            InitializePerformanceInfo();
+
             targetQueue = new Queue<MonitoringTarget>(2);
             targetQueue.Enqueue(firstTarget);
             targetQueue.Enqueue(secondTarget);
+            _eventHub = eventsHub;
+            _eventHub.GetEvent<>
 
-            GPUPerformanceInfo.InitializeGpuWatcher();
             SetCheckboxValues();
             RefreshMonitoring();
             SetMonitoringCounter(1500);
         }
+
+        
 
         ~WatchdogSettingsDialogViewModel()
         {
@@ -75,6 +77,21 @@ namespace ComputerRessourcesMonitoring.ViewModels
             targetQueue.Enqueue(target);
         }
 
+        private void InitializePerformanceInfo()
+        {
+            var globalCpuUsage = CPUPerformanceInfo.GetCurrentGlobalCpuUsage();
+            CpuMake = globalCpuUsage.Name + $" - {(globalCpuUsage as CpuUsage).Number_of_cores} cores";
+            GPUPerformanceInfo.InitializeGpuWatcher();
+
+            MonitoringOptionsCollection = new ObservableCollection<MonitoringTargetViewModel>();
+            foreach (var option in Enum.GetValues(typeof(MonitoringTarget)).Cast<MonitoringTarget>())
+            {
+                if (option == MonitoringTarget.None) continue;
+                var mvm = new MonitoringTargetViewModel() { displayName = option.ToString(), type = option};
+                MonitoringOptionsCollection.Add(mvm);
+            }
+        }
+
         private void RemoveTargetFromQueue(MonitoringTarget target)
         {
             if (!targetQueue.Contains(target)) return;
@@ -86,14 +103,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private async void SetCheckboxValues()
         {
-            await Task.Run(() =>
-            {
-                _isMonitoringCpuUsage = targetQueue.Contains(MonitoringTarget.CPU_Usage) || targetQueue.Contains(MonitoringTarget.CPU_Usage_PC); RaisePropertyChanged(nameof(IsMonitoringCpuUsage));
-                _isUsingPerfCountersForCpuUsage = IsMonitoringCpuUsage && targetQueue.Contains(MonitoringTarget.CPU_Usage_PC); RaisePropertyChanged(nameof(IsUsingPerfCountersForCpuUsage));
-                _isMonitoringCpuTemp = targetQueue.Contains(MonitoringTarget.CPU_Temp); RaisePropertyChanged(nameof(IsMonitoringCpuTemp));
-                _isMonitoringRamUsage = targetQueue.Contains(MonitoringTarget.RAM_Usage); RaisePropertyChanged(nameof(IsMonitoringRamUsage));
-                _isMonitoringGpuUsage = targetQueue.Contains(MonitoringTarget.GPU_Usage); RaisePropertyChanged(nameof(IsMonitoringGpuUsage));
-                _isMonitoringGpuTemp = targetQueue.Contains(MonitoringTarget.GPU_Temp); RaisePropertyChanged(nameof(IsMonitoringGpuTemp));
+            await Task.Run(() => {
+                foreach (var mvm in MonitoringOptionsCollection)
+                {
+                    mvm._isSelected = targetQueue.Contains(mvm.type);
+                }
             });
         }
 
@@ -188,6 +202,18 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private string _watchdogTargetName;
 
+        private ObservableCollection<MonitoringTargetViewModel> _monitoringOptionsCollection;
+
+        public ObservableCollection<MonitoringTargetViewModel> MonitoringOptionsCollection
+        {
+            get { return _monitoringOptionsCollection; }
+            set 
+            { 
+                _monitoringOptionsCollection = value;
+                RaisePropertyChanged(nameof(MonitoringOptionsCollection));
+            }
+        }
+
         public string WatchdogTargetName
         {
             get { return _watchdogTargetName; }
@@ -236,87 +262,5 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #endregion
 
-        #region Checkbox_properties
-
-        private bool _isMonitoringCpuUsage;
-
-        public bool IsMonitoringCpuUsage
-        {
-            get { return _isMonitoringCpuUsage; }
-            set 
-            { 
-                _isMonitoringCpuUsage = value;
-                SetTargetQueue(MonitoringTarget.CPU_Usage, _isMonitoringCpuUsage);
-                RaisePropertyChanged(nameof(IsMonitoringCpuUsage));
-            }
-        }
-
-        private bool _isUsingPerfCountersForCpuUsage;
-
-        public bool IsUsingPerfCountersForCpuUsage
-        {
-            get { return _isUsingPerfCountersForCpuUsage; }
-            set
-            {
-                _isUsingPerfCountersForCpuUsage = value;
-                SetTargetQueue(MonitoringTarget.CPU_Usage_PC, _isUsingPerfCountersForCpuUsage);
-                RaisePropertyChanged(nameof(IsUsingPerfCountersForCpuUsage));
-            }
-        }
-
-        private bool _isMonitoringCpuTemp;
-
-        public bool IsMonitoringCpuTemp
-        {
-            get { return _isMonitoringCpuTemp; }
-            set
-            {
-                _isMonitoringCpuTemp = value;
-                SetTargetQueue(MonitoringTarget.CPU_Temp, _isMonitoringCpuTemp);
-                RaisePropertyChanged(nameof(IsMonitoringCpuTemp));
-            }
-        }
-
-
-        private bool _isMonitoringRamUsage;
-
-        public bool IsMonitoringRamUsage
-        {
-            get { return _isMonitoringRamUsage; }
-            set
-            {
-                _isMonitoringRamUsage = value;
-                SetTargetQueue(MonitoringTarget.RAM_Usage, _isMonitoringRamUsage);
-                RaisePropertyChanged(nameof(IsMonitoringRamUsage));
-            }
-        }
-
-        private bool _isMonitoringGpuUsage;
-
-        public bool IsMonitoringGpuUsage
-        {
-            get { return _isMonitoringGpuUsage; }
-            set
-            {
-                _isMonitoringGpuUsage = value;
-                SetTargetQueue(MonitoringTarget.GPU_Usage, _isMonitoringGpuUsage);
-                RaisePropertyChanged(nameof(IsMonitoringGpuUsage));
-            }
-        }
-
-        private bool _isMonitoringGpuTemp;
-
-        public bool IsMonitoringGpuTemp
-        {
-            get { return _isMonitoringGpuTemp; }
-            set
-            {
-                _isMonitoringGpuTemp = value;
-                SetTargetQueue(MonitoringTarget.GPU_Temp, _isMonitoringGpuTemp);
-                RaisePropertyChanged(nameof(IsMonitoringGpuTemp));
-            }
-        }
-
-        #endregion
     }
 }

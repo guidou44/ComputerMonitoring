@@ -40,7 +40,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _watchdog = new ProcessWatchDog();
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
 
-            firstTargetEnum = MonitoringTarget.CPU_Usage_PC;
+            firstTargetEnum = MonitoringTarget.CPU_Usage;
             secondTargetEnum = MonitoringTarget.GPU_Temp;
 
             _watchdogTargetName = "USBHelperLauncher";
@@ -70,8 +70,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             return new Dictionary<MonitoringTarget, Func<HardwareUsageBase>>()
             {
                 {MonitoringTarget.RAM_Usage, new Func<HardwareUsageBase>(RAMPerformanceInfo.GetCurrentRamMemoryUsage)},
-                {MonitoringTarget.CPU_Usage_PC, new Func<HardwareUsageBase>(CPUPerformanceInfo.GetCurrentGlobalCpuUsageWithPerfCounter)},
-                {MonitoringTarget.CPU_Usage, new Func<HardwareUsageBase>(CPUPerformanceInfo.GetCurrentGlobalCpuUsage)},
+                {MonitoringTarget.CPU_Usage, new Func<HardwareUsageBase>(CPUPerformanceInfo.GetCurrentGlobalCpuUsageWithPerfCounter)},
                 {MonitoringTarget.GPU_Usage, new Func<HardwareUsageBase>(GPUPerformanceInfo.GetFirstGpuInformation)},
                 {MonitoringTarget.GPU_Temp, new Func<HardwareUsageBase>(GPUPerformanceInfo.GetFirstGpuTempOnly)},
                 {MonitoringTarget.CPU_Temp, new Func<HardwareUsageBase>(CPUPerformanceInfo.GetCpuTemperature)},

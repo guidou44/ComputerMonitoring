@@ -9,8 +9,18 @@ namespace ComputerRessourcesMonitoring.ViewModels
 {
     public class MonitoringTargetViewModel
     {
-        public bool IsSelected { get; set; }
-        public string DisplayName { get; set; }
-        public MonitoringTarget Name { get; set; }
+        private bool _isSelected;
+
+        public bool IsSelected
+        {
+            get { return _isSelected; }
+            set 
+            { 
+                _isSelected = value; 
+            }
+        }
+
+        public string displayName { get; set; }
+        public MonitoringTarget type { get; set; }
     }
 }

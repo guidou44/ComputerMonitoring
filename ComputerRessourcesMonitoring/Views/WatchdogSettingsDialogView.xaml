@@ -297,141 +297,31 @@
                                 Text ="Monitoring Options"
                                 Margin="0 20 10 0"
                                 />
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox 
-                            Margin="0 20 0 0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="Consola"
-                            FontSize="11"
-                            Foreground="DarkGreen"
-                            FontWeight="Bold"
-                            Style="{StaticResource CheckBoxStyle}"
-                            IsChecked="{Binding IsMonitoringCpuUsage}"
-                            >
-                            <CheckBox.Content>
-                                <TextBlock Text="CPU Usage"
-                                       VerticalAlignment="Center"
-                                       Margin="0"/>
-                            </CheckBox.Content>
-                            <CheckBox.LayoutTransform>
-                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                            </CheckBox.LayoutTransform>
-                        </CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal" 
-                                Margin="40 10 0 0"
-                                Visibility="{Binding IsMonitoringCpuUsage, Converter={StaticResource BoolToVis}, FallbackValue=Collaspsed}">
-                        <CheckBox 
-                            Margin="0 0 0 0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="Consola"
-                            FontSize="11"
-                            Foreground="DarkGreen"
-                            FontWeight="Bold"
-                            Style="{StaticResource CheckBoxStyle}"
-                            IsChecked="{Binding IsUsingPerfCountersForCpuUsage}"
-                            >
-                            <CheckBox.Content>
-                                <TextBlock Text="Performance Counters"
-                                       VerticalAlignment="Center"
-                                       Margin="0"/>
-                            </CheckBox.Content>
-                            <CheckBox.LayoutTransform>
-                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                            </CheckBox.LayoutTransform>
-                        </CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox 
-                            Margin="0 20 0 0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="Consola"
-                            FontSize="11"
-                            Foreground="DarkGreen"
-                            FontWeight="Bold"
-                            Style="{StaticResource CheckBoxStyle}"
-                            IsChecked="{Binding IsMonitoringCpuTemp}"
-                            >
-                            <CheckBox.Content>
-                                <TextBlock Text="CPU Temperature"
-                                       VerticalAlignment="Center"
-                                       Margin="0"/>
-                            </CheckBox.Content>
-                            <CheckBox.LayoutTransform>
-                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                            </CheckBox.LayoutTransform>
-                        </CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox 
-                            Margin="0 20 0 0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="Consola"
-                            FontSize="11"
-                            Foreground="DarkGreen"
-                            FontWeight="Bold"
-                            Style="{StaticResource CheckBoxStyle}"
-                            IsChecked="{Binding IsMonitoringRamUsage}"
-                            >
-                            <CheckBox.Content>
-                                <TextBlock Text="RAM Usage"
-                                       VerticalAlignment="Center"
-                                       Margin="0"/>
-                            </CheckBox.Content>
-                            <CheckBox.LayoutTransform>
-                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                            </CheckBox.LayoutTransform>
-                        </CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox 
-                            Margin="0 20 0 0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="Consola"
-                            FontSize="11"
-                            Foreground="DarkGreen"
-                            FontWeight="Bold"
-                            Style="{StaticResource CheckBoxStyle}"
-                            IsChecked="{Binding IsMonitoringGpuUsage}"
-                            >
-                            <CheckBox.Content>
-                                <TextBlock Text="GPU Usage"
-                                       VerticalAlignment="Center"
-                                       Margin="0"/>
-                            </CheckBox.Content>
-                            <CheckBox.LayoutTransform>
-                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                            </CheckBox.LayoutTransform>
-                        </CheckBox>
-                    </StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox 
-                            Margin="0 20 0 0"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="Consola"
-                            FontSize="11"
-                            Foreground="DarkGreen"
-                            FontWeight="Bold"
-                            Style="{StaticResource CheckBoxStyle}"
-                            IsChecked="{Binding IsMonitoringGpuTemp}"
-                            >
-                            <CheckBox.Content>
-                                <TextBlock Text="GPU Temperature"
-                                       VerticalAlignment="Center"
-                                       Margin="0"/>
-                            </CheckBox.Content>
-                            <CheckBox.LayoutTransform>
-                                <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
-                            </CheckBox.LayoutTransform>
-                        </CheckBox>
-                    </StackPanel>
+
                 </StackPanel>
+                <ListBox
+                    Background="Transparent"
+                    Margin="0"
+                    ItemsSource="{Binding MonitoringOptionsCollection}"
+                    >
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0">
+                                <CheckBox 
+                                    Style="{StaticResource CheckBoxStyle}"
+                                    IsChecked="{Binding isSelected}" 
+                                    Content="{Binding displayName}"
+                                    Foreground="DarkGreen"
+                                    FontWeight="Bold"
+                                    FontSize="10">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.5" ScaleY="1.5" />
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
                 <DockPanel Margin="20 30 20 20">
                     <StackPanel 
