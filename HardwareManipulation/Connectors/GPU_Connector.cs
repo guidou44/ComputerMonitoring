@@ -7,9 +7,9 @@ using NvAPIWrapper.Display;
 using NvAPIWrapper.GPU;
 using NvAPIWrapper.Mosaic;
 
-namespace HardwareManipulation.HardwareInformation
+namespace HardwareManipulation.Connectors
 {
-    public static class GPUPerformanceInfo
+    public static class GPU_Connector
     {
         public static void InitializeGpuWatcher()
         {

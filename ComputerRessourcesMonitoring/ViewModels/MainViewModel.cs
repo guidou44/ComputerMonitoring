@@ -69,11 +69,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             return new Dictionary<MonitoringTarget, Func<HardwareUsageBase>>()
             {
-                {MonitoringTarget.RAM_Usage, new Func<HardwareUsageBase>(RAMPerformanceInfo.GetCurrentRamMemoryUsage)},
-                {MonitoringTarget.CPU_Usage, new Func<HardwareUsageBase>(CPUPerformanceInfo.GetCurrentGlobalCpuUsageWithPerfCounter)},
-                {MonitoringTarget.GPU_Usage, new Func<HardwareUsageBase>(GPUPerformanceInfo.GetFirstGpuInformation)},
-                {MonitoringTarget.GPU_Temp, new Func<HardwareUsageBase>(GPUPerformanceInfo.GetFirstGpuTempOnly)},
-                {MonitoringTarget.CPU_Temp, new Func<HardwareUsageBase>(CPUPerformanceInfo.GetCpuTemperature)},
+                {MonitoringTarget.RAM_Usage, new Func<HardwareUsageBase>(RAM_Connector.GetCurrentRamMemoryUsage)},
+                {MonitoringTarget.CPU_Usage, new Func<HardwareUsageBase>(CPU_Connector.GetCurrentGlobalCpuUsageWithPerfCounter)},
+                {MonitoringTarget.GPU_Usage, new Func<HardwareUsageBase>(GPU_Connector.GetFirstGpuInformation)},
+                {MonitoringTarget.GPU_Temp, new Func<HardwareUsageBase>(GPU_Connector.GetFirstGpuTempOnly)},
+                {MonitoringTarget.CPU_Temp, new Func<HardwareUsageBase>(CPU_Connector.GetCpuTemperature)},
             };
 
         }

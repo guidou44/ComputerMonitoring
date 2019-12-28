@@ -137,3 +137,62 @@ Stacktrace:    at System.ThrowHelper.ThrowKeyNotFoundException()
    at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
 
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:43:56
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void SetMonitoringDictionary(ComputerRessourcesMonitoring.Models.MonitoringTarget, Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.SetMonitoringDictionary(MonitoringTarget target, Boolean state) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 114
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(String watchdogTargetName, IEventAggregator eventsHub, MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 39
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 303
+
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:44:30
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void SetMonitoringDictionary(ComputerRessourcesMonitoring.Models.MonitoringTarget, Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.SetMonitoringDictionary(MonitoringTarget target, Boolean state) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 114
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(String watchdogTargetName, IEventAggregator eventsHub, MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 39
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 303
+
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:46:03
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void SetCheckboxValues()
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.SetCheckboxValues() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 92
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.SetMonitoringDictionary(MonitoringTarget target, Boolean state) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 112
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(String watchdogTargetName, IEventAggregator eventsHub, MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 38
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 303
+
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:47:35
+Type: System.Collections.Generic.KeyNotFoundException
+Source: mscorlib
+TargetSite: Void ThrowKeyNotFoundException()
+Message: The given key was not present in the dictionary.
+Stacktrace:    at System.ThrowHelper.ThrowKeyNotFoundException()
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.SetCheckboxValues() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 96
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.SetMonitoringDictionary(MonitoringTarget target, Boolean state) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 116
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(String watchdogTargetName, IEventAggregator eventsHub, MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 38
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 303
+
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:48:58
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void SetMonitoringDictionary(ComputerRessourcesMonitoring.Models.MonitoringTarget, Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.SetMonitoringDictionary(MonitoringTarget target, Boolean state) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 116
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(String watchdogTargetName, IEventAggregator eventsHub, MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 39
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 303
+

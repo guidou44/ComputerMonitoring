@@ -8,9 +8,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HardwareManipulation.HardwareInformation
+namespace HardwareManipulation.Connectors
 {
-    public static class CPUPerformanceInfo
+    public static class CPU_Connector
     {
         private static PerformanceCounter all_Cpu_Idle;
 

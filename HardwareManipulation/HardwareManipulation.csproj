@@ -92,15 +92,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connectors\ConnectorBase.cs" />
+    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="Factories\ReaderFactory.cs" />
     <Compile Include="Models\CpuTemp.cs" />
     <Compile Include="Models\CpuUsage.cs" />
     <Compile Include="Models\GpuTemp.cs" />
     <Compile Include="Models\GpuUsage.cs" />
     <Compile Include="Models\HardwareUsageBase.cs" />
     <Compile Include="Models\RamUsage.cs" />
-    <Compile Include="PerformanceInfo\GPUPerformanceInfo.cs" />
-    <Compile Include="PerformanceInfo\CPUPerformanceInfo.cs" />
-    <Compile Include="PerformanceInfo\RAMPerformanceInfo.cs" />
+    <Compile Include="Connectors\GPU_Connector.cs" />
+    <Compile Include="Connectors\CPU_Connector.cs" />
+    <Compile Include="Connectors\RAM_Connector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +118,9 @@
     <Content Include="Readme\README.txt" />
     <Content Include="Tools\cudafycl.exe" />
     <Content Include="Tools\CudafyViewer.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Readers\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

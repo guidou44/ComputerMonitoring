@@ -3,6 +3,7 @@ using Common.UI.CustomControls;
 using Common.UI.DialogServices;
 using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
+using Common.UI.ViewModels;
 using ComputerRessourcesMonitoring.Events;
 using ComputerRessourcesMonitoring.Models;
 using HardwareManipulation.HardwareInformation;
@@ -19,124 +20,93 @@ using System.Windows.Input;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
-    public class WatchdogSettingsDialogViewModel : ComputerMonitoringViewModelBase, IDialogRequestClose
+    public class WatchdogSettingsDialogViewModel : DialogViewModelBase
     {
         #region Constructor
 
-        private Queue<MonitoringTarget> targetQueue;
-        public event EventHandler<DialogCloseRequestedEventArgs> CloseRequested;
+        private IDictionary<MonitoringTarget, bool> targetDict;
+        private MonitoringTarget _lruTarget;
+        private IEventAggregator _eventHub;
 
-        public WatchdogSettingsDialogViewModel(string message, IEventAggregator eventsHub, 
-                                               MonitoringTarget firstTarget,
-                                               MonitoringTarget secondTarget) : this(eventsHub, firstTarget, secondTarget)
+        public WatchdogSettingsDialogViewModel(string watchdogTargetName, IEventAggregator eventsHub, MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget)
         {
-            WatchdogTargetName = message;
-        }
-
-        public WatchdogSettingsDialogViewModel(IEventAggregator eventsHub, 
-            MonitoringTarget firstTarget, MonitoringTarget secondTarget) : base()
-        {
-            InitializeMonitoringOptions();
-
-            targetQueue = new Queue<MonitoringTarget>(2);
-            targetQueue.Enqueue(firstTarget);
-            targetQueue.Enqueue(secondTarget);
+            WatchdogTargetName = watchdogTargetName;
+            _lruTarget = firstMonTarget;
             _eventHub = eventsHub;
-            _eventHub.GetEvent<OnMonitoringTargetSelectedEvent>().Subscribe(SetTargetQueue, true);
-
-            SetCheckboxValues();
-            RefreshMonitoring();
-            SetMonitoringCounter(1500);
+            InitializeMonitoringOptions();
+            SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(firstMonTarget, true));
+            SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(secondMonTarget, true));
         }
 
         ~WatchdogSettingsDialogViewModel()
         {
-            GPUPerformanceInfo.ResetGpuWatcher();
-            foreach (var mvm in MonitoringOptionsCollection) mvm.SelectionChangedEvent -= SetTargetQueue;
-            _monitoringRefreshCounter.Elapsed -= OnCounterCompletionEvent;
+            GPU_Connector.ResetGpuWatcher();
+            foreach (var mvm in MonitoringOptionsCollection) mvm.SelectionChangedEvent -= SetMonitoringDictionary;
         }
 
         #endregion
-
-        #region Events
-
-        protected override void OnCounterCompletionEvent(Object source, ElapsedEventArgs e)
-        {
-            RefreshMonitoring();
-        }
-
-        #endregion
-
 
         #region Methods
 
-        private void AddTargetToQueue(MonitoringTarget target)
-        {
-            if (targetQueue.Contains(target)) return;
-            if (targetQueue.Count() == 2) targetQueue.Dequeue();
-            targetQueue.Enqueue(target);
-        }
-
         private void InitializeMonitoringOptions()
         {
-            GPUPerformanceInfo.InitializeGpuWatcher();
-
+            GPU_Connector.InitializeGpuWatcher();
             MonitoringOptionsCollection = new ObservableCollection<MonitoringTargetViewModel>();
+            targetDict = new Dictionary<MonitoringTarget, bool>();
             foreach (var option in Enum.GetValues(typeof(MonitoringTarget)).Cast<MonitoringTarget>())
             {
                 if (option == MonitoringTarget.None) continue;
+                targetDict.Add(option, false);
                 var mvm = new MonitoringTargetViewModel(option) { DisplayName = option.ToString()};
-                mvm.SelectionChangedEvent += SetTargetQueue;
+                mvm.SelectionChangedEvent += SetMonitoringDictionary;
                 MonitoringOptionsCollection.Add(mvm);
             }
         }
 
-        private void RemoveTargetFromQueue(MonitoringTarget target)
+        private void SetCheckboxValues()
         {
-            if (!targetQueue.Contains(target)) return;
-            var firstElementInQueue = targetQueue.Dequeue();
-            if (firstElementInQueue == target) return;
-            targetQueue.Dequeue();
-            targetQueue.Enqueue(firstElementInQueue);
-        }
-
-        private async void SetCheckboxValues()
-        {
-            await Task.Run(() => {
-                foreach (var mvm in MonitoringOptionsCollection)
-                {
-                    mvm.IsSelected = targetQueue.Contains(mvm.Type);
-                }
-            });
-        }
-
-        private void SetTargetQueue(KeyValuePair<MonitoringTarget, bool> optionChanged)
-        {
-            if (optionChanged.Value) AddTargetToQueue(optionChanged.Key);
-            else RemoveTargetFromQueue(optionChanged.Key);
-            SetCheckboxValues();
-            if (targetQueue.Count() == 2) _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(new Queue<MonitoringTarget>(targetQueue));
-        }
-
-        protected override async void RefreshMonitoring()
-        {
-            var gpuRequestResult = await Task.Run(() => GPUPerformanceInfo.GetFirstGpuInformation());
-            if (gpuRequestResult != null)
+            foreach (var monOption in MonitoringOptionsCollection)
             {
-                GpuUsageCollection = new ObservableCollection<GpuUsage>() { gpuRequestResult as GpuUsage };
-                GpuMake = GpuUsageCollection.FirstOrDefault().Name;
+                monOption.IsSelected = targetDict[monOption.Type];
             }
-
         }
 
+        private void SetMonitoringDictionary(KeyValuePair<MonitoringTarget, bool> target)
+        {
+            targetDict[target.Key] = target.Value;
+            var currentTrueTargets = targetDict.Where(KVP => KVP.Value == true);
+            if (currentTrueTargets.Count() > 2)
+            {
+                targetDict[_lruTarget] = false;
+                _lruTarget = targetDict.Where(KVP => KVP.Value == true && KVP.Key != target.Key).SingleOrDefault().Key;
+            }
+            if (targetDict.Where(KVP => KVP.Value == true).Count() == 2)
+            {
+                var transfertQueue = new Queue<MonitoringTarget>();
+                transfertQueue.Enqueue(_lruTarget);
+                transfertQueue.Enqueue(targetDict.Where(KVP => KVP.Value == true && KVP.Key != _lruTarget).SingleOrDefault().Key);
+                _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(new Queue<MonitoringTarget>(transfertQueue));
+            }
+            SetCheckboxValues();
+        }
 
         #endregion
 
 
         #region Properties
 
-        private string _gpuMake;
+        private string _cpuMake;
+        public string CpuMake
+        {
+            get { return _cpuMake; }
+            set
+            {
+                _cpuMake = value;
+                RaisePropertyChanged(nameof(CpuMake));
+            }
+        }
 
+        private string _gpuMake;
         public string GpuMake
         {
             get { return _gpuMake; }
@@ -144,17 +114,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
             { 
                 _gpuMake = value;
                 RaisePropertyChanged(nameof(GpuMake));
-            }
-        }
-
-        private ObservableCollection<GpuUsage> _gpuUsageCollection;
-        public ObservableCollection<GpuUsage> GpuUsageCollection
-        {
-            get { return _gpuUsageCollection; }
-            set
-            {
-                _gpuUsageCollection = value;
-                RaisePropertyChanged(nameof(GpuUsageCollection));
             }
         }
 
@@ -200,30 +159,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
             if (WatchdogTargetName?.Length > 0) return true;
             return false;
         }
-
-        public ICommand DragWindowCommand
-        {
-            get { return new RelayCommand<IDragable>(DragWindowCommandExecute); }
-        }
-
-        public void DragWindowCommandExecute(IDragable dialog)
-        {
-            dialog.DragMove();
-        }
-
-        public ICommand OkCommand 
-        {
-            get { return new RelayCommand<WatchdogSettingsDialogViewModel>(OkCommandExecute); }
-        }
-
-        public void OkCommandExecute(WatchdogSettingsDialogViewModel wsdvm)
-        {
-            CloseRequested?.Invoke(this, new DialogCloseRequestedEventArgs(true));
-            GPUPerformanceInfo.ResetGpuWatcher();
-            foreach (var mvm in MonitoringOptionsCollection) mvm.SelectionChangedEvent -= SetTargetQueue;
-            _monitoringRefreshCounter.Elapsed -= OnCounterCompletionEvent;
-        }
-
 
         #endregion
 

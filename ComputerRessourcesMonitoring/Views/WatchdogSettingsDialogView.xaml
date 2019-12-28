@@ -164,7 +164,7 @@
                             Foreground="Black"
                             Content="CHANGE"/>
                 </StackPanel>
-                <TextBlock      x:Name="GpuResourcesTextBlock"
+                <TextBlock      x:Name="MakeTextBlock"
                                 Background="Transparent"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center"
@@ -173,34 +173,10 @@
                                 Foreground="DarkGreen"
                                 FontWeight="Bold"
                                 TextDecorations="Underline"
-                                Text ="GPU Resources Info"
+                                Text ="Hardware Information"
                                 Margin="0 20 10 0"
                                 />
                 <StackPanel Orientation="Vertical">
-                    <ItemsControl HorizontalAlignment="Left"
-                                         VerticalAlignment="Center"
-                                         BorderThickness="0"
-                                         FontFamily="Consola"
-                                         FontSize="16"
-                                         FontWeight="Bold"
-                                         IsEnabled="False"
-                                         Background="Transparent"
-                                         BorderBrush="Transparent"
-                                         Foreground="DarkGreen"
-                                         ItemsSource="{Binding GpuUsageCollection, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel Orientation="Horizontal"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
-                                            Margin="0 10 0 0">
-                                    <TextBlock Text="{Binding Id, StringFormat={}GPU {0}: }" Margin="0 0 5 0"/>
-                                    <TextBlock Text="{Binding Main_Value, StringFormat={}{0}%}" Margin="0 0 5 0"/>
-                                    <TextBlock Text="{Binding Temperature, StringFormat={}{0}°C}" Margin="0 0 5 0"/>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
                     <TextBlock
                             Background="Transparent"
                             HorizontalAlignment="Left"
@@ -209,7 +185,19 @@
                             FontSize="16"
                             Foreground="DarkGreen"
                             FontWeight="Bold"
-                            Text ="{Binding GpuMake}"
+                            Text ="{Binding GpuMake, StringFormat={}GPU : {0}}"
+                            TextWrapping="Wrap"
+                            Margin="0 20 10 0"
+                                />
+                    <TextBlock
+                            Background="Transparent"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            FontFamily="Consola"
+                            FontSize="16"
+                            Foreground="DarkGreen"
+                            FontWeight="Bold"
+                            Text ="{Binding CpuMake, StringFormat={}CPU : {0}}"
                             TextWrapping="Wrap"
                             Margin="0 20 10 0"
                                 />
