@@ -42,7 +42,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             targetQueue.Enqueue(firstTarget);
             targetQueue.Enqueue(secondTarget);
             _eventHub = eventsHub;
-            _eventHub.GetEvent<OnMonitoringTargetSelectedEvent>().Subscribe(SetTargetQueue);
+            _eventHub.GetEvent<OnMonitoringTargetSelectedEvent>().Subscribe(SetTargetQueue, true);
 
             SetCheckboxValues();
             RefreshMonitoring();
@@ -52,6 +52,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         ~WatchdogSettingsDialogViewModel()
         {
             GPUPerformanceInfo.ResetGpuWatcher();
+            foreach (var mvm in MonitoringOptionsCollection) mvm.SelectionChangedEvent -= SetTargetQueue;
             _monitoringRefreshCounter.Elapsed -= OnCounterCompletionEvent;
         }
 
@@ -80,11 +81,12 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             GPUPerformanceInfo.InitializeGpuWatcher();
 
-            MonitoringOptionsCollection = new VeryObservableCollection<MonitoringTargetViewModel>();
+            MonitoringOptionsCollection = new ObservableCollection<MonitoringTargetViewModel>();
             foreach (var option in Enum.GetValues(typeof(MonitoringTarget)).Cast<MonitoringTarget>())
             {
                 if (option == MonitoringTarget.None) continue;
-                var mvm = new MonitoringTargetViewModel(_eventHub, option) { DisplayName = option.ToString()};
+                var mvm = new MonitoringTargetViewModel(option) { DisplayName = option.ToString()};
+                mvm.SelectionChangedEvent += SetTargetQueue;
                 MonitoringOptionsCollection.Add(mvm);
             }
         }
@@ -146,7 +148,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
         }
 
         private ObservableCollection<GpuUsage> _gpuUsageCollection;
-
         public ObservableCollection<GpuUsage> GpuUsageCollection
         {
             get { return _gpuUsageCollection; }
@@ -157,11 +158,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        private string _watchdogTargetName;
-
-        private VeryObservableCollection<MonitoringTargetViewModel> _monitoringOptionsCollection;
-
-        public VeryObservableCollection<MonitoringTargetViewModel> MonitoringOptionsCollection
+        private ObservableCollection<MonitoringTargetViewModel> _monitoringOptionsCollection;
+        public ObservableCollection<MonitoringTargetViewModel> MonitoringOptionsCollection
         {
             get { return _monitoringOptionsCollection; }
             set 
@@ -171,6 +169,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
+        private string _watchdogTargetName;
         public string WatchdogTargetName
         {
             get { return _watchdogTargetName; }
@@ -214,8 +213,17 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public ICommand OkCommand 
         {
-            get { return new RelayCommand<WatchdogSettingsDialogViewModel>(p => CloseRequested?.Invoke(this, new DialogCloseRequestedEventArgs(true))); }
+            get { return new RelayCommand<WatchdogSettingsDialogViewModel>(OkCommandExecute); }
         }
+
+        public void OkCommandExecute(WatchdogSettingsDialogViewModel wsdvm)
+        {
+            CloseRequested?.Invoke(this, new DialogCloseRequestedEventArgs(true));
+            GPUPerformanceInfo.ResetGpuWatcher();
+            foreach (var mvm in MonitoringOptionsCollection) mvm.SelectionChangedEvent -= SetTargetQueue;
+            _monitoringRefreshCounter.Elapsed -= OnCounterCompletionEvent;
+        }
+
 
         #endregion
 

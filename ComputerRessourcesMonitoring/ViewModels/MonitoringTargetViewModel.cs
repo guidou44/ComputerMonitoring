@@ -13,10 +13,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
 {
     public class MonitoringTargetViewModel : NotifyPropertyChanged
     {
-        private IEventAggregator _eventHub;
-        public MonitoringTargetViewModel(IEventAggregator eventHub, MonitoringTarget type)
+        public delegate void SelectionChanged(KeyValuePair<MonitoringTarget, bool> kvp);
+        public event SelectionChanged SelectionChangedEvent;
+
+        public MonitoringTargetViewModel(MonitoringTarget type)
         {
-            _eventHub = eventHub;
             Type = type;
         }
 
@@ -42,7 +43,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public void PublishMonitoringOptionStatusCommandExecute()
         {
-            _eventHub.GetEvent<OnMonitoringTargetSelectedEvent>().Publish(new KeyValuePair<MonitoringTarget, bool>(this.Type, this.IsSelected));
+            var kvp = new KeyValuePair<MonitoringTarget, bool>(this.Type, this.IsSelected);
+            SelectionChangedEvent(kvp);
         }      
     }
 }

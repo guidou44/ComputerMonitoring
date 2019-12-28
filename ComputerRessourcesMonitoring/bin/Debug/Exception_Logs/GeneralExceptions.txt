@@ -71,3 +71,69 @@ Stacktrace:    at HardwareManipulation.HardwareInformation.CPUPerformanceInfo.<>
    at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(String message, IEventAggregator eventsHub, MonitoringTarget firstTarget, MonitoringTarget secondTarget) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 30
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 303
 
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:01:50
+Type: System.Collections.Generic.KeyNotFoundException
+Source: mscorlib
+TargetSite: Void ThrowKeyNotFoundException()
+Message: The given key was not present in the dictionary.
+Stacktrace:    at System.ThrowHelper.ThrowKeyNotFoundException()
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:01:51
+Type: System.Collections.Generic.KeyNotFoundException
+Source: mscorlib
+TargetSite: Void ThrowKeyNotFoundException()
+Message: The given key was not present in the dictionary.
+Stacktrace:    at System.ThrowHelper.ThrowKeyNotFoundException()
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:01:52
+Type: System.Collections.Generic.KeyNotFoundException
+Source: mscorlib
+TargetSite: Void ThrowKeyNotFoundException()
+Message: The given key was not present in the dictionary.
+Stacktrace:    at System.ThrowHelper.ThrowKeyNotFoundException()
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 112
+
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:08:08
+Type: System.Collections.Generic.KeyNotFoundException
+Source: mscorlib
+TargetSite: Void ThrowKeyNotFoundException()
+Message: The given key was not present in the dictionary.
+Stacktrace:    at System.ThrowHelper.ThrowKeyNotFoundException()
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:08:09
+Type: System.Collections.Generic.KeyNotFoundException
+Source: mscorlib
+TargetSite: Void ThrowKeyNotFoundException()
+Message: The given key was not present in the dictionary.
+Stacktrace:    at System.ThrowHelper.ThrowKeyNotFoundException()
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 112
+
+
+*************************Exception******************************
+DateTime: 28-12-2019 10:08:10
+Type: System.Collections.Generic.KeyNotFoundException
+Source: mscorlib
+TargetSite: Void ThrowKeyNotFoundException()
+Message: The given key was not present in the dictionary.
+Stacktrace:    at System.ThrowHelper.ThrowKeyNotFoundException()
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
