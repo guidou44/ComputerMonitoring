@@ -1,4 +1,5 @@
 ﻿using Common.Reports;
+using Common.UI.CustomControls;
 using Common.UI.DialogServices;
 using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
@@ -35,20 +36,18 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public WatchdogSettingsDialogViewModel(IEventAggregator eventsHub, 
             MonitoringTarget firstTarget, MonitoringTarget secondTarget) : base()
         {
-            InitializePerformanceInfo();
+            InitializeMonitoringOptions();
 
             targetQueue = new Queue<MonitoringTarget>(2);
             targetQueue.Enqueue(firstTarget);
             targetQueue.Enqueue(secondTarget);
             _eventHub = eventsHub;
-            _eventHub.GetEvent<>
+            _eventHub.GetEvent<OnMonitoringTargetSelectedEvent>().Subscribe(SetTargetQueue);
 
             SetCheckboxValues();
             RefreshMonitoring();
             SetMonitoringCounter(1500);
         }
-
-        
 
         ~WatchdogSettingsDialogViewModel()
         {
@@ -77,17 +76,15 @@ namespace ComputerRessourcesMonitoring.ViewModels
             targetQueue.Enqueue(target);
         }
 
-        private void InitializePerformanceInfo()
+        private void InitializeMonitoringOptions()
         {
-            var globalCpuUsage = CPUPerformanceInfo.GetCurrentGlobalCpuUsage();
-            CpuMake = globalCpuUsage.Name + $" - {(globalCpuUsage as CpuUsage).Number_of_cores} cores";
             GPUPerformanceInfo.InitializeGpuWatcher();
 
-            MonitoringOptionsCollection = new ObservableCollection<MonitoringTargetViewModel>();
+            MonitoringOptionsCollection = new VeryObservableCollection<MonitoringTargetViewModel>();
             foreach (var option in Enum.GetValues(typeof(MonitoringTarget)).Cast<MonitoringTarget>())
             {
                 if (option == MonitoringTarget.None) continue;
-                var mvm = new MonitoringTargetViewModel() { displayName = option.ToString(), type = option};
+                var mvm = new MonitoringTargetViewModel(_eventHub, option) { DisplayName = option.ToString()};
                 MonitoringOptionsCollection.Add(mvm);
             }
         }
@@ -106,25 +103,21 @@ namespace ComputerRessourcesMonitoring.ViewModels
             await Task.Run(() => {
                 foreach (var mvm in MonitoringOptionsCollection)
                 {
-                    mvm._isSelected = targetQueue.Contains(mvm.type);
+                    mvm.IsSelected = targetQueue.Contains(mvm.Type);
                 }
             });
         }
 
-        private void SetTargetQueue(MonitoringTarget target, bool addToQueue)
+        private void SetTargetQueue(KeyValuePair<MonitoringTarget, bool> optionChanged)
         {
-            if (addToQueue) AddTargetToQueue(target);
-            else RemoveTargetFromQueue(target);
+            if (optionChanged.Value) AddTargetToQueue(optionChanged.Key);
+            else RemoveTargetFromQueue(optionChanged.Key);
             SetCheckboxValues();
             if (targetQueue.Count() == 2) _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(new Queue<MonitoringTarget>(targetQueue));
-            Console.WriteLine();
         }
 
         protected override async void RefreshMonitoring()
         {
-            CpuUsageCollection = new ObservableCollection<CpuUsage>(await Task.Run(() => CPUPerformanceInfo.GetEachCpuUsage()));
-            CpuTemperature = await Task.Run(() => CPUPerformanceInfo.GetCpuTemperature().Main_Value);
-
             var gpuRequestResult = await Task.Run(() => GPUPerformanceInfo.GetFirstGpuInformation());
             if (gpuRequestResult != null)
             {
@@ -140,43 +133,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Properties
 
-        private ObservableCollection<CpuUsage> _cpuUsageCollection;
-
-        public ObservableCollection<CpuUsage> CpuUsageCollection
-        {
-            get { return _cpuUsageCollection; }
-            set 
-            {
-                _cpuUsageCollection = value;
-                RaisePropertyChanged(nameof(CpuUsageCollection));
-            }
-        }
-
-        private string _cpuMake;
-
-        public string CpuMake
-        {
-            get { return _cpuMake; }
-            set 
-            { 
-                _cpuMake = value;
-                RaisePropertyChanged(nameof(CpuMake));
-            }
-        }
-
         private string _gpuMake;
-
-        private double _cpuTemperature;
-
-        public double CpuTemperature
-        {
-            get { return _cpuTemperature; }
-            set 
-            { 
-                _cpuTemperature = value;
-                RaisePropertyChanged(nameof(CpuTemperature));
-            }
-        }
 
         public string GpuMake
         {
@@ -202,9 +159,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private string _watchdogTargetName;
 
-        private ObservableCollection<MonitoringTargetViewModel> _monitoringOptionsCollection;
+        private VeryObservableCollection<MonitoringTargetViewModel> _monitoringOptionsCollection;
 
-        public ObservableCollection<MonitoringTargetViewModel> MonitoringOptionsCollection
+        public VeryObservableCollection<MonitoringTargetViewModel> MonitoringOptionsCollection
         {
             get { return _monitoringOptionsCollection; }
             set 

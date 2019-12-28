@@ -164,78 +164,6 @@
                             Foreground="Black"
                             Content="CHANGE"/>
                 </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <TextBlock      x:Name="ComputerResourcesTextBlock"
-                                    Background="Transparent"
-                                    HorizontalAlignment="Left"
-                                    VerticalAlignment="Center"
-                                    FontFamily="Consola"
-                                    FontSize="20"
-                                    Foreground="DarkGreen"
-                                    FontWeight="Bold"
-                                    TextDecorations="Underline"
-                                    Text ="CPU Resources Info"
-                                    Margin="0 20 10 0"
-                                    Width="300"
-                                    />
-                </StackPanel>
-                <StackPanel Orientation="Vertical"
-                                >
-                        <ItemsControl HorizontalAlignment="Left"
-                                         VerticalAlignment="Center"
-                                         Background="Transparent"
-                                         BorderBrush="Transparent"
-                                         BorderThickness="0"
-                                         FontFamily="Consola"
-                                         FontSize="16"
-                                         Foreground="DarkGreen"
-                                         FontWeight="Bold"
-                                         IsEnabled="False"
-                                         ItemsSource="{Binding CpuUsageCollection, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                <StackPanel Orientation="Horizontal"
-                                                        HorizontalAlignment="Left"
-                                                        VerticalAlignment="Center"
-                                                        Margin="0 10 0 0">
-                                    <TextBlock Text="{Binding Name, StringFormat={}CPU {0}: }" Margin="0 0 5 0"/>
-                                    <TextBlock Text="{Binding Main_Value, StringFormat={}{0}%}" Margin="0 0 5 0"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                        <TextBlock
-                            Background="Transparent"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="Consola"
-                            FontSize="16"
-                            Foreground="DarkGreen"
-                            FontWeight="Bold"
-                            Text ="{Binding CpuTemperature, StringFormat={}CPU_Temp: {0}°C}"
-                            Margin="0 20 10 0"
-                            Width="{Binding ElementName=ComputerResourcesTextBlock, Path=ActualWidth}"
-                                />
-                        <TextBlock
-                            Background="Transparent"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            FontFamily="Consola"
-                            FontSize="16"
-                            Foreground="DarkGreen"
-                            FontWeight="Bold"
-                            Text ="{Binding CpuMake}"
-                            TextWrapping="Wrap"
-                            Margin="0 20 10 0"
-                            Width="{Binding ElementName=ComputerResourcesTextBlock, Path=ActualWidth}"
-                                />
-                        
-
-
-
-                </StackPanel>
                 <TextBlock      x:Name="GpuResourcesTextBlock"
                                 Background="Transparent"
                                 HorizontalAlignment="Left"
@@ -309,8 +237,9 @@
                             <StackPanel Orientation="Horizontal" Margin="0">
                                 <CheckBox 
                                     Style="{StaticResource CheckBoxStyle}"
-                                    IsChecked="{Binding isSelected}" 
-                                    Content="{Binding displayName}"
+                                    IsChecked="{Binding IsSelected}" 
+                                    Content="{Binding DisplayName}"
+                                    Command="{Binding PublishMonitoringOptionStatusCommand}"
                                     Foreground="DarkGreen"
                                     FontWeight="Bold"
                                     FontSize="10">

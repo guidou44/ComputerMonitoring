@@ -93,8 +93,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Events\OnMonitoringTargetsChangedEvent.cs" />
-    <Compile Include="Events\OnWatchdogTargetChangedEvent.cs" />
+    <Compile Include="Events\Events.cs" />
     <Compile Include="Models\Enums.cs" />
     <Compile Include="ViewModels\ComputerMonitoringViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />

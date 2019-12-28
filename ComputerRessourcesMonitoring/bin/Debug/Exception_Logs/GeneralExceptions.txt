@@ -55,3 +55,19 @@ Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(Ma
    at Common.UI.DialogServices.DialogService.ShowDialog[TViewModel](TViewModel viewModel) in D:\Guillaume\Desktop\Internet Explorer\Common\Common\UI\DialogServices\DialogService.cs:line 60
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 310
 
+
+*************************Exception******************************
+DateTime: 28-12-2019 0:10:24
+Type: System.NullReferenceException
+Source: HardwareManipulation
+TargetSite: HardwareManipulation.Models.CpuUsage <GetCurrentGlobalCpuUsage>b__3_0(System.Management.ManagementObject)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at HardwareManipulation.HardwareInformation.CPUPerformanceInfo.<>c.<GetCurrentGlobalCpuUsage>b__3_0(ManagementObject mo) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\PerformanceInfo\CPUPerformanceInfo.cs:line 48
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareManipulation.HardwareInformation.CPUPerformanceInfo.GetCurrentGlobalCpuUsage() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\PerformanceInfo\CPUPerformanceInfo.cs:line 46
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.InitializePerformanceInfo() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 81
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(IEventAggregator eventsHub, MonitoringTarget firstTarget, MonitoringTarget secondTarget) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 38
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(String message, IEventAggregator eventsHub, MonitoringTarget firstTarget, MonitoringTarget secondTarget) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 30
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 303
+
