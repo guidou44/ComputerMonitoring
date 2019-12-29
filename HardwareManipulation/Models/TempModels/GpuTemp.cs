@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HardwareManipulation.Models
 {
-    public class GpuTemp : HardwareUsageBase
+    public class GpuTemp : HardwdareInformation
     {
         public GpuTemp()
         {

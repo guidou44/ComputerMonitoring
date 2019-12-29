@@ -10,6 +10,6 @@ namespace HardwareManipulation.Connectors
 {
     public abstract class ConnectorBase
     {
-        public abstract HardwareUsageBase GetValue(MonitoringTarget ressource);
+        public abstract HardwdareInformation GetValue(MonitoringTarget ressource);
     }
 }

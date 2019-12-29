@@ -6,51 +6,55 @@ using NvAPIWrapper;
 using NvAPIWrapper.Display;
 using NvAPIWrapper.GPU;
 using NvAPIWrapper.Mosaic;
+using HardwareManipulation.Enums;
 
 namespace HardwareManipulation.Connectors
 {
-    public static class GPU_Connector
+    public class GPU_Connector : ConnectorBase
     {
         public static void InitializeGpuWatcher()
         {
             NVIDIA.Initialize();
         }
 
-        public static HardwareUsageBase GetFirstGpuInformation()
+        public static HardwdareInformation GetFirstGpuUsage()
         {
             var myGPUs = PhysicalGPU.GetPhysicalGPUs();
             if (myGPUs.Count() == 0) return null;
 
-            var gpuUsages = myGPUs.ToList().Select(gU => new GpuUsage()
+            var gpuUsages = myGPUs.ToList().Select(gU => new HardwdareInformation()
             { 
-                Id = gU.GPUId,
-                Name = gU.FullName,
-                Temperature = gU.ThermalInformation.ThermalSensors.First().CurrentTemperature,
-                Main_Value =gU.UsageInformation.GPU.Percentage
+                ShortName = "GPU",
+                Main_Value =gU.UsageInformation.GPU.Percentage,
+                UnitSymbol = "%"
             });
 
             return gpuUsages.FirstOrDefault();
         }
 
-        public static HardwareUsageBase GetFirstGpuTempOnly()
+        public static HardwdareInformation GetFirstGpuTemp()
         {
             var myGPUs = PhysicalGPU.GetPhysicalGPUs();
             if (myGPUs.Count() == 0) return null;
 
-            var gpuUsages = myGPUs.ToList().Select(gU => new GpuUsage()
+            var gpuUsages = myGPUs.ToList().Select(gU => new HardwdareInformation()
             {
-                Id = gU.GPUId,
-                Name = gU.FullName,
-                Temperature = gU.ThermalInformation.ThermalSensors.First().CurrentTemperature,
-                Main_Value = gU.UsageInformation.GPU.Percentage
+                ShortName = "GPU",
+                Main_Value = gU.ThermalInformation.ThermalSensors.First().CurrentTemperature,
+                UnitSymbol = "°C"
             });
 
-            return new GpuTemp() { Main_Value = (GetFirstGpuInformation() as GpuUsage).Temperature };
+            return gpuUsages.FirstOrDefault();
         }
 
         public static void ResetGpuWatcher()
         {
             NVIDIA.Unload();
+        }
+
+        public override HardwdareInformation GetValue(MonitoringTarget ressource)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -104,7 +104,7 @@
     <Compile Include="Models\TempModels\CpuUsage.cs" />
     <Compile Include="Models\TempModels\GpuTemp.cs" />
     <Compile Include="Models\TempModels\GpuUsage.cs" />
-    <Compile Include="Models\TempModels\HardwareUsageBase.cs" />
+    <Compile Include="Models\TempModels\HardwdareInformation.cs" />
     <Compile Include="Models\TempModels\RamUsage.cs" />
     <Compile Include="Connectors\GPU_Connector.cs" />
     <Compile Include="Connectors\CPU_Connector.cs" />

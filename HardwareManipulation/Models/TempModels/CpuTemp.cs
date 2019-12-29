@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HardwareManipulation.Models
 {
-    public class CpuTemp : HardwareUsageBase
+    public class CpuTemp : HardwdareInformation
     {
         public CpuTemp()
         {

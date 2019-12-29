@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HardwareManipulation.Models
 {
-    public class RamUsage : HardwareUsageBase
+    public class RamUsage : HardwdareInformation
     {
         public RamUsage()
         {

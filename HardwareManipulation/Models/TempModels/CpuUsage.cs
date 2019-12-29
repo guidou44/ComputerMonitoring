@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HardwareManipulation.Models
 {
-    public class CpuUsage : HardwareUsageBase
+    public class CpuUsage : HardwdareInformation
     {
         public CpuUsage()
         {

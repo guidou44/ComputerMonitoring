@@ -12,20 +12,22 @@ namespace HardwareManipulation.Connectors
 {
     public class RAM_Connector : ConnectorBase
     {
-        public static HardwareUsageBase GetCurrentRamMemoryUsage()
+        public static HardwdareInformation GetCurrentRamMemoryUsage()
         {
             var wmiObject = new ManagementObjectSearcher("select * from Win32_OperatingSystem");
 
-            var ramUsage = wmiObject.Get().Cast<ManagementObject>().Select(mo => new RamUsage{
+            var ramUsage = wmiObject.Get().Cast<ManagementObject>().Select(mo => new HardwdareInformation {
                 Main_Value = Math.Round((Double.Parse(mo["TotalVisibleMemorySize"].ToString()) - Double.Parse(mo["FreePhysicalMemory"].ToString()))
-                        / Double.Parse(mo["TotalVisibleMemorySize"].ToString()) * 100, 2)
+                        / Double.Parse(mo["TotalVisibleMemorySize"].ToString()) * 100, 2),
+                ShortName = "RAM",
+                UnitSymbol = "%"
             }).FirstOrDefault();
 
             return (ramUsage != null) ? ramUsage :
             throw new ArgumentNullException("No memory was found in ManagementObjectSearcher"); ;
         }
 
-        public override HardwareUsageBase GetValue(MonitoringTarget ressource)
+        public override HardwdareInformation GetValue(MonitoringTarget ressource)
         {
             switch (ressource)
             {
