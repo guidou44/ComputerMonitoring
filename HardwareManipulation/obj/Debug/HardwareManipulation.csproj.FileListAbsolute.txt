@@ -8,3 +8,13 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\b
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\NvAPIWrapper.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\NvAPIWrapper.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\HardwareManipulation.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\HardwareManipulation.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\Cudafy.NET.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\NvAPIWrapper.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\Cudafy.NET.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\NvAPIWrapper.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.csprojAssemblyReference.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.csproj.CopyComplete
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.pdb

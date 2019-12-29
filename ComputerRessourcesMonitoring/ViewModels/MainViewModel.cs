@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
 using System.Runtime;
-using ComputerRessourcesMonitoring.Models;
 using Common.UI.ViewModels;
 using HardwareManipulation.Enums;
 
@@ -42,7 +41,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
 
             firstTargetEnum = MonitoringTarget.CPU_Usage;
-            secondTargetEnum = MonitoringTarget.GPU_Temp;
+            secondTargetEnum = MonitoringTarget.RAM_Usage;
 
             _watchdogTargetName = "USBHelperLauncher";
             IsMonitoringVisible = true;

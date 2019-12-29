@@ -15,3 +15,20 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\Prism.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\Prism.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.ValueTuple.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\ProcessMonitoring.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\ProcessMonitoring.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\Common.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\PacketDotNet.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\SharpPcap.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\Prism.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.ValueTuple.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\Common.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\Prism.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\Prism.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.ValueTuple.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.csprojAssemblyReference.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.csproj.CopyComplete
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.pdb
