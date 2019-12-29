@@ -71,7 +71,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             return new Dictionary<MonitoringTarget, Func<HardwdareInformation>>()
             {
                 {MonitoringTarget.RAM_Usage, new Func<HardwdareInformation>(RAM_Connector.GetCurrentRamMemoryUsage)},
-                {MonitoringTarget.CPU_Usage, new Func<HardwdareInformation>(CPU_Connector.GetCurrentGlobalCpuUsageWithPerfCounter)},
+                {MonitoringTarget.CPU_Usage, new Func<HardwdareInformation>(CPU_Connector.GetCGlobalCpuUsageWithPerfCounter)},
                 {MonitoringTarget.GPU_Usage, new Func<HardwdareInformation>(GPU_Connector.GetFirstGpuUsage)},
                 {MonitoringTarget.GPU_Temp, new Func<HardwdareInformation>(GPU_Connector.GetFirstGpuTemp)},
                 {MonitoringTarget.CPU_Temp, new Func<HardwdareInformation>(CPU_Connector.GetCpuTemperature)},
