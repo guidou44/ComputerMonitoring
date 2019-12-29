@@ -1,4 +1,5 @@
 ﻿using HardwareManipulation.Enums;
+using HardwareManipulation.Helpers;
 using HardwareManipulation.Models;
 using System;
 using System.Collections.Generic;
@@ -33,56 +34,43 @@ namespace HardwareManipulation.Connectors
 
         public static HardwdareInformation GetCpuTemperature()
         {
-            var wmiObject = new ManagementObjectSearcher(@"root\WMI", "SELECT * FROM MSAcpi_ThermalZoneTemperature");
-            var cpuUsage = wmiObject.Get()
-                                   .Cast<ManagementObject>()
-                                   .Select(mo => new HardwdareInformation
-                                   {
-                                       ShortName = "CPU",
-                                       Main_Value = (Double.Parse(mo["CurrentTemperature"].ToString()) - 2732) / 10.0,
-                                       UnitSymbol = "°C"
-                                   }
-                                   ).FirstOrDefault();
+            var cpuTemp = WmiHelper.GetWmiValue<double>("MSAcpi_ThermalZoneTemperature", "CurrentTemperature", scope: @"root\WMI");
+            var cpuUsage = new HardwdareInformation()
+            {
+                ShortName = "CPU",
+                Main_Value = (cpuTemp - 2732) / 10.0,
+                UnitSymbol = "°C"
+            };
 
             return cpuUsage;
         }
 
         public static HardwdareInformation GetCpuThreadCount()
         {
-            var wmiObject = new ManagementObjectSearcher("select * from Win32_Processor");
+            var threadCount = WmiHelper.GetWmiValue<uint>("Win32_Processor", "ThreadCount");
+            var cpuThreadCount = new HardwdareInformation()
+            {
+                Main_Value = threadCount,
+                ShortName = "CPU",
+                UnitSymbol = "Threads"
+            };
 
-            var cpuUsage = wmiObject.Get()
-                       .Cast<ManagementObject>()
-                       .Select(mo => new HardwdareInformation
-                       {
-                           Main_Value = UInt32.Parse(mo["ThreadCount"].ToString()),
-                           ShortName = "CPU",
-                           UnitSymbol = "Threads"
-                       }
-                       )
-                       .FirstOrDefault();
-
-            return (cpuUsage != null) ? cpuUsage :
+            return (cpuThreadCount != null) ? cpuThreadCount :
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
         }
 
         public static HardwdareInformation GetCurrentGlobalCpuUsage()
         {
-            var wmiObject = new ManagementObjectSearcher("select * from Win32_Processor");
+            var loadPercentage = WmiHelper.GetWmiValue<double>("Win32_Processor", "LoadPercentage");
+            var cpuUsage = new HardwdareInformation()
+            { 
+                Main_Value = loadPercentage,
+                ShortName = "CPU",
+                UnitSymbol = "%"
+            };
 
-            var cpuUsage = wmiObject.Get()
-                                   .Cast<ManagementObject>()
-                                   .Select(mo => new HardwdareInformation
-                                   {
-                                       Main_Value = Double.Parse(mo["LoadPercentage"].ToString()),
-                                       ShortName = "CPU",
-                                       UnitSymbol = "%"
-                                       //Current_ClockSpeed = 0.001f * UInt32.Parse(mo["CurrentClockSpeed"].ToString()),
-                                       //Number_of_cores = UInt32.Parse(mo["NumberOfCores"].ToString()),
-                                       //Thread_count = UInt32.Parse(mo["ThreadCount"].ToString())
-                                   }
-                                   )
-                                   .FirstOrDefault();
+            //Current_ClockSpeed = 0.001f * UInt32.Parse(mo["CurrentClockSpeed"].ToString()),
+            //Number_of_cores = UInt32.Parse(mo["NumberOfCores"].ToString()),
 
             return (cpuUsage != null) ? cpuUsage :
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
@@ -110,29 +98,6 @@ namespace HardwareManipulation.Connectors
         public override HardwdareInformation GetValue(MonitoringTarget ressource)
         {
             throw new NotImplementedException();
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private static T GetWmiValue<T>(string wmiPath, string wmiKey)
-        {
-            var wmiObject = new ManagementObjectSearcher($"select * from {wmiPath}");
-            try
-            {
-                var value = wmiObject.Get().Cast<ManagementObject>()
-                                     .Select(mo => mo[wmiKey].ToString()).FirstOrDefault();
-                if (value == null) throw new ArgumentException($"Could not find wmiObject for key {wmiKey}");
-                var converter = TypeDescriptor.GetConverter(typeof(T));
-                return (converter != null) ? (T)converter.ConvertFromString(value) :
-                    throw new ArgumentException($"Cannot convert tpye {typeof(T).Name} to string.");
-            }
-            catch (Exception e)
-            {
-                //Reporter.LogException(e);
-                throw;
-            }
         }
 
         #endregion

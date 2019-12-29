@@ -98,6 +98,7 @@
     <Compile Include="DataManager.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Factories\ConnectorFactory.cs" />
+    <Compile Include="Helpers\WmiHelper.cs" />
     <Compile Include="Models\ComputerRessource.cs" />
     <Compile Include="Models\RessourceCollection.cs" />
     <Compile Include="Models\TempModels\CpuTemp.cs" />

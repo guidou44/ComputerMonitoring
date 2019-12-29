@@ -1,5 +1,6 @@
 ﻿
 using HardwareManipulation.Enums;
+using HardwareManipulation.Helpers;
 using HardwareManipulation.Models;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,15 @@ namespace HardwareManipulation.Connectors
     {
         public static HardwdareInformation GetCurrentRamMemoryUsage()
         {
-            var wmiObject = new ManagementObjectSearcher("select * from Win32_OperatingSystem");
+            var totalMemSize = WmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "TotalVisibleMemorySize");
+            var freeMemSize = WmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "FreePhysicalMemory");
 
-            var ramUsage = wmiObject.Get().Cast<ManagementObject>().Select(mo => new HardwdareInformation {
-                Main_Value = Math.Round((Double.Parse(mo["TotalVisibleMemorySize"].ToString()) - Double.Parse(mo["FreePhysicalMemory"].ToString()))
-                        / Double.Parse(mo["TotalVisibleMemorySize"].ToString()) * 100, 2),
+            var ramUsage = new HardwdareInformation()
+            {
+                Main_Value = Math.Round((totalMemSize - freeMemSize) / totalMemSize),
                 ShortName = "RAM",
                 UnitSymbol = "%"
-            }).FirstOrDefault();
+            };
 
             return (ramUsage != null) ? ramUsage :
             throw new ArgumentNullException("No memory was found in ManagementObjectSearcher"); ;
