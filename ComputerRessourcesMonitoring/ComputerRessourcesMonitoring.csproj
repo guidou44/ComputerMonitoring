@@ -94,7 +94,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\Events.cs" />
-    <Compile Include="Models\Enums.cs" />
     <Compile Include="ViewModels\ComputerMonitoringViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MonitoringTargetViewModel.cs" />
@@ -179,7 +178,9 @@
   <ItemGroup>
     <Resource Include="Views\Images\eye2.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="eye2.ico" />
   </ItemGroup>

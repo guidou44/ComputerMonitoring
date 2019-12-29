@@ -18,4 +18,15 @@ namespace HardwareManipulation.Enums
         RAM_Usage,
         FAN_Speed
     }
+
+    public enum MonitoringTarget
+    {
+        CPU_Usage,
+        GPU_Usage,
+        RAM_Usage,
+        CPU_Temp,
+        GPU_Temp,
+        FAN_Speed,
+        None
+    }
 }

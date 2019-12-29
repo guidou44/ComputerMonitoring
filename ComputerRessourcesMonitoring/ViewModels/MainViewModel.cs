@@ -2,7 +2,7 @@
 using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
 using ComputerRessourcesMonitoring.Events;
-using HardwareManipulation.HardwareInformation;
+using HardwareManipulation.Connectors;
 using HardwareManipulation.Models;
 using Prism.Events;
 using ProcessMonitoring.Models;
@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Runtime;
 using ComputerRessourcesMonitoring.Models;
 using Common.UI.ViewModels;
+using HardwareManipulation.Enums;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {

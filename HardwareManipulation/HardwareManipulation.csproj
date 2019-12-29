@@ -93,8 +93,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connectors\ConnectorBase.cs" />
+    <Compile Include="Connectors\Server_Connector.cs" />
     <Compile Include="Enums\Enums.cs" />
-    <Compile Include="Factories\ReaderFactory.cs" />
+    <Compile Include="Factories\ConnectorFactory.cs" />
     <Compile Include="Models\CpuTemp.cs" />
     <Compile Include="Models\CpuUsage.cs" />
     <Compile Include="Models\GpuTemp.cs" />
@@ -119,8 +120,6 @@
     <Content Include="Tools\cudafycl.exe" />
     <Content Include="Tools\CudafyViewer.exe" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Readers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
