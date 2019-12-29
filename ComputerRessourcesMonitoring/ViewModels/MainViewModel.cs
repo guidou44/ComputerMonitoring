@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Runtime;
 using Common.UI.ViewModels;
 using HardwareManipulation.Enums;
+using HardwareManipulation;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -24,18 +25,18 @@ namespace ComputerRessourcesMonitoring.ViewModels
     {
         #region constructor
 
-        private bool _watchdogIsUnsubsribed;
-        private bool _watchdogIsInitialized;
-        private ProcessWatchDog _watchdog;
-        private string _watchdogTargetName;
-
+        private DataManager _manager;
         private MonitoringTarget firstTargetEnum;
         private MonitoringTarget secondTargetEnum;
-
         private IDictionary<MonitoringTarget, Func<HardwareUsageBase>> targetToAction;
+        private ProcessWatchDog _watchdog;
+        private bool _watchdogIsUnsubsribed;
+        private bool _watchdogIsInitialized;
+        private string _watchdogTargetName;
 
         public MainViewModel(IDialogService dialogService) : base (dialogService)
         {
+            _manager = new DataManager();
             targetToAction = InitializeResourceDictionary();
             _watchdog = new ProcessWatchDog();
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
@@ -300,7 +301,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             try
             {
-                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, firstTargetEnum, secondTargetEnum);
+                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, firstTargetEnum, secondTargetEnum, _manager);
 
                 bool? result = _dialogService.ShowDialog(viewModel);
             }

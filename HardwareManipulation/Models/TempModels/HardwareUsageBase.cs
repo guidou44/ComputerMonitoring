@@ -10,6 +10,6 @@ namespace HardwareManipulation.Models
     {
         public string ShortName { get; set; }
         public string Name { get; set; }
-        public double Main_Value { get; set; }
+        public object Main_Value { get; set; }
     }
 }

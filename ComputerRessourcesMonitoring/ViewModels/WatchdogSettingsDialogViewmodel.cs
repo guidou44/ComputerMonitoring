@@ -4,6 +4,7 @@ using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
 using Common.UI.ViewModels;
 using ComputerRessourcesMonitoring.Events;
+using HardwareManipulation;
 using HardwareManipulation.Connectors;
 using HardwareManipulation.Enums;
 using HardwareManipulation.Models;
@@ -23,15 +24,19 @@ namespace ComputerRessourcesMonitoring.ViewModels
     {
         #region Constructor
 
-        private IDictionary<MonitoringTarget, bool> targetDict;
-        private MonitoringTarget _lruTarget;
+        private DataManager _manager;
         private IEventAggregator _eventHub;
+        private MonitoringTarget _lruTarget;
+        private IDictionary<MonitoringTarget, bool> targetDict;
 
-        public WatchdogSettingsDialogViewModel(string watchdogTargetName, IEventAggregator eventsHub, MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget)
+        public WatchdogSettingsDialogViewModel(string watchdogTargetName, IEventAggregator eventsHub, 
+                                               MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget,
+                                               DataManager manager)
         {
             WatchdogTargetName = watchdogTargetName;
-            _lruTarget = firstMonTarget;
+            _manager = manager;
             _eventHub = eventsHub;
+            _lruTarget = firstMonTarget;
             InitializeMonitoringOptions();
             SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(firstMonTarget, true));
             SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(secondMonTarget, true));
@@ -52,7 +57,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
             GPU_Connector.InitializeGpuWatcher();
             MonitoringOptionsCollection = new ObservableCollection<MonitoringTargetViewModel>();
             targetDict = new Dictionary<MonitoringTarget, bool>();
-            foreach (var option in Enum.GetValues(typeof(MonitoringTarget)).Cast<MonitoringTarget>())
+            IEnumerable<MonitoringTarget> targets;
+            if (_manager.IsRemoteMonitoringEnabled()) targets = _manager.GetAllTargets();
+            else targets = _manager.GetLocalTargets();
+
+            foreach (var option in targets)
             {
                 if (option == MonitoringTarget.None) continue;
                 targetDict.Add(option, false);

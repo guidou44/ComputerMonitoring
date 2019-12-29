@@ -25,11 +25,11 @@ namespace HardwareManipulation.Connectors
             throw new ArgumentNullException("No memory was found in ManagementObjectSearcher"); ;
         }
 
-        public override HardwareUsageBase GetValue(RessourceName ressource)
+        public override HardwareUsageBase GetValue(MonitoringTarget ressource)
         {
             switch (ressource)
             {
-                case RessourceName.RAM_Usage:
+                case MonitoringTarget.RAM_Usage:
                     return GetCurrentRamMemoryUsage();
                 default:
                     throw new NotImplementedException($"Computer ressource {ressource} is not implemented for connector {nameof(RAM_Connector)}");
