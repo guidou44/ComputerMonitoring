@@ -21,3 +21,26 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Testing_Common_UI\obj\
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.exe
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\Testing_Common_UI.exe.config
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\Testing_Common_UI.exe
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\Testing_Common_UI.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\Common.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\Prism.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\System.ValueTuple.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\Common.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\Prism.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\Prism.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\bin\Debug\System.ValueTuple.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.csprojAssemblyReference.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Views\MainView.g.cs
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\App.g.cs
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI_MarkupCompile.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI_MarkupCompile.lref
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Views\MainView.baml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.g.resources
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.Properties.Resources.resources
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.csproj.GenerateResource.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.csproj.CopyComplete
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.exe
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Testing_Common_UI\obj\Debug\Testing_Common_UI.pdb

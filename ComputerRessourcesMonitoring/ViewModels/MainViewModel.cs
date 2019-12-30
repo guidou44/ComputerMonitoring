@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Runtime;
 using Common.UI.ViewModels;
 using HardwareManipulation.Enums;
+using HardwareManipulation;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -24,24 +25,24 @@ namespace ComputerRessourcesMonitoring.ViewModels
     {
         #region constructor
 
-        private bool _watchdogIsUnsubsribed;
-        private bool _watchdogIsInitialized;
-        private ProcessWatchDog _watchdog;
-        private string _watchdogTargetName;
-
+        private DataManager _manager;
         private MonitoringTarget firstTargetEnum;
         private MonitoringTarget secondTargetEnum;
-
-        private IDictionary<MonitoringTarget, Func<HardwareUsageBase>> targetToAction;
+        private IDictionary<MonitoringTarget, Func<HardwdareInformation>> targetToAction;
+        private ProcessWatchDog _watchdog;
+        private bool _watchdogIsUnsubsribed;
+        private bool _watchdogIsInitialized;
+        private string _watchdogTargetName;
 
         public MainViewModel(IDialogService dialogService) : base (dialogService)
         {
+            _manager = new DataManager();
             targetToAction = InitializeResourceDictionary();
             _watchdog = new ProcessWatchDog();
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
 
             firstTargetEnum = MonitoringTarget.CPU_Usage;
-            secondTargetEnum = MonitoringTarget.GPU_Temp;
+            secondTargetEnum = MonitoringTarget.RAM_Usage;
 
             _watchdogTargetName = "USBHelperLauncher";
             IsMonitoringVisible = true;
@@ -65,15 +66,15 @@ namespace ComputerRessourcesMonitoring.ViewModels
             ToggleWatchdogRunStateCommandExecute();
         }
 
-        private IDictionary<MonitoringTarget, Func<HardwareUsageBase>> InitializeResourceDictionary()
+        private IDictionary<MonitoringTarget, Func<HardwdareInformation>> InitializeResourceDictionary()
         {
-            return new Dictionary<MonitoringTarget, Func<HardwareUsageBase>>()
+            return new Dictionary<MonitoringTarget, Func<HardwdareInformation>>()
             {
-                {MonitoringTarget.RAM_Usage, new Func<HardwareUsageBase>(RAM_Connector.GetCurrentRamMemoryUsage)},
-                {MonitoringTarget.CPU_Usage, new Func<HardwareUsageBase>(CPU_Connector.GetCurrentGlobalCpuUsageWithPerfCounter)},
-                {MonitoringTarget.GPU_Usage, new Func<HardwareUsageBase>(GPU_Connector.GetFirstGpuInformation)},
-                {MonitoringTarget.GPU_Temp, new Func<HardwareUsageBase>(GPU_Connector.GetFirstGpuTempOnly)},
-                {MonitoringTarget.CPU_Temp, new Func<HardwareUsageBase>(CPU_Connector.GetCpuTemperature)},
+                {MonitoringTarget.RAM_Usage, new Func<HardwdareInformation>(RAM_Connector.GetCurrentRamMemoryUsage)},
+                {MonitoringTarget.CPU_Usage, new Func<HardwdareInformation>(CPU_Connector.GetCGlobalCpuUsageWithPerfCounter)},
+                {MonitoringTarget.GPU_Usage, new Func<HardwdareInformation>(GPU_Connector.GetFirstGpuUsage)},
+                {MonitoringTarget.GPU_Temp, new Func<HardwdareInformation>(GPU_Connector.GetFirstGpuTemp)},
+                {MonitoringTarget.CPU_Temp, new Func<HardwdareInformation>(CPU_Connector.GetCpuTemperature)},
             };
 
         }
@@ -111,8 +112,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 if (_watchdogIsUnsubsribed) _watchdogIsInitialized = false;
                 var target_1 = targetToAction[firstTargetEnum].Invoke();
                 var target_2 = targetToAction[secondTargetEnum].Invoke();
-                FirstMonitoringTarget = target_1.Main_Value;
-                SecondMonitoringTarget = target_2.Main_Value;
+                FirstMonitoringTarget = (double) target_1.Main_Value;
+                SecondMonitoringTarget = (double) target_2.Main_Value;
                 if (FirstMonitoringTargetName != target_1.ShortName) FirstMonitoringTargetName = target_1.ShortName;
                 if (SecondMonitoringTargetName != target_2.ShortName) SecondMonitoringTargetName = target_2.ShortName;
                 FirstMonitoringTargetDisplay = target_1.ToString();
@@ -300,7 +301,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             try
             {
-                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, firstTargetEnum, secondTargetEnum);
+                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, firstTargetEnum, secondTargetEnum, _manager);
 
                 bool? result = _dialogService.ShowDialog(viewModel);
             }

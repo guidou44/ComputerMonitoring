@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace HardwareManipulation.Models
 {
-    public class CpuTemp : HardwareUsageBase
+    public class RamUsage : HardwdareInformation
     {
-        public CpuTemp()
+        public RamUsage()
         {
-            ShortName = "CPU";
+            ShortName = "RAM";
         }
 
         public override string ToString()
         {
-            return Main_Value.ToString() + " °C";
+            return Main_Value.ToString() + " %";
         }
     }
 }

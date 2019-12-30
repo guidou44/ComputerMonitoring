@@ -196,3 +196,176 @@ Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialog
    at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(String watchdogTargetName, IEventAggregator eventsHub, MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 39
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 303
 
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:17:36
+Type: System.InvalidOperationException
+Source: System
+TargetSite: System.Collections.Hashtable GetStringTable(Boolean)
+Message: Cannot load Counter Name data because an invalid index '' was read from the registry.
+Stacktrace:    at System.Diagnostics.PerformanceCounterLib.GetStringTable(Boolean isHelp)
+   at System.Diagnostics.PerformanceCounterLib.get_NameTable()
+   at System.Diagnostics.PerformanceCounterLib.get_CategoryTable()
+   at System.Diagnostics.PerformanceCounterLib.CounterExists(String category, String counter, Boolean& categoryExists)
+   at System.Diagnostics.PerformanceCounterLib.CounterExists(String machine, String category, String counter)
+   at System.Diagnostics.PerformanceCounter.InitializeImpl()
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName, Boolean readOnly)
+   at System.Diagnostics.PerformanceCounter..ctor(String categoryName, String counterName, String instanceName)
+   at HardwareManipulation.Connectors.CPU_Connector.GetCurrentGlobalCpuUsageWithPerfCounter() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\CPU_Connector.cs:line 19
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 112
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:21:33
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:22:39
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:23:49
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:24:54
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:27:02
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:32:01
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:33:00
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:34:10
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:34:39
+Type: NvAPIWrapper.Native.Exceptions.NVIDIANotSupportedException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI_QueryInterface(UInt32)
+Message: 32bit process running in a 64bit environment can't access NVIDIA API.
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:35:22
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GPUApi.EnumPhysicalGPUs()
+   at NvAPIWrapper.GPU.PhysicalGPU.GetPhysicalGPUs()
+   at HardwareManipulation.Connectors.GPU_Connector.GetFirstGpuTempOnly() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 37
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 113
+
+
+*************************Exception******************************
+DateTime: 29-12-2019 8:38:18
+Type: System.DllNotFoundException
+Source: NvAPIWrapper
+TargetSite: IntPtr NvAPI64_QueryInterface(UInt32)
+Message: Unable to load DLL 'nvapi64': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+Stacktrace:    at NvAPIWrapper.Native.Helpers.DelegateFactory.NvAPI64_QueryInterface(UInt32 interfaceId)
+   at NvAPIWrapper.Native.Helpers.DelegateFactory.GetDelegate[T]()
+   at NvAPIWrapper.Native.GeneralApi.Initialize()
+   at HardwareManipulation.Connectors.GPU_Connector.InitializeGpuWatcher() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\Connectors\GPU_Connector.cs:line 16
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.InitializeMonitoringOptions() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 52
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel..ctor(String watchdogTargetName, IEventAggregator eventsHub, MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget) in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 35
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 303
+

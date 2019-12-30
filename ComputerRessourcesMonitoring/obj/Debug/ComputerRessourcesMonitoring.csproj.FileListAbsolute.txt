@@ -39,3 +39,44 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMoni
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\HardwareManipulation.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\NvAPIWrapper.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\NvAPIWrapper.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\ComputerRessourcesMonitoring.csprojAssemblyReference.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\Views\MainWindow.g.cs
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\Views\WatchdogSettingsDialogView.g.cs
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\App.g.cs
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\ComputerRessourcesMonitoring_MarkupCompile.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\ComputerRessourcesMonitoring_MarkupCompile.lref
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\ComputerRessourcesMonitoring.exe
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\ComputerRessourcesMonitoring.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\ComputerRessourcesMonitoring.exe.config
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\ComputerRessourcesMonitoring.exe
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\ComputerRessourcesMonitoring.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Common.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Hardcodet.Wpf.TaskbarNotification.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\HardwareManipulation.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Microsoft.Expression.Interactions.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Prism.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\ProcessMonitoring.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\System.ValueTuple.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\System.Windows.Interactivity.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\NvAPIWrapper.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\SharpPcap.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\PacketDotNet.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Common.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\HardwareManipulation.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\ProcessMonitoring.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Hardcodet.Wpf.TaskbarNotification.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Hardcodet.Wpf.TaskbarNotification.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Microsoft.Expression.Interactions.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Prism.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Prism.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\System.ValueTuple.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\System.Windows.Interactivity.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\NvAPIWrapper.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\Views\MainWindow.baml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\Views\WatchdogSettingsDialogView.baml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\ComputerRessourcesMonitoring.g.resources
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\ComputerRessourcesMonitoring.Properties.Resources.resources
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\ComputerRessourcesMonitoring.csproj.GenerateResource.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\obj\Debug\ComputerRessourcesMonitoring.csproj.CopyComplete
