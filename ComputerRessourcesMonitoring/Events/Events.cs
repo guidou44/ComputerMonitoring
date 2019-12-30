@@ -1,4 +1,5 @@
-﻿using ComputerRessourcesMonitoring.Models;
+﻿
+using HardwareManipulation.Enums;
 using Prism.Events;
 using System;
 using System.Collections.Generic;
