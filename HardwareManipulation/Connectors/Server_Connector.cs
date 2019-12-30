@@ -10,7 +10,7 @@ namespace HardwareManipulation.Connectors
 {
     public class Server_Connector : ConnectorBase
     {
-        public override HardwdareInformation GetValue(MonitoringTarget ressource)
+        public override HardwareInformation GetValue(MonitoringTarget ressource)
         {
             throw new NotImplementedException();
         }

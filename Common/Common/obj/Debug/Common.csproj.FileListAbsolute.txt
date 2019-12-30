@@ -18,10 +18,6 @@ D:\Guillaume\Desktop\Internet Explorer\Common\Common\obj\Debug\UI\Views\MessageV
 D:\Guillaume\Desktop\Internet Explorer\Common\Common\obj\Debug\UI\Views\MessageView.baml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Debug\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Debug\Common.pdb
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Debug\Prism.pdb
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Debug\Prism.xml
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Debug\System.ValueTuple.xml
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\Common.csprojAssemblyReference.cache
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\ErrorMessageView.g.cs
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\MessageView.g.cs
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\Common_MarkupCompile.cache
@@ -32,3 +28,4 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debu
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\Common.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\Common.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\Common.csprojAssemblyReference.cache

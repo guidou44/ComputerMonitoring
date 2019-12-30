@@ -17,8 +17,11 @@ namespace HardwareManipulation.Models
         [XmlElement("IsRemote")]
         public bool IsRemote { get; set; }
 
+        [XmlElement("ExcludeFromMonitoring")]
+        public bool? ExcludeFromMonitoring { get; set; }
+
         [XmlElement("TargetName")]
-        public MonitoringTarget TargetName { get; set; }
+        public MonitoringTarget TargetType { get; set; }
 
         [XmlElement("IP")]
         public string RemoteIp { get; set; }

@@ -39,6 +39,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\ComputerMonitoring\ComputerRessourcesMonitoring\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
@@ -56,6 +57,8 @@
     <Compile Include="Examples\MainWindowViewModelEXAMPLE.cs" />
     <Compile Include="Helpers\CommandLineHelper.cs" />
     <Compile Include="Helpers\LinuxTerminalHelper.cs" />
+    <Compile Include="Helpers\WmiHelper.cs" />
+    <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="UI\CustomControls\VeryObservableCollection.cs" />
     <Compile Include="UI\DialogServices\DialogCloseRequestedEventArgs.cs" />
     <Compile Include="UI\DialogServices\DialogService.cs" />
@@ -66,7 +69,6 @@
     <Compile Include="UI\Interfaces\IClosable.cs" />
     <Compile Include="UI\Interfaces\IDispatcherService.cs" />
     <Compile Include="UI\Interfaces\IDragable.cs" />
-    <Compile Include="UI\Interfaces\IWindow.cs" />
     <Compile Include="UI\Infrastructure\NotifyPropertyChanged.cs" />
     <Compile Include="UI\Infrastructure\RelayCommand.cs" />
     <Compile Include="Reports\Reporter.cs" />

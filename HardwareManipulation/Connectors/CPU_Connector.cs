@@ -1,5 +1,5 @@
-﻿using HardwareManipulation.Enums;
-using HardwareManipulation.Helpers;
+﻿using Common.Helpers;
+using HardwareManipulation.Enums;
 using HardwareManipulation.Models;
 using System;
 using System.Collections.Generic;
@@ -17,112 +17,139 @@ namespace HardwareManipulation.Connectors
     {
         private static PerformanceCounter all_Cpu_Idle;
 
+        #region Private Methods
 
-        #region Public Methods
-
-        public static HardwdareInformation GetCpuCoreCount()
+        private static HardwareInformation GetCpuCoreCount()
         {
             var numOfCore = WmiHelper.GetWmiValue<uint>("Win32_Processor", "NumberOfCores");
-            var cpuCoreCount = new HardwdareInformation()
+            var cpuCoreCount = new HardwareInformation()
             {
-                Main_Value = numOfCore,
+                MainValue = (double) numOfCore,
                 ShortName = "CPU",
                 UnitSymbol = (numOfCore > 1) ? "Cores" : "Core",
             };
-            return (cpuCoreCount != null) ? cpuCoreCount :
-                    throw new ArgumentNullException("No cpu core count was found in ManagementObjectSearcher");
+            return cpuCoreCount;
         }
 
-        public static HardwdareInformation GetCpuClockSpeed()
+        private static HardwareInformation GetCpuClockSpeed()
         {
             var clockSpeed = WmiHelper.GetWmiValue<uint>("Win32_Processor", "CurrentClockSpeed");
-            var cpuClockSpeed = new HardwdareInformation()
+            var cpuClockSpeed = new HardwareInformation()
             {
-                Main_Value = clockSpeed * 001f,
+                MainValue = (double) (clockSpeed * 001f)/1000,
                 ShortName = "CPU",
-                UnitSymbol = "Hz",
+                UnitSymbol = "kHz",
             };
-            return (cpuClockSpeed != null) ? cpuClockSpeed :
-                    throw new ArgumentNullException("No cpu clock speed was found in ManagementObjectSearcher");
+            return cpuClockSpeed;
         }
 
-        public static HardwdareInformation GetCpuTemperature()
+        private static HardwareInformation GetCpuMake()
         {
-            var cpuTemp = WmiHelper.GetWmiValue<double>("MSAcpi_ThermalZoneTemperature", "CurrentTemperature", scope: @"root\WMI");
-            var cpuUsage = new HardwdareInformation()
+            var make = WmiHelper.GetWmiValue<string>("Win32_Processor", "Name");
+            var cpuMake = new HardwareInformation()
+            {
+                MainValue = make,
+                ShortName = "CPU",
+                UnitSymbol = ""
+            };
+            return cpuMake;
+        }
+
+        private static HardwareInformation GetCpuTemperature()
+        {
+            var temp = WmiHelper.GetWmiValue<double>("MSAcpi_ThermalZoneTemperature", "CurrentTemperature", scope: @"root\WMI");
+            var cpuTemp = new HardwareInformation()
             {
                 ShortName = "CPU",
-                Main_Value = (cpuTemp - 2732) / 10.0,
+                MainValue = (temp - 2732) / 10.0,
                 UnitSymbol = "°C"
             };
-
-            return cpuUsage;
+            return cpuTemp;
         }
 
-        public static HardwdareInformation GetCpuThreadCount()
+        private static HardwareInformation GetCpuThreadCount()
         {
             var threadCount = WmiHelper.GetWmiValue<uint>("Win32_Processor", "ThreadCount");
-        var cpuThreadCount = new HardwdareInformation()
-        {
-            Main_Value = threadCount,
+            var cpuThreadCount = new HardwareInformation()
+            {
+            MainValue = (double)threadCount,
             ShortName = "CPU",
             UnitSymbol = (threadCount > 1) ? "Threads" : "Thread",
             };
 
-            return (cpuThreadCount != null) ? cpuThreadCount :
-                throw new ArgumentNullException("No cpu thread count was found in ManagementObjectSearcher");
+            return cpuThreadCount;
         }
 
-        public static IEnumerable<HardwdareInformation> GetEachCpuUsage()
+        private static IEnumerable<HardwareInformation> GetEachCpuUsage()
         {
-             var wmiObject = new ManagementObjectSearcher("select * from Win32_PerfFormattedData_PerfOS_Processor");
-             
-             var allCpuUsage = wmiObject.Get()
-                                    .Cast<ManagementObject>()
-                                    .Select(mo => new HardwdareInformation
-                                    {
-                                        ShortName = "CPU" + mo["Name"].ToString(),
-                                        Main_Value = Double.Parse(mo["PercentProcessorTime"].ToString()),
-                                        UnitSymbol = "%"
-                                    }
-                                    )
-                                    .ToList();
+            var wmiObject = new ManagementObjectSearcher("select * from Win32_PerfFormattedData_PerfOS_Processor");
 
-            return (allCpuUsage.Count() != 0)? allCpuUsage :
+            var allCpuUsage = wmiObject.Get()
+                                   .Cast<ManagementObject>()
+                                   .Select(mo => new HardwareInformation
+                                   {
+                                       ShortName = "CPU" + mo["Name"].ToString(),
+                                       MainValue = Double.Parse(mo["PercentProcessorTime"].ToString()),
+                                       UnitSymbol = "%"
+                                   }
+                                   )
+                                   .ToList();
+
+            return (allCpuUsage.Count() != 0) ? allCpuUsage :
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
         }
 
-        public static HardwdareInformation GetGlobalCpuUsage()
+        private static HardwareInformation GetGlobalCpuUsage()
         {
             var loadPercentage = WmiHelper.GetWmiValue<double>("Win32_Processor", "LoadPercentage");
-            var cpuUsage = new HardwdareInformation()
+            var cpuUsage = new HardwareInformation()
             {
-                Main_Value = loadPercentage,
+                MainValue = loadPercentage,
                 ShortName = "CPU",
                 UnitSymbol = "%"
             };
-
-            return (cpuUsage != null) ? cpuUsage :
-                throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
+            return cpuUsage;
         }
 
-        public static HardwdareInformation GetCGlobalCpuUsageWithPerfCounter()
+        private static HardwareInformation GetGlobalCpuUsageWithPerfCounter()
         {
             all_Cpu_Idle = (all_Cpu_Idle == null) ? new PerformanceCounter("Processor", "% Idle Time", "_Total") : all_Cpu_Idle;
             var cpuIdle = all_Cpu_Idle.NextValue();
-            return new HardwdareInformation()
+            return new HardwareInformation()
             {
-                Main_Value = Math.Round(100.0 - cpuIdle, 2),
+                MainValue = Math.Round(100.0 - cpuIdle, 2),
                 ShortName = "CPU",
                 UnitSymbol = "%"
             };
         }
 
-        public override HardwdareInformation GetValue(MonitoringTarget ressource)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
+
+        public override HardwareInformation GetValue(MonitoringTarget ressource)
+        {
+            switch (ressource)
+            {
+                case MonitoringTarget.CPU_Core_Count:
+                    return GetCpuCoreCount();
+
+                case MonitoringTarget.CPU_Clock_Speed:
+                    return GetCpuClockSpeed();
+
+                case MonitoringTarget.CPU_Make:
+                    return GetCpuMake();
+
+                case MonitoringTarget.CPU_Temp:
+                    return GetCpuTemperature();
+
+                case MonitoringTarget.CPU_Thread_Count:
+                    return GetCpuThreadCount();
+                    
+                case MonitoringTarget.CPU_Usage:
+                    return GetGlobalCpuUsageWithPerfCounter();
+
+                default:
+                    throw new NotImplementedException($"Monitoring target '{ressource}' is not implemented for cpu connector");
+            }
+        }
     }
 }

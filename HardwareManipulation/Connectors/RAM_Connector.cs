@@ -1,6 +1,6 @@
 ﻿
+using Common.Helpers;
 using HardwareManipulation.Enums;
-using HardwareManipulation.Helpers;
 using HardwareManipulation.Models;
 using System;
 using System.Collections.Generic;
@@ -13,14 +13,16 @@ namespace HardwareManipulation.Connectors
 {
     public class RAM_Connector : ConnectorBase
     {
-        public static HardwdareInformation GetCurrentRamMemoryUsage()
+        #region Private Methods
+
+        private static HardwareInformation GetCurrentRamMemoryUsage()
         {
             var totalMemSize = WmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "TotalVisibleMemorySize");
             var freeMemSize = WmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "FreePhysicalMemory");
 
-            var ramUsage = new HardwdareInformation()
+            var ramUsage = new HardwareInformation()
             {
-                Main_Value = Math.Round((totalMemSize - freeMemSize) / totalMemSize),
+                MainValue = Math.Round((totalMemSize - freeMemSize) / totalMemSize),
                 ShortName = "RAM",
                 UnitSymbol = "%"
             };
@@ -29,7 +31,9 @@ namespace HardwareManipulation.Connectors
             throw new ArgumentNullException("No memory was found in ManagementObjectSearcher"); ;
         }
 
-        public override HardwdareInformation GetValue(MonitoringTarget ressource)
+        #endregion
+
+        public override HardwareInformation GetValue(MonitoringTarget ressource)
         {
             switch (ressource)
             {

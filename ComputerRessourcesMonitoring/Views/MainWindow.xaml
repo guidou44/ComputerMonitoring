@@ -17,6 +17,8 @@
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         Topmost="True"
+        MinHeight="80"
+        MinWidth="350"
         >
     <!--<Window.DataContext>
         <ViewModels:MainViewModel/>
@@ -57,7 +59,7 @@
     <Border BorderBrush="DarkGreen"
             BorderThickness="5"
             CornerRadius="30 30 30 30"
-        Visibility="{Binding IsMonitoringVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collaspsed}">
+        Visibility="{Binding IsApplicationVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collaspsed}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -96,12 +98,12 @@
                         FontWeight="Medium"
                         BorderBrush="DarkGreen"
                         BorderThickness="3">
-                        <MenuItem Header="Show Monitoring" Command="{Binding ShowComputerMonitoringCommand}">
+                        <MenuItem Header="Show Monitoring" Command="{Binding ShowApplicationCommand}">
                             <MenuItem.Icon>
                                 <Image Source="Images/plus.ico" Margin="1"/>
                             </MenuItem.Icon>
                         </MenuItem>
-                        <MenuItem Header="Hide Monitoring" Command="{Binding HideComputerMonitoringCommand}">
+                        <MenuItem Header="Hide Monitoring" Command="{Binding HideApplicationCommand}">
                             <MenuItem.Icon>
                                 <Image Source="Images/minus.ico" Margin="1"/>
                             </MenuItem.Icon>
@@ -121,11 +123,6 @@
             <DockPanel  Grid.Row="1"
                         Grid.Column="0">
                 <Grid Margin="0 0 20 10"  HorizontalAlignment="Right">
-                    <!--<Image Source="Images/settings_simple.ico" 
-                           Height="20"
-                           Width="20"
-                           >
-                    </Image>-->
                     <ContentControl>
                         <Ellipse x:Name="WatchdogStatus" 
                                  Height="15"
@@ -155,87 +152,49 @@
                     </ContentControl>
                 </Grid>
             </DockPanel>
-
-            <StackPanel Orientation="Vertical"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        Margin="20 20 20 0">
-                <DockPanel Margin="0 10 0 10">
-                    <TextBlock>
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Text" Value="{Binding FirstMonitoringTargetName}"/>
-                                <Setter Property="FontFamily" Value="Consola"/>
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="FontWeight" Value="DemiBold"/>
-                                <Setter Property="Foreground" Value="DarkGreen"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=FirstMonitoringTargetName.Length, FallbackValue=0, TargetNullValue=0}" Value="0">
-                                        <Setter Property="Text" Value="RAM"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <Grid>
-                        <ProgressBar
-                         HorizontalAlignment="Right" 
-                         VerticalAlignment="Center"
-                         Margin="20 0 0 0"
-                         Height="25"
-                         BorderThickness="1" 
-                         Background="Transparent"
-                         Value="{Binding FirstMonitoringTarget}"/>
-
-                        <!--<TextBlock FontSize="15" 
+            
+            <ItemsControl 
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="20 20 20 0"
+                Background="Transparent"
+                ItemsSource="{Binding HardwareValues}"
+                >
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <DockPanel Margin="0 10 0 10">
+                            <TextBlock
+                                Text="{Binding ShortName}"
+                                FontFamily="Consola"
+                                FontSize="20"
+                                FontWeight="DemiBold"
+                                Foreground="DarkGreen"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Left"
+                                MinWidth="45">
+                            </TextBlock>
+                            <Grid>
+                                <ProgressBar
+                                 HorizontalAlignment="Right" 
+                                 VerticalAlignment="Center"
+                                 Margin="20 0 0 0"
+                                 Height="25"
+                                 BorderThickness="1" 
+                                 Background="Transparent"
+                                 Value="{Binding MainValue}"/>
+                                <TextBlock 
+                                   FontSize="15"
+                                   Foreground="DarkGreen"
+                                   FontWeight="DemiBold"
                                    HorizontalAlignment="Right" 
-                                   Text="{Binding CpuClockSpeed, StringFormat={}{0}kHz}"
-                                   Margin="5 0 10 0"/>-->
-                        <TextBlock FontSize="15" 
-                                   HorizontalAlignment="Right" 
-                                   Text="{Binding FirstMonitoringTargetDisplay}"
+                                   Text="{Binding}"
                                    Margin="0 0 5 0"/>
 
-                    </Grid>
-                </DockPanel>
-                <DockPanel Margin="0 10 0 10">
-                    <TextBlock>
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Text" Value="{Binding SecondMonitoringTargetName}"/>
-                                <Setter Property="FontFamily" Value="Consola"/>
-                                <Setter Property="FontSize" Value="20"/>
-                                <Setter Property="FontWeight" Value="DemiBold"/>
-                                <Setter Property="Foreground" Value="DarkGreen"/>
-                                <Setter Property="VerticalAlignment" Value="Center"/>
-                                <Setter Property="HorizontalAlignment" Value="Left"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Path=SecondMonitoringTargetName.Length, FallbackValue=0, TargetNullValue=0}" Value="0">
-                                        <Setter Property="Text" Value="RAM"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
-                    <Grid>
-                        <ProgressBar
-                         HorizontalAlignment="Right" 
-                         VerticalAlignment="Center"
-                         Margin="20 0 0 0"
-                         Height="25"
-                         BorderThickness="1" 
-                         Background="Transparent"
-                         Value="{Binding SecondMonitoringTarget}">
-                        </ProgressBar>
-                        <TextBlock FontSize="15" 
-                                   HorizontalAlignment="Right" 
-                                   Text="{Binding SecondMonitoringTargetDisplay}"
-                                   Margin="0 0 5 0"/>
-                    </Grid>
-                </DockPanel>
-            </StackPanel>
+                            </Grid>
+                        </DockPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
             
         </Grid>
     </Border>

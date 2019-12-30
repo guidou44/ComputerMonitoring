@@ -26,25 +26,28 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private DataManager _manager;
         private IEventAggregator _eventHub;
-        private MonitoringTarget _lruTarget;
+        private Queue<MonitoringTarget> _lruTargets;
         private IDictionary<MonitoringTarget, bool> targetDict;
 
         public WatchdogSettingsDialogViewModel(string watchdogTargetName, IEventAggregator eventsHub, 
-                                               MonitoringTarget firstMonTarget, MonitoringTarget secondMonTarget,
+                                               Queue<MonitoringTarget> monTargets,
                                                DataManager manager)
         {
+            MaxAllowedMonTargets = monTargets.Count();
             WatchdogTargetName = watchdogTargetName;
-            _manager = manager;
             _eventHub = eventsHub;
-            _lruTarget = firstMonTarget;
-            InitializeMonitoringOptions();
-            SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(firstMonTarget, true));
-            SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(secondMonTarget, true));
+            _lruTargets = monTargets;
+            _manager = manager;
+            InitializeComponents();
+
+            for (int i = 0; i < _lruTargets.Count(); i++)
+            {
+                SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(monTargets.Dequeue(), true));
+            }
         }
 
         ~WatchdogSettingsDialogViewModel()
         {
-            GPU_Connector.ResetGpuWatcher();
             foreach (var mvm in MonitoringOptionsCollection) mvm.SelectionChangedEvent -= SetMonitoringDictionary;
         }
 
@@ -52,50 +55,58 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Methods
 
-        private void InitializeMonitoringOptions()
+        private void InitializeComponents()
         {
-            GPU_Connector.InitializeGpuWatcher();
+            CpuMake = (string) _manager.GetCalculatedValue(MonitoringTarget.CPU_Make).MainValue;
+            GpuMake = (string)_manager.GetCalculatedValue(MonitoringTarget.GPU_Make).MainValue;
+
             MonitoringOptionsCollection = new ObservableCollection<MonitoringTargetViewModel>();
             targetDict = new Dictionary<MonitoringTarget, bool>();
-            IEnumerable<MonitoringTarget> targets;
-            if (_manager.IsRemoteMonitoringEnabled()) targets = _manager.GetAllTargets();
-            else targets = _manager.GetLocalTargets();
+            IEnumerable<MonitoringTarget> targetOptions;
+            if (_manager.IsRemoteMonitoringEnabled()) targetOptions = _manager.GetAllTargets();
+            else targetOptions = _manager.GetLocalTargets();
 
-            foreach (var option in targets)
+            foreach (var targetOption in targetOptions)
             {
-                if (option == MonitoringTarget.None) continue;
-                targetDict.Add(option, false);
-                var mvm = new MonitoringTargetViewModel(option) { DisplayName = option.ToString()};
+                if (targetOption == MonitoringTarget.None) continue;
+                targetDict.Add(targetOption, false);
+                var mvm = new MonitoringTargetViewModel(targetOption) { DisplayName = targetOption.ToString()};
                 mvm.SelectionChangedEvent += SetMonitoringDictionary;
                 MonitoringOptionsCollection.Add(mvm);
             }
         }
 
-        private void SetCheckboxValues()
+        private async void PublishQueue(Queue<MonitoringTarget> lruTargets)
         {
-            foreach (var monOption in MonitoringOptionsCollection)
+            await Task.Run(() =>_eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(lruTargets));
+        }
+
+        private async void SetCheckboxValues()
+        {
+            foreach(var monOption in MonitoringOptionsCollection)
             {
-                monOption.IsSelected = targetDict[monOption.Type];
+                await Task.Run(() => monOption.IsSelected = targetDict[monOption.Type]);
             }
         }
 
         private void SetMonitoringDictionary(KeyValuePair<MonitoringTarget, bool> target)
         {
             targetDict[target.Key] = target.Value;
-            var currentTrueTargets = targetDict.Where(KVP => KVP.Value == true);
-            if (currentTrueTargets.Count() > 2)
+            if (target.Value) _lruTargets.Enqueue(target.Key);
+            else if (!target.Value && _lruTargets.Contains(target.Key))
             {
-                targetDict[_lruTarget] = false;
-                _lruTarget = targetDict.Where(KVP => KVP.Value == true && KVP.Key != target.Key).SingleOrDefault().Key;
+                var lruTargetsList = _lruTargets.ToList();
+                lruTargetsList.Remove(target.Key);
+                _lruTargets = new Queue<MonitoringTarget>(lruTargetsList);
             }
-            if (targetDict.Where(KVP => KVP.Value == true).Count() == 2)
+
+            while (_lruTargets.Count() > MaxAllowedMonTargets)
             {
-                var transfertQueue = new Queue<MonitoringTarget>();
-                transfertQueue.Enqueue(_lruTarget);
-                transfertQueue.Enqueue(targetDict.Where(KVP => KVP.Value == true && KVP.Key != _lruTarget).SingleOrDefault().Key);
-                _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(new Queue<MonitoringTarget>(transfertQueue));
+                var lruTarget = _lruTargets.Dequeue();
+                targetDict[lruTarget] = false;
             }
             SetCheckboxValues();
+            if (_lruTargets.Count() == MaxAllowedMonTargets) PublishQueue(_lruTargets);
         }
 
         #endregion
@@ -124,6 +135,19 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 RaisePropertyChanged(nameof(GpuMake));
             }
         }
+
+        private int _maxAllowedMonTargets;
+
+        public int MaxAllowedMonTargets
+        {
+            get { return _maxAllowedMonTargets; }
+            set
+            { 
+                _maxAllowedMonTargets = value;
+                RaisePropertyChanged(nameof(MaxAllowedMonTargets));
+            }
+        }
+
 
         private ObservableCollection<MonitoringTargetViewModel> _monitoringOptionsCollection;
         public ObservableCollection<MonitoringTargetViewModel> MonitoringOptionsCollection

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ComputerRessourcesMonitoring.Views"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         mc:Ignorable="d"
         x:Name="DialogWindow"
@@ -201,26 +202,42 @@
                             TextWrapping="Wrap"
                             Margin="0 20 10 0"
                                 />
-                    <TextBlock  
-                                Background="Transparent"
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0 20 10 0"
                                 HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock  
+                                Background="Transparent"
                                 FontFamily="Consola"
                                 FontSize="20"
                                 Foreground="DarkGreen"
                                 FontWeight="Bold"
                                 TextDecorations="Underline"
                                 Text ="Monitoring Options"
-                                Margin="0 20 10 0"
+     
                                 />
-
+                        <xctk:IntegerUpDown 
+                            FontSize="16"
+                            FontWeight="DemiBold"
+                            Foreground="DarkGreen"
+                            Background="LightGreen"
+                            BorderBrush="DarkGreen"
+                            BorderThickness="2"
+                            Minimum="1"
+                            Maximum="{Binding MonitoringOptionsCollection.Count}"
+                            Value="{Binding MaxAllowedMonTargets}"
+                            Margin="10 0 0 0"
+                            VerticalAlignment="Center"
+                            Width="60"
+                            Height="30"/>
+                    </StackPanel>
                 </StackPanel>
-                <ListBox
+                <ItemsControl
                     Background="Transparent"
                     Margin="0"
                     ItemsSource="{Binding MonitoringOptionsCollection}"
                     >
-                    <ListBox.ItemTemplate>
+                    <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0">
                                 <CheckBox 
@@ -237,8 +254,8 @@
                                 </CheckBox>
                             </StackPanel>
                         </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
                 <DockPanel Margin="20 30 20 20">
                     <StackPanel 

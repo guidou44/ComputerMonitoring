@@ -18,6 +18,7 @@ using System.Runtime;
 using Common.UI.ViewModels;
 using HardwareManipulation.Enums;
 using HardwareManipulation;
+using System.Collections.ObjectModel;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -26,9 +27,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         #region constructor
 
         private DataManager _manager;
-        private MonitoringTarget firstTargetEnum;
-        private MonitoringTarget secondTargetEnum;
-        private IDictionary<MonitoringTarget, Func<HardwdareInformation>> targetToAction;
+        private Queue<MonitoringTarget> _monitoringTargets;
         private ProcessWatchDog _watchdog;
         private bool _watchdogIsUnsubsribed;
         private bool _watchdogIsInitialized;
@@ -37,17 +36,16 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public MainViewModel(IDialogService dialogService) : base (dialogService)
         {
             _manager = new DataManager();
-            targetToAction = InitializeResourceDictionary();
             _watchdog = new ProcessWatchDog();
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
-
-            firstTargetEnum = MonitoringTarget.CPU_Usage;
-            secondTargetEnum = MonitoringTarget.RAM_Usage;
-
             _watchdogTargetName = "USBHelperLauncher";
-            IsMonitoringVisible = true;
+            IsApplicationVisible = true;
             IsWatchdogRunning = true;
             _dialogService = dialogService;
+
+            _monitoringTargets = new Queue<MonitoringTarget>();
+            _monitoringTargets.Enqueue(MonitoringTarget.CPU_Usage);
+            _monitoringTargets.Enqueue(MonitoringTarget.GPU_Temp);
 
             RefreshMonitoring();
             SubscribeToEvents();
@@ -64,19 +62,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
             if (IsWatchdogRunning) ToggleWatchdogRunStateCommandExecute();
             _watchdogTargetName = newTarget;
             ToggleWatchdogRunStateCommandExecute();
-        }
-
-        private IDictionary<MonitoringTarget, Func<HardwdareInformation>> InitializeResourceDictionary()
-        {
-            return new Dictionary<MonitoringTarget, Func<HardwdareInformation>>()
-            {
-                {MonitoringTarget.RAM_Usage, new Func<HardwdareInformation>(RAM_Connector.GetCurrentRamMemoryUsage)},
-                {MonitoringTarget.CPU_Usage, new Func<HardwdareInformation>(CPU_Connector.GetCGlobalCpuUsageWithPerfCounter)},
-                {MonitoringTarget.GPU_Usage, new Func<HardwdareInformation>(GPU_Connector.GetFirstGpuUsage)},
-                {MonitoringTarget.GPU_Temp, new Func<HardwdareInformation>(GPU_Connector.GetFirstGpuTemp)},
-                {MonitoringTarget.CPU_Temp, new Func<HardwdareInformation>(CPU_Connector.GetCpuTemperature)},
-            };
-
         }
 
         private void ManageWatchdog(ref bool watchdog_is_initialized)
@@ -110,14 +95,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
             try
             {
                 if (_watchdogIsUnsubsribed) _watchdogIsInitialized = false;
-                var target_1 = targetToAction[firstTargetEnum].Invoke();
-                var target_2 = targetToAction[secondTargetEnum].Invoke();
-                FirstMonitoringTarget = (double) target_1.Main_Value;
-                SecondMonitoringTarget = (double) target_2.Main_Value;
-                if (FirstMonitoringTargetName != target_1.ShortName) FirstMonitoringTargetName = target_1.ShortName;
-                if (SecondMonitoringTargetName != target_2.ShortName) SecondMonitoringTargetName = target_2.ShortName;
-                FirstMonitoringTargetDisplay = target_1.ToString();
-                SecondMonitoringTargetDisplay = target_2.ToString();
+                var valuesQueue = _manager.GetCalculatedValues(_monitoringTargets);
+                HardwareValues = new ObservableCollection<HardwareInformation>(valuesQueue);
+
                 if (IsWatchdogRunning) ManageWatchdog(ref _watchdogIsInitialized);
             }
             catch (Exception e)
@@ -147,8 +127,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private void SetMonitoringTargets(Queue<MonitoringTarget> targets)
         {
-            firstTargetEnum = targets.Dequeue();
-            secondTargetEnum = targets.Dequeue();
+            _monitoringTargets = targets;
+            RefreshMonitoring();
+            //ResetTopValue
         }
 
         private void SubscribeToEvents()
@@ -162,87 +143,27 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region porperties
 
-        private double _firstMonitoringTarget;
+        private ICollection<HardwareInformation> _hardwareValues;
 
-        public double FirstMonitoringTarget
+        public ICollection<HardwareInformation> HardwareValues
         {
-            get { return _firstMonitoringTarget; }
+            get { return _hardwareValues; }
             set 
             { 
-                _firstMonitoringTarget = value;
-                RaisePropertyChanged(nameof(FirstMonitoringTarget));
+                _hardwareValues = value;
+                RaisePropertyChanged(nameof(HardwareValues));
             }
         }
 
-        private string _firstMonitoringTargetName;
+        private bool _isApplicationVisible;
 
-        public string FirstMonitoringTargetName
+        public bool IsApplicationVisible
         {
-            get { return _firstMonitoringTargetName; }
+            get { return _isApplicationVisible; }
             set 
             { 
-                _firstMonitoringTargetName = value;
-                RaisePropertyChanged(nameof(FirstMonitoringTargetName));
-            }
-        }
-
-        private string _firstMonitoringTargetDisplay;
-
-        public string FirstMonitoringTargetDisplay
-        {
-            get { return _firstMonitoringTargetDisplay; }
-            set
-            {
-                _firstMonitoringTargetDisplay = value;
-                RaisePropertyChanged(nameof(FirstMonitoringTargetDisplay));
-            }
-        }
-
-        private double _secondMonitoringTarget;
-
-        public double SecondMonitoringTarget
-        {
-            get { return _secondMonitoringTarget; }
-            set
-            {
-                _secondMonitoringTarget = value;
-                RaisePropertyChanged(nameof(SecondMonitoringTarget));
-            }
-        }
-
-        private string _secondMonitoringTargetName;
-
-        public string SecondMonitoringTargetName
-        {
-            get { return _secondMonitoringTargetName; }
-            set
-            {
-                _secondMonitoringTargetName = value;
-                RaisePropertyChanged(nameof(SecondMonitoringTargetName));
-            }
-        }
-
-        private string _secondMonitoringTargetDisplay;
-
-        public string SecondMonitoringTargetDisplay
-        {
-            get { return _secondMonitoringTargetDisplay; }
-            set 
-            { 
-                _secondMonitoringTargetDisplay = value;
-                RaisePropertyChanged(nameof(SecondMonitoringTargetDisplay));
-            }
-        }
-
-        private bool _isMonitoringVisible;
-
-        public bool IsMonitoringVisible
-        {
-            get { return _isMonitoringVisible; }
-            set 
-            { 
-                _isMonitoringVisible = value;
-                RaisePropertyChanged(nameof(IsMonitoringVisible));
+                _isApplicationVisible = value;
+                RaisePropertyChanged(nameof(IsApplicationVisible));
             }
         }
 
@@ -258,7 +179,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 RaisePropertyChanged(nameof(IsWatchdogRunning));
             }
         }
-
 
         #endregion
 
@@ -276,20 +196,20 @@ namespace ComputerRessourcesMonitoring.ViewModels
             if (!IsWatchdogRunning) _watchdog.StopCapturingPackets();
         }
 
-        public ICommand ShowComputerMonitoringCommand
+        public ICommand ShowApplicationCommand
         {
-            get { return new RelayCommand(ChangeComputerMonitoringCommandExecute, CanShowComputerMonitoringCommandExecute); }
+            get { return new RelayCommand(ChangeAppVisibilityCommandExecute, CanShowApplicationCommandExecute); }
         }
 
-        public bool CanShowComputerMonitoringCommandExecute()
+        public bool CanShowApplicationCommandExecute()
         {
-            if (!IsMonitoringVisible) return true;
+            if (!IsApplicationVisible) return true;
             return false;
         }
 
-        public void ChangeComputerMonitoringCommandExecute()
+        public void ChangeAppVisibilityCommandExecute()
         {
-            IsMonitoringVisible = !IsMonitoringVisible;
+            IsApplicationVisible = !IsApplicationVisible;
         }
 
         public ICommand OpenWatchdogManagerCommand
@@ -301,7 +221,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             try
             {
-                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, firstTargetEnum, secondTargetEnum, _manager);
+                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, _monitoringTargets, _manager);
 
                 bool? result = _dialogService.ShowDialog(viewModel);
             }
@@ -312,14 +232,14 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        public ICommand HideComputerMonitoringCommand
+        public ICommand HideApplicationCommand
         {
-            get { return new RelayCommand(ChangeComputerMonitoringCommandExecute, CanHideWatchdogCommandExecute); }
+            get { return new RelayCommand(ChangeAppVisibilityCommandExecute, CanHideApplicationCommandExecute); }
         }
 
-        public bool CanHideWatchdogCommandExecute()
+        public bool CanHideApplicationCommandExecute()
         {
-            if (IsMonitoringVisible) return true;
+            if (IsApplicationVisible) return true;
             return false;
         }
 

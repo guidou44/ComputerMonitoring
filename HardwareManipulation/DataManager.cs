@@ -1,5 +1,8 @@
-﻿using HardwareManipulation.Connectors;
+﻿using Common.Helpers;
+using Common.Reports;
+using HardwareManipulation.Connectors;
 using HardwareManipulation.Enums;
+using HardwareManipulation.Factories;
 using HardwareManipulation.Models;
 using System;
 using System.Collections.Generic;
@@ -16,7 +19,7 @@ namespace HardwareManipulation
     {
         #region Constructor
 
-        private IDictionary<ComputerRessource, ConnectorBase> _targets;
+        private IDictionary<ComputerRessource, ConnectorBase> _target2connector;
         private const string _xmlConfigPath = @".\Configuration\MonitoringConfiguration.cfg";
 
 
@@ -28,30 +31,53 @@ namespace HardwareManipulation
         #endregion
 
         #region Public Methods
+        public HardwareInformation GetCalculatedValue(MonitoringTarget target)
+        {
+            var targetKey = _target2connector.Where(T2C => T2C.Key.TargetType == target).SingleOrDefault().Key;
+            if (_target2connector[targetKey] == null) _target2connector[targetKey] = ConnectorFactory.InstantiateConnector(targetKey.ConnectorName);
+            return _target2connector[targetKey].GetValue(target);
+        }
+
+        public IEnumerable<HardwareInformation> GetCalculatedValues(IEnumerable<MonitoringTarget> targets)
+        {
+            var output = new Queue<HardwareInformation>();
+            foreach (var target in targets)
+            {
+                output.Enqueue(GetCalculatedValue(target));
+            }
+
+            HashSet<MonitoringTarget> notUsedTargets = _target2connector.Select(T2C => T2C.Key.TargetType).Except(targets).ToHashSet();
+            foreach (var nonTarget in notUsedTargets) //CleanUp
+            {
+                var correspondingKey = _target2connector.Where(T2C => T2C.Key.TargetType == nonTarget).SingleOrDefault().Key;
+                _target2connector[correspondingKey] = null;
+            }
+            return output;
+        }
 
         public IEnumerable<MonitoringTarget> GetAllTargets()
         {
-            return _targets.Select(TAR => TAR.Key.TargetName);
+            return _target2connector.Where(TAR => (!TAR.Key.ExcludeFromMonitoring ?? true)).Select(TAR => TAR.Key.TargetType);
         }
 
         public IEnumerable<MonitoringTarget> GetLocalTargets()
         {
-            return _targets.Where(TAR => !TAR.Key.IsRemote).Select(TAR => TAR.Key.TargetName);
+            return _target2connector.Where(TAR => !TAR.Key.IsRemote && (!TAR.Key.ExcludeFromMonitoring ?? true)).Select(TAR => TAR.Key.TargetType);
         }
 
         public IEnumerable<MonitoringTarget> GetRemoteTargets()
         {
-            return _targets.Where(TAR => TAR.Key.IsRemote).Select(TAR => TAR.Key.TargetName);
+            return _target2connector.Where(TAR => TAR.Key.IsRemote && (!TAR.Key.ExcludeFromMonitoring ?? true)).Select(TAR => TAR.Key.TargetType);
         }
 
         public bool IsRemoteMonitoringEnabled()
         {
-            foreach (var remoteTarget in _targets.Where(TAR => TAR.Key.IsRemote))
+            foreach (var remoteTarget in _target2connector.Where(TAR => TAR.Key.IsRemote))
             {
                 var pingable = TryPing(remoteTarget.Key.RemoteIp);
                 if (!pingable) return false;
             }
-            return _targets.Any(TAR => TAR.Key.IsRemote);
+            return _target2connector.Any(TAR => TAR.Key.IsRemote);
         }
 
         #endregion
@@ -60,11 +86,11 @@ namespace HardwareManipulation
 
         private void SetTargetDict()
         {
-            _targets = new Dictionary<ComputerRessource, ConnectorBase>();
+            _target2connector = new Dictionary<ComputerRessource, ConnectorBase>();
             var ressourceCollection = XmlHelper.DeserializeConfiguration<RessourceCollection>(_xmlConfigPath);
             foreach (var ressource in ressourceCollection.Ressources)
             {
-                _targets.Add(ressource, null);
+                _target2connector.Add(ressource, null);
             }
         }
 
@@ -79,7 +105,7 @@ namespace HardwareManipulation
             }
             catch (Exception e)
             {
-                //Reporter.LogException(e);
+                Reporter.LogException(e);
                 return false;
             }
         }

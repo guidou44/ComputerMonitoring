@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace HardwareManipulation.Factories
 {
-    public class ConnectorFactory
+    public static class ConnectorFactory
     {
-        public ConnectorBase InstantiateConnector(string connectorName)
+        public static ConnectorBase InstantiateConnector(string connectorName)
         {
             var connectors = typeof(ConnectorBase)
             .Assembly.GetTypes()

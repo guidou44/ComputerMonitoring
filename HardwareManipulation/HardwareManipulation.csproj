@@ -78,6 +78,9 @@
     <Reference Include="NvAPIWrapper, Version=0.7.0.57, Culture=neutral, PublicKeyToken=310fd07b25df79b3, processorArchitecture=MSIL">
       <HintPath>..\ComputerRessourcesMonitoring\packages\NvAPIWrapper.Net.0.7.0.57\lib\net45\NvAPIWrapper.dll</HintPath>
     </Reference>
+    <Reference Include="OpenHardwareMonitorLib, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\ComputerRessourcesMonitoring\packages\OpenHardwareMonitor.0.7.1\lib\net40\OpenHardwareMonitorLib.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -94,24 +97,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connectors\ConnectorBase.cs" />
+    <Compile Include="Connectors\FAN_Connector.cs" />
     <Compile Include="Connectors\Server_Connector.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Factories\ConnectorFactory.cs" />
-    <Compile Include="Helpers\WmiHelper.cs" />
     <Compile Include="Models\ComputerRessource.cs" />
+    <Compile Include="Models\HardwareInformation.cs" />
     <Compile Include="Models\RessourceCollection.cs" />
-    <Compile Include="Models\TempModels\CpuTemp.cs" />
-    <Compile Include="Models\TempModels\CpuUsage.cs" />
-    <Compile Include="Models\TempModels\GpuTemp.cs" />
-    <Compile Include="Models\TempModels\GpuUsage.cs" />
-    <Compile Include="Models\TempModels\HardwdareInformation.cs" />
-    <Compile Include="Models\TempModels\RamUsage.cs" />
     <Compile Include="Connectors\GPU_Connector.cs" />
     <Compile Include="Connectors\CPU_Connector.cs" />
     <Compile Include="Connectors\RAM_Connector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="XmlHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Configs\MonitoringConfiguration.cfg" />
@@ -127,6 +124,11 @@
     <Content Include="Tools\cudafycl.exe" />
     <Content Include="Tools\CudafyViewer.exe" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common\Common.csproj">
+      <Project>{85B27C12-9BB0-4641-90D2-68EDD50580DA}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

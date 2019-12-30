@@ -12,49 +12,81 @@ namespace HardwareManipulation.Connectors
 {
     public class GPU_Connector : ConnectorBase
     {
-        public static void InitializeGpuWatcher()
+        public GPU_Connector()
         {
             NVIDIA.Initialize();
         }
 
-        public static HardwdareInformation GetFirstGpuUsage()
+        ~GPU_Connector()
         {
-            var myGPUs = PhysicalGPU.GetPhysicalGPUs();
-            if (myGPUs.Count() == 0) return null;
-
-            var gpuUsages = myGPUs.ToList().Select(gU => new HardwdareInformation()
-            { 
-                ShortName = "GPU",
-                Main_Value =gU.UsageInformation.GPU.Percentage,
-                UnitSymbol = "%"
-            });
-
-            return gpuUsages.FirstOrDefault();
+            NVIDIA.Unload();
         }
 
-        public static HardwdareInformation GetFirstGpuTemp()
+        #region Private Methods
+
+        private static HardwareInformation GetFirstGpuMake()
         {
             var myGPUs = PhysicalGPU.GetPhysicalGPUs();
             if (myGPUs.Count() == 0) return null;
 
-            var gpuUsages = myGPUs.ToList().Select(gU => new HardwdareInformation()
+            var gpuMakes = myGPUs.ToList().Select(gU => new HardwareInformation()
+            {
+                MainValue = gU.FullName,
+                ShortName = "GPU",
+                UnitSymbol = ""
+            });
+
+            return gpuMakes.FirstOrDefault();
+        }
+
+        private static HardwareInformation GetFirstGpuTemp()
+        {
+            var myGPUs = PhysicalGPU.GetPhysicalGPUs();
+            if (myGPUs.Count() == 0) return null;
+
+            var gpuUsages = myGPUs.ToList().Select(gU => new HardwareInformation()
             {
                 ShortName = "GPU",
-                Main_Value = gU.ThermalInformation.ThermalSensors.First().CurrentTemperature,
+                MainValue = (double) gU.ThermalInformation.ThermalSensors.First().CurrentTemperature,
                 UnitSymbol = "°C"
             });
 
             return gpuUsages.FirstOrDefault();
         }
 
-        public static void ResetGpuWatcher()
+        private static HardwareInformation GetFirstGpuUsage()
         {
-            NVIDIA.Unload();
+            var myGPUs = PhysicalGPU.GetPhysicalGPUs();
+            if (myGPUs.Count() == 0) return null;
+
+            var gpuUsages = myGPUs.ToList().Select(gU => new HardwareInformation()
+            { 
+                ShortName = "GPU",
+                MainValue = (double) gU.UsageInformation.GPU.Percentage,
+                UnitSymbol = "%"
+            });
+
+            return gpuUsages.FirstOrDefault();
         }
 
-        public override HardwdareInformation GetValue(MonitoringTarget ressource)
+        #endregion
+
+        public override HardwareInformation GetValue(MonitoringTarget ressource)
         {
-            throw new NotImplementedException();
+            switch (ressource)
+            {
+                case MonitoringTarget.GPU_Make:
+                    return GetFirstGpuMake();
+
+                case MonitoringTarget.GPU_Temp:
+                    return GetFirstGpuTemp();
+
+                case MonitoringTarget.GPU_Usage:
+                    return GetFirstGpuUsage();
+
+                default:
+                    throw new NotImplementedException($"Monitoring target '{ressource}' is not implemented for gpu connector.");
+            }
         }
     }
 }
