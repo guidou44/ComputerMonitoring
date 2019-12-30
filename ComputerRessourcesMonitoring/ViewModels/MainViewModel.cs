@@ -44,8 +44,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _dialogService = dialogService;
 
             _monitoringTargets = new Queue<MonitoringTarget>();
-            _monitoringTargets.Enqueue(MonitoringTarget.CPU_Usage);
+            _monitoringTargets.Enqueue(MonitoringTarget.CPU_Load);
             _monitoringTargets.Enqueue(MonitoringTarget.GPU_Temp);
+            _monitoringTargets.Enqueue(MonitoringTarget.Server_CPU_Load);
 
             RefreshMonitoring();
             SubscribeToEvents();

@@ -23,3 +23,7 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\b
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Prism.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\System.ValueTuple.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Common.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Newtonsoft.Json.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\System.Net.Http.Formatting.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Newtonsoft.Json.xml
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\System.Net.Http.Formatting.xml

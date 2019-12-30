@@ -144,7 +144,7 @@ namespace HardwareManipulation.Connectors
                 case MonitoringTarget.CPU_Thread_Count:
                     return GetCpuThreadCount();
                     
-                case MonitoringTarget.CPU_Usage:
+                case MonitoringTarget.CPU_Load:
                     return GetGlobalCpuUsageWithPerfCounter();
 
                 default:

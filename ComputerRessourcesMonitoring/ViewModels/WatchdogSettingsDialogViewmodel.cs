@@ -55,7 +55,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Methods
 
-        private void InitializeComponents()
+        private async void InitializeComponents()
         {
             CpuMake = (string) _manager.GetCalculatedValue(MonitoringTarget.CPU_Make).MainValue;
             GpuMake = (string)_manager.GetCalculatedValue(MonitoringTarget.GPU_Make).MainValue;
@@ -70,7 +70,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             {
                 if (targetOption == MonitoringTarget.None) continue;
                 targetDict.Add(targetOption, false);
-                var mvm = new MonitoringTargetViewModel(targetOption) { DisplayName = targetOption.ToString()};
+                var mvm = new MonitoringTargetViewModel(targetOption) { DisplayName = targetOption.ToString().Replace("_", " ")};
                 mvm.SelectionChangedEvent += SetMonitoringDictionary;
                 MonitoringOptionsCollection.Add(mvm);
             }

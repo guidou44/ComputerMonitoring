@@ -16,6 +16,13 @@ namespace HardwareManipulation.Connectors
         {
             _localMachine = new Computer();
             _localMachine.MainboardEnabled = true;
+            _localMachine.GPUEnabled = true;
+            _localMachine.Open();
+        }
+
+        ~FAN_Connector()
+        {
+            _localMachine.Close();
         }
 
         #region Private Methods

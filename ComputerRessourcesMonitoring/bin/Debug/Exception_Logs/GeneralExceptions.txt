@@ -1613,3 +1613,57 @@ Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionRes
    at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 98
 
+
+*************************Exception******************************
+DateTime: 30-12-2019 14:36:11
+Type: System.InvalidOperationException
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified; enumeration operation may not execute.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Dictionary`2.Enumerator.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.<ExceptIterator>d__73`1.MoveNext()
+   at System.Collections.Generic.HashSet`1.UnionWith(IEnumerable`1 other)
+   at System.Collections.Generic.HashSet`1..ctor(IEnumerable`1 collection, IEqualityComparer`1 comparer)
+   at System.Linq.Enumerable.ToHashSet[TSource](IEnumerable`1 source, IEqualityComparer`1 comparer)
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 49
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 98
+
+
+*************************Exception******************************
+DateTime: 30-12-2019 14:53:49
+Type: System.ArgumentException
+Source: mscorlib
+TargetSite: Void ThrowArgumentException(System.ExceptionResource)
+Message: An item with the same key has already been added.
+Stacktrace:    at System.ThrowHelper.ThrowArgumentException(ExceptionResource resource)
+   at System.Collections.Generic.Dictionary`2.Insert(TKey key, TValue value, Boolean add)
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.<InitializeComponents>d__6.MoveNext() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 72
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.DispatcherOperation.InvokeImpl()
+   at MS.Internal.CulturePreservingExecutionContext.CallbackWrapper(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at MS.Internal.CulturePreservingExecutionContext.Run(CulturePreservingExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Windows.Threading.DispatcherOperation.Invoke()
+   at System.Windows.Threading.Dispatcher.ProcessQueue()
+   at System.Windows.Threading.Dispatcher.WndProcHook(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at MS.Win32.HwndSubclass.SubclassWndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam)
+   at MS.Win32.UnsafeNativeMethods.DispatchMessage(MSG& msg)
+   at System.Windows.Threading.Dispatcher.PushFrameImpl(DispatcherFrame frame)
+   at System.Windows.Window.ShowHelper(Object booleanBox)
+   at System.Windows.Window.ShowDialog()
+   at ComputerRessourcesMonitoring.Views.WatchdogSettingsDialogView.Common.UI.Interfaces.IDialog.ShowDialog()
+   at Common.UI.DialogServices.DialogService.ShowDialog[TViewModel](TViewModel viewModel) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\UI\DialogServices\DialogService.cs:line 76
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 227
+
