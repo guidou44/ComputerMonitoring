@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Runtime;
 using ComputerRessourcesMonitoring.Models;
 using Common.UI.ViewModels;
+using HardwareManipulation.Enums;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
