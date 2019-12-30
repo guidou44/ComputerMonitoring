@@ -16,7 +16,6 @@ namespace HardwareManipulation.Connectors
         {
             _localMachine = new Computer();
             _localMachine.GPUEnabled = true;
-            _localMachine.HDDEnabled = true;
             _localMachine.Open();
         }
 

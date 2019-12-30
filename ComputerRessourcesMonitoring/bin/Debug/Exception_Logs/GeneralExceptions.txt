@@ -1667,3 +1667,99 @@ Stacktrace:    at System.ThrowHelper.ThrowArgumentException(ExceptionResource re
    at Common.UI.DialogServices.DialogService.ShowDialog[TViewModel](TViewModel viewModel) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\UI\DialogServices\DialogService.cs:line 76
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 227
 
+
+*************************Exception******************************
+DateTime: 30-12-2019 15:02:27
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
+
+*************************Exception******************************
+DateTime: 30-12-2019 15:02:40
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
+
+*************************Exception******************************
+DateTime: 30-12-2019 15:02:54
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
+
+*************************Exception******************************
+DateTime: 30-12-2019 16:16:18
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
+
+*************************Exception******************************
+DateTime: 30-12-2019 16:38:59
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
+
+*************************Exception******************************
+DateTime: 30-12-2019 16:49:16
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
+
+*************************Exception******************************
+DateTime: 30-12-2019 16:52:00
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
+
+*************************Exception******************************
+DateTime: 30-12-2019 16:53:36
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
