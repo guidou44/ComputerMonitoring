@@ -13,7 +13,7 @@ namespace Common.UI.Interfaces
 
         bool? ShowDialog<TViewModel>(TViewModel viewModel) where TViewModel : IDialogRequestClose;
 
-        void ShowMessageBox(string message);
+        bool? ShowMessageBox(string message);
 
         void ShowException(Exception e);
     }

@@ -4,7 +4,7 @@
 library
 C#
 .cs
-D:\Guillaume\Desktop\Internet Explorer\Common\Common\obj\Debug\
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\
 Common
 none
 false
@@ -12,8 +12,8 @@ DEBUG;TRACE
 
 2-1308538998
 
-24-972610376
-16427554693
+251122307139
+161583113141
 UI\Views\ErrorMessageView.xaml;UI\Views\MessageView.xaml;
 
 False

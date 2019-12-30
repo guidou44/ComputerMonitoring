@@ -8,3 +8,10 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\b
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\NvAPIWrapper.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\NvAPIWrapper.xml
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Common.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Prism.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\System.ValueTuple.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Common.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Prism.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Prism.xml
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\System.ValueTuple.xml

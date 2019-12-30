@@ -56,6 +56,7 @@
     <Compile Include="Examples\MainWindowViewModelEXAMPLE.cs" />
     <Compile Include="Helpers\CommandLineHelper.cs" />
     <Compile Include="Helpers\LinuxTerminalHelper.cs" />
+    <Compile Include="UI\CustomControls\VeryObservableCollection.cs" />
     <Compile Include="UI\DialogServices\DialogCloseRequestedEventArgs.cs" />
     <Compile Include="UI\DialogServices\DialogService.cs" />
     <Compile Include="UI\DispatcherServices\DispatcherService.cs" />

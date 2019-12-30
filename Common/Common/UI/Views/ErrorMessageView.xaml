@@ -1,12 +1,16 @@
 ﻿<Window x:Class="Common.UI.Views.ErrorMessageView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Common.UI.Views"
-             mc:Ignorable="d"
-             Title="Exception" 
-             SizeToContent="WidthAndHeight">
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:Common.UI.Views"
+        mc:Ignorable="d"
+        Title="Exception" 
+        SizeToContent="Height"
+        Width="350"
+        Background="#32353d"
+        WindowStartupLocation="CenterScreen"     
+        >
     <Window.Resources>
         <Style x:Key="{x:Type Button}"
                TargetType="{x:Type Button}">
@@ -50,39 +54,46 @@
         </Style>
     </Window.Resources>
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Vertical" Margin="10"
+                    Grid.Row="0">
             <TextBlock Text="{Binding ErrorMessage}"
-                       Foreground="Black"
+                       TextWrapping="Wrap"
+                       Foreground="White"
                        Background="Transparent"
                        FontFamily="Consola"
                        FontWeight="Normal"
                        FontSize="14"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"/>
-            <DockPanel Margin="0">
-                <StackPanel 
+        </StackPanel>
+        <DockPanel Margin="10"
+                   Grid.Row="1">
+            <StackPanel 
                     DockPanel.Dock="Bottom" 
                     Orientation="Horizontal" 
                     Margin="0" 
                     HorizontalAlignment="Center">
-                    <Button 
+                <Button 
                         IsDefault="True" 
                         Command="{Binding OkCommand}" 
-                        Margin="0 0 20 0" 
+                        Margin="0 0 0 0" 
                         Padding="0"
                         Content="OK"
                         Background="#0f9900"
-                        Height="{Binding ElementName=ChangeTargetButton, Path=ActualHeight}"/>
+                        Height="30"/>
 
-                    <Button 
+                <!--<Button 
                         IsCancel="True" 
                         Command="{Binding CancelCommand}"
                         Margin="20 0 0 0"
                         Background="#9e2020"
-                        Content="CANCEL"/>
-                </StackPanel>
-            </DockPanel>
-        </StackPanel>
+                        Content="CANCEL"/>-->
+            </StackPanel>
+        </DockPanel>
 
     </Grid>
 </Window>

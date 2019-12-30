@@ -6,7 +6,7 @@ using Common.UI.Interfaces;
 using Common.UI.ViewModels;
 using ComputerRessourcesMonitoring.Events;
 using ComputerRessourcesMonitoring.Models;
-using HardwareManipulation.HardwareInformation;
+using HardwareManipulation.Connectors;
 using HardwareManipulation.Models;
 using Prism.Events;
 using System;

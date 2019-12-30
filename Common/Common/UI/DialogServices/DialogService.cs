@@ -76,10 +76,11 @@ namespace Common.UI.DialogServices
             return dialog.ShowDialog();
         }
 
-        public void ShowMessageBox(string message)
+        public bool? ShowMessageBox(string message)
         {
             var messageVm = new MessageViewModel(message);
             bool? result = ShowDialog(messageVm);
+            return result;
         }
 
         public void ShowException(Exception e)

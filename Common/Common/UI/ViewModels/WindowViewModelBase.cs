@@ -20,5 +20,11 @@ namespace Common.UI.ViewModels
             _dialogService = new DialogService();
             _eventHub = new EventAggregator();
         }
+
+        public WindowViewModelBase(IDialogService dialogService)
+        {
+            _dialogService = dialogService;
+            _eventHub = new EventAggregator();
+        }
     }
 }

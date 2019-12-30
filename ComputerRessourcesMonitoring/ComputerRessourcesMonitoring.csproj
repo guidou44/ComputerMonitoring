@@ -157,8 +157,8 @@
     <Resource Include="Views\Images\stop.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Common\Common.csproj">
-      <Project>{85B27C12-9BB0-4641-90D2-68EDD50580DA}</Project>
+    <ProjectReference Include="..\Common\Common\Common.csproj">
+      <Project>{85b27c12-9bb0-4641-90d2-68edd50580da}</Project>
       <Name>Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\HardwareManipulation\HardwareManipulation.csproj">
