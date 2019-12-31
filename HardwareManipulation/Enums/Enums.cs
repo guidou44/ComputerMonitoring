@@ -15,6 +15,7 @@ namespace HardwareManipulation.Enums
         CPU_Thread_Count,
         CPU_Load,
         FAN_Speed,
+        Mother_Board_Make,
         GPU_Clock,
         GPU_Make,
         GPU_Memory_Controller,

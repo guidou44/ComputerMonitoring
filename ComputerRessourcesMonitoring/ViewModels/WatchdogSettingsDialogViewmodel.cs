@@ -38,12 +38,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _eventHub = eventsHub;
             _lruTargets = monTargets;
             _manager = manager;
-            InitializeComponents();
-
-            for (int i = 0; i < _lruTargets.Count(); i++)
-            {
-                SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(monTargets.Dequeue(), true));
-            }
+            InitializeComponents(monTargets);
         }
 
         ~WatchdogSettingsDialogViewModel()
@@ -55,8 +50,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Methods
 
-        private async void InitializeComponents()
+        private async void InitializeComponents(Queue<MonitoringTarget> monTargets)
         {
+            MotherBoardMake = (string)_manager.GetCalculatedValue(MonitoringTarget.Mother_Board_Make).MainValue;
             CpuMake = (string) _manager.GetCalculatedValue(MonitoringTarget.CPU_Make).MainValue;
             GpuMake = (string)_manager.GetCalculatedValue(MonitoringTarget.GPU_Make).MainValue;
 
@@ -73,6 +69,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 var mvm = new MonitoringTargetViewModel(targetOption) { DisplayName = targetOption.ToString().Replace("_", " ")};
                 mvm.SelectionChangedEvent += SetMonitoringDictionary;
                 MonitoringOptionsCollection.Add(mvm);
+            }
+
+            for (int i = 0; i < _lruTargets.Count(); i++)
+            {
+                SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(monTargets.Dequeue(), true));
             }
         }
 
@@ -135,6 +136,19 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 RaisePropertyChanged(nameof(GpuMake));
             }
         }
+
+        private string _motherBoardMake;
+
+        public string MotherBoardMake
+        {
+            get { return _motherBoardMake; }
+            set 
+            { 
+                _motherBoardMake = value;
+                RaisePropertyChanged(nameof(MotherBoardMake));
+            }
+        }
+
 
         private int _maxAllowedMonTargets;
 

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Exception" 
         SizeToContent="Height"
-        Width="500"
+        Width="700"
         Background="#32353d"
         WindowStartupLocation="CenterScreen"     
         >

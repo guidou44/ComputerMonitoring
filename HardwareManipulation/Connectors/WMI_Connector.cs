@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace HardwareManipulation.Connectors
 {
-    public class CPU_Connector : ConnectorBase
+    public class WMI_Connector : ConnectorBase
     {
         private static PerformanceCounter all_Cpu_Idle;
 
@@ -123,6 +123,22 @@ namespace HardwareManipulation.Connectors
             };
         }
 
+        private static HardwareInformation GetRamMemoryUsage()
+        {
+            var totalMemSize = WmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "TotalVisibleMemorySize");
+            var freeMemSize = WmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "FreePhysicalMemory");
+
+            var ramUsage = new HardwareInformation()
+            {
+                MainValue = 100 * Math.Round(((totalMemSize - freeMemSize) / totalMemSize), 2),
+                ShortName = "RAM",
+                UnitSymbol = "%"
+            };
+
+            return (ramUsage != null) ? ramUsage :
+            throw new ArgumentNullException("No memory was found in ManagementObjectSearcher"); ;
+        }
+
         #endregion
 
         public override HardwareInformation GetValue(MonitoringTarget ressource)
@@ -147,8 +163,11 @@ namespace HardwareManipulation.Connectors
                 case MonitoringTarget.CPU_Load:
                     return GetGlobalCpuUsageWithPerfCounter();
 
+                case MonitoringTarget.RAM_Usage:
+                    return GetRamMemoryUsage();
+
                 default:
-                    throw new NotImplementedException($"Monitoring target '{ressource}' is not implemented for cpu connector");
+                    throw new NotImplementedException($"Monitoring target '{ressource}' is not implemented for connector {nameof(WMI_Connector)}");
             }
         }
     }

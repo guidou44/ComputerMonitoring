@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace HardwareManipulation.Connectors
 {
-    public class Server_Connector : ConnectorBase
+    public class ASPNET_API_Connector : ConnectorBase
     {
-        public Server_Connector()
+        public ASPNET_API_Connector()
         {
             InitializeClient();
         }
@@ -115,7 +115,7 @@ namespace HardwareManipulation.Connectors
                     return MapDTO2Model(resultDTO);
 
                 default:
-                    throw new NotImplementedException($"Monitoring target '{ressource}' not implemented for connector {nameof(Server_Connector)}");
+                    throw new NotImplementedException($"Monitoring target '{ressource}' not implemented for connector {nameof(ASPNET_API_Connector)}");
             }
         }
     }

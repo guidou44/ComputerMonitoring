@@ -10,14 +10,14 @@ using HardwareManipulation.Enums;
 
 namespace HardwareManipulation.Connectors
 {
-    public class GPU_NVDIA_Connector : ConnectorBase
+    public class NVDIA_API_Connector : ConnectorBase
     {
-        public GPU_NVDIA_Connector()
+        public NVDIA_API_Connector()
         {
             NVIDIA.Initialize();
         }
 
-        ~GPU_NVDIA_Connector()
+        ~NVDIA_API_Connector()
         {
             NVIDIA.Unload();
         }
@@ -85,7 +85,7 @@ namespace HardwareManipulation.Connectors
                     return GetFirstGpuLoad();
 
                 default:
-                    throw new NotImplementedException($"Monitoring target '{ressource}' is not implemented for gpu connector.");
+                    throw new NotImplementedException($"Monitoring target '{ressource}' is not implemented for connector {nameof(NVDIA_API_Connector)}");
             }
         }
     }

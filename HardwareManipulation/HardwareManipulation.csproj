@@ -103,19 +103,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connectors\ConnectorBase.cs" />
-    <Compile Include="Connectors\FAN_Connector.cs" />
-    <Compile Include="Connectors\GPU_Connector.cs" />
-    <Compile Include="Connectors\HDD_Connector.cs" />
-    <Compile Include="Connectors\Server_Connector.cs" />
+    <Compile Include="Connectors\OpenHardware_Connector.cs" />
+    <Compile Include="Connectors\SystemIO_Connector.cs" />
+    <Compile Include="Connectors\ASPNET_API_Connector.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Factories\ConnectorFactory.cs" />
     <Compile Include="Models\ComputerRessource.cs" />
     <Compile Include="Models\HardwareInformation.cs" />
     <Compile Include="Models\RessourceCollection.cs" />
-    <Compile Include="Connectors\GPU_NVDIA_Connector.cs" />
-    <Compile Include="Connectors\CPU_Connector.cs" />
-    <Compile Include="Connectors\RAM_Connector.cs" />
+    <Compile Include="Connectors\NVDIA_API_Connector.cs" />
+    <Compile Include="Connectors\WMI_Connector.cs" />
     <Compile Include="Models\ServerDTOs\ProcessDTO.cs" />
     <Compile Include="Models\ServerDTOs\ResourceTypeDTO.cs" />
     <Compile Include="Models\ServerDTOs\SampleTimeDTO.cs" />

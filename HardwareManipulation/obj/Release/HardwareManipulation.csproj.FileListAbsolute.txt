@@ -8,3 +8,15 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\b
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Cudafy.NET.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\NvAPIWrapper.xml
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Common.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Newtonsoft.Json.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\OpenHardwareMonitorLib.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\System.Net.Http.Formatting.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Prism.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\System.ValueTuple.dll
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Common.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Newtonsoft.Json.xml
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\System.Net.Http.Formatting.xml
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Prism.pdb
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\Prism.xml
+D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Release\System.ValueTuple.xml

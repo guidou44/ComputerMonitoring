@@ -10,28 +10,17 @@ using OpenHardwareMonitor.Hardware;
 
 namespace HardwareManipulation.Connectors
 {
-    public class HDD_Connector : ConnectorBase
+    public class SystemIO_Connector : ConnectorBase
     {
-        public HDD_Connector()
-        {
-        }
-
-        ~HDD_Connector()
-        {
-
-        }
 
         #region Private Methods
 
-        private HardwareInformation GetDriveUsage(DriveInfo drive)
+        private static HardwareInformation GetDriveUsage(DriveInfo drive)
         {
             if (drive == null) throw new ArgumentNullException("This drive does<nt exist on current computer");
-            var test = drive.TotalSize;
-            var test1 = drive.TotalFreeSpace;
-            var test2 = test - test1;
             return new HardwareInformation()
             {
-                MainValue = Math.Round((double)((drive.TotalSize - drive.TotalFreeSpace) / drive.TotalSize), 2),
+                MainValue = 100 * (1 - Math.Round((((double )drive.TotalFreeSpace) / ((double)drive.TotalSize)), 2)),
                 ShortName = "HDD[" + drive.Name + "]",
                 UnitSymbol = "%"
             };
@@ -62,7 +51,7 @@ namespace HardwareManipulation.Connectors
                     return GetDriveUsage(networkDrives.ElementAtOrDefault(1));
 
                 default:
-                    throw new NotImplementedException($"Monitoring target {ressource} not implemented for connector {nameof(HDD_Connector)}");
+                    throw new NotImplementedException($"Monitoring target {ressource} not implemented for connector {nameof(SystemIO_Connector)}");
             }
         }
     }
