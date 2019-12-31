@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\ProcessPacketInfo.cs" />
+    <Compile Include="Models\PacketCaptureProcessInfo.cs" />
     <Compile Include="Models\ProcessWatchDog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

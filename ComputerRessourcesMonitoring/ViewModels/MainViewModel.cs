@@ -22,25 +22,22 @@ using System.Collections.ObjectModel;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
-    public class MainViewModel : ComputerMonitoringViewModelBase
+    public class MainViewModel : WindowViewModelBase
     {
         #region constructor
 
         private DataManager _manager;
         private Queue<MonitoringTarget> _monitoringTargets;
+        private Timer _monitoringRefreshCounter;
         private ProcessWatchDog _watchdog;
-        private bool _watchdogIsUnsubsribed;
-        private bool _watchdogIsInitialized;
-        private string _watchdogTargetName;
 
         public MainViewModel(IDialogService dialogService) : base (dialogService)
         {
             _manager = new DataManager();
-            _watchdog = new ProcessWatchDog();
-            _watchdog.PacketsExchangedEvent += ReportPacketExchange;
-            _watchdogTargetName = "USBHelperLauncher";
+
+            
+
             IsApplicationVisible = true;
-            IsWatchdogRunning = true;
             _dialogService = dialogService;
 
             _monitoringTargets = new Queue<MonitoringTarget>();
@@ -48,6 +45,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _monitoringTargets.Enqueue(MonitoringTarget.GPU_Temp);
             _monitoringTargets.Enqueue(MonitoringTarget.Server_CPU_Load);
 
+            InitializeWatchdog();
             RefreshMonitoring();
             SubscribeToEvents();
             SetMonitoringCounter(900);
@@ -58,48 +56,49 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Methods
 
-        private void SetWatchdogTarget(string newTarget)
+        private void InitializeWatchdog()
         {
-            if (IsWatchdogRunning) ToggleWatchdogRunStateCommandExecute();
-            _watchdogTargetName = newTarget;
-            ToggleWatchdogRunStateCommandExecute();
+            _watchdog = new ProcessWatchDog();
+            _watchdog.PacketsExchangedEvent += ReportPacketExchange;
+            ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>();
+            var process = _watchdog.GetProcessesByName("USBHelperLauncher").FirstOrDefault();
+            ProcessesUnderWatch.Add(new ProcessViewModel(process, true));
         }
 
-        private void ManageWatchdog(ref bool watchdog_is_initialized)
+        private void SetWatchdogTarget(IEnumerable<ProcessViewModel> processesToWatch)
         {
-            if (!(_watchdog.IsProcessCurrentlyRunning(_watchdogTargetName))) watchdog_is_initialized = false;
-            else
-            {
-                if (!watchdog_is_initialized)
-                {
-                    var pidAndPorts = _watchdog.GetOpenPortsForProcess(_watchdogTargetName);
-                    _watchdog.InitializeWatchdog(pidAndPorts.Key, pidAndPorts.Value, _watchdogTargetName);
-                    if (watchdog_is_initialized) Reporter.SendEmailReport(
-                                    subject: $"ALARM: Detected process start for {_watchdogTargetName}",
-                                    message: $"Activity detected report:\n" +
-                                    $"----------------{_watchdogTargetName}---------------\n\n" +
-                                    "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n");
-                    watchdog_is_initialized = true;
-                }
+            ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(processesToWatch);
+        }
 
-                _watchdog.RefreshInfo();
+        private void ManageWatchdog()
+        {
+            foreach (var process2watch in ProcessesUnderWatch)
+            {
+                process2watch.IsRunning = _watchdog.IsProcessCurrentlyRunning(process2watch.Process.ProcessName);
+                if (process2watch.IsRunning && process2watch.Check4PacketExchange)
+                {
+                    if (!process2watch.WasInitialized)
+                    {
+                        _watchdog.InitializeWatchdogForProcess(process2watch.Process);
+                        process2watch.WasInitialized = true;
+                    }
+                    _watchdog.RefreshInfo();
+                }
             }
         }
 
-        protected override void OnCounterCompletionEvent(Object source, ElapsedEventArgs e)
+        private void OnCounterCompletionEvent(Object source, ElapsedEventArgs e)
         {
             RefreshMonitoring();
         }
 
-        protected override void RefreshMonitoring()
+        private void RefreshMonitoring()
         {
             try
             {
-                if (_watchdogIsUnsubsribed) _watchdogIsInitialized = false;
                 var valuesQueue = _manager.GetCalculatedValues(_monitoringTargets);
                 HardwareValues = new ObservableCollection<HardwareInformation>(valuesQueue);
-
-                if (IsWatchdogRunning) ManageWatchdog(ref _watchdogIsInitialized);
+                ManageWatchdog();
             }
             catch (Exception e)
             {
@@ -108,31 +107,37 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        private async void ReportPacketExchange()
+        private async void ReportPacketExchange(PacketCaptureProcessInfo guiltyProcessInformation)
         {
             await Task.Run(() => Reporter.SendEmailReport(
-                            subject: $"ALARM: Detected Activity for {_watchdogTargetName}",
+                            subject: $"ALARM: Detected Activity for {guiltyProcessInformation.Process.ProcessName}",
                             message: $"Activity detected report:\n" +
-                                        $"----------------{_watchdogTargetName}---------------\n\n" +
+                                        $"----------------{guiltyProcessInformation.Process.ProcessName}---------------\n\n" +
                                         "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n\nContent:\n" +
-                                        $"Net send bytes : {ProcessWatchDog.ProccessInfo.NetSendBytes}\n" +
-                                        $"Net Received bytes : {ProcessWatchDog.ProccessInfo.NetRecvBytes}\n" +
-                                        $"Net Total bytes: {ProcessWatchDog.ProccessInfo.NetTotalBytes}\n"
+                                        $"Net send bytes : {guiltyProcessInformation.NetSendBytes}\n" +
+                                        $"Net Received bytes : {guiltyProcessInformation.NetRecvBytes}\n" +
+                                        $"Net Total bytes: {guiltyProcessInformation.NetTotalBytes}\n"
                             ));
         }
 
-        private void ShowErrorMessage(Exception e)
+        protected void SetMonitoringCounter(int counterTimeMilliseconds)
         {
-            _dialogService.ShowException(e);
+            _monitoringRefreshCounter = new Timer(counterTimeMilliseconds);
+            _monitoringRefreshCounter.Elapsed += OnCounterCompletionEvent;
+            _monitoringRefreshCounter.AutoReset = true;
+            _monitoringRefreshCounter.Enabled = true;
         }
 
         private void SetMonitoringTargets(Queue<MonitoringTarget> targets)
         {
             _monitoringTargets = targets;
             RefreshMonitoring();
-            //ResetTopValue
         }
 
+        private void ShowErrorMessage(Exception e)
+        {
+            _dialogService.ShowException(e);
+        }
         private void SubscribeToEvents()
         {
             _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe(SetWatchdogTarget);
@@ -145,7 +150,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
         #region porperties
 
         private ICollection<HardwareInformation> _hardwareValues;
-
         public ICollection<HardwareInformation> HardwareValues
         {
             get { return _hardwareValues; }
@@ -157,7 +161,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
         }
 
         private bool _isApplicationVisible;
-
         public bool IsApplicationVisible
         {
             get { return _isApplicationVisible; }
@@ -168,34 +171,22 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        private bool _isWatchdogRunning;
-
-        public bool IsWatchdogRunning
+        private ObservableCollection<ProcessViewModel> _processesUnderWatch;
+        public ObservableCollection<ProcessViewModel> ProcessesUnderWatch
         {
-            get { return _isWatchdogRunning; }
+            get { return _processesUnderWatch; }
             set 
             { 
-                _isWatchdogRunning = value;
-                _watchdogIsUnsubsribed = !_isWatchdogRunning;
-                RaisePropertyChanged(nameof(IsWatchdogRunning));
+                _processesUnderWatch = value;
+                RaisePropertyChanged(nameof(ProcessesUnderWatch));
             }
         }
+
 
         #endregion
 
 
         #region Commands
-
-        public ICommand ToggleWatchdogRunStateCommand
-        {
-            get { return new RelayCommand(ToggleWatchdogRunStateCommandExecute); }
-        }
-
-        public void ToggleWatchdogRunStateCommandExecute()
-        {
-            IsWatchdogRunning = !IsWatchdogRunning;
-            if (!IsWatchdogRunning) _watchdog.StopCapturingPackets();
-        }
 
         public ICommand ShowApplicationCommand
         {
@@ -211,26 +202,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public void ChangeAppVisibilityCommandExecute()
         {
             IsApplicationVisible = !IsApplicationVisible;
-        }
-
-        public ICommand OpenWatchdogManagerCommand
-        {
-            get { return new RelayCommand(OpenWatchdogManagerCommandExecute); }
-        }
-
-        public void OpenWatchdogManagerCommandExecute()
-        {
-            try
-            {
-                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, _monitoringTargets, _manager);
-
-                bool? result = _dialogService.ShowDialog(viewModel);
-            }
-            catch (Exception e)
-            {
-                Reporter.LogException(e);
-                ShowErrorMessage(e);
-            }
         }
 
         public ICommand HideApplicationCommand
@@ -260,6 +231,25 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
+        public ICommand OpenSettingsWindowCommand
+        {
+            get { return new RelayCommand(OpenSettingsWindowCommandExecute); }
+        }
+
+        public void OpenSettingsWindowCommandExecute()
+        {
+            try
+            {
+                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, _monitoringTargets, _manager);
+
+                bool? result = _dialogService.ShowDialog(viewModel);
+            }
+            catch (Exception e)
+            {
+                Reporter.LogException(e);
+                ShowErrorMessage(e);
+            }
+        }
 
         #endregion
 

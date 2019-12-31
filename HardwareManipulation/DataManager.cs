@@ -20,7 +20,7 @@ namespace HardwareManipulation
         #region Constructor
 
         private IDictionary<ComputerRessource, ConnectorBase> _target2connector;
-        private const string _xmlConfigPath = @".\Configuration\MonitoringConfiguration.cfg";
+        private const string XML_CONFIG_PATH = @".\Configuration\MonitoringConfiguration.cfg";
 
 
         public DataManager()
@@ -87,7 +87,7 @@ namespace HardwareManipulation
         private void SetTargetDict()
         {
             _target2connector = new Dictionary<ComputerRessource, ConnectorBase>();
-            var ressourceCollection = XmlHelper.DeserializeConfiguration<RessourceCollection>(_xmlConfigPath);
+            var ressourceCollection = XmlHelper.DeserializeConfiguration<RessourceCollection>(XML_CONFIG_PATH);
             foreach (var ressource in ressourceCollection.Ressources)
             {
                 _target2connector.Add(ressource, null);

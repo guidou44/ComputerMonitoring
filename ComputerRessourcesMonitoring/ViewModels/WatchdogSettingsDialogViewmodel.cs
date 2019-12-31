@@ -29,12 +29,24 @@ namespace ComputerRessourcesMonitoring.ViewModels
         private Queue<MonitoringTarget> _lruTargets;
         private IDictionary<MonitoringTarget, bool> targetDict;
 
-        public WatchdogSettingsDialogViewModel(string watchdogTargetName, IEventAggregator eventsHub, 
+        private IEnumerable<ProcessViewModel> _watchdogProcesses;
+
+        public WatchdogSettingsDialogViewModel(IEnumerable<ProcessViewModel> watchdogProcesses, IEventAggregator eventsHub, 
                                                Queue<MonitoringTarget> monTargets,
                                                DataManager manager)
         {
+            //watchdog---------
+            _watchdogProcesses = watchdogProcesses;
+            ProcessesUnderWatchNames = new ObservableCollection<ProcessChangerViewModel>();
+            foreach (var process in watchdogProcesses)
+            {
+                var processChanger = new ProcessChangerViewModel(process.Process.ProcessName);
+                processChanger.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
+                ProcessesUnderWatchNames.Add(processChanger);
+            }
+
+            //Monitoring-------
             MaxAllowedMonTargets = monTargets.Count();
-            WatchdogTargetName = watchdogTargetName;
             _eventHub = eventsHub;
             _lruTargets = monTargets;
             _manager = manager;
@@ -48,7 +60,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #endregion
 
-        #region Methods
+        #region Monitoring Methods
 
         private async void InitializeComponents(Queue<MonitoringTarget> monTargets)
         {
@@ -112,6 +124,14 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #endregion
 
+        #region Watchdog Methods
+
+        private void OnWatchdogTargetChanged(string targetName)
+        {
+            var oldProcessVM = _watchdogProcesses.Where(WP => WP.Process.ProcessName == )
+        }
+
+        #endregion
 
         #region Properties
 
@@ -174,37 +194,18 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        private string _watchdogTargetName;
-        public string WatchdogTargetName
+        private ObservableCollection<ProcessChangerViewModel> _processesUnderWatchNames;
+
+        public ObservableCollection<ProcessChangerViewModel> ProcessesUnderWatchNames
         {
-            get { return _watchdogTargetName; }
+            get { return _processesUnderWatchNames; }
             set 
             { 
-                _watchdogTargetName = value;
-                RaisePropertyChanged(nameof(WatchdogTargetName));
+                _processesUnderWatchNames = value;
+                RaisePropertyChanged(nameof(ProcessesUnderWatchNames));
             }
         }
 
-        #endregion
-
-
-        #region Commands
-
-        public ICommand ChangeWatchdogTargetCommand
-        {
-            get { return new RelayCommand(ChangeWatchdogTargetCommandExecute, CanChangeWatchdogTargetCommandExecute); }
-        }
-
-        public void ChangeWatchdogTargetCommandExecute()
-        {
-            _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(WatchdogTargetName);
-        }
-
-        public bool CanChangeWatchdogTargetCommandExecute()
-        {
-            if (WatchdogTargetName?.Length > 0) return true;
-            return false;
-        }
 
         #endregion
 

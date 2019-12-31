@@ -110,9 +110,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Events\Events.cs" />
-    <Compile Include="ViewModels\ComputerMonitoringViewModelBase.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MonitoringTargetViewModel.cs" />
+    <Compile Include="ViewModels\ProcessChangerViewModel.cs" />
+    <Compile Include="ViewModels\ProcessViewModel.cs" />
     <Compile Include="ViewModels\WatchdogSettingsDialogViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

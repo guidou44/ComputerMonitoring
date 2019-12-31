@@ -122,31 +122,73 @@
 
             <DockPanel  Grid.Row="1"
                         Grid.Column="0">
-                <Grid Margin="0 0 20 10"  HorizontalAlignment="Right">
-                    <ContentControl>
-                        <Ellipse x:Name="WatchdogStatus" 
-                                 Height="15"
-                                 Width="15"
-                                 Opacity="0.9">
-                            <Ellipse.Style>
-                                <Style TargetType="{x:Type Ellipse}">
-                                    <Style.Triggers>
-                                        <DataTrigger Binding="{Binding IsWatchdogRunning}" Value="True">
-                                            <Setter Property="Fill" Value="#0D7B00" />
-                                        </DataTrigger>
-                                        <DataTrigger Binding="{Binding IsWatchdogRunning}" Value="False">
-                                            <Setter Property="Fill" Value="#B58628" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Ellipse.Style>
-                        </Ellipse>
+                <Grid Margin="0 0 20 10"  
+                      HorizontalAlignment="Right"
+                      >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ItemsControl ItemsSource="{Binding ProcessesUnderWatch}"
+                                  Grid.Column="0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <ContentControl>
+                                    <Grid>
+                                        <Border 
+                                            Height="12"
+                                            Width="12"
+                                            Opacity="0.9"
+                                            BorderThickness="2"> 
+                                            <Border.Style>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsRunning}" Value="True">
+                                                            <Setter Property="Background" Value="#0D7B00" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsRunning}" Value="False">
+                                                            <Setter Property="Background" Value="#B58628" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Check4PacketExchange}" Value="False">
+                                                            <Setter Property="BorderBrush" Value="Black" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Check4PacketExchange}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="#42eff5" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+                                        </Border>
+                                        <TextBlock
+                                            Foreground="Black"
+                                            FontStyle="Normal"
+                                            FontWeight="Light"
+                                            FontSize="8"
+                                            Text="{Binding}"/>
+                                    </Grid>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="MouseRightButtonUp">
+                                            <i:InvokeCommandAction Command="{Binding ToggleWatchdogRunStateCommand}"/>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </ContentControl>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ContentControl Grid.Column="1">
+                        <Grid>
+
+                            <Ellipse Height="7" Width="9" Fill="LightGreen"/>
+                            <Image Source="Images/eye2.ico" Height="15"/>
+                        </Grid>
                         <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseRightButtonUp">
-                                <i:InvokeCommandAction Command="{Binding ToggleWatchdogRunStateCommand}"/>
-                            </i:EventTrigger>
                             <i:EventTrigger EventName="MouseDoubleClick">
-                                <i:InvokeCommandAction Command="{Binding OpenWatchdogManagerCommand}"/>
+                                <i:InvokeCommandAction Command="{Binding OpenSettingsWindowCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </ContentControl>

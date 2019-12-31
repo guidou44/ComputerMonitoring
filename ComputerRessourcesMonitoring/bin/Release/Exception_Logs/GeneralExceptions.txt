@@ -103,3 +103,15 @@ Stacktrace:    at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Bool
    at System.Windows.Window.ShowDialog()
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenWatchdogManagerCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 227
 
+
+*************************Exception******************************
+DateTime: 31-12-2019 7:34:39
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+

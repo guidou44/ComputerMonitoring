@@ -14,7 +14,7 @@
         AllowsTransparency="True"
         Background="Transparent"
         SizeToContent="WidthAndHeight"
-        MinHeight="500"
+        MinHeight="400"
         MinWidth="410"
         >
     <Window.Resources>
@@ -27,16 +27,16 @@
                         <Grid>
                             <Border x:Name="ButtonBorder"
                                     BorderThickness="2" 
-                                    CornerRadius="2" 
+                                    CornerRadius="5" 
                                     Margin="0" 
-                                    Padding="6"
+                                    Padding="3"
                                     Background="{TemplateBinding Background}"
                                     BorderBrush="Black"
                                     Opacity="0.9">
 
                                     <TextBlock x:Name="ButtonContentTemplate"
                                                Text="{TemplateBinding Content}" 
-                                               FontSize="16"
+                                               FontSize="12"
                                                FontFamily="Consola"
                                                FontWeight="DemiBold"
                                                Foreground="{TemplateBinding Foreground}"
@@ -52,7 +52,7 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.4"/>
                                 <Setter TargetName="ButtonContentTemplate" Property="Margin" Value="1"/>
-                                <Setter TargetName="ButtonContentTemplate" Property="FontSize" Value="18"/>
+                                <!--<Setter TargetName="ButtonContentTemplate" Property="FontSize" Value="16"/>-->
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -117,7 +117,33 @@
         </Border.Background>
 
         <Grid Margin="30">
-            <StackPanel Orientation="Vertical">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            
+            <DockPanel Margin="0"
+                       Grid.Row="0">
+                <StackPanel 
+                    DockPanel.Dock="Top" 
+                    Orientation="Horizontal" 
+                    Margin="0" 
+                    HorizontalAlignment="Center">
+                    <ContentControl>
+                        <Image Source="Images/eye2.ico" Height="50"/>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseDown">
+                                <i:InvokeCommandAction Command="{Binding DragWindowCommand}"
+                                                       CommandParameter="{x:Reference Name=DialogWindow}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ContentControl>
+
+                </StackPanel>
+            </DockPanel>
+            
+            <StackPanel Orientation="Vertical" Grid.Row="1">
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                     <TextBlock  Background="Transparent"
                                 FontWeight="Bold"
@@ -127,22 +153,16 @@
                                 FontSize="20"
                                 Foreground="DarkGreen"
                                 TextDecorations="Underline"
-                                Text ="Process under watch"
+                                Text ="Processes under watch"
                                 Margin="0 10 10 20"
                                 />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <ContentControl>
-                        <Image Source="Images/eye2.ico" Height="30"/>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="MouseDown">
-                                <i:InvokeCommandAction Command="{Binding DragWindowCommand}"
-                                                       CommandParameter="{x:Reference Name=DialogWindow}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ContentControl>
-                    <TextBox x:Name="target_process" 
-                                             Text="{Binding WatchdogTargetName, UpdateSourceTrigger=PropertyChanged}" 
+                <ItemsControl ItemsSource="{Binding ProcessesUnderWatchNames}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox x:Name="target_process" 
+                                             Text="{Binding ProcessName, UpdateSourceTrigger=PropertyChanged, StringFormat='{}- {0}'}" 
                                              Margin="10"
                                              MinWidth="200"
                                              BorderBrush="{x:Null}"
@@ -155,16 +175,21 @@
                                              FontSize="18"
                                              Foreground="DarkGreen"
                                              Padding="0">
-                        <TextBox.InputBindings>
-                            <KeyBinding Key="Return" Command="{Binding ChangeWatchdogTargetCommand}"/>
-                        </TextBox.InputBindings>
-                    </TextBox>
-                    <Button x:Name="ChangeTargetButton"
-                            Command="{Binding ChangeWatchdogTargetCommand}"
+                                    <TextBox.InputBindings>
+                                        <KeyBinding Key="Return" Command="{Binding ChangeProcessTargetCommand}"/>
+                                    </TextBox.InputBindings>
+                                </TextBox>
+                                <Button x:Name="ChangeTargetButton"
+                            Command="{Binding ChangeProcessTargetCommand}"
                             Background="#0f9900"
                             Foreground="Black"
-                            Content="CHANGE"/>
-                </StackPanel>
+                            Content="CHANGE"
+                            Height="25"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                
                 <TextBlock      x:Name="MakeTextBlock"
                                 Background="Transparent"
                                 HorizontalAlignment="Left"
@@ -251,7 +276,7 @@
                     >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="0">
+                            <StackPanel Orientation="Horizontal" Margin="0 0 0 2">
                                 <CheckBox 
                                     Style="{StaticResource CheckBoxStyle}"
                                     IsChecked="{Binding IsSelected}" 
@@ -269,31 +294,24 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <DockPanel Margin="20 30 20 20">
-                    <StackPanel 
+
+            </StackPanel>
+            <DockPanel Margin="0 10 0 0"
+                       Grid.Row="2">
+                <StackPanel 
                     DockPanel.Dock="Bottom" 
                     Orientation="Horizontal" 
                     Margin="0" 
                     HorizontalAlignment="Center">
-                        <Button 
+                    <Button 
                         IsDefault="True" 
                         Command="{Binding OkCommand}" 
-                        Margin="0 0 20 0" 
-                        Padding="0"
                         Content="CLOSE"
                         Background="#0f9900"
                         Height="{Binding ElementName=ChangeTargetButton, Path=ActualHeight}"/>
 
-                        <!--<Button 
-                        IsCancel="True" 
-                        Command="{Binding CancelCommand}"
-                        Margin="20 0 0 0"
-                        Background="#9e2020"
-                        Content="CANCEL"/>-->
-                    </StackPanel>
-                </DockPanel>
-            </StackPanel>
-
+                </StackPanel>
+            </DockPanel>
         </Grid>
     </Border>
 </Window>
