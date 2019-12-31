@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+	<Email>
+		<Sender>
+			<Id>appreporter.allarm@gmail.com</Id>
+			<Password>Alarm_Helper244</Password>
+		</Sender>
+		<Receivers>
+			<Target>
+				<Address>guim_44@hotmail.com</Address>
+			</Target>
+		</Receivers>
+	</Email>
+</configuration>

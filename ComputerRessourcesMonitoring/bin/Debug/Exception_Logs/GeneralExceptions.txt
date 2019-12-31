@@ -2436,3 +2436,1941 @@ Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionRes
    at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
 
+
+*************************Exception******************************
+DateTime: 31-12-2019 13:23:12
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void ManageWatchdog()
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 77
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 101
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:39:10
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 106
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:44:40
+Type: System.InvalidOperationException
+Source: System
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified after the enumerator was instantiated.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Queue`1.Enumerator.MoveNext()
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 106
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:15
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:16
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:17
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:18
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:19
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:19
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:20
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:21
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:22
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:23
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:24
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:25
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:26
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:27
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:28
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:28
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:29
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:30
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:31
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:32
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:33
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:34
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:35
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:36
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:37
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:38
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:38
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:39
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:40
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:41
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:42
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:43
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:44
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:45
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:46
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:47
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:48
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:48
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 15:59:49
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:01:54
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:01:55
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:01:56
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:01:57
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:01:58
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:01:59
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:00
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:01
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:01
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:03
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:03
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:04
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:05
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:06
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:07
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:08
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:09
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:10
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:11
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:12
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:13
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:13
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:14
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:15
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:02:16
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:03:21
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:03:22
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 69
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:25:42
+Type: System.IO.DirectoryNotFoundException
+Source: mscorlib
+TargetSite: Void WinIOError(Int32, System.String)
+Message: Could not find a part of the path 'D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\DebugConfiguration\ReporterConfiguration.xml'.
+Stacktrace:    at System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   at System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   at System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share, Int32 bufferSize)
+   at System.Xml.XmlDownloadManager.GetStream(Uri uri, ICredentials credentials, IWebProxy proxy, RequestCachePolicy cachePolicy)
+   at System.Xml.XmlUrlResolver.GetEntity(Uri absoluteUri, String role, Type ofObjectToReturn)
+   at System.Xml.XmlTextReaderImpl.FinishInitUriString()
+   at System.Xml.XmlReaderSettings.CreateReader(String inputUri, XmlParserContext inputContext)
+   at System.Xml.Linq.XDocument.Load(String uri, LoadOptions options)
+   at Common.Reports.Reporter.InitializeSmtpClient() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\Reports\Reporter.cs:line 57
+   at Common.Reports.Reporter.SendEmailReport(String subject, String message) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\Reports\Reporter.cs:line 38
+   at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:28:28
+Type: System.Net.Mail.SmtpException
+Source: System
+TargetSite: Void CheckResponse(System.Net.Mail.SmtpStatusCode, System.String)
+Message: The SMTP server requires a secure connection or the client was not authenticated. The server response was: 5.7.0 Authentication Required. Learn more at
+Stacktrace:    at System.Net.Mail.MailCommand.CheckResponse(SmtpStatusCode statusCode, String response)
+   at System.Net.Mail.MailCommand.Send(SmtpConnection conn, Byte[] command, MailAddress from, Boolean allowUnicode)
+   at System.Net.Mail.SmtpTransport.SendMail(MailAddress sender, MailAddressCollection recipients, String deliveryNotify, Boolean allowUnicode, SmtpFailedRecipientException& exception)
+   at System.Net.Mail.SmtpClient.Send(MailMessage message)
+   at Common.Reports.Reporter.SendEmailReport(String subject, String message) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\Reports\Reporter.cs:line 48
+   at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:35:56
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:35:57
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:35:58
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:35:58
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:35:59
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:00
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:01
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:02
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:03
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:04
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:05
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:06
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:07
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:07
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:08
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:09
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:10
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:11
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:12
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:13
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:14
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:36:15
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 83
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 108
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:10
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:11
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:12
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:13
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:13
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:14
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:15
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:16
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:17
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:18
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:19
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:20
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:21
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:22
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:23
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:23
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:24
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:25
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:26
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:27
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:28
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:29
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:30
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:31
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:32
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:32
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:33
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:34
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:35
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:36
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:37
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:38
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:39
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:40
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:41
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:42
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:42
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:43
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:44
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:45
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:46
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:47
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:48
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:49
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:50
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:51
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:52
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:52
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:53
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:54
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:55
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:56
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:57
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:49:58
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:00
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:00
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:00
+Type: System.InvalidOperationException
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified; enumeration operation may not execute.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Dictionary`2.Enumerator.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.<ExceptIterator>d__73`1.MoveNext()
+   at System.Collections.Generic.HashSet`1.UnionWith(IEnumerable`1 other)
+   at System.Collections.Generic.HashSet`1..ctor(IEnumerable`1 collection, IEqualityComparer`1 comparer)
+   at System.Linq.Enumerable.ToHashSet[TSource](IEnumerable`1 source, IEqualityComparer`1 comparer)
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 49
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 109
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:02
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:02
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:02
+Type: System.AggregateException
+Source: mscorlib
+TargetSite: TResult GetResultCore(Boolean)
+Message: One or more errors occurred.
+Stacktrace:    at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at HardwareManipulation.Connectors.ASPNET_API_Connector.GetValue(MonitoringTarget ressource) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\Connectors\ASPNET_API_Connector.cs:line 114
+   at HardwareManipulation.DataManager.GetCalculatedValue(MonitoringTarget target) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 38
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 46
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 109
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:02
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:02
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:03
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:04
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:05
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:06
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:06
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:07
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:08
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:10
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:10
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:11
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:12
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:12
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:12
+Type: System.InvalidOperationException
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified; enumeration operation may not execute.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Dictionary`2.Enumerator.MoveNext()
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 52
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 109
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:12
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void set_IsRunning(Boolean)
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.set_IsRunning(Boolean value) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\ProcessViewModel.cs:line 67
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ManageWatchdog() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 86
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 111
+
+
+*************************Exception******************************
+DateTime: 31-12-2019 16:54:12
+Type: System.Reflection.TargetInvocationException
+Source: mscorlib
+TargetSite: System.Object CreateInstance(System.RuntimeType, Boolean, Boolean, Boolean ByRef, System.RuntimeMethodHandleInternal ByRef, Boolean ByRef)
+Message: Exception has been thrown by the target of an invocation.
+Stacktrace:    at System.RuntimeTypeHandle.CreateInstance(RuntimeType type, Boolean publicOnly, Boolean noCheck, Boolean& canBeCached, RuntimeMethodHandleInternal& ctor, Boolean& bNeedSecurityCheck)
+   at System.RuntimeType.CreateInstanceSlow(Boolean publicOnly, Boolean skipCheckThis, Boolean fillCache, StackCrawlMark& stackMark)
+   at System.Activator.CreateInstance(Type type, Boolean nonPublic)
+   at System.Activator.CreateInstance(Type type)
+   at Common.UI.DialogServices.DialogService.ShowDialog[TViewModel](TViewModel viewModel) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\UI\DialogServices\DialogService.cs:line 53
+   at Common.UI.DialogServices.DialogService.ShowException(Exception e) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\UI\DialogServices\DialogService.cs:line 89
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.ShowErrorMessage(Exception e) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 149
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 116
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.SetMonitoringTargets(Queue`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 144
+   at Prism.Events.EventSubscription`1.<>c__DisplayClass11_0.<GetExecutionStrategy>b__0(Object[] arguments) in d:\a\1\s\Source\Prism\Events\EventSubscription.cs:line 173
+   at Prism.Events.EventBase.InternalPublish(Object[] arguments) in d:\a\1\s\Source\Prism\Events\EventBase.cs:line 60
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.<>c__DisplayClass8_0.<PublishQueue>b__0() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 89
+   at System.Threading.Tasks.Task.Execute()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.GetResult()
+   at ComputerRessourcesMonitoring.ViewModels.WatchdogSettingsDialogViewModel.<PublishQueue>d__8.MoveNext() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\WatchdogSettingsDialogViewModel.cs:line 89
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.DispatcherOperation.InvokeImpl()
+   at MS.Internal.CulturePreservingExecutionContext.CallbackWrapper(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state, Boolean preserveSyncCtx)
+   at System.Threading.ExecutionContext.Run(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at MS.Internal.CulturePreservingExecutionContext.Run(CulturePreservingExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Windows.Threading.DispatcherOperation.Invoke()
+   at System.Windows.Threading.Dispatcher.ProcessQueue()
+   at System.Windows.Threading.Dispatcher.WndProcHook(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndWrapper.WndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam, Boolean& handled)
+   at MS.Win32.HwndSubclass.DispatcherCallbackOperation(Object o)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(Delegate callback, Object args, Int32 numArgs)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(Object source, Delegate callback, Object args, Int32 numArgs, Delegate catchHandler)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(DispatcherPriority priority, TimeSpan timeout, Delegate method, Object args, Int32 numArgs)
+   at MS.Win32.HwndSubclass.SubclassWndProc(IntPtr hwnd, Int32 msg, IntPtr wParam, IntPtr lParam)
+   at MS.Win32.UnsafeNativeMethods.DispatchMessage(MSG& msg)
+   at System.Windows.Threading.Dispatcher.PushFrameImpl(DispatcherFrame frame)
+   at System.Windows.Window.ShowHelper(Object booleanBox)
+   at System.Windows.Window.ShowDialog()
+   at ComputerRessourcesMonitoring.Views.WatchdogSettingsDialogView.Common.UI.Interfaces.IDialog.ShowDialog()
+   at Common.UI.DialogServices.DialogService.ShowDialog[TViewModel](TViewModel viewModel) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\UI\DialogServices\DialogService.cs:line 76
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenSettingsWindowCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 255
+

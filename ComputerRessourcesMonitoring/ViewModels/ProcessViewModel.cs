@@ -13,12 +13,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
 {
     public class ProcessViewModel : NotifyPropertyChanged
     {
-        public delegate void OnWatchdogStopped(Process process);
-        public event OnWatchdogStopped OnWatchdogStoppedEvent;
+        public delegate void OnProcessNameChanged(string newProcessName, bool check4packetExchange, int oldProcessId);
+        public event OnProcessNameChanged OnProcessNameChangedEvent;
 
-        public ProcessViewModel(Process process, bool check4PacketExchange)
+        public ProcessViewModel(bool check4PacketExchange)
         {
-            Process = process;
             Check4PacketExchange = check4PacketExchange;
         }
 
@@ -27,9 +26,36 @@ namespace ComputerRessourcesMonitoring.ViewModels
             return Process.Id.ToString();
         }
 
+        public void RegisterProcessNameEventHandlerIfNotRegistered(Delegate prospectiveHandler)
+        {
+            if (OnProcessNameChangedEvent != null)
+            {
+                foreach (Delegate existingHandler in OnProcessNameChangedEvent.GetInvocationList())
+                {
+                    if (existingHandler == prospectiveHandler)
+                    {
+                        return;
+                    }
+                }
+            }
+            OnProcessNameChangedEvent += (OnProcessNameChanged) prospectiveHandler;
+        }
+
         #region Properties
 
         public Process Process { get; set; }
+
+        private string _processName;
+        public string ProcessName
+        {
+            get { return _processName; }
+            set
+            {
+                _processName = value;
+                RaisePropertyChanged(nameof(ProcessName));
+            }
+        }
+
         public bool WasInitialized { get; set; }
 
         private bool _isRunning;
@@ -38,13 +64,13 @@ namespace ComputerRessourcesMonitoring.ViewModels
             get { return _isRunning; }
             set 
             { 
-                _isRunning = value;
-                if (!_isRunning) WasInitialized = false;
-                else Reporter.SendEmailReport(
+                if (!_isRunning && value) Reporter.SendEmailReport(
                     subject: $"ALARM: Detected process start for {Process.ProcessName}",
                     message: $"Activity detected report:\n" +
                     $"----------------{Process.ProcessName}---------------\n\n" +
                     "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n");
+                _isRunning = value;
+                if (!_isRunning) WasInitialized = false;
                 RaisePropertyChanged(nameof(IsRunning)); 
             }
         }
@@ -65,6 +91,22 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Commands
 
+        public ICommand ChangeWatchdogTargetCommand
+        {
+            get { return new RelayCommand(ChangeWatchdogTargetCommandExecute, CanChangeWatchdogTargetCommandExecute); }
+        }
+
+        public void ChangeWatchdogTargetCommandExecute()
+        {
+            OnProcessNameChangedEvent(ProcessName, Check4PacketExchange, Process.Id);
+        }
+
+        public bool CanChangeWatchdogTargetCommandExecute()
+        {
+            if (ProcessName?.Length > 0 && ProcessName != Process.ProcessName) return true;
+            return false;
+        }
+
         public ICommand ToggleWatchdogRunStateCommand
         {
             get { return new RelayCommand(ToggleWatchdogRunStateCommandExecute); }
@@ -73,10 +115,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public void ToggleWatchdogRunStateCommandExecute()
         {
             Check4PacketExchange = !Check4PacketExchange;
-            if (!Check4PacketExchange)
-            {
-                OnWatchdogStoppedEvent(Process);
-            }
         }
 
         #endregion

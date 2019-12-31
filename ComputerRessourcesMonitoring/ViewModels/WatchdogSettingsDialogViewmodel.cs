@@ -9,6 +9,7 @@ using HardwareManipulation.Connectors;
 using HardwareManipulation.Enums;
 using HardwareManipulation.Models;
 using Prism.Events;
+using ProcessMonitoring.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,22 +29,16 @@ namespace ComputerRessourcesMonitoring.ViewModels
         private IEventAggregator _eventHub;
         private Queue<MonitoringTarget> _lruTargets;
         private IDictionary<MonitoringTarget, bool> targetDict;
+        private ProcessWatchDog _watchdog;
 
-        private IEnumerable<ProcessViewModel> _watchdogProcesses;
-
-        public WatchdogSettingsDialogViewModel(IEnumerable<ProcessViewModel> watchdogProcesses, IEventAggregator eventsHub, 
+        public WatchdogSettingsDialogViewModel(ObservableCollection<ProcessViewModel> watchdogProcesses, IEventAggregator eventsHub, 
                                                Queue<MonitoringTarget> monTargets,
-                                               DataManager manager)
+                                               ref DataManager manager, ref ProcessWatchDog watchdog)
         {
             //watchdog---------
-            _watchdogProcesses = watchdogProcesses;
-            ProcessesUnderWatchNames = new ObservableCollection<ProcessChangerViewModel>();
-            foreach (var process in watchdogProcesses)
-            {
-                var processChanger = new ProcessChangerViewModel(process.Process.ProcessName);
-                processChanger.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
-                ProcessesUnderWatchNames.Add(processChanger);
-            }
+            _watchdog = watchdog;
+            ProcessesUnderWatch = watchdogProcesses;
+            ProcessesUnderWatch.ToList().ForEach(PUW => PUW.OnProcessNameChangedEvent += OnWatchdogTargetChanged);
 
             //Monitoring-------
             MaxAllowedMonTargets = monTargets.Count();
@@ -126,9 +121,13 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Watchdog Methods
 
-        private void OnWatchdogTargetChanged(string targetName)
+        private void OnWatchdogTargetChanged(string targetName, bool check4packetExchange, int oldProcessId)
         {
-            var oldProcessVM = _watchdogProcesses.Where(WP => WP.Process.ProcessName == )
+            var processVM = ProcessesUnderWatch.Where(PUW => PUW.Process.Id == oldProcessId).SingleOrDefault();
+            processVM.Check4PacketExchange = check4packetExchange;
+            processVM.Process = _watchdog.GetProcessesByName(targetName).FirstOrDefault();
+            ProcessesUnderWatch.ToList().ForEach(P => P.OnProcessNameChangedEvent -= OnWatchdogTargetChanged);
+            _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(ProcessesUnderWatch);
         }
 
         #endregion
@@ -194,15 +193,15 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        private ObservableCollection<ProcessChangerViewModel> _processesUnderWatchNames;
+        private ObservableCollection<ProcessViewModel> _processesUnderWatch;
 
-        public ObservableCollection<ProcessChangerViewModel> ProcessesUnderWatchNames
+        public ObservableCollection<ProcessViewModel> ProcessesUnderWatch
         {
-            get { return _processesUnderWatchNames; }
+            get { return _processesUnderWatch; }
             set 
             { 
-                _processesUnderWatchNames = value;
-                RaisePropertyChanged(nameof(ProcessesUnderWatchNames));
+                _processesUnderWatch = value;
+                RaisePropertyChanged(nameof(ProcessesUnderWatch));
             }
         }
 

@@ -10,6 +10,7 @@ namespace Common.Reports
 {
     public static class Reporter
     {
+        private const string CONFIG_FILE_PATH = @"\Configuration\ReporterConfiguration.xml";
         public static void LogException(Exception e, string logPath = null, bool addEmailreport = false)
         {
             var currentDirectory = Directory.GetCurrentDirectory();
@@ -54,7 +55,7 @@ namespace Common.Reports
             smtpServer.Port = 587;
             smtpServer.EnableSsl = true;
             var currentDirectory = Directory.GetCurrentDirectory();
-            var configuration = XDocument.Load(currentDirectory + @"\ReporterConfiguration.xml");
+            var configuration = XDocument.Load(Path.Combine(currentDirectory + CONFIG_FILE_PATH));
             var sender = (configuration.Descendants("Sender") ?? throw new ArgumentNullException("No sender specified for email reporter"));
 
             smtpServer.Credentials = new System.Net.NetworkCredential(sender.Elements("Id").SingleOrDefault().Value, sender.Elements("Password").SingleOrDefault().Value);
@@ -64,7 +65,7 @@ namespace Common.Reports
         private static IEnumerable<string> LoadEmailRecipents()
         {
             var currentDirectory = Directory.GetCurrentDirectory();
-            var configuration = XDocument.Load(currentDirectory + @"\ReporterConfiguration.xml");
+            var configuration = XDocument.Load(currentDirectory + CONFIG_FILE_PATH);
 
             var recipients = (configuration.Descendants("Receivers") ?? throw new ArgumentNullException("No recipient specified for email reporter"))
                               .Elements("Target");

@@ -26,6 +26,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
     {
         #region constructor
 
+        private static readonly List<string> _INITIAL_PROCESSES_UNDER_WATCH = new List<string>() { "USBHelperLauncher", "ServerBackupService" };
         private DataManager _manager;
         private Queue<MonitoringTarget> _monitoringTargets;
         private Timer _monitoringRefreshCounter;
@@ -61,22 +62,31 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _watchdog = new ProcessWatchDog();
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
             ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>();
-            var process = _watchdog.GetProcessesByName("USBHelperLauncher").FirstOrDefault();
-            ProcessesUnderWatch.Add(new ProcessViewModel(process, true));
+            foreach (var initialProcess in _INITIAL_PROCESSES_UNDER_WATCH)
+            {
+                var process = _watchdog.GetProcessesByName(initialProcess).FirstOrDefault();
+                var processVM = new ProcessViewModel(true)
+                {
+                    Process = process,
+                    ProcessName = initialProcess
+                };
+                ProcessesUnderWatch.Add(processVM);
+            }
         }
 
-        private void SetWatchdogTarget(IEnumerable<ProcessViewModel> processesToWatch)
+        private void SetWatchdogTarget(ObservableCollection<ProcessViewModel> processesToWatch)
         {
-            ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(processesToWatch);
+            ProcessesUnderWatch = processesToWatch;
         }
 
         private void ManageWatchdog()
         {
             foreach (var process2watch in ProcessesUnderWatch)
             {
-                process2watch.IsRunning = _watchdog.IsProcessCurrentlyRunning(process2watch.Process.ProcessName);
+                process2watch.IsRunning = _watchdog.IsProcessCurrentlyRunning(process2watch.ProcessName);
                 if (process2watch.IsRunning && process2watch.Check4PacketExchange)
                 {
+                    if (process2watch.Process == null) process2watch.Process = _watchdog.GetProcessesByName(process2watch.ProcessName).FirstOrDefault();
                     if (!process2watch.WasInitialized)
                     {
                         _watchdog.InitializeWatchdogForProcess(process2watch.Process);
@@ -240,7 +250,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             try
             {
-                var viewModel = new WatchdogSettingsDialogViewModel(_watchdogTargetName, _eventHub, _monitoringTargets, _manager);
+                var viewModel = new WatchdogSettingsDialogViewModel(ProcessesUnderWatch, _eventHub, _monitoringTargets, manager: ref _manager, watchdog: ref _watchdog);
 
                 bool? result = _dialogService.ShowDialog(viewModel);
             }
