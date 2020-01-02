@@ -121,11 +121,10 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Watchdog Methods
 
-        private void OnWatchdogTargetChanged(string targetName, bool check4packetExchange, int oldProcessId)
+        private void OnWatchdogTargetChanged(ProcessViewModel processViewModel)
         {
-            var processVM = ProcessesUnderWatch.Where(PUW => PUW.Process.Id == oldProcessId).SingleOrDefault();
-            processVM.Check4PacketExchange = check4packetExchange;
-            processVM.Process = _watchdog.GetProcessesByName(targetName).FirstOrDefault();
+            var processVM = ProcessesUnderWatch.Where(PUW => PUW == processViewModel).SingleOrDefault();
+            processVM.Process = _watchdog.GetProcessesByName(processVM.ProcessName).FirstOrDefault();
             ProcessesUnderWatch.ToList().ForEach(P => P.OnProcessNameChangedEvent -= OnWatchdogTargetChanged);
             _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(ProcessesUnderWatch);
         }

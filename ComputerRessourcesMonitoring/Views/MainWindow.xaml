@@ -7,6 +7,7 @@
         xmlns:ViewModels="clr-namespace:ComputerRessourcesMonitoring.ViewModels"
         xmlns:tb="http://www.hardcodet.net/taskbar" 
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:Converters="clr-namespace:Common.UI.Converters;assembly=Common"
         mc:Ignorable="d"
         x:Name="WatchdogWindow"
         WindowStyle="None"
@@ -23,8 +24,11 @@
     <!--<Window.DataContext>
         <ViewModels:MainViewModel/>
     </Window.DataContext>-->
+   
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        <Converters:CommandParameterConverter x:Key="CommandParameterConverter" />
+        
         <Style x:Key="{x:Type ProgressBar}"
                TargetType="{x:Type ProgressBar}">
 
@@ -55,6 +59,33 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
     </Window.Resources>
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ResizeWindowCommand}">
+                <i:InvokeCommandAction.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandParameterConverter}">
+                        <Binding Source="{x:Static SystemParameters.WorkArea}"/>
+                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}"/>
+                    </MultiBinding>
+                </i:InvokeCommandAction.CommandParameter>
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="SizeChanged">
+            <i:InvokeCommandAction Command="{Binding ResizeWindowCommand}">
+                <i:InvokeCommandAction.CommandParameter>
+                    <MultiBinding Converter="{StaticResource CommandParameterConverter}">
+                        <Binding Source="{x:Static SystemParameters.WorkArea}"/>
+                        <Binding RelativeSource="{RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}"/>
+                    </MultiBinding>
+                </i:InvokeCommandAction.CommandParameter>
+            </i:InvokeCommandAction>
+        </i:EventTrigger>
+        <i:EventTrigger EventName="Deactivated">
+            <i:InvokeCommandAction Command="{Binding SetWindowOnTopCommand}"
+                                   CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
 
     <Border BorderBrush="DarkGreen"
             BorderThickness="5"
@@ -139,38 +170,43 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <ContentControl>
-                                    <Border 
-                                        Height="20"
-                                        Width="20"
-                                        Opacity="1"
-                                        CornerRadius="10"
-                                        BorderThickness="4"
-                                        Margin="5 0 5 0">
-                                        <Border.Style>
-                                            <Style TargetType="{x:Type Border}">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding IsRunning}" Value="True">
-                                                        <Setter Property="Background" Value="#0D7B00" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding IsRunning}" Value="False">
-                                                        <Setter Property="Background" Value="#B58628" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Check4PacketExchange}" Value="False">
-                                                        <Setter Property="BorderBrush" Value="Black" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding Check4PacketExchange}" Value="True">
-                                                        <Setter Property="BorderBrush" Value="LightGreen" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
+                                    <Grid>
+                                        <Border 
+                                            Height="24"
+                                            Width="24"
+                                            Opacity="1"
+                                            CornerRadius="12"
+                                            BorderThickness="3"
+                                            Margin="5 0 5 0">
+                                            <Border.Style>
+                                                <Style TargetType="{x:Type Border}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsRunning}" Value="True">
+                                                            <Setter Property="Background" Value="#0D7B00" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsRunning}" Value="False">
+                                                            <Setter Property="Background" Value="#B58628" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Check4PacketExchange}" Value="False">
+                                                            <Setter Property="BorderBrush" Value="Black" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Check4PacketExchange}" Value="True">
+                                                            <Setter Property="BorderBrush" Value="DarkGreen" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Border.Style>
+
+                                        </Border>
                                         <TextBlock
-                                        Foreground="#d9d9d9"
-                                        FontStyle="Normal"
-                                        FontWeight="DemiBold"
-                                        FontSize="12"
-                                        Text="{Binding}"/>
-                                    </Border>
+                                            Foreground="Black"
+                                            FontStyle="Normal"
+                                            FontWeight="Normal"
+                                            FontSize="14"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Text="{Binding}"/>
+                                    </Grid>
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger EventName="MouseRightButtonUp">
                                             <i:InvokeCommandAction Command="{Binding ToggleWatchdogRunStateCommand}"/>
@@ -180,11 +216,11 @@
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
-                    <ContentControl Grid.Column="1">
+                    <ContentControl Grid.Column="1" Margin="5 0 0 0">
                         <Grid>
 
-                            <Ellipse Height="25" Width="25" Fill="LightGreen"/>
-                            <Image Source="Images/eye2.ico" Height="25"/>
+                            <Ellipse Height="27" Width="27" Fill="DarkGreen"/>
+                            <Image Source="Images/eye2.ico" Height="27"/>
                         </Grid>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">

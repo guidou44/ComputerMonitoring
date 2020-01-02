@@ -59,6 +59,7 @@
     <Compile Include="Helpers\LinuxTerminalHelper.cs" />
     <Compile Include="Helpers\WmiHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="UI\Converters\CommandParameterConverter.cs" />
     <Compile Include="UI\CustomControls\VeryObservableCollection.cs" />
     <Compile Include="UI\DialogServices\DialogCloseRequestedEventArgs.cs" />
     <Compile Include="UI\DialogServices\DialogService.cs" />
@@ -73,6 +74,8 @@
     <Compile Include="UI\Infrastructure\RelayCommand.cs" />
     <Compile Include="Reports\Reporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UI\Interfaces\IRelocatable.cs" />
+    <Compile Include="UI\Interfaces\ITopMost.cs" />
     <Compile Include="UI\ViewModels\DialogViewModelBase.cs" />
     <Compile Include="UI\ViewModels\ErrorMessageViewModel.cs" />
     <Compile Include="UI\ViewModels\MessageViewModel.cs" />

@@ -2,19 +2,14 @@
 using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
 using ComputerRessourcesMonitoring.Events;
-using HardwareManipulation.Connectors;
 using HardwareManipulation.Models;
-using Prism.Events;
 using ProcessMonitoring.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
-using System.Runtime;
 using Common.UI.ViewModels;
 using HardwareManipulation.Enums;
 using HardwareManipulation;
@@ -74,11 +69,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        private void SetWatchdogTarget(ObservableCollection<ProcessViewModel> processesToWatch)
-        {
-            ProcessesUnderWatch = processesToWatch;
-        }
-
         private void ManageWatchdog()
         {
             foreach (var process2watch in ProcessesUnderWatch)
@@ -113,7 +103,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             catch (Exception e)
             {
                 Reporter.LogException(e);
-                ShowErrorMessage(e);
+                _dialogService.ShowException(e);
             }
         }
 
@@ -138,20 +128,10 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _monitoringRefreshCounter.Enabled = true;
         }
 
-        private void SetMonitoringTargets(Queue<MonitoringTarget> targets)
-        {
-            _monitoringTargets = targets;
-            RefreshMonitoring();
-        }
-
-        private void ShowErrorMessage(Exception e)
-        {
-            _dialogService.ShowException(e);
-        }
         private void SubscribeToEvents()
         {
-            _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe(SetWatchdogTarget);
-            _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe(SetMonitoringTargets);
+            _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe((processesToWatch) => { ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(processesToWatch); });
+            _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe((targets) => { _monitoringTargets = targets; RefreshMonitoring(); });
         }
 
         #endregion
@@ -191,7 +171,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 RaisePropertyChanged(nameof(ProcessesUnderWatch));
             }
         }
-
 
         #endregion
 
@@ -251,14 +230,33 @@ namespace ComputerRessourcesMonitoring.ViewModels
             try
             {
                 var viewModel = new WatchdogSettingsDialogViewModel(ProcessesUnderWatch, _eventHub, _monitoringTargets, manager: ref _manager, watchdog: ref _watchdog);
-
                 bool? result = _dialogService.ShowDialog(viewModel);
             }
             catch (Exception e)
             {
                 Reporter.LogException(e);
-                ShowErrorMessage(e);
+                _dialogService.ShowException(e);
             }
+        }
+
+        public ICommand ResizeWindowCommand
+        {
+            get { return new RelayCommand<object[]>(ResizeWindowCommandExecute); }
+        }
+
+        public void ResizeWindowCommandExecute(object[] parameters)
+        {
+            var stringData = parameters[0].ToString().Split(',');
+            var desktopWorkingAreaRight = double.Parse(stringData[2]);
+            var desktopWorkingAreaBottom = double.Parse(stringData[3]);
+            var actualWindow = parameters[1] as IRelocatable;
+            actualWindow.Left = desktopWorkingAreaRight - actualWindow.ActualWidth;
+            actualWindow.Top = desktopWorkingAreaBottom - actualWindow.ActualHeight;
+        }
+
+        public ICommand SetWindowOnTopCommand
+        {
+            get { return new RelayCommand<ITopMost>(W => W.Topmost = true); }
         }
 
         #endregion

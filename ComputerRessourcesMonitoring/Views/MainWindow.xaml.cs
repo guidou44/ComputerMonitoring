@@ -19,27 +19,11 @@ namespace ComputerRessourcesMonitoring.Views
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, IClosable
+    public partial class MainWindow : Window, IClosable, ITopMost, IRelocatable
     {
         public MainWindow()
         {
             InitializeComponent();
-            this.Loaded += new RoutedEventHandler(Window_Relocate);
-            this.SizeChanged += new SizeChangedEventHandler(Window_Relocate);
         }
-
-        private void Window_Relocate(object sender, RoutedEventArgs e)
-        {
-            var desktopWorkingArea = System.Windows.SystemParameters.WorkArea;
-            this.Left = desktopWorkingArea.Right - this.ActualWidth;
-            this.Top = desktopWorkingArea.Bottom - this.ActualHeight;
-        }
-
-        private void Window_Deactivated(object sender, EventArgs e)
-        {
-            Window window = (Window)sender;
-            window.Topmost = true;
-        }
-
     }
 }

@@ -13,7 +13,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 {
     public class ProcessViewModel : NotifyPropertyChanged
     {
-        public delegate void OnProcessNameChanged(string newProcessName, bool check4packetExchange, int oldProcessId);
+        public delegate void OnProcessNameChanged(ProcessViewModel processViewModel);
         public event OnProcessNameChanged OnProcessNameChangedEvent;
 
         public ProcessViewModel(bool check4PacketExchange)
@@ -23,7 +23,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public override string ToString()
         {
-            return Process.Id.ToString();
+            var upperChars = ProcessName.Where(C => char.IsUpper(C));
+            string output = (upperChars.Count() > 1) ? (upperChars.FirstOrDefault().ToString() + upperChars.LastOrDefault().ToString()) :
+                            (upperChars.Count() == 1) ? upperChars.SingleOrDefault().ToString() :
+                            ProcessName[0].ToString();
+            return (output);
         }
 
         public void RegisterProcessNameEventHandlerIfNotRegistered(Delegate prospectiveHandler)
@@ -63,12 +67,14 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             get { return _isRunning; }
             set 
-            { 
+            {
+#if !DEBUG
                 if (!_isRunning && value) Reporter.SendEmailReport(
                     subject: $"ALARM: Detected process start for {Process.ProcessName}",
                     message: $"Activity detected report:\n" +
                     $"----------------{Process.ProcessName}---------------\n\n" +
                     "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n");
+#endif
                 _isRunning = value;
                 if (!_isRunning) WasInitialized = false;
                 RaisePropertyChanged(nameof(IsRunning)); 
@@ -93,28 +99,18 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public ICommand ChangeWatchdogTargetCommand
         {
-            get { return new RelayCommand(ChangeWatchdogTargetCommandExecute, CanChangeWatchdogTargetCommandExecute); }
-        }
-
-        public void ChangeWatchdogTargetCommandExecute()
-        {
-            OnProcessNameChangedEvent(ProcessName, Check4PacketExchange, Process.Id);
+            get { return new RelayCommand(() => { OnProcessNameChangedEvent(this); }, CanChangeWatchdogTargetCommandExecute); }
         }
 
         public bool CanChangeWatchdogTargetCommandExecute()
         {
-            if (ProcessName?.Length > 0 && ProcessName != Process.ProcessName) return true;
+            if (ProcessName?.Length > 0 && ((Process == null) ? true : Process.ProcessName != ProcessName)) return true;
             return false;
         }
 
         public ICommand ToggleWatchdogRunStateCommand
         {
-            get { return new RelayCommand(ToggleWatchdogRunStateCommandExecute); }
-        }
-
-        public void ToggleWatchdogRunStateCommandExecute()
-        {
-            Check4PacketExchange = !Check4PacketExchange;
+            get { return new RelayCommand(() => { Check4PacketExchange = !Check4PacketExchange; }); }
         }
 
         #endregion
