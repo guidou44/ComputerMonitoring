@@ -130,7 +130,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private void SubscribeToEvents()
         {
-            _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe((processesToWatch) => { ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(processesToWatch); });
+            _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe((processesToWatch) => { ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(processesToWatch);});
             _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe((targets) => { _monitoringTargets = targets; RefreshMonitoring(); });
         }
 
@@ -179,29 +179,12 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public ICommand ShowApplicationCommand
         {
-            get { return new RelayCommand(ChangeAppVisibilityCommandExecute, CanShowApplicationCommandExecute); }
-        }
-
-        public bool CanShowApplicationCommandExecute()
-        {
-            if (!IsApplicationVisible) return true;
-            return false;
-        }
-
-        public void ChangeAppVisibilityCommandExecute()
-        {
-            IsApplicationVisible = !IsApplicationVisible;
+            get { return new RelayCommand((() => { IsApplicationVisible = !IsApplicationVisible; }), (() => { return !IsApplicationVisible; })); }
         }
 
         public ICommand HideApplicationCommand
         {
-            get { return new RelayCommand(ChangeAppVisibilityCommandExecute, CanHideApplicationCommandExecute); }
-        }
-
-        public bool CanHideApplicationCommandExecute()
-        {
-            if (IsApplicationVisible) return true;
-            return false;
+            get { return new RelayCommand((() => { IsApplicationVisible = !IsApplicationVisible; }), (() => { return IsApplicationVisible; })); }
         }
 
         public ICommand KillAppCommand

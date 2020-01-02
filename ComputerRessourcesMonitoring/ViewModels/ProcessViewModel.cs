@@ -13,8 +13,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
 {
     public class ProcessViewModel : NotifyPropertyChanged
     {
-        public delegate void OnProcessNameChanged(ProcessViewModel processViewModel);
-        public event OnProcessNameChanged OnProcessNameChangedEvent;
+        public event EventHandler OnProcessNameChangedEvent;
+        public bool WasInitialized { get; set; }
 
         public ProcessViewModel(bool check4PacketExchange)
         {
@@ -42,7 +42,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
                     }
                 }
             }
-            OnProcessNameChangedEvent += (OnProcessNameChanged) prospectiveHandler;
+            OnProcessNameChangedEvent +=  (EventHandler)prospectiveHandler;
         }
 
         #region Properties
@@ -59,8 +59,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 RaisePropertyChanged(nameof(ProcessName));
             }
         }
-
-        public bool WasInitialized { get; set; }
 
         private bool _isRunning;
         public bool IsRunning
@@ -99,7 +97,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public ICommand ChangeWatchdogTargetCommand
         {
-            get { return new RelayCommand(() => { OnProcessNameChangedEvent(this); }, CanChangeWatchdogTargetCommandExecute); }
+            get { return new RelayCommand(() => { OnProcessNameChangedEvent(this, EventArgs.Empty); }, CanChangeWatchdogTargetCommandExecute); }
         }
 
         public bool CanChangeWatchdogTargetCommandExecute()

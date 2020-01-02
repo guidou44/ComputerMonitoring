@@ -50,7 +50,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         ~WatchdogSettingsDialogViewModel()
         {
-            foreach (var mvm in MonitoringOptionsCollection) mvm.SelectionChangedEvent -= SetMonitoringDictionary;
+            MonitoringOptionsCollection.ToList().ForEach(MVM => MVM.SelectionChangedEvent -= SetMonitoringDictionary);
+            ProcessesUnderWatch.ToList().ForEach(PUW => PUW.OnProcessNameChangedEvent -= OnWatchdogTargetChanged);
         }
 
         #endregion
@@ -121,11 +122,10 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Watchdog Methods
 
-        private void OnWatchdogTargetChanged(ProcessViewModel processViewModel)
+        private void OnWatchdogTargetChanged(object sender, EventArgs e)
         {
-            var processVM = ProcessesUnderWatch.Where(PUW => PUW == processViewModel).SingleOrDefault();
+            var processVM = ProcessesUnderWatch.Where(PUW => PUW == (ProcessViewModel)sender).SingleOrDefault();
             processVM.Process = _watchdog.GetProcessesByName(processVM.ProcessName).FirstOrDefault();
-            ProcessesUnderWatch.ToList().ForEach(P => P.OnProcessNameChangedEvent -= OnWatchdogTargetChanged);
             _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(ProcessesUnderWatch);
         }
 
@@ -202,6 +202,25 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 _processesUnderWatch = value;
                 RaisePropertyChanged(nameof(ProcessesUnderWatch));
             }
+        }
+
+        #endregion
+
+        #region Commands
+
+        public ICommand AddToWatchdogCollectionCommand
+        {
+            get { return new RelayCommand(AddToWatchdogCollectionCommandExecute, (() => { return ProcessesUnderWatch.Count() < 7; })); }        
+        }
+
+        public void AddToWatchdogCollectionCommandExecute()
+        {
+
+        }
+
+        public ICommand RemoveToWatchdogCollectionCommand
+        {
+            get { return new RelayCommand((() => ProcessesUnderWatch.Remove(ProcessesUnderWatch.Last())), (() => { return ProcessesUnderWatch.Count() > 0; })); }
         }
 
 

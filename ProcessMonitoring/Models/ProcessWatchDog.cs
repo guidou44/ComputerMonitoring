@@ -44,7 +44,7 @@ namespace ProcessMonitoring.Models
         private void OnPacketArrival_Send(object sender, CaptureEventArgs e, Process process)
         {
             var len = e.Packet.Data.Length;
-            var guiltyProcess = _packetCaptureProcessesInfo.Where(PCP => PCP.Process.Id == process.Id).SingleOrDefault();
+            var guiltyProcess = _packetCaptureProcessesInfo.Where(PCP => PCP.Process.Id == process.Id).FirstOrDefault();
             guiltyProcess.NetSendBytes += len;
             guiltyProcess.SentCaptureFileWriter.Write(e.Packet);
         }
@@ -63,7 +63,7 @@ namespace ProcessMonitoring.Models
         private void OnPacketArrival_Recv(object sender, CaptureEventArgs e, Process process)
         {
             var len = e.Packet.Data.Length;
-            var guiltyProcess = _packetCaptureProcessesInfo.Where(PCP => PCP.Process.Id == process.Id).SingleOrDefault();
+            var guiltyProcess = _packetCaptureProcessesInfo.Where(PCP => PCP.Process.Id == process.Id).FirstOrDefault();
             guiltyProcess.NetRecvBytes += len;
             guiltyProcess.ReceivedCaptureFileWriter.Write(e.Packet);
         }
@@ -160,7 +160,7 @@ namespace ProcessMonitoring.Models
                 _packetCaptureProcessInfo.NetTotalBytes = 0;
                 await Task.Delay(900);
                 _packetCaptureProcessInfo.NetTotalBytes = _packetCaptureProcessInfo.NetRecvBytes + _packetCaptureProcessInfo.NetSendBytes;
-                if (_packetCaptureProcessInfo.NetTotalBytes > 0) PacketsExchangedEvent(_packetCaptureProcessInfo);
+                if (_packetCaptureProcessInfo.NetTotalBytes > 0) PacketsExchangedEvent?.Invoke(_packetCaptureProcessInfo);
             }
         }
 
