@@ -80,16 +80,19 @@ namespace Common.UI.DialogServices
         {
             return Application.Current.Dispatcher.Invoke(new Func<bool?>(() => 
             { 
-            var messageVm = new MessageViewModel(message);
-            bool? result = ShowDialog(messageVm);
-            return result;
+                var messageVm = new MessageViewModel(message);
+                bool? result = ShowDialog(messageVm);
+                return result;
             }));
         }
 
         public void ShowException(Exception e)
         {
-            var errorMessageVm = new ErrorMessageViewModel(e);
-            bool? result = ShowDialog(errorMessageVm);
+            Application.Current.Dispatcher.Invoke((Action)delegate
+            {
+                var errorMessageVm = new ErrorMessageViewModel(e);
+                bool? result = ShowDialog(errorMessageVm);
+            });
         }
     }
 }
