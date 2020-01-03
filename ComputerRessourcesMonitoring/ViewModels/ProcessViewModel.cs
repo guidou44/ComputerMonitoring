@@ -16,9 +16,10 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public event EventHandler OnProcessNameChangedEvent;
         public bool WasInitialized { get; set; }
 
-        public ProcessViewModel(bool check4PacketExchange)
+        public ProcessViewModel(bool check4PacketExchange, string processName)
         {
             Check4PacketExchange = check4PacketExchange;
+            ProcessName = processName;
         }
 
         public override string ToString()

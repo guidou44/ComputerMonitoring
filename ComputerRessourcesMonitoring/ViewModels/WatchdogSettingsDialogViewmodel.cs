@@ -37,7 +37,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             //watchdog---------
             _watchdog = watchdog;
-            ProcessesUnderWatch = watchdogProcesses;
+            ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(watchdogProcesses);
             ProcessesUnderWatch.ToList().ForEach(PUW => PUW.OnProcessNameChangedEvent += OnWatchdogTargetChanged);
 
             //Monitoring-------
@@ -210,19 +210,25 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public ICommand AddToWatchdogCollectionCommand
         {
-            get { return new RelayCommand(AddToWatchdogCollectionCommandExecute, (() => { return ProcessesUnderWatch.Count() < 7; })); }        
-        }
+            get { return new RelayCommand((() => 
+            {
+                var newProcessVm = new ProcessViewModel(true, "#NAME# ENTER2APPLY");
+                newProcessVm.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
+                ProcessesUnderWatch.Add(newProcessVm); 
 
-        public void AddToWatchdogCollectionCommandExecute()
-        {
-
+            }), 
+            (() => { return ProcessesUnderWatch.Count() < 7; })); }        
         }
 
         public ICommand RemoveToWatchdogCollectionCommand
         {
-            get { return new RelayCommand((() => ProcessesUnderWatch.Remove(ProcessesUnderWatch.Last())), (() => { return ProcessesUnderWatch.Count() > 0; })); }
+            get { return new RelayCommand((() => 
+            { 
+                ProcessesUnderWatch.Remove(ProcessesUnderWatch.Last()); 
+                _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(ProcessesUnderWatch);
+            }), 
+            (() => { return ProcessesUnderWatch.Count() > 0; })); }
         }
-
 
         #endregion
 

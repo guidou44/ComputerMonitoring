@@ -42,11 +42,20 @@
                             </Border>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.4"/>
-                                <Setter TargetName="ButtonContentTemplate" Property="Margin" Value="1"/>
-                                <Setter TargetName="ButtonContentTemplate" Property="FontSize" Value="18"/>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.5"/>
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="Gray"/>
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="DarkGray"/>
+                                <Setter TargetName="ButtonContentTemplate" Property="Foreground" Value="DarkGray"/>
+                                <Setter TargetName="ButtonContentTemplate" Property="Background" Value="Transparent"/>
                             </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsEnabled" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.4"/>
+                            </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>

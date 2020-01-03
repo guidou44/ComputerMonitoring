@@ -60,10 +60,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
             foreach (var initialProcess in _INITIAL_PROCESSES_UNDER_WATCH)
             {
                 var process = _watchdog.GetProcessesByName(initialProcess).FirstOrDefault();
-                var processVM = new ProcessViewModel(true)
+                var processVM = new ProcessViewModel(true, initialProcess)
                 {
                     Process = process,
-                    ProcessName = initialProcess
                 };
                 ProcessesUnderWatch.Add(processVM);
             }

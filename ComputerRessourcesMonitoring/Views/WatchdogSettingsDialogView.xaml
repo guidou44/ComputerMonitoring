@@ -62,7 +62,7 @@
                                     <Condition Property="IsEnabled" Value="True"/>
                                 </MultiTrigger.Conditions>
                                 <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.4"/>
-                                <Setter TargetName="ButtonContentTemplate" Property="Margin" Value="1"/>
+                                <!--<Setter TargetName="ButtonContentTemplate" Property="Margin" Value="1"/>-->
                             </MultiTrigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -172,7 +172,7 @@
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
                                 <TextBox x:Name="target_process" 
-                                             Text="{Binding ProcessName, UpdateSourceTrigger=LostFocus}" 
+                                             Text="{Binding ProcessName, UpdateSourceTrigger=PropertyChanged}" 
                                              Margin="10 10 0 0"
                                              MinWidth="200"
                                              BorderBrush="{x:Null}"
