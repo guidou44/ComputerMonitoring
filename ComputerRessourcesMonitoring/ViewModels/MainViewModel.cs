@@ -95,6 +95,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             try
             {
+
                 var valuesQueue = _manager.GetCalculatedValues(_monitoringTargets);
                 HardwareValues = new ObservableCollection<HardwareInformation>(valuesQueue);
                 ManageWatchdog();

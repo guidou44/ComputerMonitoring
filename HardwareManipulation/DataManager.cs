@@ -43,7 +43,15 @@ namespace HardwareManipulation
             var output = new Queue<HardwareInformation>();
             foreach (var target in targets)
             {
-                output.Enqueue(GetCalculatedValue(target));
+                try
+                {
+                    output.Enqueue(GetCalculatedValue(target));
+                }
+                catch (Exception e)
+                {
+                    output.Enqueue(new HardwareInformation() { MainValue = 0, UnitSymbol = $"COM ERR: {target.ToString()}", ShortName="ERR"});
+                    continue;
+                }
             }
 
             HashSet<MonitoringTarget> notUsedTargets = _target2connector.Select(T2C => T2C.Key.TargetType).Except(targets).ToHashSet();

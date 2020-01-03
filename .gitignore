@@ -3,6 +3,9 @@
 *.sln.docstates
 *.cache
 *.pcap
+*.ide-wal
+*.ide-shm
+.vs/
 
 
 ReporterConfiguration.xml
