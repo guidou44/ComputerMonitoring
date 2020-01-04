@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareManipulation.ServerDTOs.Models
+namespace HardwareAccess.ServerDTOs.Models
 {
     public class ResourceTypeDTO
     {

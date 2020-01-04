@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using HardwareManipulation.Enums;
-using HardwareManipulation.Models;
+using HardwareAccess.Enums;
+using HardwareAccess.Models;
 using OpenHardwareMonitor.Hardware;
 
-namespace HardwareManipulation.Connectors
+namespace HardwareAccess.Connectors
 {
     public class SystemIO_Connector : ConnectorBase
     {

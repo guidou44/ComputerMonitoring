@@ -2,7 +2,7 @@
 using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
 using ComputerRessourcesMonitoring.Events;
-using HardwareManipulation.Models;
+using HardwareAccess.Models;
 using ProcessMonitoring.Models;
 using System;
 using System.Collections.Generic;
@@ -11,9 +11,11 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Input;
 using Common.UI.ViewModels;
-using HardwareManipulation.Enums;
-using HardwareManipulation;
+using HardwareAccess.Enums;
+using HardwareAccess;
 using System.Collections.ObjectModel;
+using ProcessMonitoring;
+using Common.Helpers;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -21,7 +23,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
     {
         #region constructor
 
-        private static readonly List<string> _INITIAL_PROCESSES_UNDER_WATCH = new List<string>() { "USBHelperLauncher", "ServerBackupService" };
         private DataManager _manager;
         private Queue<MonitoringTarget> _monitoringTargets;
         private Timer _monitoringRefreshCounter;
@@ -29,17 +30,12 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public MainViewModel(IDialogService dialogService) : base (dialogService)
         {
-            _manager = new DataManager();
-
-            
-
             IsApplicationVisible = true;
             _dialogService = dialogService;
-
+            _manager = new DataManager();
             _monitoringTargets = new Queue<MonitoringTarget>();
-            _monitoringTargets.Enqueue(MonitoringTarget.CPU_Load);
-            _monitoringTargets.Enqueue(MonitoringTarget.GPU_Temp);
-            _monitoringTargets.Enqueue(MonitoringTarget.Server_CPU_Load);
+            var initialTargets = _manager.GetInitialTargets();
+            initialTargets.ToList().ForEach(TARGET => _monitoringTargets.Enqueue(TARGET));
 
             InitializeWatchdog();
             RefreshMonitoring();
@@ -50,14 +46,14 @@ namespace ComputerRessourcesMonitoring.ViewModels
         #endregion
 
 
-        #region Methods
+        #region Private Methods
 
         private void InitializeWatchdog()
         {
             _watchdog = new ProcessWatchDog();
             _watchdog.PacketsExchangedEvent += ReportPacketExchange;
             ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>();
-            foreach (var initialProcess in _INITIAL_PROCESSES_UNDER_WATCH)
+            foreach (var initialProcess in _watchdog.GetInitialProcesses2Watch())
             {
                 var process = _watchdog.GetProcessesByName(initialProcess).FirstOrDefault();
                 var processVM = new ProcessViewModel(true, initialProcess)
@@ -120,7 +116,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
                             ));
         }
 
-        protected void SetMonitoringCounter(int counterTimeMilliseconds)
+        private void SetMonitoringCounter(int counterTimeMilliseconds)
         {
             _monitoringRefreshCounter = new Timer(counterTimeMilliseconds);
             _monitoringRefreshCounter.Elapsed += OnCounterCompletionEvent;

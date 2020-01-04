@@ -1,9 +1,10 @@
 ﻿using Common.Helpers;
 using Common.Reports;
-using HardwareManipulation.Connectors;
-using HardwareManipulation.Enums;
-using HardwareManipulation.Factories;
-using HardwareManipulation.Models;
+using HardwareAccess.Connectors;
+using HardwareAccess.Enums;
+using HardwareAccess.Exceptions;
+using HardwareAccess.Factories;
+using HardwareAccess.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,19 +14,21 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareManipulation
+namespace HardwareAccess
 {
     public class DataManager
     {
         #region Constructor
 
+        private IEnumerable<MonitoringTarget> _initialMonitoringTargets;
         private IDictionary<ComputerRessource, ConnectorBase> _target2connector;
-        private const string XML_CONFIG_PATH = @".\Configuration\MonitoringConfiguration.cfg";
+        private const string _XML_CONFIG_PATH = @".\Configuration\MonitoringConfiguration.cfg";
 
 
         public DataManager()
         {
-            SetTargetDict();
+            SetMonitoringTargets();
+            SetAvailableTargets_Internal();
         }
 
         #endregion
@@ -53,32 +56,38 @@ namespace HardwareManipulation
                 }
             }
 
-            HashSet<MonitoringTarget> notUsedTargets = _target2connector.Where(T2C => T2C.Value != null).Select(T2C => T2C.Key.TargetType).Except(targets).ToHashSet();
-            foreach (var nonTarget in notUsedTargets) //CleanUp
-            {
-                var correspondingKey = _target2connector.Where(T2C => T2C.Key.TargetType == nonTarget).SingleOrDefault().Key;
-                _target2connector[correspondingKey] = null;
-            }
+            //CleanUp
+            var notUsedTargets = _target2connector.Where(T2C => T2C.Value != null && !targets.Contains(T2C.Key.TargetType))
+                                                  .ToDictionary(T2C => T2C.Key, T2C => T2C.Value)
+                                                  .Keys
+                                                  .ToList();
+
+            foreach (var nonTarget in notUsedTargets) _target2connector[nonTarget] = null;
             return output;
         }
 
-        public IEnumerable<MonitoringTarget> GetAllTargets(bool checkAvailability = false)
+        public IEnumerable<MonitoringTarget> GetAllTargets()
         {
-            var allTargets = _target2connector.Where(TAR => (!TAR.Key.ExcludeFromMonitoring ?? true));
-            if(!checkAvailability) return allTargets.Select(TAR => TAR.Key.TargetType);
-            return GetAvailableTargets_Internal(allTargets);
+            return GetAvailableTargets_Internal().Where(TAR => (!TAR.Key.ExcludeFromMonitoring ?? true)).Select(TAR => TAR.Key.TargetType);
         }
 
-        public IEnumerable<MonitoringTarget> GetLocalTargets(bool checkAvailability = false)
+        public IEnumerable<MonitoringTarget> GetInitialTargets()
         {
-            var localTargets = _target2connector.Where(TAR => !TAR.Key.IsRemote && (!TAR.Key.ExcludeFromMonitoring ?? true));
-            if (!checkAvailability) return localTargets.Select(TAR => TAR.Key.TargetType);
-            return GetAvailableTargets_Internal(localTargets);
+            return _target2connector.Where(T2C => _initialMonitoringTargets
+                                    .Contains(T2C.Key.TargetType) && T2C.Key.Com_Error == null)
+                                    .Select(T2C => T2C.Key.TargetType);
+        }
+
+        public IEnumerable<MonitoringTarget> GetLocalTargets()
+        {
+            return GetAvailableTargets_Internal().Where(TAR => !TAR.Key.IsRemote && (!TAR.Key.ExcludeFromMonitoring ?? true))
+                                                 .Select(TAR => TAR.Key.TargetType);
         }
 
         public IEnumerable<MonitoringTarget> GetRemoteTargets()
         {
-            return _target2connector.Where(TAR => TAR.Key.IsRemote && (!TAR.Key.ExcludeFromMonitoring ?? true)).Select(TAR => TAR.Key.TargetType);
+            return GetAvailableTargets_Internal().Where(TAR => TAR.Key.IsRemote && (!TAR.Key.ExcludeFromMonitoring ?? true))
+                                                 .Select(TAR => TAR.Key.TargetType);
         }
 
         public bool IsRemoteMonitoringEnabled()
@@ -95,29 +104,33 @@ namespace HardwareManipulation
 
         #region Private Methods
 
-        private IEnumerable<MonitoringTarget> GetAvailableTargets_Internal(IEnumerable<KeyValuePair<ComputerRessource, ConnectorBase>> targets)
+        private IDictionary<ComputerRessource, ConnectorBase> GetAvailableTargets_Internal()
         {
-            ICollection<MonitoringTarget> availableTargets = new HashSet<MonitoringTarget>();
-            foreach (var target in targets)
+            return _target2connector.Where(T2C => T2C.Key.Com_Error == null).ToDictionary(T2C => T2C.Key, T2C => T2C.Value);
+        }
+
+        private void SetAvailableTargets_Internal()
+        {
+            IEnumerable<ComputerRessource> t2CKeys;
+            t2CKeys = (IsRemoteMonitoringEnabled()) ? _target2connector.Keys.ToList() : _target2connector.Where(T2C => !T2C.Key.IsRemote).Select(T2C => T2C.Key).ToList();
+
+            foreach (var target in t2CKeys)
             {
                 try
                 {
-                    var testValue = GetCalculatedValue(target.Key.TargetType);
-                    if (testValue != null) availableTargets.Add(target.Key.TargetType);
+                    var testValue = GetCalculatedValue(target.TargetType);
+                    if (testValue == null) throw new HardwareCommunicationException(target.TargetType);
                 }
-                catch (Exception) { }
+                catch (Exception e) { _target2connector.SingleOrDefault(T2C => T2C.Key == target).Key.Com_Error = e; }
             }
-            return availableTargets;
         }
 
-        private void SetTargetDict()
+        private void SetMonitoringTargets()
         {
             _target2connector = new Dictionary<ComputerRessource, ConnectorBase>();
-            var ressourceCollection = XmlHelper.DeserializeConfiguration<RessourceCollection>(XML_CONFIG_PATH);
-            foreach (var ressource in ressourceCollection.Ressources)
-            {
-                _target2connector.Add(ressource, null);
-            }
+            var ressourceCollection = XmlHelper.DeserializeConfiguration<RessourceCollection>(_XML_CONFIG_PATH);
+            foreach (var ressource in ressourceCollection.Ressources) _target2connector.Add(ressource, null);
+            _initialMonitoringTargets = ressourceCollection.InitialTargets;
         }
 
         private bool TryPing(string ipAddress)

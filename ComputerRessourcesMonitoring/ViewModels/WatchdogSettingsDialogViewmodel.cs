@@ -4,19 +4,15 @@ using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
 using Common.UI.ViewModels;
 using ComputerRessourcesMonitoring.Events;
-using HardwareManipulation;
-using HardwareManipulation.Connectors;
-using HardwareManipulation.Enums;
-using HardwareManipulation.Models;
+using HardwareAccess;
+using HardwareAccess.Enums;
 using Prism.Events;
-using ProcessMonitoring.Models;
+using ProcessMonitoring;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
 using System.Windows.Input;
 
 namespace ComputerRessourcesMonitoring.ViewModels
@@ -71,8 +67,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
             MonitoringOptionsCollection = new ObservableCollection<MonitoringTargetViewModel>();
             targetDict = new Dictionary<MonitoringTarget, bool>();
             IEnumerable<MonitoringTarget> targetOptions;
-            if (_manager.IsRemoteMonitoringEnabled()) targetOptions = _manager.GetAllTargets(checkAvailability: true);
-            else targetOptions = _manager.GetLocalTargets(checkAvailability: true);
+            if (_manager.IsRemoteMonitoringEnabled()) targetOptions = _manager.GetAllTargets();
+            else targetOptions = _manager.GetLocalTargets();
 
             foreach (var targetOption in targetOptions)
             {

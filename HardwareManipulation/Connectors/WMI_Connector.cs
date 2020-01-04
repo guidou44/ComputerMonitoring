@@ -1,6 +1,6 @@
 ﻿using Common.Helpers;
-using HardwareManipulation.Enums;
-using HardwareManipulation.Models;
+using HardwareAccess.Enums;
+using HardwareAccess.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HardwareManipulation.Connectors
+namespace HardwareAccess.Connectors
 {
     public class WMI_Connector : ConnectorBase
     {

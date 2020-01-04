@@ -1,4 +1,4 @@
-﻿using HardwareManipulation.Models;
+﻿using HardwareAccess.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,9 +6,9 @@ using NvAPIWrapper;
 using NvAPIWrapper.Display;
 using NvAPIWrapper.GPU;
 using NvAPIWrapper.Mosaic;
-using HardwareManipulation.Enums;
+using HardwareAccess.Enums;
 
-namespace HardwareManipulation.Connectors
+namespace HardwareAccess.Connectors
 {
     public class NVDIA_API_Connector : ConnectorBase
     {

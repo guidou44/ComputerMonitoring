@@ -1,6 +1,6 @@
-﻿using HardwareManipulation.Enums;
-using HardwareManipulation.Models;
-using HardwareManipulation.ServerDTOs.Models;
+﻿using HardwareAccess.Enums;
+using HardwareAccess.Models;
+using HardwareAccess.ServerDTOs.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareManipulation.Connectors
+namespace HardwareAccess.Connectors
 {
     public class ASPNET_API_Connector : ConnectorBase
     {

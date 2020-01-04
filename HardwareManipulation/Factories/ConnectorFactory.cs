@@ -1,11 +1,11 @@
-﻿using HardwareManipulation.Connectors;
+﻿using HardwareAccess.Connectors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareManipulation.Factories
+namespace HardwareAccess.Factories
 {
     public static class ConnectorFactory
     {

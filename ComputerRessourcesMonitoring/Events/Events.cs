@@ -1,6 +1,6 @@
 ﻿
 using ComputerRessourcesMonitoring.ViewModels;
-using HardwareManipulation.Enums;
+using HardwareAccess.Enums;
 using Prism.Events;
 using System;
 using System.Collections.Generic;

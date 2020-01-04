@@ -78,7 +78,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             get { return _isRunning; }
             set 
             {
-#if !DEBUG
+#if !LOCAL
                 if (!_isRunning && value) Reporter.SendEmailReport(
                     subject: $"ALARM: Detected process start for {Process.ProcessName}",
                     message: $"Activity detected report:\n" +
