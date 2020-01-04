@@ -78,6 +78,7 @@ namespace Common.UI.DialogServices
 
         public bool? ShowMessageBox(string message)
         {
+
             var messageVm = new MessageViewModel(message);
             bool? result = ShowDialog(messageVm);
             return result;
@@ -85,8 +86,11 @@ namespace Common.UI.DialogServices
 
         public void ShowException(Exception e)
         {
-            var errorMessageVm = new ErrorMessageViewModel(e);
-            bool? result = ShowDialog(errorMessageVm);
+            Application.Current.Dispatcher.Invoke((Action)delegate
+            {
+                var errorMessageVm = new ErrorMessageViewModel(e);
+                bool? result = ShowDialog(errorMessageVm);
+            });
         }
     }
 }

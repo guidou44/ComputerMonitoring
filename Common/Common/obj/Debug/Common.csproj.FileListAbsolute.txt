@@ -29,3 +29,16 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debu
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\Common.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Debug\Common.csprojAssemblyReference.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\Common.csprojAssemblyReference.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\Common.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\Common.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\bin\Debug\Common.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\bin\Debug\Common.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\ErrorMessageView.g.cs
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\MessageView.g.cs
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\Common_MarkupCompile.cache
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\Common_MarkupCompile.lref
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\ErrorMessageView.baml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\MessageView.baml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\Common.g.resources
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\Common.csproj.CopyComplete

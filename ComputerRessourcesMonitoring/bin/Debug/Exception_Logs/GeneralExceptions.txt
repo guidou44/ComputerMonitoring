@@ -5187,3 +5187,48 @@ Stacktrace:    at ComputerRessourcesMonitoring.ViewModels.ProcessViewModel.<get_
    at Common.UI.DialogServices.DialogService.ShowDialog[TViewModel](TViewModel viewModel) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\UI\DialogServices\DialogService.cs:line 76
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenSettingsWindowCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 215
 
+
+*************************Exception******************************
+DateTime: 03-01-2020 16:03:49
+Type: System.InvalidOperationException
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified; enumeration operation may not execute.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Dictionary`2.Enumerator.MoveNext()
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 60
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
+
+*************************Exception******************************
+DateTime: 03-01-2020 16:05:25
+Type: System.InvalidOperationException
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified; enumeration operation may not execute.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Dictionary`2.Enumerator.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.<ExceptIterator>d__73`1.MoveNext()
+   at System.Collections.Generic.HashSet`1.UnionWith(IEnumerable`1 other)
+   at System.Collections.Generic.HashSet`1..ctor(IEnumerable`1 collection, IEqualityComparer`1 comparer)
+   at System.Linq.Enumerable.ToHashSet[TSource](IEnumerable`1 source, IEqualityComparer`1 comparer)
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 57
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+
+
+*************************Exception******************************
+DateTime: 03-01-2020 16:15:54
+Type: System.InvalidOperationException
+Source: mscorlib
+TargetSite: Void ThrowInvalidOperationException(System.ExceptionResource)
+Message: Collection was modified; enumeration operation may not execute.
+Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
+   at System.Collections.Generic.Dictionary`2.Enumerator.MoveNext()
+   at System.Linq.Enumerable.WhereEnumerableIterator`1.MoveNext()
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source)
+   at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 60
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
+

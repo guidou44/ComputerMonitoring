@@ -22,9 +22,6 @@ C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\De
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.ValueTuple.dll
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\Common.pdb
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\Prism.pdb
-C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\Prism.xml
-C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.ValueTuple.xml
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.csprojAssemblyReference.cache
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.csproj.CopyComplete
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ProcessMonitoring\obj\Debug\ProcessMonitoring.dll

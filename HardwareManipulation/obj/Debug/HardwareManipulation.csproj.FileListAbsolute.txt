@@ -27,3 +27,12 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\b
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\System.Net.Http.Formatting.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\Newtonsoft.Json.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\Common.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\Newtonsoft.Json.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\OpenHardwareMonitorLib.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\Prism.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\System.ValueTuple.dll
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\Common.pdb
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\Newtonsoft.Json.xml
+C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\bin\Debug\System.Net.Http.Formatting.xml
