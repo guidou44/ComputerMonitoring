@@ -15,7 +15,7 @@ using HardwareAccess.Enums;
 using HardwareAccess;
 using System.Collections.ObjectModel;
 using ProcessMonitoring;
-using Common.Helpers;
+using System.Threading;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -25,8 +25,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private DataManager _manager;
         private Queue<MonitoringTarget> _monitoringTargets;
-        private Timer _monitoringRefreshCounter;
+        private System.Timers.Timer _monitoringRefreshCounter;
         private ProcessWatchDog _watchdog;
+        private Thread _watchdogThread;
 
         public MainViewModel(IDialogService dialogService) : base (dialogService)
         {
@@ -62,6 +63,15 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 };
                 ProcessesUnderWatch.Add(processVM);
             }
+            Thread _watchdogThread = new Thread(() =>
+            {
+                while (true)
+                {
+                    ManageWatchdog();
+                    Thread.Sleep(1000);
+                }
+            });
+            _watchdogThread.Start();
         }
 
         private void ManageWatchdog()
@@ -94,7 +104,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
                 var valuesQueue = _manager.GetCalculatedValues(_monitoringTargets);
                 HardwareValues = new ObservableCollection<HardwareInformation>(valuesQueue);
-                ManageWatchdog();
             }
             catch (Exception e)
             {
@@ -118,7 +127,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private void SetMonitoringCounter(int counterTimeMilliseconds)
         {
-            _monitoringRefreshCounter = new Timer(counterTimeMilliseconds);
+            _monitoringRefreshCounter = new System.Timers.Timer(counterTimeMilliseconds);
             _monitoringRefreshCounter.Elapsed += OnCounterCompletionEvent;
             _monitoringRefreshCounter.AutoReset = true;
             _monitoringRefreshCounter.Enabled = true;
