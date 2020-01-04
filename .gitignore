@@ -5,6 +5,7 @@
 *.pcap
 *.ide-wal
 *.ide-shm
+*.ide
 *.pdb
 ReporterConfiguration.xml
 ComputerRessourcesMonitoring/.vs/*
