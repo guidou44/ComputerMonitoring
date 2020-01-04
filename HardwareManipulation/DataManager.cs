@@ -50,11 +50,10 @@ namespace HardwareManipulation
                 catch (Exception e)
                 {
                     output.Enqueue(new HardwareInformation() { MainValue = 0, UnitSymbol = $"COM ERR: {target.ToString()}", ShortName="ERR"});
-                    continue;
                 }
             }
 
-            HashSet<MonitoringTarget> notUsedTargets = _target2connector.Select(T2C => T2C.Key.TargetType).Except(targets).ToHashSet();
+            HashSet<MonitoringTarget> notUsedTargets = _target2connector.Where(T2C => T2C.Value != null).Select(T2C => T2C.Key.TargetType).Except(targets).ToHashSet();
             foreach (var nonTarget in notUsedTargets) //CleanUp
             {
                 var correspondingKey = _target2connector.Where(T2C => T2C.Key.TargetType == nonTarget).SingleOrDefault().Key;
@@ -63,14 +62,18 @@ namespace HardwareManipulation
             return output;
         }
 
-        public IEnumerable<MonitoringTarget> GetAllTargets()
+        public IEnumerable<MonitoringTarget> GetAllTargets(bool checkAvailability = false)
         {
-            return _target2connector.Where(TAR => (!TAR.Key.ExcludeFromMonitoring ?? true)).Select(TAR => TAR.Key.TargetType);
+            var allTargets = _target2connector.Where(TAR => (!TAR.Key.ExcludeFromMonitoring ?? true));
+            if(!checkAvailability) return allTargets.Select(TAR => TAR.Key.TargetType);
+            return GetAvailableTargets_Internal(allTargets);
         }
 
-        public IEnumerable<MonitoringTarget> GetLocalTargets()
+        public IEnumerable<MonitoringTarget> GetLocalTargets(bool checkAvailability = false)
         {
-            return _target2connector.Where(TAR => !TAR.Key.IsRemote && (!TAR.Key.ExcludeFromMonitoring ?? true)).Select(TAR => TAR.Key.TargetType);
+            var localTargets = _target2connector.Where(TAR => !TAR.Key.IsRemote && (!TAR.Key.ExcludeFromMonitoring ?? true));
+            if (!checkAvailability) return localTargets.Select(TAR => TAR.Key.TargetType);
+            return GetAvailableTargets_Internal(localTargets);
         }
 
         public IEnumerable<MonitoringTarget> GetRemoteTargets()
@@ -91,6 +94,21 @@ namespace HardwareManipulation
         #endregion
 
         #region Private Methods
+
+        private IEnumerable<MonitoringTarget> GetAvailableTargets_Internal(IEnumerable<KeyValuePair<ComputerRessource, ConnectorBase>> targets)
+        {
+            ICollection<MonitoringTarget> availableTargets = new HashSet<MonitoringTarget>();
+            foreach (var target in targets)
+            {
+                try
+                {
+                    var testValue = GetCalculatedValue(target.Key.TargetType);
+                    if (testValue != null) availableTargets.Add(target.Key.TargetType);
+                }
+                catch (Exception) { }
+            }
+            return availableTargets;
+        }
 
         private void SetTargetDict()
         {

@@ -38,7 +38,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
             //watchdog---------
             _watchdog = watchdog;
             ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(watchdogProcesses);
-            ProcessesUnderWatch.ToList().ForEach(PUW => PUW.OnProcessNameChangedEvent += OnWatchdogTargetChanged);
+            ProcessesUnderWatch.ToList().ForEach(PUW => 
+            { 
+                PUW.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
+                PUW.OnProcessWatchRemoveEvent += OnWatchdogRemoveTarget;
+            });
 
             //Monitoring-------
             MaxAllowedMonTargets = monTargets.Count();
@@ -67,8 +71,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
             MonitoringOptionsCollection = new ObservableCollection<MonitoringTargetViewModel>();
             targetDict = new Dictionary<MonitoringTarget, bool>();
             IEnumerable<MonitoringTarget> targetOptions;
-            if (_manager.IsRemoteMonitoringEnabled()) targetOptions = _manager.GetAllTargets();
-            else targetOptions = _manager.GetLocalTargets();
+            if (_manager.IsRemoteMonitoringEnabled()) targetOptions = _manager.GetAllTargets(checkAvailability: true);
+            else targetOptions = _manager.GetLocalTargets(checkAvailability: true);
 
             foreach (var targetOption in targetOptions)
             {
@@ -122,6 +126,14 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Watchdog Methods
 
+        private void OnWatchdogRemoveTarget(object sender, EventArgs e)
+        {
+            var processVM = ProcessesUnderWatch.Where(PUW => PUW == (ProcessViewModel)sender).SingleOrDefault();
+            processVM.OnProcessWatchRemoveEvent -= OnWatchdogRemoveTarget;
+            ProcessesUnderWatch.Remove(processVM);
+            _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(ProcessesUnderWatch);
+        }
+
         private void OnWatchdogTargetChanged(object sender, EventArgs e)
         {
             var processVM = ProcessesUnderWatch.Where(PUW => PUW == (ProcessViewModel)sender).SingleOrDefault();
@@ -132,6 +144,18 @@ namespace ComputerRessourcesMonitoring.ViewModels
         #endregion
 
         #region Properties
+
+        private bool _canRemoveWatchdogTargets;
+        public bool CanRemoveWatchdogTargets
+        {
+            get { return _canRemoveWatchdogTargets; }
+            set 
+            { 
+                _canRemoveWatchdogTargets = value;
+                RaisePropertyChanged(nameof(CanRemoveWatchdogTargets));
+            }
+        }
+
 
         private string _cpuMake;
         public string CpuMake
@@ -169,7 +193,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
 
         private int _maxAllowedMonTargets;
-
         public int MaxAllowedMonTargets
         {
             get { return _maxAllowedMonTargets; }
@@ -193,7 +216,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
         }
 
         private ObservableCollection<ProcessViewModel> _processesUnderWatch;
-
         public ObservableCollection<ProcessViewModel> ProcessesUnderWatch
         {
             get { return _processesUnderWatch; }
@@ -214,22 +236,32 @@ namespace ComputerRessourcesMonitoring.ViewModels
             {
                 var newProcessVm = new ProcessViewModel(true, "#NAME# ENTER2APPLY");
                 newProcessVm.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
+                newProcessVm.OnProcessWatchRemoveEvent += OnWatchdogRemoveTarget;
                 ProcessesUnderWatch.Add(newProcessVm); 
 
             }), 
-            (() => { return ProcessesUnderWatch.Count() < 7; })); }        
+            (() => { return ProcessesUnderWatch.Count() < 7 && !CanRemoveWatchdogTargets; })); }        
         }
 
-        public ICommand RemoveToWatchdogCollectionCommand
+        public ICommand RemoveFromWatchdogCollectionCommand
         {
             get { return new RelayCommand((() => 
             { 
-                ProcessesUnderWatch.Remove(ProcessesUnderWatch.Last()); 
-                _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(ProcessesUnderWatch);
+                ProcessesUnderWatch.ToList().ForEach(PUW => PUW.CanRemoveProcessWatch = true);
+                CanRemoveWatchdogTargets = true;
             }), 
-            (() => { return ProcessesUnderWatch.Count() > 0; })); }
+                (() => { return ProcessesUnderWatch.Count() > 0; })); }
         }
 
+        public ICommand StopRemovingWatchdogProcessCommand
+        {
+            get { return new RelayCommand(() =>
+            {
+                ProcessesUnderWatch.ToList().ForEach(PUW => PUW.CanRemoveProcessWatch = false);
+                CanRemoveWatchdogTargets = false;
+            }); }
+        }
+        
         #endregion
 
     }

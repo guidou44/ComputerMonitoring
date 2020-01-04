@@ -19,6 +19,7 @@
         >
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVis" />
+        
         <Style x:Key="{x:Type Button}"
                TargetType="{x:Type Button}">
             <Setter Property="Template">
@@ -69,6 +70,61 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="RemoveButton"
+               TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="ButtonBorder"
+                                    BorderThickness="2" 
+                                    CornerRadius="7"
+                                    Height="15"
+                                    Width="15"
+                                    Margin="0" 
+                                    Padding="3"
+                                    Background="Transparent"
+                                    BorderBrush="DarkRed"
+                                    Opacity="0.9">
+
+                                <TextBlock x:Name="ButtonContentTemplate"
+                                               Text="-" 
+                                               FontSize="16"
+                                               FontFamily="Consola"
+                                               FontWeight="DemiBold"
+                                               Foreground="{Binding ElementName=ButtonBorder, Path=BorderBrush}"
+                                               Background="Transparent"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               Margin="0"
+                                               />
+
+                            </Border>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.5"/>
+                                <Setter TargetName="ButtonBorder" Property="Background" Value="Gray"/>
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="DarkGray"/>
+                                <Setter TargetName="ButtonContentTemplate" Property="Foreground" Value="DarkGray"/>
+                                <Setter TargetName="ButtonContentTemplate" Property="Background" Value="Transparent"/>
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="True"/>
+                                    <Condition Property="IsEnabled" Value="True"/>
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.4"/>
+                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="Red"/>
+                                <Setter TargetName="ButtonContentTemplate" Property="Foreground" Value="Red"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style TargetType="{x:Type CheckBox}" x:Key="CheckBoxStyle">
             <Setter Property="Template">
                 <Setter.Value>
@@ -171,6 +227,11 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal">
+                                <Button Margin="0"
+                                        VerticalAlignment="Center"
+                                        Command="{Binding RemoveProcessWatchCommand}"
+                                        Style="{StaticResource RemoveButton}"
+                                        Visibility="{Binding CanRemoveProcessWatch, Converter={StaticResource BoolToVis}, FallbackValue=Collaspsed}"/>
                                 <TextBox x:Name="target_process" 
                                              Text="{Binding ProcessName, UpdateSourceTrigger=PropertyChanged}" 
                                              Margin="10 10 0 0"
@@ -213,19 +274,39 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-                <StackPanel Orientation="Horizontal" Margin="0 10 0 0" HorizontalAlignment="Right" VerticalAlignment="Center">
-                    <Button Content="-" 
-                            Margin="0 0 10 0" 
-                            Width="18" 
-                            Background="#0f9900"
-                            Command="{Binding RemoveToWatchdogCollectionCommand}"/>
-                    <Button Content="+" 
-                            Margin="0" 
-                            Width="18" 
-                            Background="#0f9900"
-                            Command="{Binding AddToWatchdogCollectionCommand}"/>
-                </StackPanel>
-                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0 10 0 0" 
+                                HorizontalAlignment="Left" 
+                                VerticalAlignment="Center"
+                                Grid.Column="0">
+                        <Button Content="Done" 
+                                Margin="0 0 10 0" 
+                                Background="#0f9900"
+                                Command="{Binding StopRemovingWatchdogProcessCommand}"
+                                Visibility="{Binding CanRemoveWatchdogTargets, Converter={StaticResource BoolToVis}, FallbackValue=Collaspsed}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" 
+                                Margin="0 10 0 0" 
+                                HorizontalAlignment="Right" 
+                                VerticalAlignment="Center"
+                                Grid.Column="1">
+                        <Button Content="-" 
+                                Margin="0 0 10 0" 
+                                Width="18" 
+                                Background="#0f9900"
+                                Command="{Binding RemoveFromWatchdogCollectionCommand}"/>
+                        <Button Content="+" 
+                                Margin="0" 
+                                Width="18" 
+                                Background="#0f9900"
+                                Command="{Binding AddToWatchdogCollectionCommand}"/>
+                    </StackPanel>
+                </Grid>
                 <TextBlock      x:Name="MakeTextBlock"
                                 Background="Transparent"
                                 HorizontalAlignment="Left"

@@ -14,6 +14,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
     public class ProcessViewModel : NotifyPropertyChanged
     {
         public event EventHandler OnProcessNameChangedEvent;
+        public event EventHandler OnProcessWatchRemoveEvent;
         public bool WasInitialized { get; set; }
 
         public ProcessViewModel(bool check4PacketExchange, string processName)
@@ -48,16 +49,26 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Properties
 
-        public Process Process { get; set; }
-
-        private string _processName;
-        public string ProcessName
+        private bool _canRemoveProcessWatch;
+        public bool CanRemoveProcessWatch
         {
-            get { return _processName; }
+            get { return _canRemoveProcessWatch; }
+            set 
+            { 
+                _canRemoveProcessWatch = value;
+                RaisePropertyChanged(nameof(CanRemoveProcessWatch));
+            }
+        }
+
+        private bool _check4PacketExchange;
+        public bool Check4PacketExchange
+        {
+            get { return _check4PacketExchange; }
             set
             {
-                _processName = value;
-                RaisePropertyChanged(nameof(ProcessName));
+                _check4PacketExchange = value;
+                if (!_check4PacketExchange) WasInitialized = false;
+                RaisePropertyChanged(nameof(Check4PacketExchange));
             }
         }
 
@@ -80,15 +91,15 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        private bool _check4PacketExchange;
-        public bool Check4PacketExchange
+        public Process Process { get; set; }
+        private string _processName;
+        public string ProcessName
         {
-            get { return _check4PacketExchange; }
-            set 
-            { 
-                _check4PacketExchange = value;
-                if (!_check4PacketExchange) WasInitialized = false;
-                RaisePropertyChanged(nameof(Check4PacketExchange)); 
+            get { return _processName; }
+            set
+            {
+                _processName = value;
+                RaisePropertyChanged(nameof(ProcessName));
             }
         }
 
@@ -98,7 +109,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public ICommand ChangeWatchdogTargetCommand
         {
-            get { return new RelayCommand(() => { OnProcessNameChangedEvent(this, EventArgs.Empty); }, CanChangeWatchdogTargetCommandExecute); }
+            get { return new RelayCommand(() => { OnProcessNameChangedEvent?.Invoke(this, EventArgs.Empty); }, CanChangeWatchdogTargetCommandExecute); }
         }
 
         public bool CanChangeWatchdogTargetCommandExecute()
@@ -107,6 +118,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
             return false;
         }
 
+        public ICommand RemoveProcessWatchCommand
+        {
+            get { return new RelayCommand(() => { OnProcessWatchRemoveEvent?.Invoke(this, EventArgs.Empty); }); }
+        }
+        
         public ICommand ToggleWatchdogRunStateCommand
         {
             get { return new RelayCommand(() => { Check4PacketExchange = !Check4PacketExchange; }); }

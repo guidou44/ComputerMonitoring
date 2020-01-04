@@ -47,6 +47,7 @@ namespace ProcessMonitoring.Models
             var guiltyProcess = _packetCaptureProcessesInfo.Where(PCP => PCP.Process.Id == process.Id).FirstOrDefault();
             guiltyProcess.NetSendBytes += len;
             guiltyProcess.SentCaptureFileWriter.Write(e.Packet);
+            PacketsExchangedEvent?.Invoke(guiltyProcess);
         }
 
         private void CaptureIncomingPackets(string IP, int portID, ICaptureDevice device, Process process)
@@ -66,6 +67,7 @@ namespace ProcessMonitoring.Models
             var guiltyProcess = _packetCaptureProcessesInfo.Where(PCP => PCP.Process.Id == process.Id).FirstOrDefault();
             guiltyProcess.NetRecvBytes += len;
             guiltyProcess.ReceivedCaptureFileWriter.Write(e.Packet);
+            PacketsExchangedEvent?.Invoke(guiltyProcess);
         }
 
         public void SetProcessAndItsOpenPortsInfo(Process process)
@@ -151,16 +153,14 @@ namespace ProcessMonitoring.Models
             return true;
         }
 
-        public async void RefreshInfo()
+        public void RefreshInfo()
         {
-            foreach (var _packetCaptureProcessInfo in _packetCaptureProcessesInfo)
+            foreach (var packetCaptureProcessInfo in _packetCaptureProcessesInfo)
             {
-                _packetCaptureProcessInfo.NetRecvBytes = 0;
-                _packetCaptureProcessInfo.NetSendBytes = 0;
-                _packetCaptureProcessInfo.NetTotalBytes = 0;
-                await Task.Delay(900);
-                _packetCaptureProcessInfo.NetTotalBytes = _packetCaptureProcessInfo.NetRecvBytes + _packetCaptureProcessInfo.NetSendBytes;
-                if (_packetCaptureProcessInfo.NetTotalBytes > 0) PacketsExchangedEvent?.Invoke(_packetCaptureProcessInfo);
+                packetCaptureProcessInfo.NetRecvBytes = 0;
+                packetCaptureProcessInfo.NetSendBytes = 0;
+                packetCaptureProcessInfo.NetTotalBytes = 0;
+                packetCaptureProcessInfo.NetTotalBytes = packetCaptureProcessInfo.NetRecvBytes + packetCaptureProcessInfo.NetSendBytes;
             }
         }
 

@@ -65,10 +65,8 @@ C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonito
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Common.pdb
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\HardwareManipulation.pdb
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\ProcessMonitoring.pdb
-C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Hardcodet.Wpf.TaskbarNotification.pdb
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Hardcodet.Wpf.TaskbarNotification.xml
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Microsoft.Expression.Interactions.xml
-C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Prism.pdb
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\Prism.xml
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\System.ValueTuple.xml
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Debug\System.Windows.Interactivity.xml
