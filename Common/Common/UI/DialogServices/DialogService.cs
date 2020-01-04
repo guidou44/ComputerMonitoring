@@ -78,10 +78,12 @@ namespace Common.UI.DialogServices
 
         public bool? ShowMessageBox(string message)
         {
-
-            var messageVm = new MessageViewModel(message);
-            bool? result = ShowDialog(messageVm);
-            return result;
+            return Application.Current.Dispatcher.Invoke(new Func<bool?>(() => 
+            { 
+                var messageVm = new MessageViewModel(message);
+                bool? result = ShowDialog(messageVm);
+                return result;
+            }));
         }
 
         public void ShowException(Exception e)
