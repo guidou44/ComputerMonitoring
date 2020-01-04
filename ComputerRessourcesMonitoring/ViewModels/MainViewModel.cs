@@ -127,7 +127,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         private void SubscribeToEvents()
         {
             _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe((processesToWatch) => { ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(processesToWatch);});
-            _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe((targets) => { _monitoringTargets = targets; RefreshMonitoring(); });
+            _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe((targets) => {  _monitoringTargets = targets; RefreshMonitoring(); });
         }
 
         #endregion

@@ -43,8 +43,9 @@ namespace HardwareAccess
 
         public IEnumerable<HardwareInformation> GetCalculatedValues(IEnumerable<MonitoringTarget> targets)
         {
+            var _targets = new HashSet<MonitoringTarget>(targets); //let 
             var output = new Queue<HardwareInformation>();
-            foreach (var target in targets)
+            foreach (var target in _targets)
             {
                 try
                 {
