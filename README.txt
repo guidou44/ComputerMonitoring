@@ -1,4 +1,0 @@
-- Only work with windows
-- Only works with NVIDIA graphic cards, will probably break otherwise
-- Needs to be run as Administrator because of the higher privileges needed to access MSAcpi_ThermalZone
-- you need to edit the ReporterConfiguration.xml file with your emails
