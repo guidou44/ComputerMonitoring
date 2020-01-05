@@ -13,10 +13,8 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMoni
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\Common.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\ProcessMonitoring.pdb
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\Hardcodet.Wpf.TaskbarNotification.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\Hardcodet.Wpf.TaskbarNotification.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\Microsoft.Expression.Interactions.xml
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\Prism.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\Prism.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\System.ValueTuple.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\bin\Release\System.Windows.Interactivity.xml

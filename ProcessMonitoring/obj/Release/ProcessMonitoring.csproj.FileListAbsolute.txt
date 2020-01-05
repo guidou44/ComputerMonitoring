@@ -12,6 +12,5 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\obj\
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\obj\Release\ProcessMonitoring.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Release\Prism.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Release\System.ValueTuple.dll
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Release\Prism.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Release\Prism.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ProcessMonitoring\bin\Release\System.ValueTuple.xml

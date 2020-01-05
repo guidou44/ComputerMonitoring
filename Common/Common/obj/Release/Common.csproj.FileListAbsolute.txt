@@ -18,7 +18,6 @@ D:\Guillaume\Desktop\Internet Explorer\Common\Common\obj\Release\UI\Views\Messag
 D:\Guillaume\Desktop\Internet Explorer\Common\Common\obj\Release\UI\Views\MessageView.baml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Release\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Release\Common.pdb
-D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Release\Prism.pdb
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Release\Prism.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\bin\Release\System.ValueTuple.xml
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Release\Common.csprojAssemblyReference.cache

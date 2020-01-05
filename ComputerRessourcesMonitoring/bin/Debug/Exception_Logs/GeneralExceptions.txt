@@ -46,3 +46,17 @@ Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionRes
    at HardwareAccess.DataManager.GetCalculatedValues(IEnumerable`1 targets) in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 47
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 96
 
+
+*************************Exception******************************
+DateTime: 05-01-2020 17:03:17
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Common.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope)
+
