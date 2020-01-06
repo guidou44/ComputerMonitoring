@@ -16,6 +16,9 @@ using HardwareAccess;
 using System.Collections.ObjectModel;
 using ProcessMonitoring;
 using System.Threading;
+using ComputerRessourcesMonitoring.Models;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -23,7 +26,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
     {
         #region constructor
 
-        private DataManager _manager;
+        private ComputerMonitoringManagerModel _app_manager;
+        private DataManager _hardware_manager;
         private Queue<MonitoringTarget> _monitoringTargets;
         private System.Timers.Timer _monitoringRefreshCounter;
         private ProcessWatchDog _watchdog;
@@ -32,10 +36,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
         public MainViewModel(IDialogService dialogService) : base (dialogService)
         {
             IsApplicationVisible = true;
+            _app_manager = new ComputerMonitoringManagerModel(_eventHub);
             _dialogService = dialogService;
-            _manager = new DataManager();
+            _hardware_manager = new DataManager();
             _monitoringTargets = new Queue<MonitoringTarget>();
-            var initialTargets = _manager.GetInitialTargets();
+            var initialTargets = _hardware_manager.GetInitialTargets();
             initialTargets.ToList().ForEach(TARGET => _monitoringTargets.Enqueue(TARGET));
 
             InitializeWatchdog();
@@ -92,9 +97,22 @@ namespace ComputerRessourcesMonitoring.ViewModels
             }
         }
 
-        private void OnCounterCompletionEvent(Object source, ElapsedEventArgs e)
+        private void OnCounterCompletionEvent(object source, ElapsedEventArgs e)
         {
             RefreshMonitoring();
+        }
+
+        private void OnAppManagerPropertyChangedEvent(object source, PropertyChangedEventArgs e)
+        {
+            if (e != null)
+            {
+                PropertyInfo prop = GetType().GetProperty(e.PropertyName, BindingFlags.Public | BindingFlags.Instance);
+                PropertyInfo managerProp = _app_manager.GetType().GetProperty(e.PropertyName, BindingFlags.Public | BindingFlags.Instance);
+                if (prop != null && prop.CanWrite && managerProp != null)
+                {
+                    prop.SetValue(this, managerProp.GetValue(_app_manager), null);
+                }
+            }
         }
 
         private void RefreshMonitoring()
@@ -102,7 +120,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             try
             {
 
-                var valuesQueue = _manager.GetCalculatedValues(_monitoringTargets);
+                var valuesQueue = _hardware_manager.GetCalculatedValues(_monitoringTargets);
                 HardwareValues = new ObservableCollection<HardwareInformation>(valuesQueue);
             }
             catch (Exception e)
@@ -137,6 +155,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe((processesToWatch) => { ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(processesToWatch);});
             _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe((targets) => {  _monitoringTargets = targets; RefreshMonitoring(); });
+            _app_manager.PropertyChanged += OnAppManagerPropertyChangedEvent;
         }
 
         #endregion
@@ -201,9 +220,10 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             if (window != null)
             {
-                _watchdog.PacketsExchangedEvent -= ReportPacketExchange;
-                _monitoringRefreshCounter.Stop();
-                _monitoringRefreshCounter.Dispose();
+                _app_manager.Dispose();
+                //_watchdog.PacketsExchangedEvent -= ReportPacketExchange;
+                //_monitoringRefreshCounter.Stop();
+                //_monitoringRefreshCounter.Dispose();
                 window.Close();
             }
         }
@@ -217,7 +237,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             try
             {
-                var viewModel = new WatchdogSettingsDialogViewModel(ProcessesUnderWatch, _eventHub, _monitoringTargets, manager: ref _manager, watchdog: ref _watchdog);
+                var viewModel = new SettingsDialogViewModel(ProcessesUnderWatch, _eventHub, _monitoringTargets, manager: ref _hardware_manager, watchdog: ref _watchdog);
                 bool? result = _dialogService.ShowDialog(viewModel);
             }
             catch (Exception e)

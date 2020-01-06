@@ -17,7 +17,7 @@ using System.Windows.Input;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
-    public class WatchdogSettingsDialogViewModel : DialogViewModelBase
+    public class SettingsDialogViewModel : DialogViewModelBase
     {
         #region Constructor
 
@@ -27,7 +27,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         private IDictionary<MonitoringTarget, bool> targetDict;
         private ProcessWatchDog _watchdog;
 
-        public WatchdogSettingsDialogViewModel(ObservableCollection<ProcessViewModel> watchdogProcesses, IEventAggregator eventsHub, 
+        public SettingsDialogViewModel(ObservableCollection<ProcessViewModel> watchdogProcesses, IEventAggregator eventsHub, 
                                                Queue<MonitoringTarget> monTargets,
                                                ref DataManager manager, ref ProcessWatchDog watchdog)
         {
@@ -48,7 +48,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             InitializeComponents(monTargets);
         }
 
-        ~WatchdogSettingsDialogViewModel()
+        ~SettingsDialogViewModel()
         {
             MonitoringOptionsCollection.ToList().ForEach(MVM => MVM.SelectionChangedEvent -= SetMonitoringDictionary);
             ProcessesUnderWatch.ToList().ForEach(PUW => PUW.OnProcessNameChangedEvent -= OnWatchdogTargetChanged);
