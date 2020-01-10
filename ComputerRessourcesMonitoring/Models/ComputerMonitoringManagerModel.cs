@@ -24,18 +24,25 @@ namespace ComputerRessourcesMonitoring.Models
     {
         #region Constructor
 
-        private DataManager _manager;
+        private DataManager _hardware_manager;
         private Queue<MonitoringTarget> _monitoringTargets;
         private System.Timers.Timer _monitoringRefreshCounter;
         private ProcessWatchDog _watchdog;
         private Thread _watchdogThread;
 
+        public delegate void MonitoringErrorOccuredEventHandler(Exception e);
+        public event MonitoringErrorOccuredEventHandler OnMonitoringErrorOccured;
+
         public ComputerMonitoringManagerModel(IEventAggregator eventHub) : base(eventHub)
         {
-            _manager = new DataManager();
+            _hardware_manager = new DataManager();
             _monitoringTargets = new Queue<MonitoringTarget>();
-            var initialTargets = _manager.GetInitialTargets();
+            var initialTargets = _hardware_manager.GetInitialTargets();
             initialTargets.ToList().ForEach(TARGET => _monitoringTargets.Enqueue(TARGET));
+            InitializeWatchdog();
+            RefreshMonitoring();
+            SubscribeToEvents();
+            SetMonitoringCounter(900);
         }
 
         #endregion
@@ -47,6 +54,21 @@ namespace ComputerRessourcesMonitoring.Models
             _watchdog.PacketsExchangedEvent -= ReportPacketExchange;
             _monitoringRefreshCounter.Stop();
             _monitoringRefreshCounter.Dispose();
+        }
+
+        public DataManager GetHardwareManager()
+        {
+            return _hardware_manager;
+        }
+
+        public ProcessWatchDog GetWatchDog()
+        {
+            return _watchdog;
+        }
+
+        public Queue<MonitoringTarget> GetMonitoringQueue()
+        {
+            return _monitoringTargets;
         }
 
         #endregion
@@ -67,6 +89,7 @@ namespace ComputerRessourcesMonitoring.Models
                 };
                 ProcessesUnderWatch.Add(processVM);
             }
+            
             Thread _watchdogThread = new Thread(() =>
             {
                 while (true)
@@ -94,6 +117,7 @@ namespace ComputerRessourcesMonitoring.Models
                     _watchdog.RefreshInfo();
                 }
             }
+            RaisePropertyChanged(nameof(ProcessesUnderWatch));
         }
 
         private void OnCounterCompletionEvent(Object source, ElapsedEventArgs e)
@@ -106,13 +130,13 @@ namespace ComputerRessourcesMonitoring.Models
             try
             {
 
-                var valuesQueue = _manager.GetCalculatedValues(_monitoringTargets);
+                var valuesQueue = _hardware_manager.GetCalculatedValues(_monitoringTargets);
                 HardwareValues = new ObservableCollection<HardwareInformation>(valuesQueue);
             }
             catch (Exception e)
             {
                 Reporter.LogException(e);
-                _dialogService.ShowException(e);
+                OnMonitoringErrorOccured?.Invoke(e);
             }
         }
 

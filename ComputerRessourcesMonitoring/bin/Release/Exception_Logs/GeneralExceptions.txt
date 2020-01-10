@@ -115,3 +115,27 @@ Stacktrace:    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionRes
    at HardwareManipulation.DataManager.GetCalculatedValues(IEnumerable`1 targets) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\HardwareManipulation\DataManager.cs:line 44
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 99
 
+
+*************************Exception******************************
+DateTime: 10-01-2020 13:26:36
+Type: System.ArgumentNullException
+Source: System
+TargetSite: Void .ctor(System.Collections.Generic.IEnumerable`1[T])
+Message: Value cannot be null.
+Parameter name: collection
+Stacktrace:    at System.Collections.ObjectModel.ObservableCollection`1..ctor(IEnumerable`1 collection)
+   at ComputerRessourcesMonitoring.ViewModels.SettingsDialogViewModel..ctor(ObservableCollection`1 watchdogProcesses, IEventAggregator eventsHub, Queue`1 monTargets, DataManager manager, ProcessWatchDog watchdog) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\SettingsDialogViewModel.cs:line 36
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenSettingsWindowCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 10-01-2020 13:27:17
+Type: System.ArgumentNullException
+Source: System
+TargetSite: Void .ctor(System.Collections.Generic.IEnumerable`1[T])
+Message: Value cannot be null.
+Parameter name: collection
+Stacktrace:    at System.Collections.ObjectModel.ObservableCollection`1..ctor(IEnumerable`1 collection)
+   at ComputerRessourcesMonitoring.ViewModels.SettingsDialogViewModel..ctor(ObservableCollection`1 watchdogProcesses, IEventAggregator eventsHub, Queue`1 monTargets, DataManager manager, ProcessWatchDog watchdog) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\SettingsDialogViewModel.cs:line 36
+   at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenSettingsWindowCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 147
+

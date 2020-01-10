@@ -29,7 +29,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public SettingsDialogViewModel(ObservableCollection<ProcessViewModel> watchdogProcesses, IEventAggregator eventsHub, 
                                                Queue<MonitoringTarget> monTargets,
-                                               ref DataManager manager, ref ProcessWatchDog watchdog)
+                                               DataManager manager, ProcessWatchDog watchdog)
         {
             //watchdog---------
             _watchdog = watchdog;

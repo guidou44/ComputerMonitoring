@@ -142,13 +142,13 @@ namespace HardwareAccess.Connectors
                     return GetHardwareSensorValue<double>("Mem.Controllers", "GPU Memory Controller", SensorType.Load);
 
                 case MonitoringTarget.GPU_Memory_Clock:
-                    return GetHardwareSensorValue<double>("MHz", "GPU Memory", SensorType.Clock);
+                    return GetHardwareSensorValue<double>("MHz Mem.Clock", "GPU Memory", SensorType.Clock);
 
                 case MonitoringTarget.GPU_Memory_Load:
                     return GetHardwareSensorValue<double>("%", "GPU Memory", SensorType.Load);
 
                 case MonitoringTarget.GPU_Shader_Clock:
-                    return GetHardwareSensorValue<double>("MHz", "GPU Shader", SensorType.Clock);
+                    return GetHardwareSensorValue<double>("MHz Shader.Clock", "GPU Shader", SensorType.Clock);
 
                 case MonitoringTarget.GPU_Temp:
                     return GetHardwareSensorValue<double>("°C", "GPU Core", SensorType.Temperature);
