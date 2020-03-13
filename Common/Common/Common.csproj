@@ -69,47 +69,17 @@
     <Compile Include="Helpers\LinuxTerminalHelper.cs" />
     <Compile Include="Helpers\WmiHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
-    <Compile Include="UI\Converters\CommandParameterConverter.cs" />
-    <Compile Include="UI\CustomControls\VeryObservableCollection.cs" />
-    <Compile Include="UI\DialogServices\DialogCloseRequestedEventArgs.cs" />
-    <Compile Include="UI\DialogServices\DialogService.cs" />
-    <Compile Include="UI\DispatcherServices\DispatcherService.cs" />
-    <Compile Include="UI\Interfaces\IDialog.cs" />
-    <Compile Include="UI\Interfaces\IDialogRequestClose.cs" />
-    <Compile Include="UI\Interfaces\IDialogService.cs" />
-    <Compile Include="UI\Interfaces\IClosable.cs" />
-    <Compile Include="UI\Interfaces\IDispatcherService.cs" />
-    <Compile Include="UI\Interfaces\IDragable.cs" />
-    <Compile Include="UI\Infrastructure\NotifyPropertyChanged.cs" />
-    <Compile Include="UI\Infrastructure\RelayCommand.cs" />
     <Compile Include="Reports\Reporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\Interfaces\IRelocatable.cs" />
-    <Compile Include="UI\Interfaces\ITopMost.cs" />
-    <Compile Include="UI\Models\AppManagerModelBase.cs" />
-    <Compile Include="UI\ViewModels\DialogViewModelBase.cs" />
-    <Compile Include="UI\ViewModels\ErrorMessageViewModel.cs" />
-    <Compile Include="UI\ViewModels\MessageViewModel.cs" />
-    <Compile Include="UI\ViewModels\WindowViewModelBase.cs" />
-    <Compile Include="UI\Views\ErrorMessageView.xaml.cs">
-      <DependentUpon>ErrorMessageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Views\MessageView.xaml.cs">
-      <DependentUpon>MessageView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="UI\Views\ErrorMessageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UI\Views\MessageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <ProjectReference Include="..\..\Common.UI\Common.UI.csproj">
+      <Project>{7C5B2B07-96C6-4B17-B32F-AD2E2A344750}</Project>
+      <Name>Common.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

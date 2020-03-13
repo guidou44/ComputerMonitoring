@@ -25,8 +25,6 @@ D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareMa
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\NvAPIWrapper.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\OpenHardwareMonitorLib.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\System.Net.Http.Formatting.dll
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\Prism.dll
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\System.ValueTuple.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\Common.pdb
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\Cudafy.NET.xml
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\Newtonsoft.Json.xml
@@ -36,3 +34,8 @@ D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareMa
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareAccess.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\obj\Debug\HardwareManipulation.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\Common.UI.exe
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\Common.UI.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\Common.UI.exe.config
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\Prism.dll
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Debug\System.ValueTuple.dll

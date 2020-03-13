@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Testing_Common_UI.Properties
+namespace Common.UI.Properties
 {
 
 

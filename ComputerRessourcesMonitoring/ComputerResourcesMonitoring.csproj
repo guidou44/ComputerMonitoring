@@ -183,6 +183,10 @@
     <Resource Include="Views\Images\stop.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common.UI\Common.UI.csproj">
+      <Project>{7c5b2b07-96c6-4b17-b32f-ad2e2a344750}</Project>
+      <Name>Common.UI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Common\Common\Common.csproj">
       <Project>{85b27c12-9bb0-4641-90d2-68edd50580da}</Project>
       <Name>Common</Name>

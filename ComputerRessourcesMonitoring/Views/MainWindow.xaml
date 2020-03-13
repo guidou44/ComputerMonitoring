@@ -7,7 +7,7 @@
         xmlns:ViewModels="clr-namespace:ComputerRessourcesMonitoring.ViewModels"
         xmlns:tb="http://www.hardcodet.net/taskbar" 
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:Converters="clr-namespace:Common.UI.Converters;assembly=Common"
+        xmlns:Converters="clr-namespace:Common.UI.Converters;assembly=Common.UI"
         mc:Ignorable="d"
         x:Name="WatchdogWindow"
         WindowStyle="None"

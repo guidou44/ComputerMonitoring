@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EBD22E1F-B623-4750-AA2E-4CF4A73B4A03}</ProjectGuid>
+    <ProjectGuid>{7C5B2B07-96C6-4B17-B32F-AD2E2A344750}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Testing_Common_UI</RootNamespace>
-    <AssemblyName>Testing_Common_UI</AssemblyName>
+    <RootNamespace>Common.UI</RootNamespace>
+    <AssemblyName>Common.UI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,8 +35,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Prism, Version=7.2.0.1367, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\ComputerRessourcesMonitoring\packages\Prism.Core.7.2.0.1367\lib\net45\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\ComputerRessourcesMonitoring\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,18 +61,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\MainView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Include="Converters\CommandParameterConverter.cs" />
+    <Compile Include="CustomControls\VeryObservableCollection.cs" />
+    <Compile Include="DialogServices\DialogCloseRequestedEventArgs.cs" />
+    <Compile Include="DialogServices\DialogService.cs" />
+    <Compile Include="DispatcherServices\DispatcherService.cs" />
+    <Compile Include="Infrastructure\NotifyPropertyChanged.cs" />
+    <Compile Include="Infrastructure\RelayCommand.cs" />
+    <Compile Include="Interfaces\IClosable.cs" />
+    <Compile Include="Interfaces\IDialog.cs" />
+    <Compile Include="Interfaces\IDialogRequestClose.cs" />
+    <Compile Include="Interfaces\IDialogService.cs" />
+    <Compile Include="Interfaces\IDispatcherService.cs" />
+    <Compile Include="Interfaces\IDragable.cs" />
+    <Compile Include="Interfaces\IRelocatable.cs" />
+    <Compile Include="Interfaces\ITopMost.cs" />
+    <Compile Include="Models\AppManagerModelBase.cs" />
+    <Compile Include="ViewModels\DialogViewModelBase.cs" />
+    <Compile Include="ViewModels\ErrorMessageViewModel.cs" />
+    <Compile Include="ViewModels\MessageViewModel.cs" />
+    <Compile Include="ViewModels\WindowViewModelBase.cs" />
+    <Compile Include="Views\ErrorMessageView.xaml.cs">
+      <DependentUpon>ErrorMessageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MessageView.xaml.cs">
+      <DependentUpon>MessageView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -86,6 +110,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -94,11 +119,16 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common\Common.csproj">
-      <Project>{85B27C12-9BB0-4641-90D2-68EDD50580DA}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <Page Include="Views\ErrorMessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MessageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
