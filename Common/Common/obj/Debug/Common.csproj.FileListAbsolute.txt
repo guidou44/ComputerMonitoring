@@ -45,13 +45,6 @@ C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.pdb
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common.csprojAssemblyReference.cache
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\ErrorMessageView.g.cs
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\MessageView.g.cs
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common_MarkupCompile.cache
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common_MarkupCompile.lref
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\ErrorMessageView.baml
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\MessageView.baml
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common.g.resources
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common.pdb
