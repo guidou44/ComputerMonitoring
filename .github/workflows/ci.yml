@@ -19,7 +19,7 @@ jobs:
           dotnet-version: 2.2.108
 
       - name: Build
-        run: dotnet build --configuration Release
+        run: dotnet build --configuration Release ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
         
       - name: Tests
         run: dotnet test --verbosity normal
