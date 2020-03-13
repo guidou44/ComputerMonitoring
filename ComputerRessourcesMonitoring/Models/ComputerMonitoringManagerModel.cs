@@ -17,8 +17,9 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
+using HardwareManipulation;
 
-namespace ComputerRessourcesMonitoring.Models
+namespace ComputerResourcesMonitoring.Models
 {
     public class ComputerMonitoringManagerModel : AppManagerModelBase, IDisposable
     {
@@ -78,27 +79,35 @@ namespace ComputerRessourcesMonitoring.Models
         private void InitializeWatchdog()
         {
             _watchdog = new ProcessWatchDog();
-            _watchdog.PacketsExchangedEvent += ReportPacketExchange;
-            ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>();
-            foreach (var initialProcess in _watchdog.GetInitialProcesses2Watch())
+            try
             {
-                var process = _watchdog.GetProcessesByName(initialProcess).FirstOrDefault();
-                var processVM = new ProcessViewModel(true, initialProcess)
+                _watchdog.PacketsExchangedEvent += ReportPacketExchange;
+                ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>();
+                foreach (var initialProcess in _watchdog.GetInitialProcesses2Watch())
                 {
-                    Process = process,
-                };
-                ProcessesUnderWatch.Add(processVM);
-            }
-            
-            Thread _watchdogThread = new Thread(() =>
-            {
-                while (true)
-                {
-                    ManageWatchdog();
-                    Thread.Sleep(1000);
+                    var process = _watchdog.GetProcessesByName(initialProcess).FirstOrDefault();
+                    var processVM = new ProcessViewModel(true, initialProcess)
+                    {
+                        Process = process,
+                    };
+                    ProcessesUnderWatch.Add(processVM);
                 }
-            });
-            _watchdogThread.Start();
+
+                Thread _watchdogThread = new Thread(() =>
+                {
+                    while (true)
+                    {
+                        ManageWatchdog();
+                        Thread.Sleep(1000);
+                    }
+                });
+                _watchdogThread.Start();
+            }
+            catch (Exception e)
+            {
+                _watchdog.PacketsExchangedEvent -= ReportPacketExchange;
+                _watchdogThread.Abort();
+            }
         }
 
         private void ManageWatchdog()

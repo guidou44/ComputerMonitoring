@@ -9,14 +9,14 @@ namespace HardwareAccess.Factories
 {
     public static class ConnectorFactory
     {
+        private static string _connectorDirectory = "HardwareAccess.Connectors.";
+        private static string _connectorSuffix = "_Connector";
+
         public static ConnectorBase InstantiateConnector(string connectorName)
         {
-            var connectors = typeof(ConnectorBase)
-            .Assembly.GetTypes()
-            .Where(t => t.IsSubclassOf(typeof(ConnectorBase)) && !t.IsAbstract && t.GetConstructor(Type.EmptyTypes) != null);
-            var connector = connectors.Where(TYPE => TYPE.Name == connectorName + "_Connector" || TYPE.Name == connectorName + "Connector");
-            if (connector.Count() != 1) throw new ArgumentException($"Invalid connector name. Found {connector.Count()} connector associated with this name.");
-            return (ConnectorBase) Activator.CreateInstance(connector.Single());
+            Type connectorType = Type.GetType(_connectorDirectory + connectorName + _connectorSuffix);
+            if (connectorType == null) throw new ArgumentException($"Invalid connector name. Found no connector associated with name {connectorName}");
+            return (ConnectorBase) Activator.CreateInstance(connectorType);
         }
     }
 }

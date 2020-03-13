@@ -16,7 +16,7 @@ using HardwareAccess;
 using System.Collections.ObjectModel;
 using ProcessMonitoring;
 using System.Threading;
-using ComputerRessourcesMonitoring.Models;
+using ComputerResourcesMonitoring.Models;
 using System.ComponentModel;
 using System.Reflection;
 
