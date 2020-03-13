@@ -24,5 +24,10 @@ jobs:
     - name: Build
       run: msbuild ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln /p:Configuration=Release
       
-    - name: Test
-      run: msbuild test /testcontainer "ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll"
+    - name: Run unit tests
+        run: |
+          function Invoke-VSTest {
+            & "vstest.console.exe" $args
+            if(-not $?){ throw "fail!" }
+          }
+          Invoke-VSTest "ComputerMonitoringTests/bin/Release/ComputerMonitoringTests.dll"
