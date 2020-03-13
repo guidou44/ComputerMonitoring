@@ -25,4 +25,4 @@ jobs:
       run: msbuild ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln /p:Configuration=Release
       
     - name: Test
-      run: msbuild test /testcontainer:ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll
+      run: msbuild test /testcontainer "ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll"
