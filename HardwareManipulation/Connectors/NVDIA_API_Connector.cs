@@ -71,9 +71,9 @@ namespace HardwareAccess.Connectors
 
         #endregion
 
-        public override HardwareInformation GetValue(MonitoringTarget ressource)
+        public override HardwareInformation GetValue(MonitoringTarget resource)
         {
-            switch (ressource)
+            switch (resource)
             {
                 case MonitoringTarget.GPU_Make:
                     return GetFirstGpuMake();
@@ -85,7 +85,7 @@ namespace HardwareAccess.Connectors
                     return GetFirstGpuLoad();
 
                 default:
-                    throw new NotImplementedException($"Monitoring target '{ressource}' is not implemented for connector {nameof(NVDIA_API_Connector)}");
+                    throw new NotImplementedException($"Monitoring target '{resource}' is not implemented for connector {nameof(NVDIA_API_Connector)}");
             }
         }
     }
