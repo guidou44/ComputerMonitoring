@@ -25,9 +25,4 @@ jobs:
       run: msbuild ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln -p:Configuration=Release
       
     - name: Run unit tests
-        run: 
-          function Invoke-VSTest {
-            & "vstest.console.exe" $args
-            if(-not $?){ throw "fail!" }
-          }
-          Invoke-VSTest "ComputerMonitoringTests/bin/Release/ComputerMonitoringTests.dll"
+      run: MSTest.exe /container: ComputerMonitoringTests\bin\Release\ComputerMonitoringTests.dll
