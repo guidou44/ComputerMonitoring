@@ -34,7 +34,7 @@ jobs:
       run: nuget restore ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
  
     - name: Build
-      run: msbuild ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln -p:Configuration=Release
+      run: msbuild ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln -p:Configuration=Release -p:Platform=x64
       
     # Test
     - name: Execute Unit Tests
