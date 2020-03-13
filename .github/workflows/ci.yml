@@ -25,4 +25,4 @@ jobs:
       run: msbuild ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln -p:Configuration=Release
       
     - name: Run unit tests
-      run: MSTest.exe /container: ComputerMonitoringTests\bin\Release\ComputerMonitoringTests.dll
+      run: MSTest.exe /testcontainer: "ComputerMonitoringTests\bin\Release\ComputerMonitoringTests.dll"
