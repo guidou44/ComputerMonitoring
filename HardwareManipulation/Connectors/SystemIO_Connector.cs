@@ -29,13 +29,13 @@ namespace HardwareAccess.Connectors
 
         #endregion
 
-        public override HardwareInformation GetValue(MonitoringTarget ressource)
+        public override HardwareInformation GetValue(MonitoringTarget resource)
         {
             DriveInfo[] allDrives = DriveInfo.GetDrives();
             var networkDrives = allDrives.Where(D => D.DriveType == DriveType.Network).OrderBy(D => ((int)(D.Name[0])));
             var localDrives = allDrives.Except(networkDrives);
 
-            switch (ressource)
+            switch (resource)
             {
                 case MonitoringTarget.Primary_HDD_Used_Space:
                     return GetDriveUsage(localDrives.Where(D => D.Name.StartsWith("C")).SingleOrDefault()) ;
@@ -51,7 +51,7 @@ namespace HardwareAccess.Connectors
                     return GetDriveUsage(networkDrives.ElementAtOrDefault(1));
 
                 default:
-                    throw new NotImplementedException($"Monitoring target {ressource} not implemented for connector {nameof(SystemIO_Connector)}");
+                    throw new NotImplementedException($"Monitoring target {resource} not implemented for connector {nameof(SystemIO_Connector)}");
             }
         }
     }

@@ -141,9 +141,9 @@ namespace HardwareAccess.Connectors
 
         #endregion
 
-        public override HardwareInformation GetValue(MonitoringTarget ressource)
+        public override HardwareInformation GetValue(MonitoringTarget resource)
         {
-            switch (ressource)
+            switch (resource)
             {
                 case MonitoringTarget.CPU_Core_Count:
                     return GetCpuCoreCount();
@@ -167,7 +167,7 @@ namespace HardwareAccess.Connectors
                     return GetRamMemoryUsage();
 
                 default:
-                    throw new NotImplementedException($"Monitoring target '{ressource}' is not implemented for connector {nameof(WMI_Connector)}");
+                    throw new NotImplementedException($"Monitoring target '{resource}' is not implemented for connector {nameof(WMI_Connector)}");
             }
         }
     }

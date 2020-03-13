@@ -128,9 +128,9 @@ namespace HardwareAccess.Connectors
 
         #endregion
 
-        public override HardwareInformation GetValue(MonitoringTarget ressource)
+        public override HardwareInformation GetValue(MonitoringTarget resource)
         {
-            switch (ressource)
+            switch (resource)
             {
                 case MonitoringTarget.GPU_Clock:
                     return GetHardwareSensorValue<double>("MHz", "GPU Core", SensorType.Clock);
@@ -166,7 +166,7 @@ namespace HardwareAccess.Connectors
                     return GetMotherBoardMake();
 
                 default:
-                    throw new NotImplementedException($"Monitoring target '{ressource}' not implemented for connector {nameof(OpenHardware_Connector)}");
+                    throw new NotImplementedException($"Monitoring target '{resource}' not implemented for connector {nameof(OpenHardware_Connector)}");
             }
         }
     }

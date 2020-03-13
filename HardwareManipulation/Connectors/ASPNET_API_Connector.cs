@@ -35,7 +35,7 @@ namespace HardwareAccess.Connectors
                 case MonitoringTarget.Server_CPU_ProcessUsage:
                     return new Uri(_client.BaseAddress, "/api/Process/Cpu");
                 default:
-                    throw new NotImplementedException($"No Specific URI for ressource'{ressource.ToString()}'");
+                    throw new NotImplementedException($"No Specific URI for resource'{ressource.ToString()}'");
             }
         }
 
@@ -103,19 +103,19 @@ namespace HardwareAccess.Connectors
 
         #endregion
 
-        public override HardwareInformation GetValue(MonitoringTarget ressource)
+        public override HardwareInformation GetValue(MonitoringTarget resource)
         {
-            switch (ressource)
+            switch (resource)
             {
                 case MonitoringTarget.Server_CPU_Load:
                 case MonitoringTarget.Server_CPU_Temp:
                 case MonitoringTarget.Server_RAM_Usage:
                 case MonitoringTarget.Server_CPU_ProcessUsage:
-                    var resultDTO = Task.Run(() => GetSingleResourceInfo(ressource)).Result;
+                    var resultDTO = Task.Run(() => GetSingleResourceInfo(resource)).Result;
                     return MapDTO2Model(resultDTO);
 
                 default:
-                    throw new NotImplementedException($"Monitoring target '{ressource}' not implemented for connector {nameof(ASPNET_API_Connector)}");
+                    throw new NotImplementedException($"Monitoring target '{resource}' not implemented for connector {nameof(ASPNET_API_Connector)}");
             }
         }
     }
