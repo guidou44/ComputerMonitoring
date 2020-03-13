@@ -20,6 +20,12 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: 2.2.108
+          
+      - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+     
+      - name: Restore NuGet Packages
+      run: nuget restore ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
 
       - name: Build
         run: dotnet build --configuration Release ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
