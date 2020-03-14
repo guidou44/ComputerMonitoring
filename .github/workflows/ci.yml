@@ -21,6 +21,9 @@ jobs:
         with:
           dotnet-version: 2.2.108
           
+      - name: Setup MSBuild.exe
+        uses: warrenbuckley/Setup-MSBuild@v1
+          
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
      
@@ -28,7 +31,7 @@ jobs:
         run: nuget restore ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
 
       - name: Build
-        run: dotnet build --configuration Release ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
+        run: msbuild ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln -p:Configuration=Release -p:Platform=x64
         
-      - name: Tests
-        run: dotnet test ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
+      - name: Execute Unit Tests
+        run: dotnet test $env:Test_Project_Path -p:Configuration=Release -p:Platform=x64
