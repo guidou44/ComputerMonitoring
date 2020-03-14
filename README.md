@@ -1,3 +1,5 @@
+# ComputerResourcesMonitoring
+![CI Status](https://github.com/guidou44/ComputerMonitoring/workflows/ComputerResourceMonitoring%20CI/badge.svg?branch=master)
 
 
 ## Usage
@@ -28,3 +30,5 @@
 ## Tests
 
 Run the script [Run_Tests](ComputerRessourcesMonitoring\Run_Tests.bat) in folder [ComputerRessourcesMonitoring](ComputerRessourcesMonitoring)
+
+<sub><sup>(I know about the type in resource)</sup></sub>

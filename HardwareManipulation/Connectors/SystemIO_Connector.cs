@@ -38,10 +38,10 @@ namespace HardwareAccess.Connectors
             switch (resource)
             {
                 case MonitoringTarget.Primary_HDD_Used_Space:
-                    return GetDriveUsage(localDrives.Where(D => D.Name.StartsWith("C")).SingleOrDefault()) ;
+                    return GetDriveUsage(localDrives.SingleOrDefault(D => D.Name.StartsWith("C"))) ;
 
                 case MonitoringTarget.Secondary_HDD_Used_Space:
-                    return GetDriveUsage(localDrives.Where(D => !D.Name.StartsWith("C")).FirstOrDefault());
+                    return GetDriveUsage(localDrives.FirstOrDefault(D => !D.Name.StartsWith("C")));
 
                 case MonitoringTarget.Primary_Network_HDD_Used_Space:
                     
