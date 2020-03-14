@@ -44,12 +44,6 @@ bld/
 [Ll]og/
 [Ll]ogs/
 
-![Bb]in/[Dd]ebug/[Cc]Configuration/MonitoringConfiguration.cfg
-![Bb]in/[Dd]ebug/[Cc]Configuration/WatchdogConfiguration.cfg
-
-![Bb]in/[Rr]elease/[Cc]Configuration/MonitoringConfiguration.cfg
-![Bb]in/[Rr]elease/[Cc]Configuration/WatchdogConfiguration.cfg
-
 # Visual Studio 2015/2017 cache/options directory
 .vs/
 # Uncomment if you have tasks that create the project's static files in wwwroot
@@ -369,4 +363,9 @@ MigrationBackup/
 .ionide/
 
 
+![Bb]in/[Dd]ebug/[Cc]onfiguration/MonitoringConfiguration.cfg
+![Bb]in/[Dd]ebug/[Cc]onfiguration/WatchdogConfiguration.cfg
+
+![Bb]in/[Rr]elease/[Cc]onfiguration/MonitoringConfiguration.cfg
+![Bb]in/[Rr]elease/[Cc]onfiguration/WatchdogConfiguration.cfg
 

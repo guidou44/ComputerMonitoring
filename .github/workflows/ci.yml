@@ -10,17 +10,15 @@ jobs:
     
     env:
       Test_Project_Path: ComputerMonitoringTests\ComputerMonitoringTests.csproj
+      Test_Assembly_Path: ComputerMonitoringTests\bin\Release\ComputerMonitoringTests.dll
       Solution_File_Path: ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
+      XUnit_Console: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console
       # Wpf_Project_Path: MyWpfApp\MyWpfApp.csproj
       # Wap_Project_Directory: MyWpfApp.Package
       # Wap_Project_Name: MyWpfApp.Package.wapproj
  
     steps:
-      - uses: actions/checkout@v1      
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 2.2.207
+      - uses: actions/checkout@v1     
           
       - name: Setup MSBuild.exe
         uses: warrenbuckley/Setup-MSBuild@v1
@@ -29,13 +27,10 @@ jobs:
         uses: NuGet/setup-nuget@v1.0.2
      
       - name: Restore NuGet Packages
-        run: nuget restore $env:Solution_File_Path
-        
-      - name: Setup XUnit
-        run: dotnet tool install -g xunit-cli
+        run: nuget restore $env:Solution_File_Path       
 
       - name: Build
         run: msbuild $env:Solution_File_Path -p:Configuration=Release -p:Platform=x64       
         
       - name: Execute Unit Tests
-        run: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console ComputerMonitoringTests\bin\Release\ComputerMonitoringTests.dll
+        run: $env:XUnit_Console $env:Test_Assembly_Path
