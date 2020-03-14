@@ -30,12 +30,12 @@ jobs:
      
       - name: Restore NuGet Packages
         run: nuget restore $env:Solution_File_Path
+        
+      - name: Setup XUnit
+        run: dotnet tool install -g xunit-cli
 
       - name: Build
-        run: msbuild $env:Solution_File_Path -p:Configuration=Release -p:Platform=x64
-        
-      - name: Restore for .NET
-        run: dotnet restore $env:Solution_File_Path
+        run: msbuild $env:Solution_File_Path -p:Configuration=Release -p:Platform=x64       
         
       - name: Execute Unit Tests
-        run: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll
+        run: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console ComputerMonitoringTests\bin\Release\ComputerMonitoringTests.dll
