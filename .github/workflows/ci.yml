@@ -18,7 +18,12 @@ jobs:
       # Wap_Project_Name: MyWpfApp.Package.wapproj
  
     steps:
-      - uses: actions/checkout@v1     
+      - uses: actions/checkout@v1   
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 2.2.207      
           
       - name: Setup MSBuild.exe
         uses: warrenbuckley/Setup-MSBuild@v1
@@ -33,4 +38,4 @@ jobs:
         run: msbuild $env:Solution_File_Path -p:Configuration=Release -p:Platform=x64       
         
       - name: Execute Unit Tests
-        run: $env:XUnit_Console $env:Test_Assembly_Path
+        run: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console $env:Test_Assembly_Path
