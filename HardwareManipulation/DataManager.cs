@@ -18,7 +18,7 @@ namespace HardwareManipulation
 
         private IEnumerable<MonitoringTarget> _initialMonitoringTargets;
         private IDictionary<ComputerRessource, ConnectorBase> _target2Connector;
-        private const string XmlConfigPath = @".\Configuration\MonitoringConfiguration.cfg";
+        private const string XmlConfigPath = @"..\..\Configuration\MonitoringConfiguration.cfg";
 
 
         public DataManager()

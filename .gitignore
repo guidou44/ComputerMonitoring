@@ -362,10 +362,3 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-
-![Bb]in/[Dd]ebug/[Cc]onfiguration/MonitoringConfiguration.cfg
-![Bb]in/[Dd]ebug/[Cc]onfiguration/WatchdogConfiguration.cfg
-
-![Bb]in/[Rr]elease/[Cc]onfiguration/MonitoringConfiguration.cfg
-![Bb]in/[Rr]elease/[Cc]onfiguration/WatchdogConfiguration.cfg
-
