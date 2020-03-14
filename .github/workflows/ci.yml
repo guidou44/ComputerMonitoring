@@ -38,4 +38,4 @@ jobs:
         run: dotnet restore $env:Solution_File_Path
         
       - name: Execute Unit Tests
-        run: dotnet test $env:Solution_File_Path --no-build -p:Configuration=Release -p:Platform=x64
+        run: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll
