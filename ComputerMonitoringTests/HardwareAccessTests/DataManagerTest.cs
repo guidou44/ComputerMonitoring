@@ -19,7 +19,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
             IEnumerable<MonitoringTarget> initialTarget = managerSubject.GetInitialTargets();
             Assert.True(initialTarget.Count() == 3);
             Assert.Contains(MonitoringTarget.CPU_Load, initialTarget);
-            Assert.Contains(MonitoringTarget.GPU_Temp, initialTarget);
+            Assert.Contains(MonitoringTarget.Primary_HDD_Used_Space, initialTarget);
         }
     }
 }
