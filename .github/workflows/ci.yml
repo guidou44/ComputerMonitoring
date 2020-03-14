@@ -35,4 +35,4 @@ jobs:
         run: msbuild $env:Solution_File_Path -p:Configuration=Release -p:Platform=x64
         
       - name: Execute Unit Tests
-        run: dotnet test $env:Solution_File_Path -p:Configuration=Release -p:Platform=x64
+        run: dotnet test $env:Solution_File_Path --no-build -p:Configuration=Release -p:Platform=x64
