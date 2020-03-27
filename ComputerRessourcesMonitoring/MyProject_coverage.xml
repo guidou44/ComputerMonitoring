@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CoverageSession xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="4.7.922.0">
+  <Summary numSequencePoints="0" visitedSequencePoints="0" numBranchPoints="0" visitedBranchPoints="0" sequenceCoverage="0" branchCoverage="0" maxCyclomaticComplexity="0" minCyclomaticComplexity="0" maxCrapScore="0" minCrapScore="0" visitedClasses="0" numClasses="0" visitedMethods="0" numMethods="0" />
+  <Modules>
+    <Module skippedDueTo="Filter" hash="AC-E9-5B-E2-17-18-10-1B-85-F1-52-BC-0C-F5-DD-D8-7F-63-43-3C">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_32\mscorlib\v4.0_4.0.0.0__b77a5c561934e089\mscorlib.dll</ModulePath>
+      <ModuleTime>2019-12-07T06:03:04Z</ModuleTime>
+      <ModuleName>mscorlib</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="44-F1-57-61-D8-56-0D-49-D1-0D-68-1D-1C-E3-FB-88-41-D0-44-6A">
+      <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console.x86.exe</ModulePath>
+      <ModuleTime>2018-10-29T08:17:02Z</ModuleTime>
+      <ModuleName>xunit.console.x86</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="CC-DB-8A-78-1D-14-03-CA-9E-57-77-AD-02-B0-11-1E-9D-D0-F8-EB">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll</ModulePath>
+      <ModuleTime>2019-12-07T06:03:04Z</ModuleTime>
+      <ModuleName>System.Core</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="6B-4D-36-1F-A8-F2-1F-05-F8-C9-A8-71-E2-90-17-07-CC-68-12-DB">
+      <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.abstractions.dll</ModulePath>
+      <ModuleTime>2018-10-29T08:17:04Z</ModuleTime>
+      <ModuleName>xunit.abstractions</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="A5-B7-BC-42-9C-AA-2C-7A-42-E2-43-5A-2F-7B-F3-B2-00-B1-CB-E6">
+      <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.runner.utility.net452.dll</ModulePath>
+      <ModuleTime>2018-10-29T08:17:04Z</ModuleTime>
+      <ModuleName>xunit.runner.utility.net452</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="4A-9D-81-85-DC-CF-74-ED-91-AC-6F-7B-37-3D-3E-0B-36-5C-56-66">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll</ModulePath>
+      <ModuleTime>2019-07-24T02:58:28Z</ModuleTime>
+      <ModuleName>System</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="E4-D1-8B-D7-79-3C-B4-80-A8-3F-D2-B2-34-ED-5A-C5-10-62-37-F2">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml.Linq\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.Linq.dll</ModulePath>
+      <ModuleTime>2019-03-19T04:46:43.9447582Z</ModuleTime>
+      <ModuleName>System.Xml.Linq</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="BA-94-4B-50-1E-D5-31-87-F3-25-6E-BA-07-71-E4-9F-22-0D-B8-34">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll</ModulePath>
+      <ModuleTime>2019-03-19T04:46:51.77351Z</ModuleTime>
+      <ModuleName>System.Xml</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="DF-C9-61-37-67-FC-86-B5-19-6B-51-39-78-82-42-F2-94-44-FD-2F">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Configuration\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll</ModulePath>
+      <ModuleTime>2019-03-19T04:46:46.1168105Z</ModuleTime>
+      <ModuleName>System.Configuration</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="92-46-BD-71-5B-AA-F1-B5-B3-9B-4C-F6-6A-4F-91-D5-32-37-5C-74">
+      <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.runner.reporters.net452.dll</ModulePath>
+      <ModuleTime>2018-10-29T08:17:04Z</ModuleTime>
+      <ModuleName>xunit.runner.reporters.net452</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="61-8E-C2-81-D1-83-0F-4B-EB-A7-B0-B3-A7-FA-0D-6E-88-8C-2A-84">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Net.Http\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Net.Http.dll</ModulePath>
+      <ModuleTime>2019-03-19T04:46:51.7266313Z</ModuleTime>
+      <ModuleName>System.Net.Http</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="4D-1B-0D-8C-95-B0-F6-E4-23-A6-F4-64-1B-BD-C7-E9-24-22-EC-3A">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_32\System.Web\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Web.dll</ModulePath>
+      <ModuleTime>2019-11-23T05:17:10Z</ModuleTime>
+      <ModuleName>System.Web</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="A5-B7-BC-42-9C-AA-2C-7A-42-E2-43-5A-2F-7B-F3-B2-00-B1-CB-E6">
+      <ModulePath>C:\Users\Proprio\AppData\Local\Temp\b8afa9a8-73f7-48fe-bdfe-514f5129db51\b8afa9a8-73f7-48fe-bdfe-514f5129db51\assembly\dl3\ff5ae8da\00804bc6_5f6fd401\xunit.runner.utility.net452.dll</ModulePath>
+      <ModuleTime>2020-03-14T13:30:55.5871147Z</ModuleTime>
+      <ModuleName>xunit.runner.utility.net452</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="CC-DB-8A-78-1D-14-03-CA-9E-57-77-AD-02-B0-11-1E-9D-D0-F8-EB">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll</ModulePath>
+      <ModuleTime>2019-12-07T06:03:04Z</ModuleTime>
+      <ModuleName>System.Core</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="4A-9D-81-85-DC-CF-74-ED-91-AC-6F-7B-37-3D-3E-0B-36-5C-56-66">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll</ModulePath>
+      <ModuleTime>2019-07-24T02:58:28Z</ModuleTime>
+      <ModuleName>System</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="">
+      <ModulePath>RefEmit_InMemoryManifestModule</ModulePath>
+      <ModuleTime>0001-01-01T00:00:00</ModuleTime>
+      <ModuleName>Anonymously Hosted DynamicMethods Assembly</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="C3-ED-39-18-7F-84-0C-BC-C0-EE-7E-2E-72-32-16-BB-D3-40-9C-98">
+      <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll</ModulePath>
+      <ModuleTime>2020-03-14T12:54:46.3314266Z</ModuleTime>
+      <ModuleName>ComputerMonitoringTests</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="A5-B7-BC-42-9C-AA-2C-7A-42-E2-43-5A-2F-7B-F3-B2-00-B1-CB-E6">
+      <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.runner.utility.net452.dll</ModulePath>
+      <ModuleTime>2018-10-29T08:17:04Z</ModuleTime>
+      <ModuleName>xunit.runner.utility.net452</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="39-DB-4E-F6-A9-81-08-00-33-8D-EC-91-F5-56-FB-4D-0A-ED-99-9F">
+      <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerMonitoringTests\bin\Debug\xunit.abstractions.dll</ModulePath>
+      <ModuleTime>2018-10-29T08:17:14Z</ModuleTime>
+      <ModuleName>xunit.abstractions</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="1D-38-FA-64-8C-19-3B-5A-2F-20-D8-11-BB-40-9E-11-85-D9-1B-CD">
+      <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerMonitoringTests\bin\Debug\xunit.execution.desktop.dll</ModulePath>
+      <ModuleTime>2018-10-29T08:17:00Z</ModuleTime>
+      <ModuleName>xunit.execution.desktop</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="4A-9D-81-85-DC-CF-74-ED-91-AC-6F-7B-37-3D-3E-0B-36-5C-56-66">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System\v4.0_4.0.0.0__b77a5c561934e089\System.dll</ModulePath>
+      <ModuleTime>2019-07-24T02:58:28Z</ModuleTime>
+      <ModuleName>System</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="CC-DB-8A-78-1D-14-03-CA-9E-57-77-AD-02-B0-11-1E-9D-D0-F8-EB">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Core\v4.0_4.0.0.0__b77a5c561934e089\System.Core.dll</ModulePath>
+      <ModuleTime>2019-12-07T06:03:04Z</ModuleTime>
+      <ModuleName>System.Core</ModuleName>
+      <Classes />
+    </Module>
+  </Modules>
+</CoverageSession>

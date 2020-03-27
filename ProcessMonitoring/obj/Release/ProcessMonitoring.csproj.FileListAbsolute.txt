@@ -24,9 +24,10 @@ D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMon
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Release\System.ValueTuple.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Release\Common.pdb
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Release\Prism.xml
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Release\System.ValueTuple.xml
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\obj\Release\ProcessMonitoring.csprojAssemblyReference.cache
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\obj\Release\ProcessMonitoring.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\obj\Release\ProcessMonitoring.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\obj\Release\ProcessMonitoring.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Release\Common.UI.exe
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Release\Common.UI.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Release\Common.UI.exe.config

@@ -34,9 +34,10 @@ D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareMa
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Release\Newtonsoft.Json.xml
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Release\NvAPIWrapper.xml
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Release\System.Net.Http.Formatting.xml
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Release\Prism.xml
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Release\System.ValueTuple.xml
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareAccess.csprojAssemblyReference.cache
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareAccess.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\obj\Release\HardwareManipulation.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Release\Common.UI.exe
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Release\Common.UI.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\bin\Release\Common.UI.exe.config

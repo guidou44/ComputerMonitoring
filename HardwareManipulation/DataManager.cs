@@ -18,7 +18,7 @@ namespace HardwareManipulation
 
         private IEnumerable<MonitoringTarget> _initialMonitoringTargets;
         private IDictionary<ComputerRessource, ConnectorBase> _target2Connector;
-        private const string XmlConfigPath = @"..\..\Configuration\MonitoringConfiguration.cfg";
+        private const string XmlConfigPath = @".\Configuration\MonitoringConfiguration.cfg";
 
 
         public DataManager()
@@ -37,9 +37,9 @@ namespace HardwareManipulation
             return _target2Connector[targetKey].GetValue(target);
         }
 
-        public IEnumerable<HardwareInformation> GetCalculatedValues(IEnumerable<MonitoringTarget> targets)
+        public IEnumerable<HardwareInformation> GetCalculatedValues(ICollection<MonitoringTarget> targets)
         {
-            var _targets = new HashSet<MonitoringTarget>(targets); //let 
+            var _targets = new HashSet<MonitoringTarget>(targets);
             var output = new Queue<HardwareInformation>();
             foreach (var target in _targets)
             {
@@ -50,10 +50,11 @@ namespace HardwareManipulation
                 catch (Exception e)
                 {
                     output.Enqueue(new HardwareInformation() { MainValue = 0, UnitSymbol = $"COM ERR: {target.ToString()}", ShortName="ERR"});
+                    if (targets.Count() >= 1)
+                        targets.Remove(target);
                 }
             }
 
-            //CleanUp
             var notUsedTargets = _target2Connector.Where(t2C => t2C.Value != null && !targets.Contains(t2C.Key.TargetType))
                                                   .ToDictionary(t2C => t2C.Key, T2C => T2C.Value)
                                                   .Keys

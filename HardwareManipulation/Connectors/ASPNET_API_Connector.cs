@@ -13,6 +13,7 @@ namespace HardwareAccess.Connectors
 {
     public class ASPNET_API_Connector : ConnectorBase
     {
+        private const string SERVER_ADDRESS = "https://192.168.50.107";
         public ASPNET_API_Connector()
         {
             InitializeClient();
@@ -44,7 +45,7 @@ namespace HardwareAccess.Connectors
             var httpClientHandler = new HttpClientHandler();
             httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
             _client = new HttpClient(httpClientHandler, true);
-            _client.BaseAddress = new Uri("https://192.168.50.110");
+            _client.BaseAddress = new Uri(SERVER_ADDRESS);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

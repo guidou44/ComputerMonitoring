@@ -33,9 +33,10 @@ D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Rele
 D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\Common\Common\obj\Release\Common.pdb
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Release\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Release\Common.pdb
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Release\Prism.xml
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Release\System.ValueTuple.xml
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Release\Common.csprojAssemblyReference.cache
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Release\Common.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Release\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Release\Common.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Release\Common.UI.exe
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Release\Common.UI.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Release\Common.UI.exe.config

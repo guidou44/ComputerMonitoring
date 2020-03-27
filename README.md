@@ -31,4 +31,4 @@
 
 Run the script [Run_Tests](ComputerRessourcesMonitoring\Run_Tests.bat) in folder [ComputerRessourcesMonitoring](ComputerRessourcesMonitoring)
 
-<sub><sup>(I know about the type in resource)</sup></sub>
+<sub><sup>(I know about the typo in resource)</sup></sub>

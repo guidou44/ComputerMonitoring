@@ -24,12 +24,12 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private DataManager _manager;
         private IEventAggregator _eventHub;
-        private Queue<MonitoringTarget> _lruTargets;
+        private List<MonitoringTarget> _lruTargets;
         private IDictionary<MonitoringTarget, bool> targetDict;
         private ProcessWatchDog _watchdog;
 
         public SettingsDialogViewModel(ObservableCollection<ProcessViewModel> watchdogProcesses, IEventAggregator eventsHub, 
-                                               Queue<MonitoringTarget> monTargets,
+                                               List<MonitoringTarget> monTargets,
                                                DataManager manager, ProcessWatchDog watchdog)
         {
             //watchdog---------
@@ -59,7 +59,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         #region Monitoring Methods
 
-        private async void InitializeComponents(Queue<MonitoringTarget> monTargets)
+        private async void InitializeComponents(List<MonitoringTarget> monTargets)
         {
             MotherBoardMake = (string)_manager.GetCalculatedValue(MonitoringTarget.Mother_Board_Make).MainValue;
             CpuMake = (string) _manager.GetCalculatedValue(MonitoringTarget.CPU_Make).MainValue;
@@ -82,11 +82,14 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
             for (int i = 0; i < _lruTargets.Count(); i++)
             {
-                SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(monTargets.Dequeue(), true));
+                MonitoringTarget firstInLine = monTargets.First();
+                if (monTargets.Count() >= 1)
+                    monTargets.RemoveAt(0);
+                SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(firstInLine, true));
             }
         }
 
-        private async void PublishQueue(Queue<MonitoringTarget> lruTargets)
+        private async void PublishQueue(List<MonitoringTarget> lruTargets)
         {
             await Task.Run(() =>_eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(lruTargets));
         }
@@ -102,17 +105,19 @@ namespace ComputerRessourcesMonitoring.ViewModels
         private void SetMonitoringDictionary(KeyValuePair<MonitoringTarget, bool> target)
         {
             targetDict[target.Key] = target.Value;
-            if (target.Value) _lruTargets.Enqueue(target.Key);
+            if (target.Value) _lruTargets.Add(target.Key);
             else if (!target.Value && _lruTargets.Contains(target.Key))
             {
                 var lruTargetsList = _lruTargets.ToList();
                 lruTargetsList.Remove(target.Key);
-                _lruTargets = new Queue<MonitoringTarget>(lruTargetsList);
+                _lruTargets = new List<MonitoringTarget>(lruTargetsList);
             }
 
             while (_lruTargets.Count() > MaxAllowedMonTargets)
             {
-                var lruTarget = _lruTargets.Dequeue();
+                MonitoringTarget lruTarget = _lruTargets.First();
+                if (_lruTargets.Count() >= 1)
+                    _lruTargets.RemoveAt(0);
                 targetDict[lruTarget] = false;
             }
             SetCheckboxValues();

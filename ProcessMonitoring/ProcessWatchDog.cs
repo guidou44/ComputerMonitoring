@@ -21,7 +21,7 @@ namespace ProcessMonitoring
         #region Constructor
 
         private CommandLineHelper _cmdHelper;
-        private const string _XML_CONFIG_PATH = @"..\..\Configuration\WatchdogConfiguration.cfg";
+        private const string _XML_CONFIG_PATH = @".\Configuration\WatchdogConfiguration.cfg";
         private IPAddress localHostIpV4;
         private ICollection<PacketCaptureProcessInfo> _packetCaptureProcessesInfo;
 

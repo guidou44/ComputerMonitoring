@@ -26,7 +26,7 @@ namespace ComputerResourcesMonitoring.Models
         #region Constructor
 
         private DataManager _hardware_manager;
-        private Queue<MonitoringTarget> _monitoringTargets;
+        private List<MonitoringTarget> _monitoringTargets;
         private System.Timers.Timer _monitoringRefreshCounter;
         private ProcessWatchDog _watchdog;
         private Thread _watchdogThread;
@@ -37,9 +37,9 @@ namespace ComputerResourcesMonitoring.Models
         public ComputerMonitoringManagerModel(IEventAggregator eventHub) : base(eventHub)
         {
             _hardware_manager = new DataManager();
-            _monitoringTargets = new Queue<MonitoringTarget>();
+            _monitoringTargets = new List<MonitoringTarget>();
             var initialTargets = _hardware_manager.GetInitialTargets();
-            initialTargets.ToList().ForEach(TARGET => _monitoringTargets.Enqueue(TARGET));
+            initialTargets.ToList().ForEach(TARGET => _monitoringTargets.Add(TARGET));
             InitializeWatchdog();
             RefreshMonitoring();
             SubscribeToEvents();
@@ -67,7 +67,7 @@ namespace ComputerResourcesMonitoring.Models
             return _watchdog;
         }
 
-        public Queue<MonitoringTarget> GetMonitoringQueue()
+        public List<MonitoringTarget> GetMonitoringQueue()
         {
             return _monitoringTargets;
         }

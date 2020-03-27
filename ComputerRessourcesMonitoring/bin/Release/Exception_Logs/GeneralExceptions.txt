@@ -139,3 +139,45 @@ Stacktrace:    at System.Collections.ObjectModel.ObservableCollection`1..ctor(IE
    at ComputerRessourcesMonitoring.ViewModels.SettingsDialogViewModel..ctor(ObservableCollection`1 watchdogProcesses, IEventAggregator eventsHub, Queue`1 monTargets, DataManager manager, ProcessWatchDog watchdog) in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\SettingsDialogViewModel.cs:line 36
    at ComputerRessourcesMonitoring.ViewModels.MainViewModel.OpenSettingsWindowCommandExecute() in D:\Guillaume\Desktop\Internet Explorer\ComputerMonitoring\ComputerRessourcesMonitoring\ViewModels\MainViewModel.cs:line 147
 
+
+*************************Exception******************************
+DateTime: 22-03-2020 14:01:34
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Common.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 22-03-2020 14:38:43
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Common.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 22-03-2020 14:51:37
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Common.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\Helpers\WmiHelper.cs:line 21
+
