@@ -1,4 +1,5 @@
-﻿using Common.UI.DialogServices;
+﻿using Autofac;
+using Common.UI.DialogServices;
 using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
 using Prism.Events;
@@ -15,6 +16,7 @@ namespace Common.UI.ViewModels
     {
         protected IDialogService _dialogService;
         protected IEventAggregator _eventHub;
+        protected ContainerBuilder _container;
         public WindowViewModelBase()
         {
             _dialogService = new DialogService();
@@ -25,6 +27,11 @@ namespace Common.UI.ViewModels
         {
             _dialogService = dialogService;
             _eventHub = new EventAggregator();
+        }
+
+        public WindowViewModelBase(IDialogService dialogService, ContainerBuilder container) : this(dialogService)
+        {
+            _container = container;
         }
     }
 }

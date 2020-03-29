@@ -19,6 +19,7 @@ using System.Threading;
 using ComputerResourcesMonitoring.Models;
 using System.ComponentModel;
 using System.Reflection;
+using Autofac;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -28,7 +29,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private ComputerMonitoringManagerModel _app_manager;
 
-        public MainViewModel(IDialogService dialogService) : base (dialogService)
+        public MainViewModel(IDialogService dialogService, ContainerBuilder container) : base (dialogService, container)
         {
             IsApplicationVisible = true;
             _app_manager = new ComputerMonitoringManagerModel(_eventHub);

@@ -1,4 +1,5 @@
-﻿using Common.UI.DialogServices;
+﻿using Autofac;
+using Common.UI.DialogServices;
 using Common.UI.Interfaces;
 using Common.UI.ViewModels;
 using Common.UI.Views;
@@ -23,11 +24,10 @@ namespace ComputerRessourcesMonitoring
         protected override void OnStartup(StartupEventArgs e)
         {
             IDialogService dialogService = new DialogService(owner: MainWindow);
-
             dialogService.Register<SettingsDialogViewModel, WatchdogSettingsDialogView>();
-
-            var viewModel = new MainViewModel(dialogService);
-            var view = new MainWindow { DataContext = viewModel };
+            ContainerBuilder instanceContainer = new ContainerBuilder();
+            MainViewModel viewModel = new MainViewModel(dialogService, instanceContainer);
+            MainWindow view = new MainWindow { DataContext = viewModel };
 
             view.ShowDialog();
             
