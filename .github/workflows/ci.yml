@@ -41,7 +41,7 @@ jobs:
         run: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console $env:Test_Assembly_Path
         
       - name: Generate_Code_Coverage_report
-        run: ComputerRessourcesMonitoring\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console.x86.exe" -targetargs:"ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll -noshadow" -output:".\ComputerRessourcesMonitoring\ComputerMonitoringTests_Coverage.xml"
+        run: ComputerRessourcesMonitoring\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:user -target:"ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console.x86.exe" -targetargs:"ComputerMonitoringTests\bin\Release\ComputerMonitoringTests.dll -noshadow" -output:".\ComputerRessourcesMonitoring\ComputerMonitoringTests_Coverage.xml"
         
       - name: Upload_To_CodeCov
         uses: codecov/codecov-action@v1
