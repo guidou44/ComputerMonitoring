@@ -1,2 +1,2 @@
 cd /d "%~dp0."
-packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:path64 -target:"packages\xunit.runner.console.2.4.1\tools\net472\xunit.console.exe" -targetargs:"..\ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll -noshadow" -output:".\Code_Coverage.xml"
+packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:path64 -target:"packages\xunit.runner.console.2.4.1\tools\net472\xunit.console.exe" -targetargs:"..\ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll -noshadow" -output:"Code_Coverage.xml"
