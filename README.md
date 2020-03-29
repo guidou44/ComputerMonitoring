@@ -1,6 +1,6 @@
 # ComputerResourcesMonitoring
 ![CI Status](https://github.com/guidou44/ComputerMonitoring/workflows/ComputerResourceMonitoring%20CI/badge.svg?branch=master)
-
+[![codecov](https://codecov.io/gh/guidou44/ComputerMonitoring/branch/master/graph/badge.svg)](https://codecov.io/gh/guidou44/ComputerMonitoring)
 
 ## Usage
 
