@@ -3,6 +3,8 @@ using Common.UI.DialogServices;
 using Common.UI.Interfaces;
 using Common.UI.ViewModels;
 using Common.UI.Views;
+using ComputerResourcesMonitoring.Models;
+using ComputerRessourcesMonitoring.Infrastructure;
 using ComputerRessourcesMonitoring.ViewModels;
 using ComputerRessourcesMonitoring.Views;
 using System;
@@ -23,15 +25,15 @@ namespace ComputerRessourcesMonitoring
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            IDialogService dialogService = new DialogService(owner: MainWindow);
+            IContainer instanceContainer = ContainerResolver.Container;
+            IDialogService dialogService = instanceContainer.Resolve<IDialogService>(new TypedParameter(typeof(Window), MainWindow));
             dialogService.Register<SettingsDialogViewModel, WatchdogSettingsDialogView>();
-            ContainerBuilder instanceContainerBuilder = new ContainerBuilder();
+            ComputerMonitoringManagerModel manager = instanceContainer.Resolve<ComputerMonitoringManagerModel>();
 
-            MainViewModel viewModel = new MainViewModel(dialogService, instanceContainerBuilder);
+            MainViewModel viewModel = new MainViewModel(dialogService, manager, instanceContainer);
             MainWindow view = new MainWindow { DataContext = viewModel };
 
             view.ShowDialog();
-            
         }
     }
 }

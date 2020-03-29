@@ -20,18 +20,13 @@ namespace Common.UI.ViewModels
         public WindowViewModelBase()
         {
             _dialogService = new DialogService();
-            _eventHub = new EventAggregator();
         }
 
-        public WindowViewModelBase(IDialogService dialogService)
+        public WindowViewModelBase(IDialogService dialogService, IContainer container)
         {
+            _container = container;
             _dialogService = dialogService;
-            _eventHub = new EventAggregator();
-        }
-
-        public WindowViewModelBase(IDialogService dialogService, ContainerBuilder builder) : this(dialogService)
-        {
-            _container = builder.Build();
+            _eventHub = _container.Resolve<IEventAggregator>();
         }
     }
 }

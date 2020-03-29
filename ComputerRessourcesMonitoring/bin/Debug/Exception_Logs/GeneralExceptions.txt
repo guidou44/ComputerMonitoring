@@ -74,3 +74,17 @@ Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(Ma
    at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
    at Common.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\Helpers\WmiHelper.cs:line 21
 
+
+*************************Exception******************************
+DateTime: 29-03-2020 14:03:59
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at Common.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\Helpers\WmiHelper.cs:line 21
+

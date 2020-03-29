@@ -43,3 +43,12 @@ D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMon
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\Common.UI.exe.config
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\Prism.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.ValueTuple.dll
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\ProcessMonitoring.dll.config
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\Autofac.dll
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\Common.dll.config
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\Autofac.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\Autofac.xml
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ProcessMonitoring\bin\Debug\System.Threading.Tasks.Extensions.xml

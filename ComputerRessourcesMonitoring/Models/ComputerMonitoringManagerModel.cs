@@ -25,7 +25,7 @@ namespace ComputerResourcesMonitoring.Models
     {
         #region Constructor
 
-        private DataManager _hardware_manager;
+        private DataManager _hardwareManager;
         private List<MonitoringTarget> _monitoringTargets;
         private System.Timers.Timer _monitoringRefreshCounter;
         private ProcessWatchDog _watchdog;
@@ -34,11 +34,12 @@ namespace ComputerResourcesMonitoring.Models
         public delegate void MonitoringErrorOccuredEventHandler(Exception e);
         public event MonitoringErrorOccuredEventHandler OnMonitoringErrorOccured;
 
-        public ComputerMonitoringManagerModel(IEventAggregator eventHub) : base(eventHub)
+        public ComputerMonitoringManagerModel(IEventAggregator eventHub, DataManager hardwareManager, ProcessWatchDog watchDog) : base(eventHub)
         {
-            _hardware_manager = new DataManager();
+            _hardwareManager = hardwareManager;
             _monitoringTargets = new List<MonitoringTarget>();
-            var initialTargets = _hardware_manager.GetInitialTargets();
+            _watchdog = watchDog;
+            var initialTargets = _hardwareManager.GetInitialTargets();
             initialTargets.ToList().ForEach(TARGET => _monitoringTargets.Add(TARGET));
             InitializeWatchdog();
             RefreshMonitoring();
@@ -59,7 +60,7 @@ namespace ComputerResourcesMonitoring.Models
 
         public DataManager GetHardwareManager()
         {
-            return _hardware_manager;
+            return _hardwareManager;
         }
 
         public ProcessWatchDog GetWatchDog()
@@ -77,8 +78,7 @@ namespace ComputerResourcesMonitoring.Models
         #region Private Methods
 
         private void InitializeWatchdog()
-        {
-            _watchdog = new ProcessWatchDog();
+        {           
             try
             {
                 _watchdog.PacketsExchangedEvent += ReportPacketExchange;
@@ -139,7 +139,7 @@ namespace ComputerResourcesMonitoring.Models
             try
             {
 
-                var valuesQueue = _hardware_manager.GetCalculatedValues(_monitoringTargets);
+                var valuesQueue = _hardwareManager.GetCalculatedValues(_monitoringTargets);
                 HardwareValues = new ObservableCollection<HardwareInformation>(valuesQueue);
             }
             catch (Exception e)

@@ -51,3 +51,13 @@ D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Com
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.UI.exe
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.UI.pdb
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.UI.exe.config
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.dll.config
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Autofac.dll
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\System.Threading.Tasks.Extensions.dll
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Autofac.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Autofac.xml
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
