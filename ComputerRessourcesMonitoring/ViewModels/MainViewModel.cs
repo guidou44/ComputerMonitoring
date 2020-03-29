@@ -29,7 +29,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private ComputerMonitoringManagerModel _app_manager;
 
-        public MainViewModel(IDialogService dialogService, ContainerBuilder container) : base (dialogService, container)
+        public MainViewModel(IDialogService dialogService, ContainerBuilder containerBuilder) : base (dialogService, containerBuilder)
         {
             IsApplicationVisible = true;
             _app_manager = new ComputerMonitoringManagerModel(_eventHub);

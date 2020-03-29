@@ -16,7 +16,7 @@ namespace Common.UI.ViewModels
     {
         protected IDialogService _dialogService;
         protected IEventAggregator _eventHub;
-        protected ContainerBuilder _container;
+        protected IContainer _container;
         public WindowViewModelBase()
         {
             _dialogService = new DialogService();
@@ -29,9 +29,9 @@ namespace Common.UI.ViewModels
             _eventHub = new EventAggregator();
         }
 
-        public WindowViewModelBase(IDialogService dialogService, ContainerBuilder container) : this(dialogService)
+        public WindowViewModelBase(IDialogService dialogService, ContainerBuilder builder) : this(dialogService)
         {
-            _container = container;
+            _container = builder.Build();
         }
     }
 }

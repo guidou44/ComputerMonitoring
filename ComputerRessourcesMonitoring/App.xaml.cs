@@ -25,8 +25,9 @@ namespace ComputerRessourcesMonitoring
         {
             IDialogService dialogService = new DialogService(owner: MainWindow);
             dialogService.Register<SettingsDialogViewModel, WatchdogSettingsDialogView>();
-            ContainerBuilder instanceContainer = new ContainerBuilder();
-            MainViewModel viewModel = new MainViewModel(dialogService, instanceContainer);
+            ContainerBuilder instanceContainerBuilder = new ContainerBuilder();
+
+            MainViewModel viewModel = new MainViewModel(dialogService, instanceContainerBuilder);
             MainWindow view = new MainWindow { DataContext = viewModel };
 
             view.ShowDialog();
