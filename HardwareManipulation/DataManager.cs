@@ -23,7 +23,13 @@ namespace HardwareManipulation
 
         public DataManager()
         {
-            SetMonitoringTargets();
+            SetMonitoringTargets(XmlConfigPath);
+            SetAvailableTargets_Internal();
+        }
+
+        public DataManager(string alternateConfigPath)
+        {
+            SetMonitoringTargets(alternateConfigPath);
             SetAvailableTargets_Internal();
         }
 
@@ -123,10 +129,10 @@ namespace HardwareManipulation
             }
         }
 
-        private void SetMonitoringTargets()
+        private void SetMonitoringTargets(string xmlConfigPath)
         {
             _target2Connector = new Dictionary<ComputerRessource, ConnectorBase>();
-            var ressourceCollection = XmlHelper.DeserializeConfiguration<RessourceCollection>(XmlConfigPath);
+            var ressourceCollection = XmlHelper.DeserializeConfiguration<RessourceCollection>(xmlConfigPath);
             foreach (var ressource in ressourceCollection.Ressources) _target2Connector.Add(ressource, null);
             _initialMonitoringTargets = ressourceCollection.InitialTargets;
         }
