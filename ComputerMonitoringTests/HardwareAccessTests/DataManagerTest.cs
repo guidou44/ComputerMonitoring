@@ -15,7 +15,8 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenConfigFile_WhenAskingForInitialTarget_ThenItReturnsProperTargets()
         {
-            DataManager managerSubject = new DataManager();
+            const string alternateConfigFile = @"..\..\Configuration\MonitoringConfiguration.cfg";
+            DataManager managerSubject = new DataManager(alternateConfigFile);
             IEnumerable<MonitoringTarget> initialTarget = managerSubject.GetInitialTargets();
             Assert.True(initialTarget.Count() == 3);
             Assert.Contains(MonitoringTarget.CPU_Load, initialTarget);
