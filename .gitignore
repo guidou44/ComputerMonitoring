@@ -362,9 +362,6 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# Build results
-![Dd]ebug/Configuration/MonitoringConfiguration.cfg
-![Dd]ebugPublic/Configuration/MonitoringConfiguration.cfg
-![Rr]elease/Configuration/MonitoringConfiguration.cfg
-![Rr]eleases/Configuration/MonitoringConfiguration.cfg
+!Debug/Configuration/MonitoringConfiguration.cfg
+!Release/Configuration/MonitoringConfiguration.cfg
 
