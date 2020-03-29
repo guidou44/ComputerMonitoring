@@ -363,5 +363,5 @@ MigrationBackup/
 .ionide/
 
 !Debug/Configuration/MonitoringConfiguration.cfg
-!Release/Configuration/MonitoringConfiguration.cfg
+!ComputerMonitoringTests/bin/Release/Configuration/MonitoringConfiguration.cfg
 
