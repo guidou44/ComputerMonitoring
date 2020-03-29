@@ -4,9 +4,9 @@
 
 ## Usage
 
-- Only work with windows
+- Only works with windows
 - Needs to be run as Administrator because of the higher privileges needed to access MSAcpi_ThermalZone
-- you need to add a ReporterConfiguration.xml file with your emails and credentials: It should look like this:
+- you need to add a ReporterConfiguration.xml file with your emails and credentials. (Otherwise, email notification for packet exchange wont work). It should look like this:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -25,10 +25,10 @@
 </configuration>
 ```
 
-- if you want packet capture to work, you need to have [WinPcap](https://www.winpcap.org/install/) installed on computer because pcap uses its dll
+- if you want packet capture to work, you need to have [WinPcap](https://www.winpcap.org/install/) installed on computer because pcap uses its dll, other wise, it will just not monitor packet exchange.
 
 ## Tests
 
 Run the script [Run_Tests](ComputerRessourcesMonitoring\Run_Tests.bat) in folder [ComputerRessourcesMonitoring](ComputerRessourcesMonitoring)
 
-<sub><sup>(I know about the typo in resource)</sup></sub>
+<sub><sup>(I know about the typo in resource in projects names)</sup></sub>
