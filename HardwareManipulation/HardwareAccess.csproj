@@ -140,6 +140,7 @@
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Exceptions\HardwareCommunicationException.cs" />
     <Compile Include="Factories\ConnectorFactory.cs" />
+    <Compile Include="IFactory.cs" />
     <Compile Include="Models\ComputerRessource.cs" />
     <Compile Include="Models\HardwareInformation.cs" />
     <Compile Include="Models\RessourceCollection.cs" />

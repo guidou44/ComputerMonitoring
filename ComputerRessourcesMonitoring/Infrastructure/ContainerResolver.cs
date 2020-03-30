@@ -1,7 +1,9 @@
 ﻿using Autofac;
+using Common.Helpers;
 using Common.UI.DialogServices;
 using Common.UI.Interfaces;
 using ComputerResourcesMonitoring.Models;
+using HardwareAccess.Factories;
 using HardwareManipulation;
 using Prism.Events;
 using ProcessMonitoring;
@@ -35,9 +37,12 @@ namespace ComputerRessourcesMonitoring.Infrastructure
         {
             builder.RegisterType<DialogService>().As<IDialogService>();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>();
+            builder.RegisterType<ConnectorFactory>().As<IFactory>();
+            builder.RegisterType<XmlHelper>().AsSelf();
+            builder.RegisterType<CommandLineHelper>().AsSelf();
             builder.RegisterType<DataManager>().AsSelf();
             builder.RegisterType<ProcessWatchDog>().AsSelf();
-            builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf();
+            builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf(); 
         }
 
     }

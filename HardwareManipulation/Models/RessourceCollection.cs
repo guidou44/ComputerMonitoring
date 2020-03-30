@@ -9,12 +9,12 @@ using System.Xml.Serialization;
 namespace HardwareAccess.Models
 {
     [XmlRoot("Configuration")]
-    public class RessourceCollection
+    public class ResourceCollection
     {
         [XmlElement("InitialTarget")]
         public List<MonitoringTarget> InitialTargets { get; set; }
 
         [XmlElement("ComputerRessource")]
-        public List<ComputerRessource> Ressources { get; set; }
+        public virtual List<ComputerResource> Ressources { get; set; }
     }
 }

@@ -18,30 +18,29 @@ namespace ProcessMonitoring
 {
     public class ProcessWatchDog
     {
-        #region Constructor
+        private const string _XML_CONFIG_PATH = @".\Configuration\WatchdogConfiguration.cfg";
 
         private CommandLineHelper _cmdHelper;
-        private const string _XML_CONFIG_PATH = @".\Configuration\WatchdogConfiguration.cfg";
+        private XmlHelper _xmlHelper;
         private IPAddress localHostIpV4;
         private ICollection<PacketCaptureProcessInfo> _packetCaptureProcessesInfo;
 
         public delegate void PacketsExchanged(PacketCaptureProcessInfo pcp);
         public event PacketsExchanged PacketsExchangedEvent;
 
-        public ProcessWatchDog()
+        public ProcessWatchDog(CommandLineHelper cmdHelper, XmlHelper xmlHelper)
         {
-            _cmdHelper = new CommandLineHelper();
+            _cmdHelper = cmdHelper;
+            _xmlHelper = xmlHelper;
             _packetCaptureProcessesInfo = new HashSet<PacketCaptureProcessInfo>();
             localHostIpV4 = GetIpV4OfLocalHost();
         }
-
-        #endregion
 
         #region Public Methods
 
         public IEnumerable<string> GetInitialProcesses2Watch()
         {
-            var watchdogInit = XmlHelper.DeserializeConfiguration<WatchdogInitialization>(_XML_CONFIG_PATH);
+            var watchdogInit = _xmlHelper.DeserializeConfiguration<WatchdogInitialization>(_XML_CONFIG_PATH);
             return watchdogInit.InitialProcess2watchNames;
         }
 

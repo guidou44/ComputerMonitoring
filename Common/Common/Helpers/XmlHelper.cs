@@ -9,9 +9,9 @@ using System.Xml.Serialization;
 
 namespace Common.Helpers
 {
-    public static class XmlHelper
+    public class XmlHelper
     {
-        public static T DeserializeConfiguration<T>(string xmlFilePath)
+        public virtual T DeserializeConfiguration<T>(string xmlFilePath)
         {
             T returnObject = default(T);
             if (string.IsNullOrEmpty(xmlFilePath)) return default(T);

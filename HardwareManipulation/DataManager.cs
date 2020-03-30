@@ -7,39 +7,39 @@ using Common.Reports;
 using HardwareAccess.Connectors;
 using HardwareAccess.Enums;
 using HardwareAccess.Exceptions;
-using HardwareAccess.Factories;
 using HardwareAccess.Models;
 
 namespace HardwareManipulation
 {
     public class DataManager
     {
-        #region Constructor
+        private const string CONFIG_FILE_PATH = @".\Configuration\MonitoringConfiguration.cfg";
 
         private IEnumerable<MonitoringTarget> _initialMonitoringTargets;
-        private IDictionary<ComputerRessource, ConnectorBase> _target2Connector;
-        private const string XmlConfigPath = @".\Configuration\MonitoringConfiguration.cfg";
+        private IDictionary<ComputerResource, ConnectorBase> _target2Connector;
+        private IFactory _connectorFactory;
+        private XmlHelper _xmlHelper;
 
-
-        public DataManager()
+        public DataManager(IFactory factory, XmlHelper xmlHelper)
         {
-            SetMonitoringTargets(XmlConfigPath);
+            this._xmlHelper = xmlHelper;
+            this._connectorFactory = factory;
+            SetMonitoringTargets(CONFIG_FILE_PATH);
             SetAvailableTargets_Internal();
         }
 
-        public DataManager(string alternateConfigPath)
+        public DataManager(string alternateConfigPath, IFactory factory, XmlHelper xmlHelper)
         {
+            this._xmlHelper = xmlHelper;
+            this._connectorFactory = factory;
             SetMonitoringTargets(alternateConfigPath);
             SetAvailableTargets_Internal();
         }
 
-        #endregion
-
-        #region Public Methods
         public HardwareInformation GetCalculatedValue(MonitoringTarget target)
         {
             var targetKey = _target2Connector.SingleOrDefault(t2C => t2C.Key.TargetType == target).Key;
-            if (_target2Connector[targetKey] == null) _target2Connector[targetKey] = ConnectorFactory.InstantiateConnector(targetKey.ConnectorName);
+            if (_target2Connector[targetKey] == null) _target2Connector[targetKey] = _connectorFactory.CreateInstance<ConnectorBase>(targetKey.ConnectorName);
             return _target2Connector[targetKey].GetValue(target);
         }
 
@@ -96,26 +96,24 @@ namespace HardwareManipulation
 
         public bool IsRemoteMonitoringEnabled()
         {
-            foreach (var remoteTarget in _target2Connector.Where(tar => tar.Key.IsRemote))
+            foreach (KeyValuePair<ComputerResource, ConnectorBase> remoteTarget in _target2Connector.Where(tar => tar.Key.IsRemote))
             {
-                bool ping = TryPing(remoteTarget.Key.RemoteIp);
+                bool ping = remoteTarget.Key.TryPing();
                 if (!ping) return false;
             }
             return _target2Connector.Any(TAR => TAR.Key.IsRemote);
         }
 
-        #endregion
-
         #region Private Methods
 
-        private IDictionary<ComputerRessource, ConnectorBase> GetAvailableTargets_Internal()
+        private IDictionary<ComputerResource, ConnectorBase> GetAvailableTargets_Internal()
         {
             return _target2Connector.Where(T2C => T2C.Key.Com_Error == null).ToDictionary(T2C => T2C.Key, T2C => T2C.Value);
         }
 
         private void SetAvailableTargets_Internal()
         {
-            IEnumerable<ComputerRessource> t2CKeys;
+            IEnumerable<ComputerResource> t2CKeys;
             t2CKeys = (IsRemoteMonitoringEnabled()) ? _target2Connector.Keys.ToList() : _target2Connector.Where(T2C => !T2C.Key.IsRemote).Select(T2C => T2C.Key).ToList();
 
             foreach (var target in t2CKeys)
@@ -131,30 +129,12 @@ namespace HardwareManipulation
 
         private void SetMonitoringTargets(string xmlConfigPath)
         {
-            _target2Connector = new Dictionary<ComputerRessource, ConnectorBase>();
-            var ressourceCollection = XmlHelper.DeserializeConfiguration<RessourceCollection>(xmlConfigPath);
+            _target2Connector = new Dictionary<ComputerResource, ConnectorBase>();
+            var ressourceCollection = _xmlHelper.DeserializeConfiguration<ResourceCollection>(xmlConfigPath);
             foreach (var ressource in ressourceCollection.Ressources) _target2Connector.Add(ressource, null);
             _initialMonitoringTargets = ressourceCollection.InitialTargets;
         }
 
-        private bool TryPing(string ipAddress)
-        {
-            Ping pingHost;
-            try
-            {
-                pingHost = new Ping();
-                PingReply reply = pingHost.Send(ipAddress);
-                return reply.Status == IPStatus.Success;
-            }
-            catch (Exception e)
-            {
-                Reporter.LogException(e);
-                return false;
-            }
-        }
-
         #endregion
-
-
     }
 }
