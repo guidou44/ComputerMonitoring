@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="64e0f75b-7a5c-492d-9063-6675cfdb320f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ComputerRessourcesMonitoring/bin/Release/HardwareManipulation.dll" beforeDir="false" afterPath="$PROJECT_DIR$/ComputerRessourcesMonitoring/bin/Release/HardwareManipulation.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardwareManipulation/DataManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/HardwareManipulation/DataManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardwareManipulation/bin/Release/HardwareManipulation.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HardwareManipulation/bin/Release/HardwareManipulation.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HardwareManipulation/obj/Release/HardwareManipulation.dll" beforeDir="false" afterPath="$PROJECT_DIR$/HardwareManipulation/obj/Release/HardwareManipulation.dll" afterDir="false" />
-    </list>
+    <list default="true" id="64e0f75b-7a5c-492d-9063-6675cfdb320f" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +31,7 @@
       <option name="presentableId" value="Default" />
       <updated>1585498290796</updated>
       <workItem from="1585498294427" duration="37000" />
+      <workItem from="1585605653961" duration="51000" />
     </task>
     <servers />
   </component>

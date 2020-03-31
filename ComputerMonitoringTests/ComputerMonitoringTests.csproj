@@ -73,7 +73,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HardwareAccessTests\Connectors\ConnectorTest.cs" />
     <Compile Include="HardwareAccessTests\DataManagerTest.cs" />
+    <Compile Include="HardwareAccessTests\Factories\ConnectorFactoryTest.cs" />
+    <Compile Include="HardwareAccessTests\IFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

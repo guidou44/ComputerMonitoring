@@ -139,6 +139,7 @@
     <Compile Include="DataManager.cs" />
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Exceptions\HardwareCommunicationException.cs" />
+    <Compile Include="Exceptions\InvalidConnectorException.cs" />
     <Compile Include="Factories\ConnectorFactory.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="Models\ComputerRessource.cs" />

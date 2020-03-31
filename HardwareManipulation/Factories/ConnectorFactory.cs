@@ -1,5 +1,6 @@
 ﻿using HardwareAccess.Connectors;
 using HardwareManipulation;
+using HardwareManipulation.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace HardwareAccess.Factories
         public ObjectType CreateInstance<ObjectType>(string refName)
         {
             Type connectorType = Type.GetType(_connectorDirectory + refName + _connectorSuffix);
-            if (connectorType == null) throw new ArgumentException($"Invalid connector name. Found no connector associated with name {refName}");
+            if (connectorType == null) throw new InvalidConnectorException($"Invalid connector name. Found no connector associated with name {refName}");
             return (ObjectType) Activator.CreateInstance(connectorType);
         }
     }
