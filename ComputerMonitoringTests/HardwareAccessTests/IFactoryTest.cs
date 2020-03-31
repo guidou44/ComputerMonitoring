@@ -28,7 +28,6 @@ namespace ComputerMonitoringTests.HardwareAccessTests
             ConnectorBase ioConnector = _factorySubject.CreateInstance<ConnectorBase>("SystemIO");
 
             Assert.IsType<WMI_Connector>(wmiConnector);
-            Assert.IsType<NVDIA_API_Connector>(nvdiaConnector);
             Assert.IsType<SystemIO_Connector>(ioConnector);
         }
 
