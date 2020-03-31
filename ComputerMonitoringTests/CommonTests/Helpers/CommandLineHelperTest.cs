@@ -32,7 +32,7 @@ namespace ComputerMonitoringTests.CommonTests.Helpers
                     lines.Add(line.Trim());
             }
             Assert.True(lines.Count() > 0);
-            Assert.True(lines.Any(l => l.Contains("IPv4 Address")));
+            Assert.True(lines.Any(l => l.Contains("Gateway")));
         }
 
         [Fact]
