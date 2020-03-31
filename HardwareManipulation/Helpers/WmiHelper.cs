@@ -7,11 +7,11 @@ using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Helpers
+namespace HardwareAccess.Helpers
 {
-    public static class WmiHelper
+    public class WmiHelper
     {
-        public static T GetWmiValue<T>(string wmiPath, string wmiKey, string scope = null)
+        public T GetWmiValue<T>(string wmiPath, string wmiKey, string scope = null)
         {
             var wmiObject = (scope != null) ? new ManagementObjectSearcher(scope, $"select * from {wmiPath}") :
                                               new ManagementObjectSearcher($"select * from {wmiPath}");

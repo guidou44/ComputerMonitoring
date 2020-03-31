@@ -141,6 +141,7 @@
     <Compile Include="Exceptions\HardwareCommunicationException.cs" />
     <Compile Include="Exceptions\InvalidConnectorException.cs" />
     <Compile Include="Factories\ConnectorFactory.cs" />
+    <Compile Include="Helpers\WmiHelper.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="Models\ComputerRessource.cs" />
     <Compile Include="Models\HardwareInformation.cs" />

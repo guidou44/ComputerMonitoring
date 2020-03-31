@@ -73,9 +73,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommonTests\Helpers\CommandLineHelperTest.cs" />
+    <Compile Include="CommonTests\Helpers\XmlHelperTest.cs" />
+    <Compile Include="CommonTests\Reports\ReporterTest.cs" />
     <Compile Include="HardwareAccessTests\Connectors\ConnectorTest.cs" />
     <Compile Include="HardwareAccessTests\DataManagerTest.cs" />
     <Compile Include="HardwareAccessTests\Factories\ConnectorFactoryTest.cs" />
+    <Compile Include="HardwareAccessTests\HelpersTest\WmiHelperTest.cs" />
     <Compile Include="HardwareAccessTests\IFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

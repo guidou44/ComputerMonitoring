@@ -1,5 +1,6 @@
 ﻿using Common.Helpers;
 using HardwareAccess.Enums;
+using HardwareAccess.Helpers;
 using HardwareAccess.Models;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,14 @@ using System.Threading.Tasks;
 namespace HardwareAccess.Connectors
 {
     public class WMI_Connector : ConnectorBase
-    {
-        private static PerformanceCounter all_Cpu_Idle;
+    {        
+        private PerformanceCounter all_Cpu_Idle;
+        private WmiHelper wmiHelper;
 
-        #region Private Methods
-
-        private static HardwareInformation GetCpuCoreCount()
+        private HardwareInformation GetCpuCoreCount()
         {
-            var numOfCore = WmiHelper.GetWmiValue<uint>("Win32_Processor", "NumberOfCores");
+            if (wmiHelper == null) wmiHelper = new WmiHelper();
+            var numOfCore = wmiHelper.GetWmiValue<uint>("Win32_Processor", "NumberOfCores");
             var cpuCoreCount = new HardwareInformation()
             {
                 MainValue = (double) numOfCore,
@@ -31,9 +32,10 @@ namespace HardwareAccess.Connectors
             return cpuCoreCount;
         }
 
-        private static HardwareInformation GetCpuClockSpeed()
+        private HardwareInformation GetCpuClockSpeed()
         {
-            var clockSpeed = WmiHelper.GetWmiValue<uint>("Win32_Processor", "CurrentClockSpeed");
+            if (wmiHelper == null) wmiHelper = new WmiHelper();
+            var clockSpeed = wmiHelper.GetWmiValue<uint>("Win32_Processor", "CurrentClockSpeed");
             var cpuClockSpeed = new HardwareInformation()
             {
                 MainValue = (double) (clockSpeed * 001f)/1000,
@@ -43,9 +45,10 @@ namespace HardwareAccess.Connectors
             return cpuClockSpeed;
         }
 
-        private static HardwareInformation GetCpuMake()
+        private HardwareInformation GetCpuMake()
         {
-            var make = WmiHelper.GetWmiValue<string>("Win32_Processor", "Name");
+            if (wmiHelper == null) wmiHelper = new WmiHelper();
+            var make = wmiHelper.GetWmiValue<string>("Win32_Processor", "Name");
             var cpuMake = new HardwareInformation()
             {
                 MainValue = make,
@@ -55,9 +58,10 @@ namespace HardwareAccess.Connectors
             return cpuMake;
         }
 
-        private static HardwareInformation GetCpuTemperature()
+        private HardwareInformation GetCpuTemperature()
         {
-            var temp = WmiHelper.GetWmiValue<double>("MSAcpi_ThermalZoneTemperature", "CurrentTemperature", scope: @"root\WMI");
+            if (wmiHelper == null) wmiHelper = new WmiHelper();
+            var temp = wmiHelper.GetWmiValue<double>("MSAcpi_ThermalZoneTemperature", "CurrentTemperature", scope: @"root\WMI");
             var cpuTemp = new HardwareInformation()
             {
                 ShortName = "CPU",
@@ -67,9 +71,10 @@ namespace HardwareAccess.Connectors
             return cpuTemp;
         }
 
-        private static HardwareInformation GetCpuThreadCount()
+        private HardwareInformation GetCpuThreadCount()
         {
-            var threadCount = WmiHelper.GetWmiValue<uint>("Win32_Processor", "ThreadCount");
+            if (wmiHelper == null) wmiHelper = new WmiHelper();
+            var threadCount = wmiHelper.GetWmiValue<uint>("Win32_Processor", "ThreadCount");
             var cpuThreadCount = new HardwareInformation()
             {
             MainValue = (double)threadCount,
@@ -80,7 +85,7 @@ namespace HardwareAccess.Connectors
             return cpuThreadCount;
         }
 
-        private static IEnumerable<HardwareInformation> GetEachCpuUsage()
+        private IEnumerable<HardwareInformation> GetEachCpuUsage()
         {
             var wmiObject = new ManagementObjectSearcher("select * from Win32_PerfFormattedData_PerfOS_Processor");
 
@@ -99,9 +104,10 @@ namespace HardwareAccess.Connectors
                 throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
         }
 
-        private static HardwareInformation GetGlobalCpuUsage()
+        private HardwareInformation GetGlobalCpuUsage()
         {
-            var loadPercentage = WmiHelper.GetWmiValue<double>("Win32_Processor", "LoadPercentage");
+            if (wmiHelper == null) wmiHelper = new WmiHelper();
+            var loadPercentage = wmiHelper.GetWmiValue<double>("Win32_Processor", "LoadPercentage");
             var cpuUsage = new HardwareInformation()
             {
                 MainValue = loadPercentage,
@@ -111,8 +117,9 @@ namespace HardwareAccess.Connectors
             return cpuUsage;
         }
 
-        private static HardwareInformation GetGlobalCpuUsageWithPerfCounter()
+        private HardwareInformation GetGlobalCpuUsageWithPerfCounter()
         {
+            if (wmiHelper == null) wmiHelper = new WmiHelper();
             all_Cpu_Idle = (all_Cpu_Idle == null) ? new PerformanceCounter("Processor", "% Idle Time", "_Total") : all_Cpu_Idle;
             var cpuIdle = all_Cpu_Idle.NextValue();
             return new HardwareInformation()
@@ -123,10 +130,11 @@ namespace HardwareAccess.Connectors
             };
         }
 
-        private static HardwareInformation GetRamMemoryUsage()
+        private HardwareInformation GetRamMemoryUsage()
         {
-            var totalMemSize = WmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "TotalVisibleMemorySize");
-            var freeMemSize = WmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "FreePhysicalMemory");
+            if (wmiHelper == null) wmiHelper = new WmiHelper();
+            var totalMemSize = wmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "TotalVisibleMemorySize");
+            var freeMemSize = wmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "FreePhysicalMemory");
 
             var ramUsage = new HardwareInformation()
             {
@@ -138,8 +146,6 @@ namespace HardwareAccess.Connectors
             return (ramUsage != null) ? ramUsage :
             throw new ArgumentNullException("No memory was found in ManagementObjectSearcher"); ;
         }
-
-        #endregion
 
         public override HardwareInformation GetValue(MonitoringTarget resource)
         {

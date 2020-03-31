@@ -1,4 +1,5 @@
-﻿using Common.Reports;
+﻿using Common.Exceptions;
+using Common.Reports;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,7 +28,7 @@ namespace Common.Helpers
             catch (Exception e)
             {
                 Reporter.LogException(e);
-                throw;
+                throw new XmlDeserializationException($"Path: {xmlFilePath}\n{e.Message}");
             }
             return returnObject;
         }

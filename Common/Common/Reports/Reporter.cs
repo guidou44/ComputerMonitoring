@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -25,9 +26,16 @@ namespace Common.Reports
                              "Message: " + e.Message + "\n" +
                              "Stacktrace: " + e.StackTrace + "\n";
 
-            using (var writer = new StreamWriter(logPath ?? defaultLogPath + @"\GeneralExceptions.txt", append: true))
+            try
             {
-                writer.WriteLine(exEntry);
+                using (var writer = new StreamWriter(logPath ?? defaultLogPath + @"\GeneralExceptions.txt", append: true))
+                {
+                    writer.WriteLine(exEntry);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ReporterIOException(ex.Message);
             }
 
             if (addEmailreport) SendEmailReport("Exception thrown", exEntry);

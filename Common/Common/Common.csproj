@@ -64,11 +64,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Examples\DialogViewModelEXAMPLE.cs" />
-    <Compile Include="Examples\MainWindowViewModelEXAMPLE.cs" />
+    <Compile Include="Exceptions\ReporterIOException.cs" />
+    <Compile Include="Exceptions\XmlDeserializationException.cs" />
     <Compile Include="Helpers\CommandLineHelper.cs" />
-    <Compile Include="Helpers\LinuxTerminalHelper.cs" />
-    <Compile Include="Helpers\WmiHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
     <Compile Include="Reports\Reporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
