@@ -25,7 +25,6 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         public void GivenConnectorFactory_WhenProvidingValidName_ThenItInstantiateProperConnector()
         {
             ConnectorBase wmiConnector = _factorySubject.CreateInstance<ConnectorBase>("WMI");
-            ConnectorBase nvdiaConnector = _factorySubject.CreateInstance<ConnectorBase>("NVDIA_API");
             ConnectorBase ioConnector = _factorySubject.CreateInstance<ConnectorBase>("SystemIO");
 
             Assert.IsType<WMI_Connector>(wmiConnector);
