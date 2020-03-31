@@ -30,13 +30,10 @@ namespace ComputerMonitoringTests.HardwareAccessTests.Connectors
             List<object[]> parameters = new List<object[]>()
             {
                 new object[] { new WMI_Connector(), new List<MonitoringTarget>() { MonitoringTarget.RAM_Usage,
-                                                                                   MonitoringTarget.CPU_Clock_Speed,
                                                                                    MonitoringTarget.CPU_Load,
-                                                                                   MonitoringTarget.CPU_Thread_Count,
                                                                                    MonitoringTarget.CPU_Make} },
 
-                new object[] { new SystemIO_Connector(), new List<MonitoringTarget>() { MonitoringTarget.Primary_HDD_Used_Space,
-                                                                                        MonitoringTarget.Secondary_HDD_Used_Space } },
+                new object[] { new SystemIO_Connector(), new List<MonitoringTarget>() { MonitoringTarget.Primary_HDD_Used_Space} },
 
             };
 
