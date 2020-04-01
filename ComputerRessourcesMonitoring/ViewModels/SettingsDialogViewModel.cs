@@ -1,7 +1,7 @@
 ﻿using Common.Reports;
 using Common.UI.DialogServices;
 using Common.UI.Infrastructure;
-using Common.UI.Interfaces;
+using Common.UI.WindowProperty;
 using Common.UI.ViewModels;
 using ComputerRessourcesMonitoring.Events;
 using HardwareAccess;

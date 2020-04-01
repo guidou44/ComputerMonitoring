@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Common.UI.Interfaces;
+using Common.UI.WindowProperty;
 
 namespace Common.UI.Views
 {

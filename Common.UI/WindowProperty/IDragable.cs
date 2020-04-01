@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.UI.Interfaces
+namespace Common.UI.WindowProperty
 {
-    public interface IClosable
+    public interface IDragable
     {
-        void Close();
+        void DragMove();
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Common.UI.DialogServices;
 using Common.UI.Infrastructure;
-using Common.UI.Interfaces;
+using Common.UI.WindowProperty;
 using Prism.Events;
 using System;
 using System.Collections.Generic;

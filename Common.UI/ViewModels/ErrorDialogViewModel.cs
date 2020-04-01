@@ -1,6 +1,7 @@
 ﻿using Common.UI.DialogServices;
 using Common.UI.Infrastructure;
 using Common.UI.Interfaces;
+using Common.UI.WindowProperty;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,17 @@ using System.Windows.Input;
 
 namespace Common.UI.ViewModels
 {
-    public class ErrorMessageViewModel : DialogViewModelBase
+    public class ErrorDialogViewModel : DialogViewModelBase
     {
-        public ErrorMessageViewModel(Exception e)
+        protected Exception _currentException;
+
+        public ErrorDialogViewModel(Exception e)
         {
+            _currentException = e;
             ErrorMessage = e.Message + "\n\n" + $"StackTrace: {e.StackTrace}";
         }
 
         private string _errorMessage;
-
         public string ErrorMessage
         {
             get { return _errorMessage; }

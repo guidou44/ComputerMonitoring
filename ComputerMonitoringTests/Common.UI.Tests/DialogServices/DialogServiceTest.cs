@@ -1,4 +1,4 @@
-﻿using Common.UI.Interfaces;
+﻿using Common.UI.WindowProperty;
 using Common.UI.DialogServices;
 using ComputerMonitoringTests.Common.UI.Tests.Interfaces;
 using System;
@@ -13,7 +13,7 @@ namespace ComputerMonitoringTests.Common.UI.Tests.DialogServices
     {
         protected override IDialogService ProvideDialogService()
         {
-            return new DialogService();
+            return new DialogService(null);
         }
     }
 }

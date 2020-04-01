@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Common.UI.DialogServices;
-using Common.UI.Interfaces;
+using Common.UI.WindowProperty;
 using Common.UI.ViewModels;
 using Common.UI.Views;
 using ComputerResourcesMonitoring.Models;

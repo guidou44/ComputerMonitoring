@@ -2,7 +2,7 @@
 using System;
 
 
-namespace Common.UI.Interfaces
+namespace Common.UI.Interfacea
 {
     public interface IDialogRequestClose
     {

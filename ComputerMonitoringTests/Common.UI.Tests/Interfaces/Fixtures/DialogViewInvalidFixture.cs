@@ -1,5 +1,6 @@
 ﻿using Common.UI.DialogServices;
 using Common.UI.Interfaces;
+using Common.UI.WindowProperty;
 using System;
 using System.Collections.Generic;
 using System.Linq;

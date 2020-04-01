@@ -80,10 +80,14 @@
   <ItemGroup>
     <Compile Include="Common.UI.Tests\Converters\CommandParameterConverterTest.cs" />
     <Compile Include="Common.UI.Tests\DialogServices\DialogServiceTest.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\Exceptions\DialogServiceTestExceptions.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces\Exceptions\DialogClosedException.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces\Exceptions\ErrorOrMessageDialogShownException.cs" />
     <Compile Include="Common.UI.Tests\Interfaces\Fixtures\DialogViewFixture.cs" />
     <Compile Include="Common.UI.Tests\Interfaces\Fixtures\DialogViewModelFixture.cs" />
     <Compile Include="Common.UI.Tests\Interfaces\Fixtures\DialogViewInvalidFixture.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces\Fixtures\DialogViewWithDataContextFixture.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces\Fixtures\ErrorDialogViewModelFixture.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces\Fixtures\MessageDialogViewModelFixture.cs" />
     <Compile Include="Common.UI.Tests\Interfaces\IDialogServiceTest.cs" />
     <Compile Include="CommonTests\Helpers\CommandLineHelperTest.cs" />
     <Compile Include="CommonTests\Helpers\XmlHelperTest.cs" />

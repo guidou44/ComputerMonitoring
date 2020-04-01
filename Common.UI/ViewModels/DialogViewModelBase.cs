@@ -1,6 +1,7 @@
 ﻿using Common.UI.DialogServices;
 using Common.UI.Infrastructure;
-using Common.UI.Interfaces;
+using Common.UI.Interfacea;
+using Common.UI.WindowProperty;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace Common.UI.ViewModels
 
         public ICommand CancelCommand
         {
-            get { return new RelayCommand<ErrorMessageViewModel>(p => CloseRequested?.Invoke(this, new DialogCloseRequestedEventArgs(false))); }
+            get { return new RelayCommand<ErrorDialogViewModel>(p => CloseRequested?.Invoke(this, new DialogCloseRequestedEventArgs(false))); }
         }
     }
 }

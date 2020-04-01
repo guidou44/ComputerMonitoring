@@ -1,4 +1,4 @@
-﻿using Common.UI.Interfaces;
+﻿using Common.UI.WindowProperty;
 using ComputerRessourcesMonitoring.ViewModels;
 using System;
 using System.Collections.Generic;

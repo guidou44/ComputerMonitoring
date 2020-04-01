@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common.UI.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Common.UI.ViewModels
 {
-    public class MessageViewModel : DialogViewModelBase
+    public class MessageDialogViewModel : DialogViewModelBase
     {
-        public MessageViewModel(string message)
+        public MessageDialogViewModel(string message)
         {
             Message = message;
         }

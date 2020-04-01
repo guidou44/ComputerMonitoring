@@ -18,6 +18,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using HardwareManipulation;
+using System.Diagnostics;
 
 namespace ComputerResourcesMonitoring.Models
 {
@@ -138,7 +139,6 @@ namespace ComputerResourcesMonitoring.Models
         {
             try
             {
-
                 var valuesQueue = _hardwareManager.GetCalculatedValues(_monitoringTargets);
                 HardwareValues = new ObservableCollection<HardwareInformation>(valuesQueue);
             }

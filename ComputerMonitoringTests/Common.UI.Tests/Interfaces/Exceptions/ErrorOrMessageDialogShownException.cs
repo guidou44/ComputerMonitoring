@@ -6,5 +6,8 @@ using System.Threading.Tasks;
 
 namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces.Exceptions
 {
-    public class DialogServiceClosedException : Exception { }
+    public class ErrorOrMessageDialogShownException : Exception
+    {
+        public ErrorOrMessageDialogShownException(object dataContext) : base(dataContext.GetType().Name) { }
+    }
 }

@@ -102,3 +102,674 @@ Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(Ma
    at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
    at Common.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\Helpers\WmiHelper.cs:line 21
 
+
+*************************Exception******************************
+DateTime: 01-04-2020 5:57:44
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:00
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:08
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:09
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:10
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:11
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:11
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:12
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:13
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:14
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:15
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:16
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:17
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:18
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:19
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:20
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:21
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:21
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:22
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:30
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:31
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:32
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:33
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:34
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:35
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:35
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:36
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:37
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:04:38
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 141
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:06:29
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:06:36
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 146
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:02
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:09
+Type: System.NullReferenceException
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: Object reference not set to an instance of an object.
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 146
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:17
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:18
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:19
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:20
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:21
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:22
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:23
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:23
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:24
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:25
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:26
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:27
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:28
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:29
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:30
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:31
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:32
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:33
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:33
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:34
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:35
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:36
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:37
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:42
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:07:44
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:08:05
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:08:13
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:08:27
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:08:28
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:08:29
+Type: System.Exception
+Source: ComputerRessourcesMonitoring
+TargetSite: Void RefreshMonitoring()
+Message: test
+Stacktrace:    at ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel.RefreshMonitoring() in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerRessourcesMonitoring\Models\ComputerMonitoringManagerModel.cs:line 147
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:11:00
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:12:38
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:16:00
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:17:00
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:44:37
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+
+
+*************************Exception******************************
+DateTime: 01-04-2020 7:45:36
+Type: System.Management.ManagementException
+Source: System.Management
+TargetSite: Void ThrowWithExtendedInfo(System.Management.ManagementStatus)
+Message: Access denied 
+Stacktrace:    at System.Management.ManagementException.ThrowWithExtendedInfo(ManagementStatus errorCode)
+   at System.Management.ManagementObjectCollection.ManagementObjectEnumerator.MoveNext()
+   at System.Linq.Enumerable.<CastIterator>d__97`1.MoveNext()
+   at System.Linq.Enumerable.WhereSelectEnumerableIterator`2.MoveNext()
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at HardwareAccess.Helpers.WmiHelper.GetWmiValue[T](String wmiPath, String wmiKey, String scope) in D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\Helpers\WmiHelper.cs:line 21
+

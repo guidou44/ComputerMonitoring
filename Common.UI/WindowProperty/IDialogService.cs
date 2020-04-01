@@ -1,10 +1,12 @@
 ﻿
 
 
+using Common.UI.Interfacea;
+using Common.UI.Interfaces;
 using System;
 using System.Collections.Generic;
 
-namespace Common.UI.Interfaces
+namespace Common.UI.WindowProperty
 {
 
     public interface IDialogService
@@ -13,6 +15,8 @@ namespace Common.UI.Interfaces
 
         void Register<TViewModel, TView>() where TViewModel : IDialogRequestClose
                                            where TView : IDialog;
+
+        void Instantiate<TViewModel>(TViewModel viewModel) where TViewModel : IDialogRequestClose;
 
         bool? ShowDialog<TViewModel>(TViewModel viewModel) where TViewModel : IDialogRequestClose;
 

@@ -1,6 +1,6 @@
 ﻿using Common.Reports;
 using Common.UI.Infrastructure;
-using Common.UI.Interfaces;
+using Common.UI.WindowProperty;
 using ComputerRessourcesMonitoring.Events;
 using HardwareAccess.Models;
 using ProcessMonitoring.Models;
@@ -20,13 +20,12 @@ using ComputerResourcesMonitoring.Models;
 using System.ComponentModel;
 using System.Reflection;
 using Autofac;
+using System.Diagnostics;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
     public class MainViewModel : WindowViewModelBase
     {
-        #region constructor
-
         private ComputerMonitoringManagerModel _app_manager;
 
         public MainViewModel(IDialogService dialogService, ComputerMonitoringManagerModel manager, Autofac.IContainer container) : base (dialogService, container)
@@ -36,9 +35,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
             _dialogService = dialogService;
             SubscribeToEvents();
         }
-
-        #endregion
-
 
         #region Private Methods
 
@@ -149,6 +145,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
                     _app_manager.GetMonitoringQueue(), 
                     manager: _app_manager.GetHardwareManager(), 
                     watchdog: _app_manager.GetWatchDog());
+                _dialogService.Instantiate(viewModel);
                 bool? result = _dialogService.ShowDialog(viewModel);
             }
             catch (Exception e)

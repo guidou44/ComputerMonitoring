@@ -1,4 +1,5 @@
 ﻿using Common.UI.Interfaces;
+using Common.UI.WindowProperty;
 using ComputerMonitoringTests.Common.UI.Tests.Interfaces.Exceptions;
 using System;
 using System.Collections.Generic;
@@ -44,10 +45,10 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces.Fixtures
 
         public void Close()
         {
-            throw new DialogServiceClosedException();
+            throw new DialogClosedException();
         }
 
-        public bool? ShowDialog()
+        public virtual bool? ShowDialog()
         {
             timer = new Stopwatch();
             timer.Start();

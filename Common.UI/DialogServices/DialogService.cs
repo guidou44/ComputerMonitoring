@@ -1,10 +1,12 @@
-﻿using Common.UI.Interfaces;
+﻿using Common.UI.WindowProperty;
 using Common.UI.ViewModels;
 using Common.UI.Views;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
-
+using Common.UI.Interfacea;
+using Common.UI.Interfaces;
 
 namespace Common.UI.DialogServices
 {
@@ -12,27 +14,24 @@ namespace Common.UI.DialogServices
     public class DialogService : IDialogService
     {
         private readonly Window owner;
+        private IDictionary<IDialogRequestClose, IDialog> instances;
+        public IDictionary<Type, Type> Mappings { get; }
 
         public DialogService(Window owner)
         {
             this.owner = owner;
+            instances = new Dictionary<IDialogRequestClose, IDialog>();
             Mappings = new Dictionary<Type, Type>();
-            RegisterBasicMappings();
         }
 
-        public DialogService()
+        private void RegisterBasicMessageDialogMapping()
         {
-            this.owner = null;
-            Mappings = new Dictionary<Type, Type>();
-            RegisterBasicMappings();
+            Register<MessageDialogViewModel, MessageView>();
         }
 
-        public IDictionary<Type, Type> Mappings { get; }
-
-        private void RegisterBasicMappings()
+        private void RegisterBasicErrorDialogMapping()
         {
-            Register<ErrorMessageViewModel, ErrorMessageView>();
-            Register<MessageViewModel, MessageView>();
+            Register<ErrorDialogViewModel, ErrorMessageView>();
         }
 
         public void Register<TViewModel, TView>() where TViewModel : IDialogRequestClose
@@ -46,52 +45,71 @@ namespace Common.UI.DialogServices
             Mappings.Add(typeof(TViewModel), typeof(TView));
         }
 
-        public bool? ShowDialog<TViewModel>(TViewModel viewModel) where TViewModel : IDialogRequestClose
+        public void Instantiate<TViewModel>(TViewModel viewModel) where TViewModel : IDialogRequestClose
         {
+            if (instances.Select(i => i.Key.GetType()).Contains(viewModel.GetType()))
+            {
+                IDialogRequestClose oldViewModel = instances.SingleOrDefault(i => i.Key.GetType() == viewModel.GetType()).Key;
+                instances.Remove(oldViewModel);
+            }
+
             Type viewType = Mappings[typeof(TViewModel)];
             IDialog dialog = (IDialog)Activator.CreateInstance(viewType);
-
-            EventHandler<DialogCloseRequestedEventArgs> handler = null;
-
-            handler = (sender, e) =>
-            {
-                viewModel.CloseRequested -= handler;
-
-                if (e.DialogResult.HasValue)
-                {
-                    dialog.DialogResult = e.DialogResult;
-                }
-                else
-                {
-                    dialog.Close();
-                }
-            };
-
-            viewModel.CloseRequested += handler;
 
             dialog.DataContext = viewModel;
             dialog.Owner = owner;
 
-            return dialog.ShowDialog();
+            viewModel.CloseRequested += OnDialogCloseRequested;
+            instances.Add(viewModel, dialog);
+        }
+
+        public bool? ShowDialog<TViewModel>(TViewModel viewModel) where TViewModel : IDialogRequestClose
+        {
+            return instances[viewModel].ShowDialog();
+        }
+
+        private void OnDialogCloseRequested(object sender, DialogCloseRequestedEventArgs e)
+        {
+            IDialogRequestClose viewModel = sender as IDialogRequestClose;
+            IDialog dialog = instances[viewModel];
+            viewModel.CloseRequested -= OnDialogCloseRequested;
+
+            if (e.DialogResult.HasValue)
+            {
+                dialog.DialogResult = e.DialogResult;
+            }
+            else
+            {
+                dialog.Close();
+            }
         }
 
         public bool? ShowMessageBox(string message)
         {
-            return Application.Current.Dispatcher.Invoke(new Func<bool?>(() => 
-            { 
-                var messageVm = new MessageViewModel(message);
-                bool? result = ShowDialog(messageVm);
-                return result;
-            }));
+            Type messageDialogInterfaceType = typeof(MessageDialogViewModel);
+            if (!Mappings.Any(M => messageDialogInterfaceType.IsAssignableFrom(M.Key)))
+            {
+                RegisterBasicMessageDialogMapping();
+            }
+
+            Type messageVmType = Mappings.SingleOrDefault(M => messageDialogInterfaceType.IsAssignableFrom(M.Key)).Key;
+            dynamic messageVm = Activator.CreateInstance(messageVmType, message);
+            Instantiate(messageVm);
+            return ShowDialog(messageVm);
         }
 
         public void ShowException(Exception e)
         {
-            Application.Current.Dispatcher.Invoke((Action)delegate
+            Type errorDialogInterfaceType = typeof(ErrorDialogViewModel);
+            if (!Mappings.Any(M => errorDialogInterfaceType.IsAssignableFrom(M.Key)))
             {
-                var errorMessageVm = new ErrorMessageViewModel(e);
-                bool? result = ShowDialog(errorMessageVm);
-            });
+                RegisterBasicErrorDialogMapping();
+            }
+
+            Type errorVmType = Mappings.SingleOrDefault(M => errorDialogInterfaceType.IsAssignableFrom(M.Key)).Key;
+            dynamic errorVm = Activator.CreateInstance(errorVmType, e);
+            Instantiate(errorVm);
+            bool? result = ShowDialog(errorVm);
         }
     }
 }
