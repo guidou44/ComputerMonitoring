@@ -75,8 +75,8 @@
       <Classes />
     </Module>
     <Module skippedDueTo="Filter" hash="A5-B7-BC-42-9C-AA-2C-7A-42-E2-43-5A-2F-7B-F3-B2-00-B1-CB-E6">
-      <ModulePath>C:\Users\Proprio\AppData\Local\Temp\5e5e4887-ced9-4fd0-9d6f-6a0536e55697\5e5e4887-ced9-4fd0-9d6f-6a0536e55697\assembly\dl3\ac488563\00804bc6_5f6fd401\xunit.runner.utility.net452.dll</ModulePath>
-      <ModuleTime>2020-04-01T16:22:16.2443204Z</ModuleTime>
+      <ModulePath>C:\Users\Proprio\AppData\Local\Temp\e24f67d5-c840-4475-8a2f-3dec4673cccb\e24f67d5-c840-4475-8a2f-3dec4673cccb\assembly\dl3\12bb6330\00804bc6_5f6fd401\xunit.runner.utility.net452.dll</ModulePath>
+      <ModuleTime>2020-04-01T21:49:01.8443482Z</ModuleTime>
       <ModuleName>xunit.runner.utility.net452</ModuleName>
       <Classes />
     </Module>
@@ -100,14 +100,14 @@
     </Module>
     <Module skippedDueTo="Filter" hash="63-68-56-CB-92-19-8C-F7-84-81-D6-C5-4C-53-21-0F-44-A2-55-6E">
       <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll</ModulePath>
-      <ModuleTime>2020-04-01T12:03:07.871659Z</ModuleTime>
+      <ModuleTime>2020-04-01T21:44:53.7108296Z</ModuleTime>
       <ModuleName>ComputerMonitoringTests</ModuleName>
       <Classes />
     </Module>
     <Module hash="7C-5D-51-A0-93-99-73-15-A3-4D-E1-FC-64-30-EC-80-A6-0B-81-04">
       <Summary numSequencePoints="532" visitedSequencePoints="315" numBranchPoints="361" visitedBranchPoints="189" sequenceCoverage="59.21" branchCoverage="52.35" maxCyclomaticComplexity="13" minCyclomaticComplexity="1" maxCrapScore="132" minCrapScore="1" visitedClasses="18" numClasses="31" visitedMethods="81" numMethods="151" />
       <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerMonitoringTests\bin\Debug\HardwareManipulation.dll</ModulePath>
-      <ModuleTime>2020-04-01T11:54:33.2382601Z</ModuleTime>
+      <ModuleTime>2020-04-01T21:44:51.3012416Z</ModuleTime>
       <ModuleName>HardwareManipulation</ModuleName>
       <Files>
         <File uid="1" fullPath="D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\HardwareManipulation\DataManager.cs" />
@@ -2932,7 +2932,7 @@
     </Module>
     <Module skippedDueTo="Filter" hash="63-68-56-CB-92-19-8C-F7-84-81-D6-C5-4C-53-21-0F-44-A2-55-6E">
       <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll</ModulePath>
-      <ModuleTime>2020-04-01T12:03:07.871659Z</ModuleTime>
+      <ModuleTime>2020-04-01T21:44:53.7108296Z</ModuleTime>
       <ModuleName>ComputerMonitoringTests</ModuleName>
       <Classes />
     </Module>
@@ -2975,7 +2975,7 @@
     <Module hash="E1-AF-4F-3C-43-4D-4B-59-8D-F0-74-C1-13-1E-C1-DF-35-23-F8-E0">
       <Summary numSequencePoints="231" visitedSequencePoints="84" numBranchPoints="110" visitedBranchPoints="43" sequenceCoverage="36.36" branchCoverage="39.09" maxCyclomaticComplexity="5" minCyclomaticComplexity="1" maxCrapScore="6.20" minCrapScore="1" visitedClasses="8" numClasses="20" visitedMethods="21" numMethods="58" />
       <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerMonitoringTests\bin\Debug\Common.UI.exe</ModulePath>
-      <ModuleTime>2020-04-01T11:54:32.6961708Z</ModuleTime>
+      <ModuleTime>2020-04-01T21:44:49.751994Z</ModuleTime>
       <ModuleName>Common.UI</ModuleName>
       <Files>
         <File uid="63" fullPath="D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common.UI\obj\Debug\App.g.cs" />
@@ -4358,7 +4358,7 @@
     <Module hash="F4-B7-87-93-A2-21-43-3D-3E-E7-81-1E-C4-10-DB-D0-CD-03-6B-DA">
       <Summary numSequencePoints="91" visitedSequencePoints="59" numBranchPoints="30" visitedBranchPoints="14" sequenceCoverage="64.84" branchCoverage="46.67" maxCyclomaticComplexity="7" minCyclomaticComplexity="1" maxCrapScore="12" minCrapScore="1" visitedClasses="5" numClasses="7" visitedMethods="7" numMethods="12" />
       <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerMonitoringTests\bin\Debug\Common.dll</ModulePath>
-      <ModuleTime>2020-04-01T11:54:32.9320994Z</ModuleTime>
+      <ModuleTime>2020-04-01T21:44:50.1872207Z</ModuleTime>
       <ModuleName>Common</ModuleName>
       <Files>
         <File uid="113" fullPath="D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\Reports\Reporter.cs" />
@@ -4689,12 +4689,6 @@
       <ModuleName>xunit.assert</ModuleName>
       <Classes />
     </Module>
-    <Module skippedDueTo="Filter" hash="FF-D1-C5-C7-2D-52-76-1B-13-CF-CD-23-22-CF-5F-48-45-EF-E9-01">
-      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Management\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Management.dll</ModulePath>
-      <ModuleTime>2019-03-19T04:46:43.5072239Z</ModuleTime>
-      <ModuleName>System.Management</ModuleName>
-      <Classes />
-    </Module>
     <Module skippedDueTo="Filter" hash="BA-94-4B-50-1E-D5-31-87-F3-25-6E-BA-07-71-E4-9F-22-0D-B8-34">
       <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Xml\v4.0_4.0.0.0__b77a5c561934e089\System.Xml.dll</ModulePath>
       <ModuleTime>2019-03-19T04:46:51.77351Z</ModuleTime>
@@ -4705,6 +4699,12 @@
       <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\Microsoft.CSharp\v4.0_4.0.0.0__b03f5f7f11d50a3a\Microsoft.CSharp.dll</ModulePath>
       <ModuleTime>2019-03-19T04:46:49.7108417Z</ModuleTime>
       <ModuleName>Microsoft.CSharp</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="FF-D1-C5-C7-2D-52-76-1B-13-CF-CD-23-22-CF-5F-48-45-EF-E9-01">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Management\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Management.dll</ModulePath>
+      <ModuleTime>2019-03-19T04:46:43.5072239Z</ModuleTime>
+      <ModuleName>System.Management</ModuleName>
       <Classes />
     </Module>
     <Module skippedDueTo="Filter" hash="DF-C9-61-37-67-FC-86-B5-19-6B-51-39-78-82-42-F2-94-44-FD-2F">
@@ -4719,12 +4719,6 @@
       <ModuleName>Moq</ModuleName>
       <Classes />
     </Module>
-    <Module skippedDueTo="Filter" hash="7B-6F-5A-57-3F-2F-3F-81-A8-4F-75-67-5A-56-90-08-C0-83-72-95">
-      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Dynamic\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Dynamic.dll</ModulePath>
-      <ModuleTime>2019-03-19T04:46:43.6166079Z</ModuleTime>
-      <ModuleName>System.Dynamic</ModuleName>
-      <Classes />
-    </Module>
     <Module skippedDueTo="Filter" hash="B6-3D-95-5E-A1-F2-3D-D5-61-A7-8A-59-69-72-6D-F6-FF-70-71-9F">
       <ModulePath>D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\ComputerMonitoringTests\bin\Debug\System.Threading.Tasks.Extensions.dll</ModulePath>
       <ModuleTime>2018-06-06T17:29:04Z</ModuleTime>
@@ -4735,6 +4729,12 @@
       <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\netstandard\v4.0_2.0.0.0__cc7b13ffcd2ddd51\netstandard.dll</ModulePath>
       <ModuleTime>2019-03-19T04:46:49.1170451Z</ModuleTime>
       <ModuleName>netstandard</ModuleName>
+      <Classes />
+    </Module>
+    <Module skippedDueTo="Filter" hash="7B-6F-5A-57-3F-2F-3F-81-A8-4F-75-67-5A-56-90-08-C0-83-72-95">
+      <ModulePath>C:\Windows\Microsoft.Net\assembly\GAC_MSIL\System.Dynamic\v4.0_4.0.0.0__b03f5f7f11d50a3a\System.Dynamic.dll</ModulePath>
+      <ModuleTime>2019-03-19T04:46:43.6166079Z</ModuleTime>
+      <ModuleName>System.Dynamic</ModuleName>
       <Classes />
     </Module>
     <Module skippedDueTo="Filter" hash="DC-CC-6B-85-DE-D3-FF-D6-B1-BF-5C-63-F6-46-A9-1A-1D-EF-79-5B">
