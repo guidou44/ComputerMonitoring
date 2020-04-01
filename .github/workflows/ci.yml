@@ -10,7 +10,7 @@ jobs:
     
     env:
       Test_Project_Path: ComputerMonitoringTests\ComputerMonitoringTests.csproj
-      Test_Assembly_Path: ComputerMonitoringTests\bin\Release\ComputerMonitoringTests.dll
+      Test_Assembly_Path: ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll
       Solution_File_Path: ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
       XUnit_Console: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console
       # Wpf_Project_Path: MyWpfApp\MyWpfApp.csproj
