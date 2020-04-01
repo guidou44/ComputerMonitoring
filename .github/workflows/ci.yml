@@ -35,7 +35,7 @@ jobs:
         run: nuget restore $env:Solution_File_Path       
 
       - name: Build
-        run: msbuild $env:Solution_File_Path -p:Configuration=Release -p:Platform=x64       
+        run: msbuild $env:Solution_File_Path -p:Configuration=Debug -p:Platform=x64       
         
       - name: Execute Unit Tests
         run: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console $env:Test_Assembly_Path
