@@ -14,6 +14,7 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces
 {
     public abstract class IDialogServiceTest
     {
+        private const int UGLY_DELAY_FOR_EVENT_RISE_MS = 1000;
         private IDialogService dialogServiceSubject;
 
         [Fact]
@@ -43,7 +44,7 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces
 
             bool? dialogResult = null;
             Task showTask = Task.Run(() => dialogResult = dialogServiceSubject.ShowDialog(fixture));
-            await Task.Delay(1);
+            await Task.Delay(UGLY_DELAY_FOR_EVENT_RISE_MS);
             fixture.RequestCloseWithOk();
             showTask.Wait();
 
@@ -59,7 +60,7 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces
 
             bool? dialogResult = null;
             Task showTask = Task.Run(() => dialogResult = dialogServiceSubject.ShowDialog(fixture));
-            await Task.Delay(1);
+            await Task.Delay(UGLY_DELAY_FOR_EVENT_RISE_MS);
             fixture.RequestCloseWithCancel();
             showTask.Wait();
 
