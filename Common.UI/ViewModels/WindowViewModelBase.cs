@@ -17,10 +17,6 @@ namespace Common.UI.ViewModels
         protected IDialogService _dialogService;
         protected IEventAggregator _eventHub;
         protected IContainer _container;
-        public WindowViewModelBase()
-        {
-            _dialogService = new DialogService();
-        }
 
         public WindowViewModelBase(IDialogService dialogService, IContainer container)
         {

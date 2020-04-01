@@ -19,10 +19,10 @@ namespace Common.UI.DialogServices
             Mappings = new Dictionary<Type, Type>();
             RegisterBasicMappings();
         }
-       
+
         public DialogService()
         {
-            this.owner = Application.Current.MainWindow;
+            this.owner = null;
             Mappings = new Dictionary<Type, Type>();
             RegisterBasicMappings();
         }
@@ -49,7 +49,6 @@ namespace Common.UI.DialogServices
         public bool? ShowDialog<TViewModel>(TViewModel viewModel) where TViewModel : IDialogRequestClose
         {
             Type viewType = Mappings[typeof(TViewModel)];
-
             IDialog dialog = (IDialog)Activator.CreateInstance(viewType);
 
             EventHandler<DialogCloseRequestedEventArgs> handler = null;

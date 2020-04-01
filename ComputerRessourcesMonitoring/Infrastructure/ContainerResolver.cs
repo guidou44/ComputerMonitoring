@@ -2,6 +2,8 @@
 using Common.Helpers;
 using Common.UI.DialogServices;
 using Common.UI.Interfaces;
+using Common.UI.ViewModels;
+using Common.UI.Views;
 using ComputerResourcesMonitoring.Models;
 using HardwareAccess.Factories;
 using HardwareManipulation;
@@ -42,7 +44,7 @@ namespace ComputerRessourcesMonitoring.Infrastructure
             builder.RegisterType<CommandLineHelper>().AsSelf();
             builder.RegisterType<DataManager>().AsSelf();
             builder.RegisterType<ProcessWatchDog>().AsSelf();
-            builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf(); 
+            builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf();
         }
 
     }
