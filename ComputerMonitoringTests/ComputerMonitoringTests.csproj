@@ -81,6 +81,7 @@
     <Compile Include="Common.UI.Tests\Converters\CommandParameterConverterTest.cs" />
     <Compile Include="Common.UI.Tests\DialogServices\DialogServiceTest.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\Fixtures\NotifyPropertyChangedFixture.cs" />
+    <Compile Include="Common.UI.Tests\Infrastructure.Test\Helper\DispatcherTestHelper.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\NotifyPropertyChangedTest.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\RelayCommandTest.cs" />
     <Compile Include="Common.UI.Tests\Interfaces\Exceptions\DialogClosedException.cs" />

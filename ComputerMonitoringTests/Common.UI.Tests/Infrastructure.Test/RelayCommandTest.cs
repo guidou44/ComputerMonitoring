@@ -1,10 +1,12 @@
 ﻿using Common.UI.Infrastructure;
+using ComputerMonitoringTests.Common.UI.Tests.Infrastructure.Test.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Threading;
 using Xunit;
 
 namespace ComputerMonitoringTests.Common.UI.Tests.Infrastructure.Test
@@ -25,6 +27,21 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Infrastructure.Test
             get { return paramsCommandRelayerSubject; }
         }
 
+        private object _randomProperty;
+        public object RandomProperty
+        {
+            get { return _randomProperty; }
+            set
+            {
+                _randomProperty = value;
+                if (simpleCommandRelayerSubject != null)
+                    simpleCommandRelayerSubject.RaiseCanExecuteChanged();
+                if (paramsCommandRelayerSubject != null)
+                    paramsCommandRelayerSubject.RaiseCanExecuteChanged();
+            }
+        }
+
+
         public RelayCommandTest() { }
 
         [Fact]
@@ -38,6 +55,14 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Infrastructure.Test
 
             Assert.Equal("111", TEST_OUTPUT);
         }
+
+        [Fact]
+        public void GivenSimpleCommand_WhenInvokingCommandWithNullAction_ThenItThrowsProper()
+        {
+            Assert.Throws<ArgumentNullException>(() => (simpleCommandRelayerSubject = new RelayCommand(null, () => { return true; })));
+            Assert.Throws<ArgumentNullException>(() => (paramsCommandRelayerSubject = new RelayCommand<object>(null, o => { return true; })));
+        }
+
 
         [Fact]
         public void GivenSimpleCommandWithCanExec_WhenInvokingCommand_ThenItDoesExecuteBasedOnOutsideState()
@@ -93,6 +118,32 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Infrastructure.Test
             }
 
             Assert.Equal(expected, TEST_OUTPUT);
+        }
+
+        [Fact]
+        public void GivenSimpleCommandWithcanexec_WhenRegisteringEvent_ThenItReactWithProperHandler()
+        {
+            TEST_OUTPUT = String.Empty;
+            simpleCommandRelayerSubject = new RelayCommand(() => TEST_OUTPUT += "1", () => false);
+
+            simpleCommandRelayerSubject.CanExecuteChanged += (sender, args) => TEST_OUTPUT += "2";
+            RandomProperty = new object();
+            DispatcherTestHelper.ProcessWorkItems(DispatcherPriority.Background);
+
+            Assert.Equal("2", TEST_OUTPUT);
+        }
+
+        [Fact]
+        public void GivenParamCommandWithcanexec_WhenRegisteringEvent_ThenItReactWithProperHandler()
+        {
+            TEST_OUTPUT = String.Empty;
+            paramsCommandRelayerSubject = new RelayCommand<object>(o => TEST_OUTPUT += "1", o => false);
+
+            paramsCommandRelayerSubject.CanExecuteChanged += (sender, args) => TEST_OUTPUT += "5";
+            RandomProperty = new object();
+            DispatcherTestHelper.ProcessWorkItems(DispatcherPriority.Background);
+
+            Assert.Equal("5", TEST_OUTPUT);
         }
     }
 }

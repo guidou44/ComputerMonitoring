@@ -70,7 +70,10 @@ namespace Common.UI.Infrastructure
             }
         }
 
-
+        public void RaiseCanExecuteChanged()
+        {
+            CommandManager.InvalidateRequerySuggested();
+        }
 
         [DebuggerStepThrough]
         public Boolean CanExecute(Object parameter)
@@ -151,14 +154,16 @@ namespace Common.UI.Infrastructure
             }
         }
 
-
-
         [DebuggerStepThrough]
         public Boolean CanExecute(Object parameter)
         {
             return _canExecute == null ? true : _canExecute();
         }
 
+        public void RaiseCanExecuteChanged()
+        {
+            CommandManager.InvalidateRequerySuggested();
+        }
 
         public void Execute(Object parameter)
         {
