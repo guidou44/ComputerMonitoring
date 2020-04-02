@@ -1,4 +1,5 @@
-﻿using Common.UI.WindowProperty;
+﻿using Common.UI.DialogServices.Exceptions;
+using Common.UI.WindowProperty;
 using ComputerMonitoringTests.Common.UI.Tests.Interfaces.Exceptions;
 using ComputerMonitoringTests.Common.UI.Tests.Interfaces.Fixtures;
 using Moq;
@@ -32,6 +33,14 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces
             dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
             
             Assert.Throws<ArgumentException>(() => dialogServiceSubject.Register<DialogViewModelFixture, DialogViewInvalidFixture>());
+        }
+
+        [Fact]
+        public void GivenNotRegisteredViewModel_WhenInstantiate_ThenItThrowsProper()
+        {
+            dialogServiceSubject = ProvideDialogService();
+
+            Assert.Throws<NotRegisteredViewModelException>(() => dialogServiceSubject.Instantiate(new DialogViewModelFixture()));
         }
 
         [Fact]
@@ -140,6 +149,28 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces
             catch (ErrorOrMessageDialogShownException e)
             {
                 Assert.Equal(typeof(MessageDialogViewModelFixture).Name, e.Message);
+            }
+        }
+
+        [Fact]
+        public void GivenAlreadyRegisteredViewModel_WhenInstantiateNewOne_ItRemovesOldOne()
+        {
+            dialogServiceSubject = ProvideDialogService();
+            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewWithDataContextFixture>();
+            DialogViewModelFixture vmFixture = new DialogViewModelFixture();
+            DialogViewModelFixture vmFixture2 = new DialogViewModelFixture();
+
+            dialogServiceSubject.Instantiate(vmFixture);
+            dialogServiceSubject.Instantiate(vmFixture2);
+
+            try
+            {
+                dialogServiceSubject.ShowDialog(vmFixture2);
+            }
+            catch (ErrorOrMessageDialogShownException e)
+            {
+                Assert.Equal(vmFixture2.GetHashCode(), e.DataContext.GetHashCode());
+                Assert.NotEqual(vmFixture.GetHashCode(), e.DataContext.GetHashCode());
             }
         }
 

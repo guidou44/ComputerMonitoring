@@ -121,7 +121,7 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Infrastructure.Test
         }
 
         [Fact]
-        public void GivenSimpleCommandWithcanexec_WhenRegisteringEvent_ThenItReactWithProperHandler()
+        public void GivenSimpleCommandWithCanExec_WhenRegisteringEvent_ThenItReactWithProperHandler()
         {
             TEST_OUTPUT = String.Empty;
             simpleCommandRelayerSubject = new RelayCommand(() => TEST_OUTPUT += "1", () => false);
@@ -134,7 +134,7 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Infrastructure.Test
         }
 
         [Fact]
-        public void GivenParamCommandWithcanexec_WhenRegisteringEvent_ThenItReactWithProperHandler()
+        public void GivenParamCommandWithCanExec_WhenRegisteringEvent_ThenItReactWithProperHandler()
         {
             TEST_OUTPUT = String.Empty;
             paramsCommandRelayerSubject = new RelayCommand<object>(o => TEST_OUTPUT += "1", o => false);
@@ -144,6 +144,52 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Infrastructure.Test
             DispatcherTestHelper.ProcessWorkItems(DispatcherPriority.Background);
 
             Assert.Equal("5", TEST_OUTPUT);
+        }
+
+        [Fact]
+        public void GivenSimpleCommandWithCanExec_WhenUnRegisteringEvent_ThenItDoesNothing()
+        {
+            TEST_OUTPUT = String.Empty;
+            simpleCommandRelayerSubject = new RelayCommand(() => TEST_OUTPUT += "1", () => false);
+            EventHandler handler = (sender, args) => TEST_OUTPUT += "5";
+            simpleCommandRelayerSubject.CanExecuteChanged += handler;
+            simpleCommandRelayerSubject.CanExecuteChanged -= handler;
+
+            RandomProperty = new object();
+            DispatcherTestHelper.ProcessWorkItems(DispatcherPriority.Background);
+
+            Assert.Equal(String.Empty, TEST_OUTPUT);
+        }
+
+        [Fact]
+        public void GivenParamCommandWithCanExec_WhenUnRegisteringEvent_ThenItDoesNothing()
+        {
+            TEST_OUTPUT = String.Empty;
+            paramsCommandRelayerSubject = new RelayCommand<object>(o => TEST_OUTPUT += "1", o => false);
+            EventHandler handler = (sender, args) => TEST_OUTPUT += "5";
+            paramsCommandRelayerSubject.CanExecuteChanged += handler;
+            paramsCommandRelayerSubject.CanExecuteChanged -= handler;
+
+            RandomProperty = new object();
+            DispatcherTestHelper.ProcessWorkItems(DispatcherPriority.Background);
+
+            Assert.Equal(String.Empty, TEST_OUTPUT);
+        }
+
+        [Fact]
+        public void GivenSimpleCommand_WhenCheckingForCanExec_ThenItReturnsTrue()
+        {
+            simpleCommandRelayerSubject = new RelayCommand(() => TEST_OUTPUT += "1");
+
+            Assert.True(SimpleCommand.CanExecute(null));
+        }
+
+        [Fact]
+        public void GivenParamCommand_WhenCheckingForCanExec_ThenItReturnsTrue()
+        {
+            paramsCommandRelayerSubject = new RelayCommand<object>(o => TEST_OUTPUT += "1");
+
+            Assert.True(ParamCommand.CanExecute(null));
         }
     }
 }

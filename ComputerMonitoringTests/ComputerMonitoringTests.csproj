@@ -38,22 +38,35 @@
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=5.1.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\ComputerRessourcesMonitoring\packages\Autofac.5.1.2\lib\net461\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\ComputerRessourcesMonitoring\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\ComputerRessourcesMonitoring\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
     <Reference Include="Moq, Version=4.13.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\ComputerRessourcesMonitoring\packages\Moq.4.13.1\lib\net45\Moq.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
+      <HintPath>..\ComputerRessourcesMonitoring\packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\ComputerRessourcesMonitoring\packages\System.Runtime.CompilerServices.Unsafe.4.5.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\ComputerRessourcesMonitoring\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\ComputerRessourcesMonitoring\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+      <HintPath>..\ComputerRessourcesMonitoring\packages\System.Threading.Tasks.Extensions.4.5.2\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\ComputerRessourcesMonitoring\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -78,21 +91,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.UI.Tests\Converters\CommandParameterConverterTest.cs" />
-    <Compile Include="Common.UI.Tests\DialogServices\DialogServiceTest.cs" />
+    <Compile Include="Common.UI.Tests\Converters.Tests\CommandParameterConverterTest.cs" />
+    <Compile Include="Common.UI.Tests\DialogServices.Tests\DialogServiceTest.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\Fixtures\NotifyPropertyChangedFixture.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\Helper\DispatcherTestHelper.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\NotifyPropertyChangedTest.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\RelayCommandTest.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\Exceptions\DialogClosedException.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\Exceptions\ErrorOrMessageDialogShownException.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\Fixtures\DialogViewFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\Fixtures\DialogViewModelFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\Fixtures\DialogViewInvalidFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\Fixtures\DialogViewWithDataContextFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\Fixtures\ErrorDialogViewModelFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\Fixtures\MessageDialogViewModelFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces\IDialogServiceTest.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\Exceptions\DialogClosedException.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\Exceptions\ErrorOrMessageDialogShownException.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\DialogViewFixture.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\DialogViewModelFixture.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\DialogViewInvalidFixture.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\DialogViewWithDataContextFixture.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\ErrorDialogViewModelFixture.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\MessageDialogViewModelFixture.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\IDialogServiceTest.cs" />
+    <Compile Include="Common.UI.Tests\ViewModel.Tests\DialogViewModelBaseTest.cs" />
+    <Compile Include="Common.UI.Tests\ViewModel.Tests\ErrorDialogViewModelTest.cs" />
+    <Compile Include="Common.UI.Tests\ViewModel.Tests\Exceptions\DragActionExecutedException.cs" />
+    <Compile Include="Common.UI.Tests\ViewModel.Tests\Fixtures\DialogViewModelBaseFixture.cs" />
+    <Compile Include="Common.UI.Tests\ViewModel.Tests\Fixtures\Dragable.cs" />
+    <Compile Include="Common.UI.Tests\ViewModel.Tests\MessageDialogViewModelTest.cs" />
     <Compile Include="CommonTests\Helpers\CommandLineHelperTest.cs" />
     <Compile Include="CommonTests\Helpers\XmlHelperTest.cs" />
     <Compile Include="CommonTests\Reports\ReporterTest.cs" />

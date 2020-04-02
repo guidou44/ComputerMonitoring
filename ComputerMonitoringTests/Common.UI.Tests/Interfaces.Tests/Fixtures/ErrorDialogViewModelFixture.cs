@@ -11,7 +11,5 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces.Fixtures
     public class ErrorDialogViewModelFixture : ErrorDialogViewModel
     {
         public ErrorDialogViewModelFixture(Exception e) : base(e) { }
-
-
     }
 }

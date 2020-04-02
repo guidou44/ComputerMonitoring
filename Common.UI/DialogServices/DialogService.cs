@@ -7,6 +7,7 @@ using System.Linq;
 using System.Windows;
 using Common.UI.Interfacea;
 using Common.UI.Interfaces;
+using Common.UI.DialogServices.Exceptions;
 
 namespace Common.UI.DialogServices
 {
@@ -50,8 +51,12 @@ namespace Common.UI.DialogServices
             if (instances.Select(i => i.Key.GetType()).Contains(viewModel.GetType()))
             {
                 IDialogRequestClose oldViewModel = instances.SingleOrDefault(i => i.Key.GetType() == viewModel.GetType()).Key;
+                oldViewModel.CloseRequested -= OnDialogCloseRequested;
                 instances.Remove(oldViewModel);
             }
+
+            if (!Mappings.ContainsKey(typeof(TViewModel)))
+                throw new NotRegisteredViewModelException();
 
             Type viewType = Mappings[typeof(TViewModel)];
             IDialog dialog = (IDialog)Activator.CreateInstance(viewType);

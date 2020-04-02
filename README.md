@@ -25,10 +25,14 @@
 </configuration>
 ```
 
-- if you want packet capture to work, you need to have [WinPcap](https://www.winpcap.org/install/) installed on computer because pcap uses its dll, other wise, it will just not monitor packet exchange.
+- if you want packet capture to work, you need to have [WinPcap](https://www.winpcap.org/install/) installed on computer because pcap uses its dll, otherwise, it will just not monitor packet exchange.
 
 ## Tests
 
 Run the script [Run_Tests](ComputerRessourcesMonitoring\Run_Tests.bat) in folder [ComputerRessourcesMonitoring](ComputerRessourcesMonitoring)
+
+## Code coverage
+
+see on [CodeCov](https://codecov.io/gh/guidou44/ComputerMonitoring)
 
 <sub><sup>(I know about the typo in resource in projects names)</sup></sub>

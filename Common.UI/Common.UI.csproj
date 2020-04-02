@@ -81,6 +81,7 @@
     <Compile Include="Converters\CommandParameterConverter.cs" />
     <Compile Include="DialogServices\DialogCloseRequestedEventArgs.cs" />
     <Compile Include="DialogServices\DialogService.cs" />
+    <Compile Include="DialogServices\Exceptions\NotRegisteredViewModelException.cs" />
     <Compile Include="Infrastructure\NotifyPropertyChanged.cs" />
     <Compile Include="Infrastructure\RelayCommand.cs" />
     <Compile Include="WindowProperty\IClosable.cs" />

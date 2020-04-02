@@ -8,6 +8,10 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces.Exceptions
 {
     public class ErrorOrMessageDialogShownException : Exception
     {
-        public ErrorOrMessageDialogShownException(object dataContext) : base(dataContext.GetType().Name) { }
+        public object DataContext;
+        public ErrorOrMessageDialogShownException(object dataContext) : base(dataContext.GetType().Name) 
+        {
+            DataContext = dataContext;
+        }
     }
 }
