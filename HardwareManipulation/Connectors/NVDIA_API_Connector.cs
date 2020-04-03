@@ -7,26 +7,29 @@ using NvAPIWrapper.Display;
 using NvAPIWrapper.GPU;
 using NvAPIWrapper.Mosaic;
 using HardwareAccess.Enums;
+using HardwareManipulation.Components;
 
 namespace HardwareAccess.Connectors
 {
     public class NVDIA_API_Connector : ConnectorBase
     {
-        public NVDIA_API_Connector()
+        INvidiaComponent _nvdiaComponent;
+        public NVDIA_API_Connector(INvidiaComponent nvdiaComponent)
         {
-            NVIDIA.Initialize();
+            _nvdiaComponent = nvdiaComponent;
+            nvdiaComponent.Initialize();
         }
 
         ~NVDIA_API_Connector()
         {
-            NVIDIA.Unload();
+            _nvdiaComponent.Unload();
         }
 
         #region Private Methods
 
-        private static HardwareInformation GetFirstGpuMake()
+        private HardwareInformation GetFirstGpuMake()
         {
-            var myGPUs = PhysicalGPU.GetPhysicalGPUs();
+            var myGPUs = _nvdiaComponent.GetPhysicalGPUs();
             if (myGPUs.Count() == 0) return null;
 
             var gpuMakes = myGPUs.ToList().Select(gU => new HardwareInformation()
@@ -39,30 +42,30 @@ namespace HardwareAccess.Connectors
             return gpuMakes.FirstOrDefault();
         }
 
-        private static HardwareInformation GetFirstGpuTemp()
+        private HardwareInformation GetFirstGpuTemp()
         {
-            var myGPUs = PhysicalGPU.GetPhysicalGPUs();
+            var myGPUs = _nvdiaComponent.GetPhysicalGPUs();
             if (myGPUs.Count() == 0) return null;
 
             var gpuUsages = myGPUs.ToList().Select(gU => new HardwareInformation()
             {
                 ShortName = "GPU",
-                MainValue = (double) gU.ThermalInformation.ThermalSensors.First().CurrentTemperature,
+                MainValue = (double) gU.CurrentTemperature,
                 UnitSymbol = "°C"
             });
 
             return gpuUsages.FirstOrDefault();
         }
 
-        private static HardwareInformation GetFirstGpuLoad()
+        private HardwareInformation GetFirstGpuLoad()
         {
-            var myGPUs = PhysicalGPU.GetPhysicalGPUs();
+            var myGPUs = _nvdiaComponent.GetPhysicalGPUs();
             if (myGPUs.Count() == 0) return null;
 
             var gpuUsages = myGPUs.ToList().Select(gU => new HardwareInformation()
             { 
                 ShortName = "GPU",
-                MainValue = (double) gU.UsageInformation.GPU.Percentage,
+                MainValue = (double) gU.Percentage,
                 UnitSymbol = "%"
             });
 

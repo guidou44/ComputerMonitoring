@@ -132,6 +132,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\INvidiaComponent.cs" />
+    <Compile Include="Wrappers\NvidiaGpuWrapper.cs" />
+    <Compile Include="Wrappers\NvidiaWrapper.cs" />
     <Compile Include="Components\OpenHardwareComputer.cs" />
     <Compile Include="Components\ServerResourceApiClient.cs" />
     <Compile Include="Connectors\ConnectorBase.cs" />

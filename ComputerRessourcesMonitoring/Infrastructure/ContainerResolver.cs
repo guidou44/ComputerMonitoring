@@ -19,6 +19,7 @@ using System.Diagnostics;
 using ComputerRessourcesMonitoring.Factories;
 using HardwareAccess.Connectors;
 using HardwareAccess.Helpers;
+using HardwareManipulation.Wrappers;
 
 namespace ComputerRessourcesMonitoring.Infrastructure
 {
@@ -41,9 +42,10 @@ namespace ComputerRessourcesMonitoring.Infrastructure
 
         private static void RegisterTypes(ContainerBuilder builder)
         {
-            builder.RegisterType<DialogService>().As<IDialogService>();
-            builder.RegisterType<EventAggregator>().As<IEventAggregator>();
-            builder.RegisterType<ConnectorFactory>().As<IFactory<ConnectorBase>>();
+            builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
+            builder.RegisterType<NvidiaWrapper>().As<INvidiaComponent>().SingleInstance();
+            builder.RegisterType<ConnectorFactory>().As<IFactory<ConnectorBase>>().SingleInstance();
             builder.RegisterType<XmlHelper>().AsSelf();
             builder.RegisterType<CommandLineHelper>().AsSelf();
             builder.RegisterType<DataManager>().AsSelf();
