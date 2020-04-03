@@ -1,5 +1,5 @@
 ﻿using Common.UI.DialogServices;
-using ComputerMonitoringTests.Common.UI.Tests.ViewModel.Tests.Exceptions;
+using ComputerMonitoringTests.Common.UI.Tests.ViewModel.Tests.Events;
 using ComputerMonitoringTests.Common.UI.Tests.ViewModel.Tests.Fixtures;
 using System;
 using System.Collections.Generic;
@@ -15,12 +15,18 @@ namespace ComputerMonitoringTests.Common.UI.Tests.ViewModel.Tests
         private string TEST_OUTPUT;
 
         [Fact]
-        public void GivenDragableEntity_WhenINvokingDragCommand_ThenItExecuteAction()
+        public async void GivenDragableEntity_WhenINvokingDragCommand_ThenItRaisesEvent()
         {
             DialogViewModelBaseFixture dialogVmSubject = new DialogViewModelBaseFixture();
             Dragable dragable = new Dragable();
+            string response = null;
 
-            Assert.Throws<DragActionExecutedException>(() => dialogVmSubject.DragWindowCommand.Execute(dragable));
+            dragable.DragActionEvent += e => response = e.Message;
+            await Task.Run(() => dragable.DragMove());
+
+
+            Assert.Equal(dragable.GetHashCode().ToString(), response);
+            dragable.DragActionEvent -= e => response = e.Message;
         }
 
         [Fact]

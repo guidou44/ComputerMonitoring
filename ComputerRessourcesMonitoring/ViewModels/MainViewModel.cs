@@ -1,26 +1,16 @@
 ﻿using Common.Reports;
 using Common.UI.Infrastructure;
+using Common.UI.ViewModels;
 using Common.UI.WindowProperty;
-using ComputerRessourcesMonitoring.Events;
+using ComputerResourcesMonitoring.Models;
 using HardwareAccess.Models;
-using ProcessMonitoring.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Timers;
-using System.Windows.Input;
-using Common.UI.ViewModels;
-using HardwareAccess.Enums;
-using HardwareAccess;
 using System.Collections.ObjectModel;
-using ProcessMonitoring;
-using System.Threading;
-using ComputerResourcesMonitoring.Models;
 using System.ComponentModel;
 using System.Reflection;
-using Autofac;
-using System.Diagnostics;
+using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -161,6 +151,11 @@ namespace ComputerRessourcesMonitoring.ViewModels
         }
 
         public void ResizeWindowCommandExecute(object[] parameters)
+        {
+            ResizeWindow(parameters);
+        }
+
+        private void ResizeWindow(object[] parameters)
         {
             var stringData = parameters[0].ToString().Split(',');
             var desktopWorkingAreaRight = double.Parse(stringData[2]);

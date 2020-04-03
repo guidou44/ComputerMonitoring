@@ -1,6 +1,7 @@
 ﻿using HardwareAccess.Enums;
 using HardwareAccess.Models;
 using HardwareAccess.ServerDTOs.Models;
+using HardwareManipulation.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,14 +15,16 @@ namespace HardwareAccess.Connectors
     public class ASPNET_API_Connector : ConnectorBase
     {
         private const string SERVER_ADDRESS = "https://192.168.50.107";
-        public ASPNET_API_Connector()
+        private static ServerResourceApiClient _client;
+
+        public ASPNET_API_Connector(ServerResourceApiClient client)
         {
-            InitializeClient();
+            InitializeClient(client);
         }
 
         #region private Methods
 
-        private static HttpClient _client;
+        
 
         private static Uri GetUri(MonitoringTarget ressource)
         {
@@ -40,11 +43,9 @@ namespace HardwareAccess.Connectors
             }
         }
 
-        private static void InitializeClient()
+        private static void InitializeClient(ServerResourceApiClient client)
         {
-            var httpClientHandler = new HttpClientHandler();
-            httpClientHandler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => { return true; };
-            _client = new HttpClient(httpClientHandler, true);
+            _client = client;
             _client.BaseAddress = new Uri(SERVER_ADDRESS);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -55,7 +56,7 @@ namespace HardwareAccess.Connectors
         {
             if (target == MonitoringTarget.Server_CPU_ProcessUsage)
                 throw new ArgumentOutOfRangeException("More than 1 resource wanted");
-            if (_client == null) InitializeClient();
+
             var uri = GetUri(target);
 
             using (var response = await _client.GetAsync(uri))
@@ -74,7 +75,6 @@ namespace HardwareAccess.Connectors
 
         private static async Task<IEnumerable<ServerResourceDTO>> GetManyResourceInfo(MonitoringTarget target)
         {
-            if (_client == null) InitializeClient();
             var uri = GetUri(target);
 
             using (var response = await _client.GetAsync(uri))

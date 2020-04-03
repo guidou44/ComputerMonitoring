@@ -58,10 +58,10 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
-    </Window.Resources>
+    </Window.Resources> 
 
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
+        <i:EventTrigger EventName="SizeChanged">
             <i:InvokeCommandAction Command="{Binding ResizeWindowCommand}">
                 <i:InvokeCommandAction.CommandParameter>
                     <MultiBinding Converter="{StaticResource CommandParameterConverter}">
@@ -71,7 +71,7 @@
                 </i:InvokeCommandAction.CommandParameter>
             </i:InvokeCommandAction>
         </i:EventTrigger>
-        <i:EventTrigger EventName="SizeChanged">
+        <i:EventTrigger EventName="ContentRendered">
             <i:InvokeCommandAction Command="{Binding ResizeWindowCommand}">
                 <i:InvokeCommandAction.CommandParameter>
                     <MultiBinding Converter="{StaticResource CommandParameterConverter}">

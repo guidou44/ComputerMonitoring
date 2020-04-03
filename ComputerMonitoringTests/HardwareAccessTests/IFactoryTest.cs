@@ -12,29 +12,27 @@ namespace ComputerMonitoringTests.HardwareAccessTests
 {
     public abstract class IFactoryTest
     {
-        private IFactory _factorySubject;
+        protected abstract IFactory<ConnectorBase> ProvideFactory();
 
-        public IFactoryTest()
+        [Theory]
+        [InlineData(typeof(WMI_Connector), "WMI")]
+        [InlineData(typeof(SystemIO_Connector), "SystemIO")]
+        [InlineData(typeof(NVDIA_API_Connector), "NVDIA_API")]
+        [InlineData(typeof(ASPNET_API_Connector), "ASPNET_API")]
+        [InlineData(typeof(OpenHardware_Connector), "OpenHardware")]
+        public void GivenConnectorFactory_WhenProvidingValidName_ThenItInstantiateProperConnector(Type expected, string name)
         {
-            _factorySubject = ProvideFactory();
-        }
+            IFactory<ConnectorBase> factorySubject = ProvideFactory();
+            ConnectorBase connector = factorySubject.CreateInstance(name);
 
-        protected abstract IFactory ProvideFactory();
-
-        [Fact]
-        public void GivenConnectorFactory_WhenProvidingValidName_ThenItInstantiateProperConnector()
-        {
-            ConnectorBase wmiConnector = _factorySubject.CreateInstance<ConnectorBase>("WMI");
-            ConnectorBase ioConnector = _factorySubject.CreateInstance<ConnectorBase>("SystemIO");
-
-            Assert.IsType<WMI_Connector>(wmiConnector);
-            Assert.IsType<SystemIO_Connector>(ioConnector);
+            Assert.Equal(expected.FullName, connector.GetType().FullName);
         }
 
         [Fact]
         public void GivenConnectorFactory_WhenProvidingInvalidName_ThenItThrowsProper()
         {
-            Assert.Throws<InvalidConnectorException>(() => _factorySubject.CreateInstance<ConnectorBase>("BULLSHIT"));
+            IFactory<ConnectorBase> factorySubject = ProvideFactory();
+            Assert.Throws<InvalidConnectorException>(() => factorySubject.CreateInstance("BULLSHIT"));
         }
     }
 }

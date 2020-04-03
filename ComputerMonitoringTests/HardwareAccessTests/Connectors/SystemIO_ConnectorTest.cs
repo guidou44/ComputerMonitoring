@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareManipulation
+namespace ComputerMonitoringTests.HardwareAccessTests.Connectors
 {
-    public interface IFactory<ObjectType>
+    public class SystemIO_ConnectorTest
     {
-        ObjectType CreateInstance(string refName);
     }
 }

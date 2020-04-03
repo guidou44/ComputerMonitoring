@@ -1,8 +1,10 @@
 ﻿using HardwareAccess.Connectors;
 using HardwareAccess.Enums;
+using HardwareAccess.Helpers;
 using HardwareAccess.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests.Connectors
 
         [Theory]
         [MemberData(nameof(GetConnectorParameters), parameters:3)]
-        public static async void GivenValidController_WhenGettingValueFromAcceptedResource_ThenItReturnsValue(ConnectorBase connectorSubject,
+        public static async void GivenValidConnector_WhenGettingValueFromAcceptedResource_ThenItReturnsValue(ConnectorBase connectorSubject,
             List<MonitoringTarget> targets)
         {
             HardwareInformation[] results = await Task.WhenAll(targets.Select(async target =>
@@ -29,7 +31,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests.Connectors
         {
             List<object[]> parameters = new List<object[]>()
             {
-                new object[] { new WMI_Connector(), new List<MonitoringTarget>() { MonitoringTarget.RAM_Usage,
+                new object[] { new WMI_Connector(new WmiHelper(), new PerformanceCounter("Processor", "% Idle Time", "_Total")), new List<MonitoringTarget>() { MonitoringTarget.RAM_Usage,
                                                                                    MonitoringTarget.CPU_Load,
                                                                                    MonitoringTarget.CPU_Make} },
 

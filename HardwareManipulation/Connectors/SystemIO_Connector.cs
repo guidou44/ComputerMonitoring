@@ -15,7 +15,7 @@ namespace HardwareAccess.Connectors
 
         #region Private Methods
 
-        private static HardwareInformation GetDriveUsage(DriveInfo drive)
+        private HardwareInformation GetDriveUsage(DriveInfo drive)
         {
             if (drive == null) throw new ArgumentNullException("This drive does<nt exist on current computer");
             return new HardwareInformation()

@@ -8,7 +8,6 @@ using Common.Helpers;
 using HardwareAccess.Connectors;
 using HardwareAccess.Enums;
 using HardwareAccess.Exceptions;
-using HardwareAccess.Factories;
 using HardwareAccess.Models;
 using HardwareManipulation;
 using Moq;
@@ -29,7 +28,13 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenCpuLoadAndHddUsageInConfigFile_WhenAskingForInitialTarget_ThenItReturnsProperTargets()
         {
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, new ConnectorFactory(), new XmlHelper());
+            Mock<IFactory<ConnectorBase>> factoryMock = new Mock<IFactory<ConnectorBase>>();
+            Mock<ConnectorBase> connectorMock = new Mock<ConnectorBase>();
+            Mock<HardwareInformation> hardwreInfoMock = new Mock<HardwareInformation>();
+            connectorMock.Setup(c => c.GetValue(It.IsAny<MonitoringTarget>())).Returns(hardwreInfoMock.Object);
+            factoryMock.Setup(s => s.CreateInstance(It.IsAny<string>())).Returns(connectorMock.Object);
+
+            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factoryMock.Object, new XmlHelper());
             IEnumerable<MonitoringTarget> initialTarget = dataManagerSubject.GetInitialTargets();
             Assert.True(initialTarget.Count() == 3);
             Assert.Contains(MonitoringTarget.CPU_Load, initialTarget);
@@ -39,7 +44,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenNonReachableRemoteTargetInConfigFile_WhenCheckingIfRemote_ThenItReturnsFalse()
         {
-            IFactory factory = GetMockFactory();
+            IFactory<ConnectorBase> factory = GetMockFactory();
             DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, new XmlHelper());
 
             Assert.False(dataManagerSubject.IsRemoteMonitoringEnabled());
@@ -48,7 +53,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenRemoteTargetInConfigFile_WhenCheckingIfRemote_ThenItReturnsTrue()
         {
-            IFactory factory = GetMockFactory();
+            IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
             DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
 
@@ -58,7 +63,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenRemoteTargetInConfigFile_WhenGettingRemoteTargets_ThenItReturnsProperTargets()
         {
-            IFactory factory = GetMockFactory();
+            IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
             DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
 
@@ -71,7 +76,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenNoRemoteTargetInConfigFile_WhenGettingRemoteTargets_ThenItReturnsEmptyCollection()
         {
-            IFactory factory = GetMockFactory();
+            IFactory<ConnectorBase> factory = GetMockFactory();
             DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WO_REMOTE, factory, new XmlHelper());
 
             IEnumerable<MonitoringTarget> remoteTargets = dataManagerSubject.GetRemoteTargets();
@@ -82,7 +87,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenRemoteTargetInConfigFile_WhenGettingLocalTargets_ThenItDoesNotContainsRemote()
         {
-            IFactory factory = GetMockFactory();
+            IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
             DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
             IEnumerable<MonitoringTarget> remoteTargets = dataManagerSubject.GetRemoteTargets();
@@ -96,7 +101,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenInitialTargets_WhenGettingAllTargets_ThenItReturnsMoreThanInitialTargets()
         {
-            IFactory factory = GetMockFactory();
+            IFactory<ConnectorBase> factory = GetMockFactory();
             DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, new XmlHelper());
             IEnumerable<MonitoringTarget> initialTargets = dataManagerSubject.GetInitialTargets();
 
@@ -108,7 +113,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenNonInitialValidTarget_WhenGettingValue_ThenItReturnsProper()
         {
-            IFactory factory = GetMockFactory();
+            IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
             DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
 
@@ -123,7 +128,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         [Fact]
         public void GivenNonInitialInvalidTargetAndValidOne_WhenGettingAllvalues_ThenItRemoveItFromCollection()
         {
-            IFactory factory = GetMockFactory();
+            IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
             DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
             List<MonitoringTarget> targets = new List<MonitoringTarget>() { MonitoringTarget.GPU_Temp, MonitoringTarget.CPU_Temp};
@@ -136,15 +141,15 @@ namespace ComputerMonitoringTests.HardwareAccessTests
 
         #region private Methods
 
-        private IFactory GetMockFactory()
+        private IFactory<ConnectorBase> GetMockFactory()
         {
-            Mock<IFactory> factoryMock = new Mock<IFactory>();
+            Mock<IFactory<ConnectorBase>> factoryMock = new Mock<IFactory<ConnectorBase>>();
             Mock<ConnectorBase> connectorMock = new Mock<ConnectorBase>();
             HardwareInformation hardwareInfoGpu = new HardwareInformation() { MainValue = 30.0, ShortName = "GPU", UnitSymbol = "°C" };
             HardwareInformation hardwareInfoServerCpu = new HardwareInformation() { MainValue = 30.0, ShortName = "S.CPU", UnitSymbol = "%" };
             HardwareInformation hardwareInfoRam = new HardwareInformation() { MainValue = 30.0, ShortName = "RAM", UnitSymbol = "%" };
 
-            factoryMock.Setup(fac => fac.CreateInstance<ConnectorBase>(It.IsAny<string>())).Returns(connectorMock.Object);
+            factoryMock.Setup(fac => fac.CreateInstance(It.IsAny<string>())).Returns(connectorMock.Object);
             connectorMock.Setup(con => con.GetValue(MonitoringTarget.GPU_Temp)).Returns(hardwareInfoGpu);
             connectorMock.Setup(con => con.GetValue(MonitoringTarget.Server_CPU_Load)).Returns(hardwareInfoServerCpu);
             connectorMock.Setup(con => con.GetValue(MonitoringTarget.RAM_Usage)).Returns(hardwareInfoRam);

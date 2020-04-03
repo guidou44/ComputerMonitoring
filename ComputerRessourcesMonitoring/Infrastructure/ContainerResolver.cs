@@ -5,7 +5,6 @@ using Common.UI.WindowProperty;
 using Common.UI.ViewModels;
 using Common.UI.Views;
 using ComputerResourcesMonitoring.Models;
-using HardwareAccess.Factories;
 using HardwareManipulation;
 using Prism.Events;
 using ProcessMonitoring;
@@ -15,6 +14,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HardwareManipulation.Components;
+using System.Diagnostics;
+using ComputerRessourcesMonitoring.Factories;
+using HardwareAccess.Connectors;
+using HardwareAccess.Helpers;
 
 namespace ComputerRessourcesMonitoring.Infrastructure
 {
@@ -39,12 +43,28 @@ namespace ComputerRessourcesMonitoring.Infrastructure
         {
             builder.RegisterType<DialogService>().As<IDialogService>();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>();
-            builder.RegisterType<ConnectorFactory>().As<IFactory>();
+            builder.RegisterType<ConnectorFactory>().As<IFactory<ConnectorBase>>();
             builder.RegisterType<XmlHelper>().AsSelf();
             builder.RegisterType<CommandLineHelper>().AsSelf();
             builder.RegisterType<DataManager>().AsSelf();
-            builder.RegisterType<ProcessWatchDog>().AsSelf();
+            builder.RegisterType<ProcessWatchDog>().AsSelf(); 
             builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf();
+
+            builder.Register(c => new ServerResourceApiClient()).AsSelf();
+            builder.RegisterType<OpenHardwareComputer>().AsSelf().SingleInstance();
+            builder.RegisterType<WmiHelper>().AsSelf().SingleInstance();
+            builder.Register(c => new PerformanceCounter("Processor", "% Idle Time", "_Total")).AsSelf();
+
+            builder.RegisterType<ASPNET_API_Connector>().AsSelf();
+            builder.RegisterType<NVDIA_API_Connector>().AsSelf();
+            builder.RegisterType<OpenHardware_Connector>().AsSelf();
+            builder.RegisterType<SystemIO_Connector>().AsSelf();
+            builder.RegisterType<WMI_Connector>().AsSelf();
+            builder.Register<Func<Type, ConnectorBase>>(c =>
+            {
+                ILifetimeScope context = c.Resolve<ILifetimeScope>();
+                return t => (ConnectorBase) context.Resolve(t);
+            });
         }
 
     }

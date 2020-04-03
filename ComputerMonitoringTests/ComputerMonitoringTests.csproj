@@ -50,6 +50,7 @@
     <Reference Include="Moq, Version=4.13.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
       <HintPath>..\ComputerRessourcesMonitoring\packages\Moq.4.13.1\lib\net45\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="OpenHardwareMonitorLib, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
@@ -97,6 +98,7 @@
     <Compile Include="Common.UI.Tests\Infrastructure.Test\Helper\DispatcherTestHelper.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\NotifyPropertyChangedTest.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\RelayCommandTest.cs" />
+    <Compile Include="Common.UI.Tests\Interfaces.Tests\Events\DialogShownEventArgs.cs" />
     <Compile Include="Common.UI.Tests\Interfaces.Tests\Exceptions\DialogClosedException.cs" />
     <Compile Include="Common.UI.Tests\Interfaces.Tests\Exceptions\ErrorOrMessageDialogShownException.cs" />
     <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\DialogViewFixture.cs" />
@@ -108,15 +110,21 @@
     <Compile Include="Common.UI.Tests\Interfaces.Tests\IDialogServiceTest.cs" />
     <Compile Include="Common.UI.Tests\ViewModel.Tests\DialogViewModelBaseTest.cs" />
     <Compile Include="Common.UI.Tests\ViewModel.Tests\ErrorDialogViewModelTest.cs" />
-    <Compile Include="Common.UI.Tests\ViewModel.Tests\Exceptions\DragActionExecutedException.cs" />
+    <Compile Include="Common.UI.Tests\ViewModel.Tests\Events\DragActionExecutedEventArgs.cs" />
     <Compile Include="Common.UI.Tests\ViewModel.Tests\Fixtures\DialogViewModelBaseFixture.cs" />
     <Compile Include="Common.UI.Tests\ViewModel.Tests\Fixtures\Dragable.cs" />
     <Compile Include="Common.UI.Tests\ViewModel.Tests\MessageDialogViewModelTest.cs" />
     <Compile Include="CommonTests\Helpers\CommandLineHelperTest.cs" />
     <Compile Include="CommonTests\Helpers\XmlHelperTest.cs" />
     <Compile Include="CommonTests\Reports\ReporterTest.cs" />
+    <Compile Include="HardwareAccessTests\Connectors\ASPNET_API_ConnectorTest.cs" />
     <Compile Include="HardwareAccessTests\Connectors\ConnectorTest.cs" />
+    <Compile Include="HardwareAccessTests\Connectors\NVIDA_API_ConnectorTest.cs" />
+    <Compile Include="HardwareAccessTests\Connectors\OpenHardwareConnectorTest.cs" />
+    <Compile Include="HardwareAccessTests\Connectors\SystemIO_ConnectorTest.cs" />
+    <Compile Include="HardwareAccessTests\Connectors\WMI_ConnectorTest.cs" />
     <Compile Include="HardwareAccessTests\DataManagerTest.cs" />
+    <Compile Include="HardwareAccessTests\Factories\ConnectorFactoryHelper.cs" />
     <Compile Include="HardwareAccessTests\Factories\ConnectorFactoryTest.cs" />
     <Compile Include="HardwareAccessTests\HelpersTest\WmiHelperTest.cs" />
     <Compile Include="HardwareAccessTests\IFactoryTest.cs" />

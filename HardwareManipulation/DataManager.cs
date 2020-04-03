@@ -17,10 +17,10 @@ namespace HardwareManipulation
 
         private IEnumerable<MonitoringTarget> _initialMonitoringTargets;
         private IDictionary<ComputerResource, ConnectorBase> _target2Connector;
-        private IFactory _connectorFactory;
+        private IFactory<ConnectorBase> _connectorFactory;
         private XmlHelper _xmlHelper;
 
-        public DataManager(IFactory factory, XmlHelper xmlHelper)
+        public DataManager(IFactory<ConnectorBase> factory, XmlHelper xmlHelper)
         {
             this._xmlHelper = xmlHelper;
             this._connectorFactory = factory;
@@ -28,7 +28,7 @@ namespace HardwareManipulation
             SetAvailableTargets_Internal();
         }
 
-        public DataManager(string alternateConfigPath, IFactory factory, XmlHelper xmlHelper)
+        public DataManager(string alternateConfigPath, IFactory<ConnectorBase> factory, XmlHelper xmlHelper)
         {
             this._xmlHelper = xmlHelper;
             this._connectorFactory = factory;
@@ -39,7 +39,7 @@ namespace HardwareManipulation
         public HardwareInformation GetCalculatedValue(MonitoringTarget target)
         {
             var targetKey = _target2Connector.SingleOrDefault(t2C => t2C.Key.TargetType == target).Key;
-            if (_target2Connector[targetKey] == null) _target2Connector[targetKey] = _connectorFactory.CreateInstance<ConnectorBase>(targetKey.ConnectorName);
+            if (_target2Connector[targetKey] == null) _target2Connector[targetKey] = _connectorFactory.CreateInstance(targetKey.ConnectorName);
             return _target2Connector[targetKey].GetValue(target);
         }
 

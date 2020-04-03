@@ -1,5 +1,6 @@
 ﻿using Common.UI.Interfaces;
 using ComputerMonitoringTests.Common.UI.Tests.Interfaces.Exceptions;
+using ComputerMonitoringTests.Common.UI.Tests.Interfaces.Tests.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;

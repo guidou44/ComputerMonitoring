@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerMonitoringTests.Common.UI.Tests.ViewModel.Tests.Exceptions
+namespace ComputerMonitoringTests.HardwareAccessTests.Connectors
 {
-    public class DragActionExecutedException : Exception
+    public class WMI_ConnectorTest
     {
-
     }
 }

@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using HardwareAccess.Enums;
 using HardwareAccess.Models;
+using HardwareManipulation.Components;
 using OpenHardwareMonitor.Hardware;
 
 namespace HardwareAccess.Connectors
 {
     public class OpenHardware_Connector : ConnectorBase
     {
-        private static Computer _localMachine;
-        public OpenHardware_Connector()
+        private readonly OpenHardwareComputer _localMachine;
+        public OpenHardware_Connector(OpenHardwareComputer computer)
         {
-            if (_localMachine == null) _localMachine = new Computer();
+            if (_localMachine == null) _localMachine = computer;
             _localMachine.MainboardEnabled = true;
             _localMachine.GPUEnabled = true;
             _localMachine.Open();
@@ -27,7 +28,7 @@ namespace HardwareAccess.Connectors
 
         #region Private Methods
 
-        private static HardwareInformation GetGpuMake()
+        private HardwareInformation GetGpuMake()
         {
             HardwareInformation output = new HardwareInformation()
             {
@@ -49,7 +50,7 @@ namespace HardwareAccess.Connectors
             return output;
         }
 
-        private static HardwareInformation GetHardwareSensorValue<T>(string unitSymbol, string sensorRegionName, SensorType sensorType)
+        private HardwareInformation GetHardwareSensorValue<T>(string unitSymbol, string sensorRegionName, SensorType sensorType)
         {
             HardwareInformation output = new HardwareInformation()
             {
@@ -73,7 +74,7 @@ namespace HardwareAccess.Connectors
         }
 
 
-        private static HardwareInformation GetMainFanSpeed()
+        private HardwareInformation GetMainFanSpeed()
         {
             HardwareInformation cpuFanSpeed = new HardwareInformation()
             {
@@ -104,7 +105,7 @@ namespace HardwareAccess.Connectors
             return cpuFanSpeed;
         }
 
-        private static HardwareInformation GetMotherBoardMake()
+        private HardwareInformation GetMotherBoardMake()
         {
             HardwareInformation output = new HardwareInformation()
             {

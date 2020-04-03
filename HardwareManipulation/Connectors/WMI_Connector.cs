@@ -19,9 +19,14 @@ namespace HardwareAccess.Connectors
         private PerformanceCounter all_Cpu_Idle;
         private WmiHelper wmiHelper;
 
+        public WMI_Connector(WmiHelper wmiHelper, PerformanceCounter all_Cpu_Idle)
+        {
+            this.wmiHelper = wmiHelper;
+            this.all_Cpu_Idle = all_Cpu_Idle;
+        }
+
         private HardwareInformation GetCpuCoreCount()
         {
-            if (wmiHelper == null) wmiHelper = new WmiHelper();
             var numOfCore = wmiHelper.GetWmiValue<uint>("Win32_Processor", "NumberOfCores");
             var cpuCoreCount = new HardwareInformation()
             {
@@ -34,7 +39,6 @@ namespace HardwareAccess.Connectors
 
         private HardwareInformation GetCpuClockSpeed()
         {
-            if (wmiHelper == null) wmiHelper = new WmiHelper();
             var clockSpeed = wmiHelper.GetWmiValue<uint>("Win32_Processor", "CurrentClockSpeed");
             var cpuClockSpeed = new HardwareInformation()
             {
@@ -47,7 +51,6 @@ namespace HardwareAccess.Connectors
 
         private HardwareInformation GetCpuMake()
         {
-            if (wmiHelper == null) wmiHelper = new WmiHelper();
             var make = wmiHelper.GetWmiValue<string>("Win32_Processor", "Name");
             var cpuMake = new HardwareInformation()
             {
@@ -60,7 +63,6 @@ namespace HardwareAccess.Connectors
 
         private HardwareInformation GetCpuTemperature()
         {
-            if (wmiHelper == null) wmiHelper = new WmiHelper();
             var temp = wmiHelper.GetWmiValue<double>("MSAcpi_ThermalZoneTemperature", "CurrentTemperature", scope: @"root\WMI");
             var cpuTemp = new HardwareInformation()
             {
@@ -73,7 +75,6 @@ namespace HardwareAccess.Connectors
 
         private HardwareInformation GetCpuThreadCount()
         {
-            if (wmiHelper == null) wmiHelper = new WmiHelper();
             var threadCount = wmiHelper.GetWmiValue<uint>("Win32_Processor", "ThreadCount");
             var cpuThreadCount = new HardwareInformation()
             {
@@ -106,7 +107,6 @@ namespace HardwareAccess.Connectors
 
         private HardwareInformation GetGlobalCpuUsage()
         {
-            if (wmiHelper == null) wmiHelper = new WmiHelper();
             var loadPercentage = wmiHelper.GetWmiValue<double>("Win32_Processor", "LoadPercentage");
             var cpuUsage = new HardwareInformation()
             {
@@ -119,7 +119,6 @@ namespace HardwareAccess.Connectors
 
         private HardwareInformation GetGlobalCpuUsageWithPerfCounter()
         {
-            if (wmiHelper == null) wmiHelper = new WmiHelper();
             all_Cpu_Idle = (all_Cpu_Idle == null) ? new PerformanceCounter("Processor", "% Idle Time", "_Total") : all_Cpu_Idle;
             var cpuIdle = all_Cpu_Idle.NextValue();
             return new HardwareInformation()
@@ -132,7 +131,6 @@ namespace HardwareAccess.Connectors
 
         private HardwareInformation GetRamMemoryUsage()
         {
-            if (wmiHelper == null) wmiHelper = new WmiHelper();
             var totalMemSize = wmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "TotalVisibleMemorySize");
             var freeMemSize = wmiHelper.GetWmiValue<double>("Win32_OperatingSystem", "FreePhysicalMemory");
 

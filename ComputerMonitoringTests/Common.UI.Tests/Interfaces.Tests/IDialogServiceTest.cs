@@ -102,6 +102,8 @@ namespace ComputerMonitoringTests.Common.UI.Tests.Interfaces
             dialogServiceSubject.Register<ErrorDialogViewModelFixture, DialogViewWithDataContextFixture>();
             dialogServiceSubject.Register<MessageDialogViewModelFixture, DialogViewFixture>();
 
+
+
             Assert.Throws<ErrorOrMessageDialogShownException>(() => dialogServiceSubject.ShowException(new Exception("TEST")));
         }
 

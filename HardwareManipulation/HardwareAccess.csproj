@@ -132,6 +132,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\OpenHardwareComputer.cs" />
+    <Compile Include="Components\ServerResourceApiClient.cs" />
     <Compile Include="Connectors\ConnectorBase.cs" />
     <Compile Include="Connectors\OpenHardware_Connector.cs" />
     <Compile Include="Connectors\SystemIO_Connector.cs" />
@@ -140,7 +142,6 @@
     <Compile Include="Enums\Enums.cs" />
     <Compile Include="Exceptions\HardwareCommunicationException.cs" />
     <Compile Include="Exceptions\InvalidConnectorException.cs" />
-    <Compile Include="Factories\ConnectorFactory.cs" />
     <Compile Include="Helpers\WmiHelper.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="Models\ComputerRessource.cs" />
