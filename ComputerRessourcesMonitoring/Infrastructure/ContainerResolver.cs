@@ -53,7 +53,7 @@ namespace ComputerRessourcesMonitoring.Infrastructure
             builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf();
 
             builder.Register(c => new ServerResourceApiClient()).AsSelf();
-            builder.RegisterType<OpenHardwareComputer>().AsSelf().SingleInstance();
+            builder.RegisterType<OpenHardwareWrapper>().AsSelf().SingleInstance();
             builder.RegisterType<WmiHelper>().AsSelf().SingleInstance();
             builder.Register(c => new PerformanceCounter("Processor", "% Idle Time", "_Total")).AsSelf();
 

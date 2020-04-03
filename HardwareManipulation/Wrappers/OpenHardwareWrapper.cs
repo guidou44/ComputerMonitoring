@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HardwareManipulation.Components
+namespace HardwareManipulation.Wrappers
 {
-    public class OpenHardwareComputer : Computer 
+    public class OpenHardwareWrapper : Computer 
     {
         public new virtual void Close()
         {

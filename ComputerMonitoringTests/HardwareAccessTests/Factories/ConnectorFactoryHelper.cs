@@ -2,6 +2,7 @@
 using HardwareAccess.Helpers;
 using HardwareManipulation.Components;
 using HardwareManipulation.Exceptions;
+using HardwareManipulation.Wrappers;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests.Factories
         public static Func<Type, ConnectorBase> ProvideConnectorFactoryDelegateMock()
         {
             Mock<ServerResourceApiClient> apiClientMock = new Mock<ServerResourceApiClient>();
-            Mock<OpenHardwareComputer> ohComputerMock = new Mock<OpenHardwareComputer>();
+            Mock<OpenHardwareWrapper> ohComputerMock = new Mock<OpenHardwareWrapper>();
             ohComputerMock.Setup(C => C.Open()).Verifiable();
             Mock<WmiHelper> wmiHelperMock = new Mock<WmiHelper>();
             Mock <INvidiaComponent> nvidiaComponentMock = new Mock<INvidiaComponent>();

@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using HardwareAccess.Enums;
 using HardwareAccess.Models;
 using HardwareManipulation.Components;
+using HardwareManipulation.Wrappers;
 using OpenHardwareMonitor.Hardware;
 
 namespace HardwareAccess.Connectors
 {
     public class OpenHardware_Connector : ConnectorBase
     {
-        private readonly OpenHardwareComputer _localMachine;
-        public OpenHardware_Connector(OpenHardwareComputer computer)
+        private readonly OpenHardwareWrapper _localMachine;
+        public OpenHardware_Connector(OpenHardwareWrapper computer)
         {
             if (_localMachine == null) _localMachine = computer;
             _localMachine.MainboardEnabled = true;
