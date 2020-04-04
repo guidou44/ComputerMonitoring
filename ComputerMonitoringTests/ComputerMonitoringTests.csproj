@@ -150,6 +150,8 @@
     <Compile Include="HardwareAccessTests\Factories\ConnectorFactoryTest.cs" />
     <Compile Include="HardwareAccessTests\HelpersTest\WmiHelperTest.cs" />
     <Compile Include="HardwareAccessTests\IFactoryTest.cs" />
+    <Compile Include="HardwareAccessTests\Models\ComputerResourceTest.cs" />
+    <Compile Include="HardwareAccessTests\Models\HardwareInformationTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

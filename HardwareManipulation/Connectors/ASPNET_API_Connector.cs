@@ -37,8 +37,6 @@ namespace HardwareAccess.Connectors
                     return new Uri(_client.BaseAddress, "/api/GeneralUsage/Ram");
                 case MonitoringTarget.Server_CPU_Temp:
                     return new Uri(_client.BaseAddress, "/api/Temperature/Cpu");
-                case MonitoringTarget.Server_CPU_ProcessUsage:
-                    return new Uri(_client.BaseAddress, "/api/Process/Cpu");
                 default:
                     throw new NotImplementedException($"No Specific URI for resource'{ressource.ToString()}'");
             }

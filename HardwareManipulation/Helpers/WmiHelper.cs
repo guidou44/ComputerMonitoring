@@ -15,38 +15,24 @@ namespace HardwareAccess.Helpers
         {
             var wmiObject = new ManagementObjectSearcher($"select * from {wmiPath}");
 
-            try
-            {
-                var value = wmiObject.Get().Cast<ManagementObject>()
-                                     .Select(mo => mo[wmiKey].ToString()).FirstOrDefault();
-                if (value == null) throw new ArgumentException($"Could not find wmiObject for key {wmiKey}");
-                var converter = TypeDescriptor.GetConverter(typeof(T));
-                return (converter != null) ? (T)converter.ConvertFromString(value) :
-                    throw new ArgumentException($"Cannot convert tpye {typeof(T).Name} to string.");
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+
+            var value = wmiObject.Get().Cast<ManagementObject>()
+                                    .Select(mo => mo[wmiKey].ToString()).FirstOrDefault();
+            var converter = TypeDescriptor.GetConverter(typeof(T));
+            return (T)converter.ConvertFromString(value);
+
         }
 
         public virtual T GetWmiValue<T>(string wmiPath, string wmiKey, string scope)
         {
             var wmiObject = new ManagementObjectSearcher(scope, $"select * from {wmiPath}");
 
-            try
-            {
-                var value = wmiObject.Get().Cast<ManagementObject>()
-                                     .Select(mo => mo[wmiKey].ToString()).FirstOrDefault();
-                if (value == null) throw new ArgumentException($"Could not find wmiObject for key {wmiKey}");
-                var converter = TypeDescriptor.GetConverter(typeof(T));
-                return (converter != null) ? (T)converter.ConvertFromString(value) :
-                    throw new ArgumentException($"Cannot convert tpye {typeof(T).Name} to string.");
-            }
-            catch (Exception e)
-            {
-                throw;
-            }
+
+            var value = wmiObject.Get().Cast<ManagementObject>()
+                                    .Select(mo => mo[wmiKey].ToString()).FirstOrDefault();
+            var converter = TypeDescriptor.GetConverter(typeof(T));
+            return (T)converter.ConvertFromString(value);
+
         }
     }
 }

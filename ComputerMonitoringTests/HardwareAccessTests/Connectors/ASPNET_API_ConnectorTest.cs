@@ -86,6 +86,8 @@ namespace ComputerMonitoringTests.HardwareAccessTests.Connectors
             dto.Resource_Type.Short_Name = shortName;
             dto.Server_Resource_Unit = new ServerResourceUnitDTO();
             dto.Server_Resource_Unit.Unit = unit;
+            dto.Sample_Time = new SampleTimeDTO();
+            dto.Process = new ProcessDTO();
 
             MemoryStream stream = new MemoryStream();
             using (var sw = new StreamWriter(stream, new UTF8Encoding(true), 1024, true))
