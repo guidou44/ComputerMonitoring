@@ -20,19 +20,11 @@ namespace HardwareManipulation
         private IFactory<ConnectorBase> _connectorFactory;
         private XmlHelper _xmlHelper;
 
-        public DataManager(IFactory<ConnectorBase> factory, XmlHelper xmlHelper)
+        public DataManager(IFactory<ConnectorBase> factory, XmlHelper xmlHelper, string alternateConfigPath = null)
         {
             this._xmlHelper = xmlHelper;
             this._connectorFactory = factory;
-            SetMonitoringTargets(CONFIG_FILE_PATH);
-            SetAvailableTargets_Internal();
-        }
-
-        public DataManager(string alternateConfigPath, IFactory<ConnectorBase> factory, XmlHelper xmlHelper)
-        {
-            this._xmlHelper = xmlHelper;
-            this._connectorFactory = factory;
-            SetMonitoringTargets(alternateConfigPath);
+            SetMonitoringTargets(alternateConfigPath ?? CONFIG_FILE_PATH);
             SetAvailableTargets_Internal();
         }
 

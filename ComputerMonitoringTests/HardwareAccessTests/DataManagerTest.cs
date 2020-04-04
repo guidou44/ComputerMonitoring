@@ -17,13 +17,8 @@ namespace ComputerMonitoringTests.HardwareAccessTests
 {
     public class DataManagerTest
     {
-        const string ALTERNATE_CONFIG_PATH_WITH_REMOTE = @"..\..\Configuration\MonitoringConfiguration.cfg";
-        const string ALTERNATE_CONFIG_PATH_WO_REMOTE = @"..\..\Configuration\MonitoringConfigurationNoRemote.cfg";
-
-        public DataManagerTest()
-        {
-
-        }
+        private const string ALTERNATE_CONFIG_PATH_WITH_REMOTE = @"..\..\Configuration\MonitoringConfiguration.cfg";
+        private const string ALTERNATE_CONFIG_PATH_WO_REMOTE = @"..\..\Configuration\MonitoringConfigurationNoRemote.cfg";
 
         [Fact]
         public void GivenCpuLoadAndHddUsageInConfigFile_WhenAskingForInitialTarget_ThenItReturnsProperTargets()
@@ -34,7 +29,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
             connectorMock.Setup(c => c.GetValue(It.IsAny<MonitoringTarget>())).Returns(hardwreInfoMock.Object);
             factoryMock.Setup(s => s.CreateInstance(It.IsAny<string>())).Returns(connectorMock.Object);
 
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factoryMock.Object, new XmlHelper());
+            DataManager dataManagerSubject = new DataManager(factoryMock.Object, new XmlHelper(), ALTERNATE_CONFIG_PATH_WITH_REMOTE);
             IEnumerable<MonitoringTarget> initialTarget = dataManagerSubject.GetInitialTargets();
             Assert.True(initialTarget.Count() == 3);
             Assert.Contains(MonitoringTarget.CPU_Load, initialTarget);
@@ -45,7 +40,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         public void GivenNonReachableRemoteTargetInConfigFile_WhenCheckingIfRemote_ThenItReturnsFalse()
         {
             IFactory<ConnectorBase> factory = GetMockFactory();
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, new XmlHelper());
+            DataManager dataManagerSubject = new DataManager(factory, new XmlHelper(), ALTERNATE_CONFIG_PATH_WITH_REMOTE);
 
             Assert.False(dataManagerSubject.IsRemoteMonitoringEnabled());
         }
@@ -55,7 +50,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         {
             IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
+            DataManager dataManagerSubject = new DataManager(factory, xmlHelper, ALTERNATE_CONFIG_PATH_WITH_REMOTE);
 
             Assert.True(dataManagerSubject.IsRemoteMonitoringEnabled());
         }
@@ -65,7 +60,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         {
             IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
+            DataManager dataManagerSubject = new DataManager(factory, xmlHelper, ALTERNATE_CONFIG_PATH_WITH_REMOTE);
 
             IEnumerable<MonitoringTarget> remoteTargets = dataManagerSubject.GetRemoteTargets();
 
@@ -77,7 +72,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         public void GivenNoRemoteTargetInConfigFile_WhenGettingRemoteTargets_ThenItReturnsEmptyCollection()
         {
             IFactory<ConnectorBase> factory = GetMockFactory();
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WO_REMOTE, factory, new XmlHelper());
+            DataManager dataManagerSubject = new DataManager(factory, new XmlHelper(), ALTERNATE_CONFIG_PATH_WO_REMOTE);
 
             IEnumerable<MonitoringTarget> remoteTargets = dataManagerSubject.GetRemoteTargets();
 
@@ -89,7 +84,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         {
             IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
+            DataManager dataManagerSubject = new DataManager(factory, xmlHelper, ALTERNATE_CONFIG_PATH_WITH_REMOTE);
             IEnumerable<MonitoringTarget> remoteTargets = dataManagerSubject.GetRemoteTargets();
 
             IEnumerable<MonitoringTarget> localTargets = dataManagerSubject.GetLocalTargets();
@@ -102,7 +97,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         public void GivenInitialTargets_WhenGettingAllTargets_ThenItReturnsMoreThanInitialTargets()
         {
             IFactory<ConnectorBase> factory = GetMockFactory();
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, new XmlHelper());
+            DataManager dataManagerSubject = new DataManager(factory, new XmlHelper(), ALTERNATE_CONFIG_PATH_WITH_REMOTE);
             IEnumerable<MonitoringTarget> initialTargets = dataManagerSubject.GetInitialTargets();
 
             IEnumerable<MonitoringTarget> allTargets = dataManagerSubject.GetAllTargets();
@@ -115,7 +110,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         {
             IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
+            DataManager dataManagerSubject = new DataManager(factory, xmlHelper, ALTERNATE_CONFIG_PATH_WITH_REMOTE);
 
             HardwareInformation hardwareInfo = dataManagerSubject.GetCalculatedValue(MonitoringTarget.GPU_Temp);
 
@@ -130,7 +125,7 @@ namespace ComputerMonitoringTests.HardwareAccessTests
         {
             IFactory<ConnectorBase> factory = GetMockFactory();
             XmlHelper xmlHelper = GetXmlHelperMock();
-            DataManager dataManagerSubject = new DataManager(ALTERNATE_CONFIG_PATH_WITH_REMOTE, factory, xmlHelper);
+            DataManager dataManagerSubject = new DataManager(factory, xmlHelper, ALTERNATE_CONFIG_PATH_WITH_REMOTE);
             List<MonitoringTarget> targets = new List<MonitoringTarget>() { MonitoringTarget.GPU_Temp, MonitoringTarget.CPU_Temp};
 
             IEnumerable<HardwareInformation> hardwareInfo = dataManagerSubject.GetCalculatedValues(targets);

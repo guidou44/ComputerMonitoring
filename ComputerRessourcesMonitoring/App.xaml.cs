@@ -14,7 +14,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-
+using Common.Reports;
 
 namespace ComputerRessourcesMonitoring
 {
@@ -26,8 +26,9 @@ namespace ComputerRessourcesMonitoring
             IDialogService dialogService = instanceContainer.Resolve<IDialogService>(new TypedParameter(typeof(Window), MainWindow));
             dialogService.Register<SettingsDialogViewModel, WatchdogSettingsDialogView>();
             ComputerMonitoringManagerModel manager = instanceContainer.Resolve<ComputerMonitoringManagerModel>();
+            Reporter reporter = instanceContainer.Resolve<Reporter>();
 
-            MainViewModel viewModel = new MainViewModel(dialogService, manager, instanceContainer);
+            MainViewModel viewModel = new MainViewModel(dialogService, manager, instanceContainer, reporter);
             MainWindow view = new MainWindow { DataContext = viewModel };
 
             view.ShowDialog();

@@ -17,6 +17,7 @@ namespace ComputerMonitoringTests.CommonTests.Helpers
 
         public XmlHelperTest()
         {
+
             xmlHelperSubject = new XmlHelper();
         }
 

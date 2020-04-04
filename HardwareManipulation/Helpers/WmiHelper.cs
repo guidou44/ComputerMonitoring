@@ -27,7 +27,6 @@ namespace HardwareAccess.Helpers
             }
             catch (Exception e)
             {
-                Reporter.LogException(e);
                 throw;
             }
         }

@@ -8,7 +8,6 @@
 *.ide
 *.pdb
 *.build.force
-ReporterConfiguration.xml
 ComputerRessourcesMonitoring/.vs/*
 
 ## Ignore Visual Studio temporary files, build results, and
@@ -364,4 +363,7 @@ MigrationBackup/
 
 !Debug/Configuration/MonitoringConfiguration.cfg
 !ComputerMonitoringTests/bin/Release/Configuration/MonitoringConfiguration.cfg
+
+ReporterConfiguration.xml
+!ComputerMonitoringTests/Configuration/ReporterConfiguration.xml
 

@@ -43,7 +43,6 @@ namespace HardwareAccess.Models
             }
             catch (Exception e)
             {
-                Reporter.LogException(e);
                 return false;
             }
         }

@@ -17,12 +17,17 @@ namespace ComputerRessourcesMonitoring.ViewModels
     public class MainViewModel : WindowViewModelBase
     {
         private ComputerMonitoringManagerModel _app_manager;
+        private Reporter _reporter;
 
-        public MainViewModel(IDialogService dialogService, ComputerMonitoringManagerModel manager, Autofac.IContainer container) : base (dialogService, container)
+        public MainViewModel(IDialogService dialogService, 
+            ComputerMonitoringManagerModel manager, 
+            Autofac.IContainer container,
+            Reporter reporter) : base (dialogService, container)
         {
             IsApplicationVisible = true;
             _app_manager = manager;
             _dialogService = dialogService;
+            _reporter = reporter;
             SubscribeToEvents();
         }
 
@@ -134,13 +139,15 @@ namespace ComputerRessourcesMonitoring.ViewModels
                     _eventHub, 
                     _app_manager.GetMonitoringQueue(), 
                     manager: _app_manager.GetHardwareManager(), 
-                    watchdog: _app_manager.GetWatchDog());
+                    watchdog: _app_manager.GetWatchDog(),
+                    _reporter);
+
                 _dialogService.Instantiate(viewModel);
                 bool? result = _dialogService.ShowDialog(viewModel);
             }
             catch (Exception e)
             {
-                Reporter.LogException(e);
+                _reporter.LogException(e);
                 _dialogService.ShowException(e);
             }
         }

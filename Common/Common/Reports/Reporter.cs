@@ -1,4 +1,5 @@
 ﻿using Common.Exceptions;
+using Common.MailClient;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,10 +10,17 @@ using System.Xml.Linq;
 
 namespace Common.Reports
 {
-    public static class Reporter
+    public class Reporter
     {
-        private const string CONFIG_FILE_PATH = @"\Configuration\ReporterConfiguration.xml";
-        public static void LogException(Exception e, string logPath = null, bool addEmailreport = false)
+        private const string CONFIG_FILE_PATH = @".\Configuration\ReporterConfiguration.xml";
+        private IMailClient _smtpClient;
+
+        public Reporter(IMailClient smtpClient)
+        {
+            _smtpClient = smtpClient;
+        }
+
+        public void LogException(Exception e, string logPath = null, bool addEmailreport = false, string emailAlternateConfigPath = null)
         {
             var currentDirectory = Directory.GetCurrentDirectory();
             if (!Directory.Exists(Path.Combine(currentDirectory, "Exception_Logs"))) Directory.CreateDirectory(Path.Combine(currentDirectory, "Exception_Logs"));
@@ -38,42 +46,36 @@ namespace Common.Reports
                 throw new ReporterIOException(ex.Message);
             }
 
-            if (addEmailreport) SendEmailReport("Exception thrown", exEntry);
+            if (addEmailreport) SendEmailReport("Exception thrown", exEntry, emailAlternateConfigPath);
         }
 
-        public static void SendEmailReport(string subject, string message)
+        public void SendEmailReport(string subject, string message, string configPath = null)
         {
             MailMessage email = new MailMessage();
-            SmtpClient smtpServer = InitializeSmtpClient();
-            var recipients = LoadEmailRecipents();
-            var sender = ((smtpServer.Credentials as System.Net.NetworkCredential) ??
-                throw new Exception("Failed to initialize smtpClient")).UserName;
+            InitializeSmtpClient(configPath ?? CONFIG_FILE_PATH);
+            var recipients = LoadEmailRecipents(configPath ?? CONFIG_FILE_PATH);
+            var sender = (_smtpClient.Credentials as System.Net.NetworkCredential).UserName;
             email.From = new MailAddress(sender);
             recipients.ToList().ForEach(R => email.To.Add(R));
 
             email.Subject = subject;
             email.Body = message;
 
-            smtpServer.Send(email);
+            _smtpClient.Send(email);
         }
 
-        private static SmtpClient InitializeSmtpClient()
+        private void InitializeSmtpClient(string configPath)
         {
-            SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
-            smtpServer.Port = 587;
-            smtpServer.EnableSsl = true;
-            var currentDirectory = Directory.GetCurrentDirectory();
-            var configuration = XDocument.Load(Path.Combine(currentDirectory + CONFIG_FILE_PATH));
+            _smtpClient.Port = 587;
+            _smtpClient.EnableSsl = true;
+            var configuration = XDocument.Load(configPath);
             var sender = (configuration.Descendants("Sender") ?? throw new ArgumentNullException("No sender specified for email reporter"));
-
-            smtpServer.Credentials = new System.Net.NetworkCredential(sender.Elements("Id").SingleOrDefault().Value, sender.Elements("Password").SingleOrDefault().Value);
-            return smtpServer;
+            _smtpClient.Credentials = new System.Net.NetworkCredential(sender.Elements("Id").SingleOrDefault().Value, sender.Elements("Password").SingleOrDefault().Value);
         }
 
-        private static IEnumerable<string> LoadEmailRecipents()
+        private IEnumerable<string> LoadEmailRecipents(string configPath)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
-            var configuration = XDocument.Load(currentDirectory + CONFIG_FILE_PATH);
+            var configuration = XDocument.Load(configPath);
 
             var recipients = (configuration.Descendants("Receivers") ?? throw new ArgumentNullException("No recipient specified for email reporter"))
                               .Elements("Target");

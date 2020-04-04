@@ -68,6 +68,8 @@
     <Compile Include="Exceptions\XmlDeserializationException.cs" />
     <Compile Include="Helpers\CommandLineHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="MailClient\IMailClient.cs" />
+    <Compile Include="MailClient\SmptClientWrapper.cs" />
     <Compile Include="Reports\Reporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

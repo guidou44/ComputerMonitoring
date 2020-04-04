@@ -20,6 +20,9 @@ using ComputerRessourcesMonitoring.Factories;
 using HardwareAccess.Connectors;
 using HardwareAccess.Helpers;
 using HardwareManipulation.Wrappers;
+using System.Net.Mail;
+using Common.Reports;
+using Common.MailClient;
 
 namespace ComputerRessourcesMonitoring.Infrastructure
 {
@@ -46,15 +49,20 @@ namespace ComputerRessourcesMonitoring.Infrastructure
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
             builder.RegisterType<NvidiaWrapper>().As<INvidiaComponent>().SingleInstance();
             builder.RegisterType<ConnectorFactory>().As<IFactory<ConnectorBase>>().SingleInstance();
+
             builder.RegisterType<XmlHelper>().AsSelf();
+            builder.RegisterType<Reporter>().AsSelf();
+            builder.Register(c => new SmptClientWrapper("smtp.gmail.com")).As<IMailClient>();
             builder.RegisterType<CommandLineHelper>().AsSelf();
+            builder.RegisterType<WmiHelper>().AsSelf().SingleInstance();
+
             builder.RegisterType<DataManager>().AsSelf();
             builder.RegisterType<ProcessWatchDog>().AsSelf(); 
             builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf();
 
             builder.Register(c => new ServerResourceApiClient()).AsSelf();
             builder.RegisterType<OpenHardwareWrapper>().AsSelf().SingleInstance();
-            builder.RegisterType<WmiHelper>().AsSelf().SingleInstance();
+
             builder.Register(c => new PerformanceCounter("Processor", "% Idle Time", "_Total")).AsSelf();
 
             builder.RegisterType<ASPNET_API_Connector>().AsSelf();

@@ -30,16 +30,21 @@ namespace ComputerResourcesMonitoring.Models
         private List<MonitoringTarget> _monitoringTargets;
         private System.Timers.Timer _monitoringRefreshCounter;
         private ProcessWatchDog _watchdog;
+        private Reporter _reporter;
         private Thread _watchdogThread;
 
         public delegate void MonitoringErrorOccuredEventHandler(Exception e);
         public event MonitoringErrorOccuredEventHandler OnMonitoringErrorOccured;
 
-        public ComputerMonitoringManagerModel(IEventAggregator eventHub, DataManager hardwareManager, ProcessWatchDog watchDog) : base(eventHub)
+        public ComputerMonitoringManagerModel(IEventAggregator eventHub, 
+                                              DataManager hardwareManager, 
+                                              ProcessWatchDog watchDog,
+                                              Reporter reporter) : base(eventHub)
         {
             _hardwareManager = hardwareManager;
             _monitoringTargets = new List<MonitoringTarget>();
             _watchdog = watchDog;
+            _reporter = reporter;
             var initialTargets = _hardwareManager.GetInitialTargets();
             initialTargets.ToList().ForEach(TARGET => _monitoringTargets.Add(TARGET));
             InitializeWatchdog();
@@ -87,7 +92,7 @@ namespace ComputerResourcesMonitoring.Models
                 foreach (var initialProcess in _watchdog.GetInitialProcesses2Watch())
                 {
                     var process = _watchdog.GetProcessesByName(initialProcess).FirstOrDefault();
-                    var processVM = new ProcessViewModel(true, initialProcess)
+                    var processVM = new ProcessViewModel(true, initialProcess, _reporter)
                     {
                         Process = process,
                     };
@@ -144,14 +149,14 @@ namespace ComputerResourcesMonitoring.Models
             }
             catch (Exception e)
             {
-                Reporter.LogException(e);
+                _reporter.LogException(e);
                 OnMonitoringErrorOccured?.Invoke(e);
             }
         }
 
         private async void ReportPacketExchange(PacketCaptureProcessInfo guiltyProcessInformation)
         {
-            await Task.Run(() => Reporter.SendEmailReport(
+            await Task.Run(() => _reporter.SendEmailReport(
                             subject: $"ALARM: Detected Activity for {guiltyProcessInformation.Process.ProcessName}",
                             message: $"Activity detected report:\n" +
                                         $"----------------{guiltyProcessInformation.Process.ProcessName}---------------\n\n" +

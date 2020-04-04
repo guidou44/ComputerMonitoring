@@ -27,11 +27,13 @@ namespace ComputerRessourcesMonitoring.ViewModels
         private List<MonitoringTarget> _lruTargets;
         private IDictionary<MonitoringTarget, bool> targetDict;
         private ProcessWatchDog _watchdog;
+        private Reporter _reporter;
 
         public SettingsDialogViewModel(ObservableCollection<ProcessViewModel> watchdogProcesses, IEventAggregator eventsHub, 
                                                List<MonitoringTarget> monTargets,
-                                               DataManager manager, ProcessWatchDog watchdog)
+                                               DataManager manager, ProcessWatchDog watchdog, Reporter reporter)
         {
+            _reporter = reporter;
             //watchdog---------
             _watchdog = watchdog;
             ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(watchdogProcesses);
@@ -236,7 +238,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         {
             get { return new RelayCommand((() => 
             {
-                var newProcessVm = new ProcessViewModel(true, "#NAME# ENTER2APPLY");
+                var newProcessVm = new ProcessViewModel(true, "#NAME# ENTER2APPLY", _reporter);
                 newProcessVm.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
                 newProcessVm.OnProcessWatchRemoveEvent += OnWatchdogRemoveTarget;
                 ProcessesUnderWatch.Add(newProcessVm); 

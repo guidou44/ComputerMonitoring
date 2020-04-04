@@ -27,7 +27,6 @@ namespace Common.Helpers
             }
             catch (Exception e)
             {
-                Reporter.LogException(e);
                 throw new XmlDeserializationException($"Path: {xmlFilePath}\n{e.Message}");
             }
             return returnObject;

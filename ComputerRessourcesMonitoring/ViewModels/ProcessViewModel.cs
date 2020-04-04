@@ -13,12 +13,15 @@ namespace ComputerRessourcesMonitoring.ViewModels
 {
     public class ProcessViewModel : NotifyPropertyChanged
     {
+        private Reporter _reporter;
+
         public event EventHandler OnProcessNameChangedEvent;
         public event EventHandler OnProcessWatchRemoveEvent;
         public bool WasInitialized { get; set; }
 
-        public ProcessViewModel(bool check4PacketExchange, string processName)
+        public ProcessViewModel(bool check4PacketExchange, string processName, Reporter reporter)
         {
+            _reporter = reporter;
             Check4PacketExchange = check4PacketExchange;
             ProcessName = processName;
         }
@@ -79,7 +82,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             set 
             {
 #if !LOCAL
-                if (!_isRunning && value) Reporter.SendEmailReport(
+                if (!_isRunning && value) _reporter.SendEmailReport(
                     subject: $"ALARM: Detected process start for {Process.ProcessName}",
                     message: $"Activity detected report:\n" +
                     $"----------------{Process.ProcessName}---------------\n\n" +
