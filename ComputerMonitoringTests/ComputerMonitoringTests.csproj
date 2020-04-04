@@ -117,6 +117,7 @@
     <Compile Include="CommonTests\Helpers\CommandLineHelperTest.cs" />
     <Compile Include="CommonTests\Helpers\XmlHelperTest.cs" />
     <Compile Include="CommonTests\Reports\ReporterTest.cs" />
+    <Compile Include="HardwareAccessTests\Components\ServerResourceApiClientTest.cs" />
     <Compile Include="HardwareAccessTests\Connectors\ASPNET_API_ConnectorTest.cs" />
     <Compile Include="HardwareAccessTests\Connectors\ConnectorTest.cs" />
     <Compile Include="HardwareAccessTests\Connectors\NVIDA_API_ConnectorTest.cs" />

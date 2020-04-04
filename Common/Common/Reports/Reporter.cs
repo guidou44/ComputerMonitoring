@@ -69,7 +69,7 @@ namespace Common.Reports
             _smtpClient.Port = 587;
             _smtpClient.EnableSsl = true;
             var configuration = XDocument.Load(configPath);
-            var sender = (configuration.Descendants("Sender") ?? throw new ArgumentNullException("No sender specified for email reporter"));
+            var sender = configuration.Descendants("Sender");
             _smtpClient.Credentials = new System.Net.NetworkCredential(sender.Elements("Id").SingleOrDefault().Value, sender.Elements("Password").SingleOrDefault().Value);
         }
 
@@ -77,8 +77,7 @@ namespace Common.Reports
         {
             var configuration = XDocument.Load(configPath);
 
-            var recipients = (configuration.Descendants("Receivers") ?? throw new ArgumentNullException("No recipient specified for email reporter"))
-                              .Elements("Target");
+            var recipients = (configuration.Descendants("Receivers").Elements("Target"));
 
             return recipients.Select(XE => XE.Elements("Address").SingleOrDefault().Value);
         }

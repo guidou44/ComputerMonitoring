@@ -23,6 +23,7 @@ using HardwareManipulation.Wrappers;
 using System.Net.Mail;
 using Common.Reports;
 using Common.MailClient;
+using Common.Wrappers;
 
 namespace ComputerRessourcesMonitoring.Infrastructure
 {
