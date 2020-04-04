@@ -2,6 +2,7 @@
 using HardwareAccess.Enums;
 using HardwareAccess.Helpers;
 using HardwareAccess.Models;
+using HardwareManipulation.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,10 +17,10 @@ namespace HardwareAccess.Connectors
 {
     public class WMI_Connector : ConnectorBase
     {        
-        private PerformanceCounter all_Cpu_Idle;
+        private IPerformanceCounter all_Cpu_Idle;
         private WmiHelper wmiHelper;
 
-        public WMI_Connector(WmiHelper wmiHelper, PerformanceCounter all_Cpu_Idle)
+        public WMI_Connector(WmiHelper wmiHelper, IPerformanceCounter all_Cpu_Idle)
         {
             this.wmiHelper = wmiHelper;
             this.all_Cpu_Idle = all_Cpu_Idle;
@@ -86,40 +87,8 @@ namespace HardwareAccess.Connectors
             return cpuThreadCount;
         }
 
-        private IEnumerable<HardwareInformation> GetEachCpuUsage()
-        {
-            var wmiObject = new ManagementObjectSearcher("select * from Win32_PerfFormattedData_PerfOS_Processor");
-
-            var allCpuUsage = wmiObject.Get()
-                                   .Cast<ManagementObject>()
-                                   .Select(mo => new HardwareInformation
-                                   {
-                                       ShortName = "CPU" + mo["Name"].ToString(),
-                                       MainValue = Double.Parse(mo["PercentProcessorTime"].ToString()),
-                                       UnitSymbol = "%"
-                                   }
-                                   )
-                                   .ToList();
-
-            return (allCpuUsage.Count() != 0) ? allCpuUsage :
-                throw new ArgumentNullException("No cpu usage was found in ManagementObjectSearcher");
-        }
-
-        private HardwareInformation GetGlobalCpuUsage()
-        {
-            var loadPercentage = wmiHelper.GetWmiValue<double>("Win32_Processor", "LoadPercentage");
-            var cpuUsage = new HardwareInformation()
-            {
-                MainValue = loadPercentage,
-                ShortName = "CPU",
-                UnitSymbol = "%"
-            };
-            return cpuUsage;
-        }
-
         private HardwareInformation GetGlobalCpuUsageWithPerfCounter()
         {
-            all_Cpu_Idle = (all_Cpu_Idle == null) ? new PerformanceCounter("Processor", "% Idle Time", "_Total") : all_Cpu_Idle;
             var cpuIdle = all_Cpu_Idle.NextValue();
             return new HardwareInformation()
             {
@@ -141,8 +110,7 @@ namespace HardwareAccess.Connectors
                 UnitSymbol = "%"
             };
 
-            return (ramUsage != null) ? ramUsage :
-            throw new ArgumentNullException("No memory was found in ManagementObjectSearcher"); ;
+            return ramUsage;
         }
 
         public override HardwareInformation GetValue(MonitoringTarget resource)

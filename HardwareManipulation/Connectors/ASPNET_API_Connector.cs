@@ -2,6 +2,7 @@
 using HardwareAccess.Models;
 using HardwareAccess.ServerDTOs.Models;
 using HardwareManipulation.Components;
+using HardwareManipulation.Wrappers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,9 +16,9 @@ namespace HardwareAccess.Connectors
     public class ASPNET_API_Connector : ConnectorBase
     {
         private const string SERVER_ADDRESS = "https://192.168.50.107";
-        private static ServerResourceApiClient _client;
+        private static ServerResourceApiClientWrapper _client;
 
-        public ASPNET_API_Connector(ServerResourceApiClient client)
+        public ASPNET_API_Connector(ServerResourceApiClientWrapper client)
         {
             InitializeClient(client);
         }
@@ -26,7 +27,7 @@ namespace HardwareAccess.Connectors
 
         
 
-        private static Uri GetUri(MonitoringTarget ressource)
+        private Uri GetUri(MonitoringTarget ressource)
         {
             switch (ressource)
             {
@@ -43,7 +44,7 @@ namespace HardwareAccess.Connectors
             }
         }
 
-        private static void InitializeClient(ServerResourceApiClient client)
+        private void InitializeClient(ServerResourceApiClientWrapper client)
         {
             _client = client;
             _client.BaseAddress = new Uri(SERVER_ADDRESS);
@@ -52,11 +53,8 @@ namespace HardwareAccess.Connectors
 
         }
 
-        private static async Task<ServerResourceDTO> GetSingleResourceInfo(MonitoringTarget target)
+        private async Task<ServerResourceDTO> GetSingleResourceInfo(MonitoringTarget target)
         {
-            if (target == MonitoringTarget.Server_CPU_ProcessUsage)
-                throw new ArgumentOutOfRangeException("More than 1 resource wanted");
-
             var uri = GetUri(target);
 
             using (var response = await _client.GetAsync(uri))
@@ -73,25 +71,7 @@ namespace HardwareAccess.Connectors
             }
         }
 
-        private static async Task<IEnumerable<ServerResourceDTO>> GetManyResourceInfo(MonitoringTarget target)
-        {
-            var uri = GetUri(target);
-
-            using (var response = await _client.GetAsync(uri))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    var output = await response.Content.ReadAsAsync<IEnumerable<ServerResourceDTO>>();
-                    return output;
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
-        }
-
-        private static HardwareInformation MapDTO2Model(ServerResourceDTO dto)
+        private HardwareInformation MapDTO2Model(ServerResourceDTO dto)
         {
             return new HardwareInformation()
             {
@@ -111,7 +91,6 @@ namespace HardwareAccess.Connectors
                 case MonitoringTarget.Server_CPU_Load:
                 case MonitoringTarget.Server_CPU_Temp:
                 case MonitoringTarget.Server_RAM_Usage:
-                case MonitoringTarget.Server_CPU_ProcessUsage:
                     var resultDTO = Task.Run(() => GetSingleResourceInfo(resource)).Result;
                     return MapDTO2Model(resultDTO);
 

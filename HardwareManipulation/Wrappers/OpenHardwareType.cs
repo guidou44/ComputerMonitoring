@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerMonitoringTests.HardwareAccessTests.Connectors
+namespace HardwareManipulation.Wrappers
 {
-    class OpenHardwareConnectorTest
+    public enum OpenHardwareType
     {
+        GpuAti,
+        GpuNvidia,
+        Mainboard
     }
 }

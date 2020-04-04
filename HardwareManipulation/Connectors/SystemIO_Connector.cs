@@ -6,18 +6,25 @@ using System.Text;
 using System.Threading.Tasks;
 using HardwareAccess.Enums;
 using HardwareAccess.Models;
+using HardwareManipulation.Components;
 using OpenHardwareMonitor.Hardware;
 
 namespace HardwareAccess.Connectors
 {
     public class SystemIO_Connector : ConnectorBase
     {
+        private IDriveInfoProvider _provider;
+        public SystemIO_Connector(IDriveInfoProvider provider)
+        {
+            _provider = provider;
+        }
+
 
         #region Private Methods
 
-        private HardwareInformation GetDriveUsage(DriveInfo drive)
+        private HardwareInformation GetDriveUsage(IDriveInfo drive)
         {
-            if (drive == null) throw new ArgumentNullException("This drive does<nt exist on current computer");
+            if (drive == null) throw new ArgumentNullException("This drive does'nt exist on current computer");
             return new HardwareInformation()
             {
                 MainValue = 100 * (1 - Math.Round((((double )drive.TotalFreeSpace) / ((double)drive.TotalSize)), 2)),
@@ -31,9 +38,8 @@ namespace HardwareAccess.Connectors
 
         public override HardwareInformation GetValue(MonitoringTarget resource)
         {
-            DriveInfo[] allDrives = DriveInfo.GetDrives();
-            var networkDrives = allDrives.Where(D => D.DriveType == DriveType.Network).OrderBy(D => ((int)(D.Name[0])));
-            var localDrives = allDrives.Except(networkDrives);
+            IEnumerable<IDriveInfo> localDrives = _provider.GetLocalDrive();
+            IEnumerable<IDriveInfo> networkDrives = _provider.GetNetworkDrive();
 
             switch (resource)
             {

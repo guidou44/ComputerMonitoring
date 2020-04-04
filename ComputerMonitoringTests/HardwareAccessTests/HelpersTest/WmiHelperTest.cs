@@ -23,5 +23,12 @@ namespace ComputerMonitoringTests.HardwareAccessTests.HelpersTest
             double loadPercentage = wmiHelperSubject.GetWmiValue<double>("Win32_Processor", "LoadPercentage");
             Assert.True(loadPercentage > 0);
         }
+
+        [Fact]
+        public void GivenValidWmiPathAndKeyWithScope_WhenRequestingData_ThenItReturnsProper()
+        {
+            double temperature = wmiHelperSubject.GetWmiValue<double>("MSAcpi_ThermalZoneTemperature", "CurrentTemperature", scope: @"root\WMI");
+            Assert.True(temperature > 0);
+        }
     }
 }

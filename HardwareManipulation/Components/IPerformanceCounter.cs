@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComputerMonitoringTests.HardwareAccessTests.Connectors
+namespace HardwareManipulation.Components
 {
-    class NVIDA_API_ConnectorTest
+    public interface IPerformanceCounter
     {
+        float NextValue();
     }
 }

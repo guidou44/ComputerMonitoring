@@ -30,7 +30,6 @@ namespace HardwareAccess.Connectors
         private HardwareInformation GetFirstGpuMake()
         {
             var myGPUs = _nvdiaComponent.GetPhysicalGPUs();
-            if (myGPUs.Count() == 0) return null;
 
             var gpuMakes = myGPUs.ToList().Select(gU => new HardwareInformation()
             {
@@ -45,12 +44,11 @@ namespace HardwareAccess.Connectors
         private HardwareInformation GetFirstGpuTemp()
         {
             var myGPUs = _nvdiaComponent.GetPhysicalGPUs();
-            if (myGPUs.Count() == 0) return null;
 
             var gpuUsages = myGPUs.ToList().Select(gU => new HardwareInformation()
             {
                 ShortName = "GPU",
-                MainValue = (double) gU.CurrentTemperature,
+                MainValue = gU.CurrentTemperature,
                 UnitSymbol = "°C"
             });
 
@@ -60,12 +58,11 @@ namespace HardwareAccess.Connectors
         private HardwareInformation GetFirstGpuLoad()
         {
             var myGPUs = _nvdiaComponent.GetPhysicalGPUs();
-            if (myGPUs.Count() == 0) return null;
 
             var gpuUsages = myGPUs.ToList().Select(gU => new HardwareInformation()
             { 
                 ShortName = "GPU",
-                MainValue = (double) gU.Percentage,
+                MainValue = gU.Percentage,
                 UnitSymbol = "%"
             });
 

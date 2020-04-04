@@ -47,8 +47,7 @@ namespace ComputerRessourcesMonitoring.Infrastructure
         private static void RegisterTypes(ContainerBuilder builder)
         {
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
-            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
-            builder.RegisterType<NvidiaWrapper>().As<INvidiaComponent>().SingleInstance();
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();            
             builder.RegisterType<ConnectorFactory>().As<IFactory<ConnectorBase>>().SingleInstance();
 
             builder.RegisterType<XmlHelper>().AsSelf();
@@ -61,10 +60,12 @@ namespace ComputerRessourcesMonitoring.Infrastructure
             builder.RegisterType<ProcessWatchDog>().AsSelf(); 
             builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf();
 
-            builder.Register(c => new ServerResourceApiClient()).AsSelf();
-            builder.RegisterType<OpenHardwareWrapper>().AsSelf().SingleInstance();
+            builder.Register(c => new ServerResourceApiClientWrapper()).AsSelf();
+            builder.RegisterType<OpenHardwareComputerWrapper>().As<IOpenHardwareComputer>().SingleInstance();
+            builder.RegisterType<NvidiaWrapper>().As<INvidiaComponent>().SingleInstance();
+            builder.RegisterType<DriveInfoProvider>().As<IDriveInfoProvider>().SingleInstance();
 
-            builder.Register(c => new PerformanceCounter("Processor", "% Idle Time", "_Total")).AsSelf();
+            builder.RegisterType<PerformanceCounterWrapper>().As<IPerformanceCounter>();
 
             builder.RegisterType<ASPNET_API_Connector>().AsSelf();
             builder.RegisterType<NVDIA_API_Connector>().AsSelf();

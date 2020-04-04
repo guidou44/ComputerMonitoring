@@ -15,17 +15,19 @@ namespace HardwareManipulation.Wrappers
             _nvdiaGpu = nvdiaGpu;
         }
 
-        public string FullName
+        public NvidiaGpuWrapper() { }
+
+        public virtual string FullName
         { 
             get { return _nvdiaGpu.FullName; } 
         }
 
-        public double CurrentTemperature 
+        public virtual double CurrentTemperature 
         { 
             get { return (double)_nvdiaGpu.ThermalInformation.ThermalSensors.First().CurrentTemperature; } 
         }
 
-        public double Percentage 
+        public virtual double Percentage 
         {
             get { return (double)_nvdiaGpu.UsageInformation.GPU.Percentage; }
         }

@@ -132,11 +132,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Components\IDriveInfo.cs" />
+    <Compile Include="Components\IDriveInfoProvider.cs" />
+    <Compile Include="Components\IOpenHardware.cs" />
+    <Compile Include="Components\IOpenHardwareComputer.cs" />
     <Compile Include="Components\INvidiaComponent.cs" />
+    <Compile Include="Components\IOpenSensor.cs" />
+    <Compile Include="Components\IPerformanceCounter.cs" />
+    <Compile Include="Wrappers\DriveInfoProvider.cs" />
+    <Compile Include="Wrappers\DriveInfoWrapper.cs" />
     <Compile Include="Wrappers\NvidiaGpuWrapper.cs" />
     <Compile Include="Wrappers\NvidiaWrapper.cs" />
+    <Compile Include="Wrappers\OpenHardwareSensorType.cs" />
+    <Compile Include="Wrappers\OpenHardwareType.cs" />
+    <Compile Include="Wrappers\OpenHardwareComputerWrapper.cs" />
     <Compile Include="Wrappers\OpenHardwareWrapper.cs" />
-    <Compile Include="Components\ServerResourceApiClient.cs" />
+    <Compile Include="Wrappers\OpenSensorWrapper.cs" />
+    <Compile Include="Wrappers\ServerResourceApiClientWrapper.cs" />
     <Compile Include="Connectors\ConnectorBase.cs" />
     <Compile Include="Connectors\OpenHardware_Connector.cs" />
     <Compile Include="Connectors\SystemIO_Connector.cs" />
@@ -158,6 +170,7 @@
     <Compile Include="Models\ServerDTOs\ServerResourceDTO.cs" />
     <Compile Include="Models\ServerDTOs\ServerResourceUnitDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrappers\PerformanceCounterWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
