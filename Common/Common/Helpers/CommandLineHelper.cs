@@ -27,7 +27,7 @@ namespace Common.Helpers
             _process_cmd.StartInfo.CreateNoWindow = true;
         }
 
-        public StreamReader ExecuteCommand(string commandLineInput)
+        public virtual StreamReader ExecuteCommand(string commandLineInput)
         {
             _process_cmd.Start();
             _process_cmd.StandardInput.WriteLine(commandLineInput);

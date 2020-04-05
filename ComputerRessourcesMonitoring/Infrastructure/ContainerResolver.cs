@@ -24,6 +24,8 @@ using System.Net.Mail;
 using Common.Reports;
 using Common.MailClient;
 using Common.Wrappers;
+using ProcessMonitoring.Models;
+using ProcessMonitoring.Wrappers;
 
 namespace ComputerRessourcesMonitoring.Infrastructure
 {
@@ -46,32 +48,42 @@ namespace ComputerRessourcesMonitoring.Infrastructure
 
         private static void RegisterTypes(ContainerBuilder builder)
         {
+            //Common.UI
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
-            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();            
-            builder.RegisterType<ConnectorFactory>().As<IFactory<ConnectorBase>>().SingleInstance();
+            builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
+            //Common
+            builder.RegisterType<CommandLineHelper>().AsSelf();
             builder.RegisterType<XmlHelper>().AsSelf();
             builder.RegisterType<Reporter>().AsSelf();
             builder.Register(c => new SmptClientWrapper("smtp.gmail.com")).As<IMailClient>();
-            builder.RegisterType<CommandLineHelper>().AsSelf();
-            builder.RegisterType<WmiHelper>().AsSelf().SingleInstance();
+            
+            
+            //Process Monitoring
+            builder.RegisterType<ProcessWatchDog>().AsSelf();
+            builder.RegisterType<CaptureDeviceFactory>().As<ICaptureFactory<IPacketCaptureDevice>>();
+            builder.RegisterType<CaptureDeviceWriterFactory>().As<ICaptureFactory<ICaptureFileWriter>>();
 
-            builder.RegisterType<DataManager>().AsSelf();
-            builder.RegisterType<ProcessWatchDog>().AsSelf(); 
+            //ComputerResourceMonitoring
             builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf();
 
-            builder.Register(c => new ServerResourceApiClientWrapper()).AsSelf();
+            //Hardware access
+            builder.RegisterType<DataManager>().AsSelf();
+            builder.RegisterType<WmiHelper>().AsSelf().SingleInstance();
+
+            builder.RegisterType<DriveInfoProvider>().As<IDriveInfoProvider>().SingleInstance();
+            builder.RegisterType<PerformanceCounterWrapper>().As<IPerformanceCounter>();
             builder.RegisterType<OpenHardwareComputerWrapper>().As<IOpenHardwareComputer>().SingleInstance();
             builder.RegisterType<NvidiaWrapper>().As<INvidiaComponent>().SingleInstance();
-            builder.RegisterType<DriveInfoProvider>().As<IDriveInfoProvider>().SingleInstance();
-
-            builder.RegisterType<PerformanceCounterWrapper>().As<IPerformanceCounter>();
+            builder.Register(c => new ServerResourceApiClientWrapper()).AsSelf();
 
             builder.RegisterType<ASPNET_API_Connector>().AsSelf();
             builder.RegisterType<NVDIA_API_Connector>().AsSelf();
             builder.RegisterType<OpenHardware_Connector>().AsSelf();
             builder.RegisterType<SystemIO_Connector>().AsSelf();
             builder.RegisterType<WMI_Connector>().AsSelf();
+
+            builder.RegisterType<ConnectorFactory>().As<IFactory<ConnectorBase>>().SingleInstance();
             builder.Register<Func<Type, ConnectorBase>>(c =>
             {
                 ILifetimeScope context = c.Resolve<ILifetimeScope>();

@@ -1,5 +1,6 @@
 ﻿using Common.Helpers;
 using ProcessMonitoring.Models;
+using ProcessMonitoring.Wrappers;
 using SharpPcap;
 using SharpPcap.LibPcap;
 using System;
@@ -22,16 +23,23 @@ namespace ProcessMonitoring
 
         private CommandLineHelper _cmdHelper;
         private XmlHelper _xmlHelper;
-        private IPAddress localHostIpV4;
-        private ICollection<PacketCaptureProcessInfo> _packetCaptureProcessesInfo;
+        private IPAddress localHostIpV4;        
+        private ICaptureFactory<IPacketCaptureDevice> captureDeviceFactory;
+        private ICaptureFactory<ICaptureFileWriter> captureWriterFactory;
+
+        protected ICollection<PacketCaptureProcessInfo> _packetCaptureProcessesInfo;
 
         public delegate void PacketsExchanged(PacketCaptureProcessInfo pcp);
         public event PacketsExchanged PacketsExchangedEvent;
 
-        public ProcessWatchDog(CommandLineHelper cmdHelper, XmlHelper xmlHelper)
+        public ProcessWatchDog(CommandLineHelper cmdHelper, XmlHelper xmlHelper, 
+            ICaptureFactory<IPacketCaptureDevice> captureDeviceFactory, 
+            ICaptureFactory<ICaptureFileWriter> captureWriterFactory)
         {
             _cmdHelper = cmdHelper;
             _xmlHelper = xmlHelper;
+            this.captureDeviceFactory = captureDeviceFactory;
+            this.captureWriterFactory = captureWriterFactory;
             _packetCaptureProcessesInfo = new HashSet<PacketCaptureProcessInfo>();
             localHostIpV4 = GetIpV4OfLocalHost();
         }
@@ -50,29 +58,29 @@ namespace ProcessMonitoring
             return allprocesses.Where(P => P.ProcessName == process_name);
         }
 
-        public void SetProcessAndItsOpenPortsInfo(Process process)
+        private void SetProcessAndItsOpenPortsInfo(PacketCaptureProcessInfo captureInfo)
         {
-            var processCaptureInfo = new PacketCaptureProcessInfo(process);
             var network_status = _cmdHelper.ExecuteCommand("netstat -ano");
-            processCaptureInfo.Ports = GetOpenTCPandUDPportsForProcess(process.Id, network_status);
-            _packetCaptureProcessesInfo.Add(processCaptureInfo);
+            captureInfo.SetOpenTCPandUDPportsForProcess(network_status, captureInfo.PID);  
+            _packetCaptureProcessesInfo.Add(captureInfo);
         }
 
-        public void InitializeWatchdogForProcess(Process process)
+        public void InitializeWatchdogForProcess(PacketCaptureProcessInfo processCaptureInfo)
         {
-            SetProcessAndItsOpenPortsInfo(process);
-            var processCaptureInfo = _packetCaptureProcessesInfo.LastOrDefault();
-            var fileId = DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString();
-            var currentDirectory = Directory.GetCurrentDirectory().ToString();
+            SetProcessAndItsOpenPortsInfo(processCaptureInfo);
+            string fileId = DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString();
+
+            string currentDirectory = Directory.GetCurrentDirectory().ToString();
             if (!Directory.Exists(Path.Combine(currentDirectory, "Packet_Captures"))) Directory.CreateDirectory(Path.Combine(currentDirectory, "Packet_Captures"));
-            processCaptureInfo.ReceivedCaptureFileWriter = new CaptureFileWriterDevice(Path.Combine(currentDirectory, "Packet_Captures", $"{process.ProcessName}_packets_RCV_{fileId}.pcap"));
-            processCaptureInfo.SentCaptureFileWriter = new CaptureFileWriterDevice(Path.Combine(currentDirectory, "Packet_Captures", $"{process.ProcessName}_packets_SENT_{fileId}.pcap"));
-            processCaptureInfo.CaptureDevice = CaptureDeviceList.Instance.Where(CD => !CD.Description.Contains("Atheros")).FirstOrDefault() ??
-                throw new ArgumentNullException("No capture device found");
+
+            processCaptureInfo.ReceivedCaptureFileWriter = captureWriterFactory.CreateInstance(Path.Combine(currentDirectory, "Packet_Captures", $"{processCaptureInfo.ProcessName}_packets_RCV_{fileId}.pcap"));
+            processCaptureInfo.SentCaptureFileWriter = captureWriterFactory.CreateInstance(Path.Combine(currentDirectory, "Packet_Captures", $"{processCaptureInfo.ProcessName}_packets_SENT_{fileId}.pcap"));
+            processCaptureInfo.CaptureDevice = captureDeviceFactory.CreateInstance("Atheros");
+
             foreach (var port in processCaptureInfo.Ports)
             {
-                CaptureIncomingPackets(localHostIpV4.ToString(), port, processCaptureInfo.CaptureDevice, processCaptureInfo.Process);
-                CaptureOutgoingPackets(localHostIpV4.ToString(), port, processCaptureInfo.CaptureDevice, processCaptureInfo.Process);
+                CaptureIncomingPackets(localHostIpV4.ToString(), port, processCaptureInfo.CaptureDevice, processCaptureInfo);
+                CaptureOutgoingPackets(localHostIpV4.ToString(), port, processCaptureInfo.CaptureDevice, processCaptureInfo);
             }
         }
 
@@ -94,95 +102,40 @@ namespace ProcessMonitoring
             }
         }
 
-        public void StopCapturingPackets(Process process)
-        {
-            var packetCaptureProcess = _packetCaptureProcessesInfo.Where(PCP => PCP.Process == process).SingleOrDefault();
-            if (packetCaptureProcess.CaptureDevice != null)
-            {
-                packetCaptureProcess.CaptureDevice.OnPacketArrival -= (sender, e) => OnPacketArrival_Send(sender, e, packetCaptureProcess.Process);
-                packetCaptureProcess.CaptureDevice.OnPacketArrival -= (sender, e) => OnPacketArrival_Recv(sender, e, packetCaptureProcess.Process);
-            }
-        }
-
         #endregion
 
         #region Private Methods
 
-        private void CaptureOutgoingPackets(string IP, int portID, ICaptureDevice device, Process process)
+        private void CaptureOutgoingPackets(string IP, int portID, IPacketCaptureDevice device, PacketCaptureProcessInfo captureInfo)
         {
-            device.OnPacketArrival += new PacketArrivalEventHandler((sender, e) => OnPacketArrival_Send(sender, e, process));
-            int readTimeoutMilliseconds = 1000;
-            device.Open(DeviceMode.Promiscuous, readTimeoutMilliseconds);
-            string filter = "src host " + IP + " and src port " + portID;
-            device.Filter = filter;
+            device.OnPacketArrival += new PacketCaptureEventHandlerWrapper((sender, e) => OnPacketArrival_Send(sender, e, captureInfo));
+            device.Open(readTimeOutMilliseconds:1000);
+            device.Filter = "src host " + IP + " and src port " + portID;
             device.StartCapture();
         }
 
-        private void OnPacketArrival_Send(object sender, CaptureEventArgs e, Process process)
+        private void OnPacketArrival_Send(object sender, CaptureEventWrapperArgs e, PacketCaptureProcessInfo captureInfo)
         {
             var len = e.Packet.Data.Length;
-            var guiltyProcess = _packetCaptureProcessesInfo.Where(PCP => PCP.Process.Id == process.Id).FirstOrDefault();
-            guiltyProcess.NetSendBytes += len;
-            guiltyProcess.SentCaptureFileWriter.Write(e.Packet);
-            PacketsExchangedEvent?.Invoke(guiltyProcess);
+            captureInfo.NetSendBytes += len;
+            captureInfo.SentCaptureFileWriter.Write(e);
+            PacketsExchangedEvent?.Invoke(captureInfo);
         }
 
-        private void CaptureIncomingPackets(string IP, int portID, ICaptureDevice device, Process process)
+        private void CaptureIncomingPackets(string IP, int portID, IPacketCaptureDevice device, PacketCaptureProcessInfo captureInfo)
         {
-            device.OnPacketArrival += new PacketArrivalEventHandler((sender, e) => OnPacketArrival_Recv(sender, e, process));
-            int readTimeoutMilliseconds = 1000;
-            device.Open(DeviceMode.Promiscuous, readTimeoutMilliseconds);
-            string filter = "dst host " + IP + " and dst port " + portID;
-            device.Filter = filter;
+            device.OnPacketArrival += new PacketCaptureEventHandlerWrapper((sender, e) => OnPacketArrival_Recv(sender, e, captureInfo));
+            device.Open(readTimeOutMilliseconds: 1000);
+            device.Filter = "dst host " + IP + " and dst port " + portID;
             device.StartCapture();
-
         }
 
-        private void OnPacketArrival_Recv(object sender, CaptureEventArgs e, Process process)
+        private void OnPacketArrival_Recv(object sender, CaptureEventWrapperArgs e, PacketCaptureProcessInfo captureInfo)
         {
             var len = e.Packet.Data.Length;
-            var guiltyProcess = _packetCaptureProcessesInfo.Where(PCP => PCP.Process.Id == process.Id).FirstOrDefault();
-            guiltyProcess.NetRecvBytes += len;
-            guiltyProcess.ReceivedCaptureFileWriter.Write(e.Packet);
-            PacketsExchangedEvent?.Invoke(guiltyProcess);
-        }
-
-        private ICollection<int> GetOpenTCPandUDPportsForProcess(int pid, StreamReader network_Status)
-        {
-            ICollection<int> ports = new List<int>();
-
-            Regex reg = new Regex("\\s+", RegexOptions.Compiled);
-            string line = null;
-
-            while ((line = network_Status.ReadLine()) != null)
-            {
-                line = line.Trim();
-                string[] arr = reg.Replace(line, ",").Split(',');
-                if (line.StartsWith("TCP", StringComparison.OrdinalIgnoreCase))
-                {
-                    int associatedPid = int.Parse(arr[4]);
-                    if (associatedPid == pid)
-                    {
-                        string socket = arr[1];
-                        int port_start_index = socket.LastIndexOf(':');
-                        int port = int.Parse(socket.Substring(port_start_index + 1));
-                        ports.Add(port);
-                    }
-                }
-                else if (line.StartsWith("UDP", StringComparison.OrdinalIgnoreCase))
-                {
-                    int associatedPid = int.Parse(arr[3]);
-                    if (associatedPid == pid)
-                    {
-                        string socket = arr[1];
-                        int port_start_index = socket.LastIndexOf(':');
-                        int port = int.Parse(socket.Substring(port_start_index + 1));
-                        ports.Add(port);
-                    }
-                }
-            }
-
-            return ports;
+            captureInfo.NetRecvBytes += len;
+            captureInfo.ReceivedCaptureFileWriter.Write(e);
+            PacketsExchangedEvent?.Invoke(captureInfo);
         }
 
         private IPAddress GetIpV4OfLocalHost()

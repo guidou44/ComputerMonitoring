@@ -126,7 +126,8 @@ namespace ComputerResourcesMonitoring.Models
                     if (process2watch.Process == null) process2watch.Process = _watchdog.GetProcessesByName(process2watch.ProcessName).FirstOrDefault();
                     if (!process2watch.WasInitialized)
                     {
-                        _watchdog.InitializeWatchdogForProcess(process2watch.Process);
+                        PacketCaptureProcessInfo captureInfo = new PacketCaptureProcessInfo(process2watch.Process);
+                        _watchdog.InitializeWatchdogForProcess(captureInfo);
                         process2watch.WasInitialized = true;
                     }
                     _watchdog.RefreshInfo();
@@ -157,9 +158,9 @@ namespace ComputerResourcesMonitoring.Models
         private async void ReportPacketExchange(PacketCaptureProcessInfo guiltyProcessInformation)
         {
             await Task.Run(() => _reporter.SendEmailReport(
-                            subject: $"ALARM: Detected Activity for {guiltyProcessInformation.Process.ProcessName}",
+                            subject: $"ALARM: Detected Activity for {guiltyProcessInformation.ProcessName}",
                             message: $"Activity detected report:\n" +
-                                        $"----------------{guiltyProcessInformation.Process.ProcessName}---------------\n\n" +
+                                        $"----------------{guiltyProcessInformation.ProcessName}---------------\n\n" +
                                         "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n\nContent:\n" +
                                         $"Net send bytes : {guiltyProcessInformation.NetSendBytes}\n" +
                                         $"Net Received bytes : {guiltyProcessInformation.NetRecvBytes}\n" +

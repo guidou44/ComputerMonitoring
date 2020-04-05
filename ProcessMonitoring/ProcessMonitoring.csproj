@@ -60,10 +60,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ICaptureFactory.cs" />
+    <Compile Include="Models\IPacketCaptureDevice.cs" />
+    <Compile Include="Models\ICaptureFileWriter.cs" />
     <Compile Include="Models\PacketCaptureProcessInfo.cs" />
     <Compile Include="Models\WatchdogInitialization.cs" />
     <Compile Include="ProcessWatchDog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrappers\CaptureDeviceFactory.cs" />
+    <Compile Include="Wrappers\CaptureDeviceWrapper.cs" />
+    <Compile Include="Wrappers\CaptureDeviceWriterFactory.cs" />
+    <Compile Include="Wrappers\CaptureEventWrapperArgs.cs" />
+    <Compile Include="Wrappers\CaptureFileWriterWrapper.cs" />
+    <Compile Include="Wrappers\LinkLayersWrapper.cs" />
+    <Compile Include="Wrappers\PacketCaptureEventHandlerWrapper.cs" />
+    <Compile Include="Wrappers\PacketWrapper.cs" />
+    <Compile Include="Wrappers\PosixTimevalWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

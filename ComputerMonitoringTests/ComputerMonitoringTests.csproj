@@ -152,6 +152,9 @@
     <Compile Include="HardwareAccessTests\IFactoryTest.cs" />
     <Compile Include="HardwareAccessTests\Models\ComputerResourceTest.cs" />
     <Compile Include="HardwareAccessTests\Models\HardwareInformationTest.cs" />
+    <Compile Include="ProcessMonitoringTests\Helpers\WatchDogTestHelper.cs" />
+    <Compile Include="ProcessMonitoringTests\Models\PacketCaptureProcessInfoTest.cs" />
+    <Compile Include="ProcessMonitoringTests\ProcessWatchDogTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
