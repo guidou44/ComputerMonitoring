@@ -139,6 +139,12 @@
     <Compile Include="CommonTests\Helpers\CommandLineHelperTest.cs" />
     <Compile Include="CommonTests\Helpers\XmlHelperTest.cs" />
     <Compile Include="CommonTests\Reports\ReporterTest.cs" />
+    <Compile Include="ComputerResourcesMonitoringTests\Helper\ComputerMonitoringTestHelper.cs" />
+    <Compile Include="ComputerResourcesMonitoringTests\Models\ComputerMonitoringManagerModelTest.cs" />
+    <Compile Include="ComputerResourcesMonitoringTests\ViewModels\MainViewModelTest.cs" />
+    <Compile Include="ComputerResourcesMonitoringTests\ViewModels\MonitoringTargetViewModelTest.cs" />
+    <Compile Include="ComputerResourcesMonitoringTests\ViewModels\ProcessViewModelTest.cs" />
+    <Compile Include="ComputerResourcesMonitoringTests\ViewModels\SettingsDialogViewModelTest.cs" />
     <Compile Include="HardwareAccessTests\Connectors\ASPNET_API_ConnectorTest.cs" />
     <Compile Include="HardwareAccessTests\Connectors\ConnectorBaseTest.cs" />
     <Compile Include="HardwareAccessTests\Connectors\NVDIA_API_ConnectorTest.cs" />

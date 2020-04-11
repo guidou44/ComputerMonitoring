@@ -30,7 +30,7 @@ namespace ProcessMonitoring
         protected ICollection<PacketCaptureProcessInfo> _packetCaptureProcessesInfo;
 
         public delegate void PacketsExchanged(PacketCaptureProcessInfo pcp);
-        public event PacketsExchanged PacketsExchangedEvent;
+        public virtual event PacketsExchanged PacketsExchangedEvent;
 
         public ProcessWatchDog(CommandLineHelper cmdHelper, XmlHelper xmlHelper, 
             ICaptureFactory<IPacketCaptureDevice> captureDeviceFactory, 
@@ -44,15 +44,17 @@ namespace ProcessMonitoring
             localHostIpV4 = GetIpV4OfLocalHost();
         }
 
+        public ProcessWatchDog() { }
+
         #region Public Methods
 
-        public IEnumerable<string> GetInitialProcesses2Watch()
+        public virtual IEnumerable<string> GetInitialProcesses2Watch()
         {
             var watchdogInit = _xmlHelper.DeserializeConfiguration<WatchdogInitialization>(_XML_CONFIG_PATH);
             return watchdogInit.InitialProcess2watchNames;
         }
 
-        public IEnumerable<Process> GetProcessesByName(string process_name)
+        public virtual IEnumerable<Process> GetProcessesByName(string process_name)
         {
             Process[] allprocesses = Process.GetProcesses();
             return allprocesses.Where(P => P.ProcessName == process_name);
@@ -65,7 +67,7 @@ namespace ProcessMonitoring
             _packetCaptureProcessesInfo.Add(captureInfo);
         }
 
-        public void InitializeWatchdogForProcess(PacketCaptureProcessInfo processCaptureInfo)
+        public virtual void InitializeWatchdogForProcess(PacketCaptureProcessInfo processCaptureInfo)
         {
             SetProcessAndItsOpenPortsInfo(processCaptureInfo);
             string fileId = DateTime.Now.Day.ToString() + "_" + DateTime.Now.Month.ToString() + "_" + DateTime.Now.Year.ToString();
@@ -84,14 +86,14 @@ namespace ProcessMonitoring
             }
         }
 
-        public bool IsProcessCurrentlyRunning(string appProcessName)
+        public virtual bool IsProcessCurrentlyRunning(string appProcessName)
         {
             var all_related_processes = GetProcessesByName(appProcessName);
             if (all_related_processes.Count() == 0) return false;
             return true;
         }
 
-        public void RefreshInfo()
+        public virtual void RefreshInfo()
         {
             foreach (var packetCaptureProcessInfo in _packetCaptureProcessesInfo)
             {

@@ -137,6 +137,8 @@
     <Compile Include="Factories\ConnectorFactory.cs" />
     <Compile Include="Infrastructure\ContainerResolver.cs" />
     <Compile Include="Models\ComputerMonitoringManagerModel.cs" />
+    <Compile Include="Models\IThread.cs" />
+    <Compile Include="Models\ITimer.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MonitoringTargetViewModel.cs" />
     <Compile Include="ViewModels\ProcessViewModel.cs" />
@@ -147,6 +149,8 @@
     <Compile Include="Views\WatchdogSettingsDialogView.xaml.cs">
       <DependentUpon>WatchdogSettingsDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Wrappers\TimerWrapper.cs" />
+    <Compile Include="Wrappers\WatchdogThread.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

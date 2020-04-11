@@ -19,19 +19,21 @@ using System.Threading.Tasks;
 using System.Timers;
 using HardwareManipulation;
 using System.Diagnostics;
+using ComputerRessourcesMonitoring.Models;
+using static ProcessMonitoring.ProcessWatchDog;
 
 namespace ComputerResourcesMonitoring.Models
 {
     public class ComputerMonitoringManagerModel : AppManagerModelBase, IDisposable
     {
-        #region Constructor
+        private const int TIMER_REFRESH_RATE_MILLI = 900;
 
         private DataManager _hardwareManager;
         private List<MonitoringTarget> _monitoringTargets;
-        private System.Timers.Timer _monitoringRefreshCounter;
+        private ITimer _monitoringRefreshCounter;
         private ProcessWatchDog _watchdog;
         private Reporter _reporter;
-        private Thread _watchdogThread;
+        private IThread _watchdogThread;
 
         public delegate void MonitoringErrorOccuredEventHandler(Exception e);
         public event MonitoringErrorOccuredEventHandler OnMonitoringErrorOccured;
@@ -39,29 +41,28 @@ namespace ComputerResourcesMonitoring.Models
         public ComputerMonitoringManagerModel(IEventAggregator eventHub, 
                                               DataManager hardwareManager, 
                                               ProcessWatchDog watchDog,
-                                              Reporter reporter) : base(eventHub)
+                                              Reporter reporter,
+                                              ITimer refreshCounter,
+                                              IThread watchdogThread) : base(eventHub)
         {
+            _watchdogThread = watchdogThread;
+            _monitoringRefreshCounter = refreshCounter;
             _hardwareManager = hardwareManager;
             _monitoringTargets = new List<MonitoringTarget>();
             _watchdog = watchDog;
             _reporter = reporter;
-            var initialTargets = _hardwareManager.GetInitialTargets();
+            IEnumerable<MonitoringTarget> initialTargets = _hardwareManager.GetInitialTargets();
             initialTargets.ToList().ForEach(TARGET => _monitoringTargets.Add(TARGET));
             InitializeWatchdog();
             RefreshMonitoring();
             SubscribeToEvents();
-            SetMonitoringCounter(900);
+            SetMonitoringCounter(TIMER_REFRESH_RATE_MILLI);
         }
-
-        #endregion
-
-        #region Public Methods
 
         public void Dispose()
         {
             _watchdog.PacketsExchangedEvent -= ReportPacketExchange;
             _monitoringRefreshCounter.Stop();
-            _monitoringRefreshCounter.Dispose();
         }
 
         public DataManager GetHardwareManager()
@@ -79,15 +80,11 @@ namespace ComputerResourcesMonitoring.Models
             return _monitoringTargets;
         }
 
-        #endregion
-
-        #region Private Methods
-
         private void InitializeWatchdog()
         {           
             try
             {
-                _watchdog.PacketsExchangedEvent += ReportPacketExchange;
+                _watchdog.PacketsExchangedEvent += new PacketsExchanged(ReportPacketExchange);
                 ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>();
                 foreach (var initialProcess in _watchdog.GetInitialProcesses2Watch())
                 {
@@ -99,7 +96,7 @@ namespace ComputerResourcesMonitoring.Models
                     ProcessesUnderWatch.Add(processVM);
                 }
 
-                Thread _watchdogThread = new Thread(() =>
+                _watchdogThread.SetJob(() =>
                 {
                     while (true)
                     {
@@ -145,7 +142,7 @@ namespace ComputerResourcesMonitoring.Models
         {
             try
             {
-                var valuesQueue = _hardwareManager.GetCalculatedValues(_monitoringTargets);
+                IEnumerable<HardwareInformation> valuesQueue = _hardwareManager.GetCalculatedValues(_monitoringTargets);
                 HardwareValues = new ObservableCollection<HardwareInformation>(valuesQueue);
             }
             catch (Exception e)
@@ -170,10 +167,10 @@ namespace ComputerResourcesMonitoring.Models
 
         private void SetMonitoringCounter(int counterTimeMilliseconds)
         {
-            _monitoringRefreshCounter = new System.Timers.Timer(counterTimeMilliseconds);
+            _monitoringRefreshCounter.Init(counterTimeMilliseconds);
             _monitoringRefreshCounter.Elapsed += OnCounterCompletionEvent;
             _monitoringRefreshCounter.AutoReset = true;
-            _monitoringRefreshCounter.Enabled = true;
+            _monitoringRefreshCounter.Start();
         }
 
         private void SubscribeToEvents()
@@ -181,10 +178,6 @@ namespace ComputerResourcesMonitoring.Models
             _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Subscribe((processesToWatch) => { ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(processesToWatch); });
             _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Subscribe((targets) => { _monitoringTargets = targets; RefreshMonitoring(); });
         }
-
-        #endregion
-
-        #region Properties
 
         private ICollection<HardwareInformation> _hardwareValues;
         public ICollection<HardwareInformation> HardwareValues
@@ -207,7 +200,5 @@ namespace ComputerResourcesMonitoring.Models
                 RaisePropertyChanged(nameof(ProcessesUnderWatch));
             }
         }
-
-        #endregion
     }
 }

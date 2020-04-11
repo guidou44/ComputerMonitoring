@@ -1,6 +1,7 @@
 ﻿using Common.Exceptions;
 using Common.MailClient;
 using Common.Reports;
+using ComputerMonitoringTests.ComputerResourcesMonitoringTests.Helper;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ namespace ComputerMonitoringTests.CommonTests.Reports
         {
             string currentDirectory = Directory.GetCurrentDirectory();
             string directoryPath = Path.Combine(currentDirectory, "Exception_Logs");
-            GivenDeletedDirectoryIfAlreadyExists(directoryPath);
+            ComputerMonitoringTestHelper.GivenDeletedDirectoryIfAlreadyExists(directoryPath);
             Reporter reporterSubject = new Reporter(ProvideSmtpClient().Object);
 
             reporterSubject.LogException(new Exception("ex"));
@@ -78,12 +79,6 @@ namespace ComputerMonitoringTests.CommonTests.Reports
             smtpClient.Setup(s => s.Send(It.IsAny<MailMessage>())).Verifiable();
             smtpClient.SetupGet(e => e.Credentials).Returns(new System.Net.NetworkCredential("TEST@gmail.com", "Password"));
             return smtpClient;
-        }
-
-        private void GivenDeletedDirectoryIfAlreadyExists(string directoryPath)
-        {
-            if (!Directory.Exists(directoryPath)) 
-                Directory.Delete(directoryPath);
         }
     }
 }

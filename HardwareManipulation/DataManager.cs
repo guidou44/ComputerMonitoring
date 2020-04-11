@@ -28,14 +28,16 @@ namespace HardwareManipulation
             SetAvailableTargets_Internal();
         }
 
-        public HardwareInformation GetCalculatedValue(MonitoringTarget target)
+        public DataManager() { }
+
+        public virtual HardwareInformation GetCalculatedValue(MonitoringTarget target)
         {
             var targetKey = _target2Connector.SingleOrDefault(t2C => t2C.Key.TargetType == target).Key;
             if (_target2Connector[targetKey] == null) _target2Connector[targetKey] = _connectorFactory.CreateInstance(targetKey.ConnectorName);
             return _target2Connector[targetKey].GetValue(target);
         }
 
-        public IEnumerable<HardwareInformation> GetCalculatedValues(ICollection<MonitoringTarget> targets)
+        public virtual IEnumerable<HardwareInformation> GetCalculatedValues(ICollection<MonitoringTarget> targets)
         {
             var _targets = new HashSet<MonitoringTarget>(targets);
             var output = new Queue<HardwareInformation>();
@@ -62,31 +64,31 @@ namespace HardwareManipulation
             return output;
         }
 
-        public IEnumerable<MonitoringTarget> GetAllTargets()
+        public virtual IEnumerable<MonitoringTarget> GetAllTargets()
         {
             return GetAvailableTargets_Internal().Where(tar => (!tar.Key.ExcludeFromMonitoring ?? true)).Select(TAR => TAR.Key.TargetType);
         }
 
-        public IEnumerable<MonitoringTarget> GetInitialTargets()
+        public virtual IEnumerable<MonitoringTarget> GetInitialTargets()
         {
             return _target2Connector.Where(t2C => _initialMonitoringTargets
                                     .Contains(t2C.Key.TargetType) && t2C.Key.Com_Error == null)
                                     .Select(t2C => t2C.Key.TargetType);
         }
 
-        public IEnumerable<MonitoringTarget> GetLocalTargets()
+        public virtual IEnumerable<MonitoringTarget> GetLocalTargets()
         {
             return GetAvailableTargets_Internal().Where(tar => !tar.Key.IsRemote && (!tar.Key.ExcludeFromMonitoring ?? true))
                                                  .Select(tar => tar.Key.TargetType);
         }
 
-        public IEnumerable<MonitoringTarget> GetRemoteTargets()
+        public virtual IEnumerable<MonitoringTarget> GetRemoteTargets()
         {
             return GetAvailableTargets_Internal().Where(tar => tar.Key.IsRemote && (!tar.Key.ExcludeFromMonitoring ?? true))
                                                  .Select(tar => tar.Key.TargetType);
         }
 
-        public bool IsRemoteMonitoringEnabled()
+        public virtual bool IsRemoteMonitoringEnabled()
         {
             foreach (KeyValuePair<ComputerResource, ConnectorBase> remoteTarget in _target2Connector.Where(tar => tar.Key.IsRemote))
             {

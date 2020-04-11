@@ -20,6 +20,8 @@ namespace Common.Reports
             _smtpClient = smtpClient;
         }
 
+        public Reporter() { }
+
         public void LogException(Exception e, string logPath = null, bool addEmailreport = false, string emailAlternateConfigPath = null)
         {
             var currentDirectory = Directory.GetCurrentDirectory();

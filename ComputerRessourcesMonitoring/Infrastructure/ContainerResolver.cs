@@ -26,6 +26,8 @@ using Common.MailClient;
 using Common.Wrappers;
 using ProcessMonitoring.Models;
 using ProcessMonitoring.Wrappers;
+using ComputerRessourcesMonitoring.Wrappers;
+using ComputerRessourcesMonitoring.Models;
 
 namespace ComputerRessourcesMonitoring.Infrastructure
 {
@@ -57,8 +59,7 @@ namespace ComputerRessourcesMonitoring.Infrastructure
             builder.RegisterType<XmlHelper>().AsSelf();
             builder.RegisterType<Reporter>().AsSelf();
             builder.Register(c => new SmptClientWrapper("smtp.gmail.com")).As<IMailClient>();
-            
-            
+                        
             //Process Monitoring
             builder.RegisterType<ProcessWatchDog>().AsSelf();
             builder.RegisterType<CaptureDeviceFactory>().As<ICaptureFactory<IPacketCaptureDevice>>();
@@ -66,6 +67,8 @@ namespace ComputerRessourcesMonitoring.Infrastructure
 
             //ComputerResourceMonitoring
             builder.RegisterType<ComputerMonitoringManagerModel>().AsSelf();
+            builder.RegisterType<WatchdogThread>().As<IThread>().SingleInstance();
+            builder.RegisterType<TimerWrapper>().As<ITimer>();
 
             //Hardware access
             builder.RegisterType<DataManager>().AsSelf();
