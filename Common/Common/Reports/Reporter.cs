@@ -12,7 +12,7 @@ namespace Common.Reports
 {
     public class Reporter
     {
-        private const string CONFIG_FILE_PATH = @".\Configuration\ReporterConfiguration.xml";
+        private const string CONFIG_FILE_PATH = @"..\..\Configuration\ReporterConfiguration.xml";
         private IMailClient _smtpClient;
 
         public Reporter(IMailClient smtpClient)
