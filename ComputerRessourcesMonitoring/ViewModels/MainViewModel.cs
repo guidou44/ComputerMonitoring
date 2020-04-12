@@ -4,6 +4,7 @@ using Common.UI.ViewModels;
 using Common.UI.WindowProperty;
 using ComputerResourcesMonitoring.Models;
 using HardwareAccess.Models;
+using Prism.Events;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,6 +12,7 @@ using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Input;
 using System.Windows.Threading;
+using static ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel;
 
 namespace ComputerRessourcesMonitoring.ViewModels
 {
@@ -21,8 +23,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         public MainViewModel(IDialogService dialogService, 
             ComputerMonitoringManagerModel manager, 
-            Autofac.IContainer container,
-            Reporter reporter) : base (dialogService, container)
+            IEventAggregator eventAgg,
+            Reporter reporter) : base (dialogService, eventAgg)
         {
             IsApplicationVisible = true;
             _app_manager = manager;
@@ -53,8 +55,8 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
         private void SubscribeToEvents()
         {
-            _app_manager.PropertyChanged += OnAppManagerPropertyChangedEvent;
-            _app_manager.OnMonitoringErrorOccured += OnMonitoringErrorOccuredEvent;
+            _app_manager.PropertyChanged += new PropertyChangedEventHandler(OnAppManagerPropertyChangedEvent);
+            _app_manager.OnMonitoringErrorOccured += new MonitoringErrorOccuredEventHandler(OnMonitoringErrorOccuredEvent);
         }
 
         #endregion

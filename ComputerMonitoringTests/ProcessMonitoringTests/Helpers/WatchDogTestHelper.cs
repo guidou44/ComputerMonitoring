@@ -27,6 +27,12 @@ namespace ComputerMonitoringTests.ProcessMonitoringTests.Helpers
             return allprocesses.First();
         }
 
+        public static Process GivenSecondRunningProcess()
+        {
+            Process[] allprocesses = Process.GetProcesses();
+            return allprocesses.ElementAt(1);
+        }
+
         public static Process GivenFakeProcess()
         {
             return new Process();

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using Common.Reports;
+using Prism.Events;
 
 namespace ComputerRessourcesMonitoring
 {
@@ -27,8 +28,9 @@ namespace ComputerRessourcesMonitoring
             dialogService.Register<SettingsDialogViewModel, WatchdogSettingsDialogView>();
             ComputerMonitoringManagerModel manager = instanceContainer.Resolve<ComputerMonitoringManagerModel>();
             Reporter reporter = instanceContainer.Resolve<Reporter>();
+            IEventAggregator eventAgg = instanceContainer.Resolve<IEventAggregator>();
 
-            MainViewModel viewModel = new MainViewModel(dialogService, manager, instanceContainer, reporter);
+            MainViewModel viewModel = new MainViewModel(dialogService, manager, eventAgg, reporter);
             MainWindow view = new MainWindow { DataContext = viewModel };
 
             view.ShowDialog();

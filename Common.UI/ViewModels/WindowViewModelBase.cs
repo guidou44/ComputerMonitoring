@@ -16,13 +16,11 @@ namespace Common.UI.ViewModels
     {
         protected IDialogService _dialogService;
         protected IEventAggregator _eventHub;
-        protected IContainer _container;
 
-        public WindowViewModelBase(IDialogService dialogService, IContainer container)
+        public WindowViewModelBase(IDialogService dialogService, IEventAggregator eventAgg)
         {
-            _container = container;
             _dialogService = dialogService;
-            _eventHub = _container.Resolve<IEventAggregator>();
+            _eventHub = eventAgg;
         }
     }
 }

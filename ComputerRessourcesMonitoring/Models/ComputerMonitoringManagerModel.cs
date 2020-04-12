@@ -35,8 +35,10 @@ namespace ComputerResourcesMonitoring.Models
         private Reporter _reporter;
         private IThread _watchdogThread;
 
+        public bool IsWatchdogRunning = true;
+
         public delegate void MonitoringErrorOccuredEventHandler(Exception e);
-        public event MonitoringErrorOccuredEventHandler OnMonitoringErrorOccured;
+        public virtual event MonitoringErrorOccuredEventHandler OnMonitoringErrorOccured;
 
         public ComputerMonitoringManagerModel(IEventAggregator eventHub, 
                                               DataManager hardwareManager, 
@@ -59,23 +61,23 @@ namespace ComputerResourcesMonitoring.Models
             SetMonitoringCounter(TIMER_REFRESH_RATE_MILLI);
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _watchdog.PacketsExchangedEvent -= ReportPacketExchange;
             _monitoringRefreshCounter.Stop();
         }
 
-        public DataManager GetHardwareManager()
+        public virtual DataManager GetHardwareManager()
         {
             return _hardwareManager;
         }
 
-        public ProcessWatchDog GetWatchDog()
+        public virtual ProcessWatchDog GetWatchDog()
         {
             return _watchdog;
         }
 
-        public List<MonitoringTarget> GetMonitoringQueue()
+        public virtual List<MonitoringTarget> GetMonitoringQueue()
         {
             return _monitoringTargets;
         }
@@ -98,7 +100,7 @@ namespace ComputerResourcesMonitoring.Models
 
                 _watchdogThread.SetJob(() =>
                 {
-                    while (true)
+                    while (IsWatchdogRunning)
                     {
                         ManageWatchdog();
                         Thread.Sleep(1000);
@@ -152,9 +154,9 @@ namespace ComputerResourcesMonitoring.Models
             }
         }
 
-        private async void ReportPacketExchange(PacketCaptureProcessInfo guiltyProcessInformation)
+        private void ReportPacketExchange(PacketCaptureProcessInfo guiltyProcessInformation)
         {
-            await Task.Run(() => _reporter.SendEmailReport(
+            _reporter.SendEmailReport(
                             subject: $"ALARM: Detected Activity for {guiltyProcessInformation.ProcessName}",
                             message: $"Activity detected report:\n" +
                                         $"----------------{guiltyProcessInformation.ProcessName}---------------\n\n" +
@@ -162,7 +164,7 @@ namespace ComputerResourcesMonitoring.Models
                                         $"Net send bytes : {guiltyProcessInformation.NetSendBytes}\n" +
                                         $"Net Received bytes : {guiltyProcessInformation.NetRecvBytes}\n" +
                                         $"Net Total bytes: {guiltyProcessInformation.NetTotalBytes}\n"
-                            ));
+                            );
         }
 
         private void SetMonitoringCounter(int counterTimeMilliseconds)
@@ -180,7 +182,7 @@ namespace ComputerResourcesMonitoring.Models
         }
 
         private ICollection<HardwareInformation> _hardwareValues;
-        public ICollection<HardwareInformation> HardwareValues
+        public virtual ICollection<HardwareInformation> HardwareValues
         {
             get { return _hardwareValues; }
             set
@@ -191,7 +193,7 @@ namespace ComputerResourcesMonitoring.Models
         }
 
         private ICollection<ProcessViewModel> _processesUnderWatch;
-        public ICollection<ProcessViewModel> ProcessesUnderWatch
+        public virtual ICollection<ProcessViewModel> ProcessesUnderWatch
         {
             get { return _processesUnderWatch; }
             set

@@ -35,21 +35,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
             return (output);
         }
 
-        public void RegisterProcessNameEventHandlerIfNotRegistered(Delegate prospectiveHandler)
-        {
-            if (OnProcessNameChangedEvent != null)
-            {
-                foreach (Delegate existingHandler in OnProcessNameChangedEvent.GetInvocationList())
-                {
-                    if (existingHandler == prospectiveHandler)
-                    {
-                        return;
-                    }
-                }
-            }
-            OnProcessNameChangedEvent +=  (EventHandler)prospectiveHandler;
-        }
-
         #region Properties
 
         private bool _canRemoveProcessWatch;
@@ -83,9 +68,9 @@ namespace ComputerRessourcesMonitoring.ViewModels
             {
 #if !LOCAL
                 if (!_isRunning && value) _reporter.SendEmailReport(
-                    subject: $"ALARM: Detected process start for {Process.ProcessName}",
+                    subject: $"ALARM: Detected process start for {ProcessName}",
                     message: $"Activity detected report:\n" +
-                    $"----------------{Process.ProcessName}---------------\n\n" +
+                    $"----------------{ProcessName}---------------\n\n" +
                     "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n");
 #endif
                 _isRunning = value;
@@ -95,6 +80,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
         }
 
         public Process Process { get; set; }
+
         private string _processName;
         public string ProcessName
         {

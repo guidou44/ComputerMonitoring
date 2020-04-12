@@ -6,6 +6,7 @@ using ComputerResourcesMonitoring.Models;
 using ComputerRessourcesMonitoring.Events;
 using ComputerRessourcesMonitoring.Models;
 using ComputerRessourcesMonitoring.ViewModels;
+using ComputerRessourcesMonitoring.Wrappers;
 using HardwareAccess.Enums;
 using HardwareAccess.Models;
 using HardwareManipulation;
@@ -19,7 +20,9 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 using Xunit;
@@ -36,11 +39,11 @@ namespace ComputerMonitoringTests.ComputerResourcesMonitoringTests.Models
         private bool _watchDogJobSetted = false;
         private bool _watchDogThreadStarted = false;
         private bool _timerStarted = false;
-        private bool _timerElapsed = false;
         private int _refreshPolldelay;
         private bool _processWatchWasInitialized;
         private bool _packetExchangedEventRegistered = false;
-
+        private string _expectedProcessName = String.Empty;
+        private bool _watchdogRefreshIssued = true;
         private List<MonitoringTarget> _expectedTargets = new List<MonitoringTarget>() { MonitoringTarget.CPU_Load, MonitoringTarget.CPU_Temp };
         private List<HardwareInformation> _expectedHardwareInfo = new List<HardwareInformation>()
         {
@@ -48,14 +51,12 @@ namespace ComputerMonitoringTests.ComputerResourcesMonitoringTests.Models
             new HardwareInformation() { MainValue = 20, ShortName = "TEST2", UnitSymbol = "Ø"}
         };
 
-        private int _eventAggSubsribeCount = 0;
-
         [Fact]
         public void GivenValidWatchdog_WhenInstantiateManager_ThenItInitWatchdogProper()
         {
             _processWatchWasInitialized = false;
             _watchDogJobSetted = false;
-            _watchDogJobSetted = false;
+            _watchDogThreadStarted = false;
             _packetExchangedEventRegistered = false;
             ComputerMonitoringManagerModel managerSubject = GivenComputerManagerModel();
 
@@ -135,11 +136,11 @@ namespace ComputerMonitoringTests.ComputerResourcesMonitoringTests.Models
         [Fact]
         public void GivenInstantiateManagerModel_WhenSubscribeToEvents_ThenItSubscriveToProperEvents()
         {
-            _eventAggSubsribeCount = 0;
+            ComputerMonitoringTestHelper.EVENT_AGG_SUBSCRIBTION_COUNT = 0;
 
             ComputerMonitoringManagerModel managerSubject = GivenComputerManagerModel();
 
-            Assert.Equal(2, _eventAggSubsribeCount);
+            Assert.Equal(2, ComputerMonitoringTestHelper.EVENT_AGG_SUBSCRIBTION_COUNT);
         }
 
         [Fact]
@@ -259,7 +260,7 @@ namespace ComputerMonitoringTests.ComputerResourcesMonitoringTests.Models
                     It.IsAny<Predicate<ObservableCollection<ProcessViewModel>>>()))
                     .Callback<Action<ObservableCollection<ProcessViewModel>>, ThreadOption, bool, Predicate<ObservableCollection<ProcessViewModel>>>(
                     (e, t, b, a) => callback = e);
-            SetupEventAggMockBehaviour(eventManager, watchdogTargetChangedEvent.Object, monTargetChangedEvent.Object);
+            ComputerMonitoringTestHelper.SetupEventAggMockBehaviour(eventManager, watchdogTargetChangedEvent.Object, monTargetChangedEvent.Object);
 
             ComputerMonitoringManagerModel managerSubject =
                 new ComputerMonitoringManagerModel(eventManager.Object, dataManager, watchdog, reporter, timer, watchdogThread);
@@ -293,7 +294,7 @@ namespace ComputerMonitoringTests.ComputerResourcesMonitoringTests.Models
                     It.IsAny<Predicate<List<MonitoringTarget>>>()))
                     .Callback<Action<List<MonitoringTarget>>, ThreadOption, bool, Predicate<List<MonitoringTarget>>>(
                     (e, t, b, a) => callback = e);
-            SetupEventAggMockBehaviour(eventManager, watchdogTargetChangedEvent.Object, monTargetChangedEvent.Object);
+            ComputerMonitoringTestHelper.SetupEventAggMockBehaviour(eventManager, watchdogTargetChangedEvent.Object, monTargetChangedEvent.Object);
 
             ComputerMonitoringManagerModel managerSubject =
                 new ComputerMonitoringManagerModel(eventManager.Object, dataManager, watchdog, reporter, timer, watchdogThread);
@@ -305,21 +306,149 @@ namespace ComputerMonitoringTests.ComputerResourcesMonitoringTests.Models
             Assert.True(changedTargets.All(t => managerSubject.GetMonitoringQueue().Contains(t)));
         }
 
+        [Fact]
+        public void GivenRegisteredPacketExchangedHandler_WhenPacketExchanged_ThenItHandleProper()
+        {
+            const string expectedProcessName = "TEST_PROCESS";
+            string expectedMessageSubject = $"ALARM: Detected Activity for {expectedProcessName}";
+            string messageSubject = String.Empty;
+            IEventAggregator eventManager = ComputerMonitoringTestHelper.GivenEventAggregator();
+            DataManager dataManager = GivenValidDataManager();
+            Mock<ProcessWatchDog> watchdog = GivenValidWatchDogMock();
+            Mock<IMailClient> emailClient = ComputerMonitoringTestHelper.ProvideSmtpClient();
+            emailClient.Setup(s => s.Send(It.IsAny<MailMessage>())).Callback<MailMessage>(m => messageSubject = m.Subject);
+            Reporter reporter = new Reporter(emailClient.Object);
+
+            IThread watchdogThread = GivenWatchdigThread();
+            ITimer timer = GivenRefreshTimer();
+            ComputerMonitoringManagerModel managerSubject =
+                new ComputerMonitoringManagerModel(eventManager, dataManager, watchdog.Object, reporter, timer, watchdogThread);
+
+            Mock<PacketCaptureProcessInfo> packetInfo = new Mock<PacketCaptureProcessInfo>();
+            packetInfo.SetupGet(pc => pc.ProcessName).Returns(expectedProcessName);
+            watchdog.Raise(t => t.PacketsExchangedEvent += null, packetInfo.Object);
+
+            Assert.Equal(expectedMessageSubject, messageSubject);
+        }
+
+        [Fact]
+        public void GivenRunningNotInitProcess_WhenWatchdogIsRunning_ThenItInitWatchdogForProcess()
+        {
+            string processCaptureName = String.Empty;
+            _processWatchWasInitialized = false;
+            _packetExchangedEventRegistered = false;
+            _watchDogJobSetted = false;
+            _watchDogThreadStarted = false;
+            IEventAggregator eventManager = ComputerMonitoringTestHelper.GivenEventAggregator();
+            DataManager dataManager = GivenValidDataManager();
+            Mock<ProcessWatchDog> watchdog = GivenValidWatchDogMock();
+            watchdog.Setup(w => w.InitializeWatchdogForProcess(It.IsAny<PacketCaptureProcessInfo>())).Callback<PacketCaptureProcessInfo>
+            (pc =>
+            {
+                _processWatchWasInitialized = true;
+                processCaptureName = pc.ProcessName;
+            });
+
+            Mock<IMailClient> emailClient = ComputerMonitoringTestHelper.ProvideSmtpClient();
+            emailClient.Setup(s => s.Send(It.IsAny<MailMessage>())).Verifiable();
+            Reporter reporter = new Reporter(emailClient.Object);
+
+            ITimer timer = GivenRefreshTimer();
+            Action threadCallback = null;
+            Mock<IThread> watchdogThread = new Mock<IThread>();
+            watchdogThread.Setup(t => t.SetJob(It.IsAny<Action>())).Callback<Action>(a =>
+            {
+                _watchDogJobSetted = true;
+                threadCallback = a;
+            });
+            watchdogThread.Setup(t => t.Start()).Callback(() => _watchDogThreadStarted = true);
+            watchdogThread.Setup(t => t.Abort()).Callback(() => _watchDogThreadStarted = false);
+
+            ComputerMonitoringManagerModel managerSubject =
+                new ComputerMonitoringManagerModel(eventManager, dataManager, watchdog.Object, reporter, timer, watchdogThread.Object);
+            Task callbackTask = Task.Run(() => threadCallback?.Invoke());
+            Thread.Sleep(1000);
+            managerSubject.IsWatchdogRunning = false;
+            callbackTask.Wait();
+
+            Assert.Equal(_expectedProcessName, processCaptureName);
+            Assert.True(_processWatchWasInitialized);
+            Assert.True(_packetExchangedEventRegistered);
+            Assert.True(_watchDogJobSetted);
+            Assert.True(_watchDogThreadStarted);
+            Assert.True(_watchdogRefreshIssued);
+        }
+
+        [Fact]
+        public void GivenNotRunningProcess_WhenWatchdogIsRunning_ThenItDoesNotInitWatchdogForProcess()
+        {
+            string processCaptureName = String.Empty;
+            _processWatchWasInitialized = false;
+            _packetExchangedEventRegistered = false;
+            _watchDogJobSetted = false;
+            _watchDogThreadStarted = false;
+            IEventAggregator eventManager = ComputerMonitoringTestHelper.GivenEventAggregator();
+            DataManager dataManager = GivenValidDataManager();
+            Mock<ProcessWatchDog> watchdog = GivenValidWatchDogMock();
+            watchdog.Setup(w => w.InitializeWatchdogForProcess(It.IsAny<PacketCaptureProcessInfo>())).Callback<PacketCaptureProcessInfo>
+            (pc =>
+            {
+                _processWatchWasInitialized = true;
+                processCaptureName = pc.ProcessName;
+            });
+            watchdog.Setup(w => w.IsProcessCurrentlyRunning(It.IsAny<string>())).Returns(false);
+
+            Mock<IMailClient> emailClient = ComputerMonitoringTestHelper.ProvideSmtpClient();
+            emailClient.Setup(s => s.Send(It.IsAny<MailMessage>())).Verifiable();
+            Reporter reporter = new Reporter(emailClient.Object);
+
+            ITimer timer = GivenRefreshTimer();
+            Action threadCallback = null;
+            Mock<IThread> watchdogThread = new Mock<IThread>();
+            watchdogThread.Setup(t => t.SetJob(It.IsAny<Action>())).Callback<Action>(a =>
+            {
+                _watchDogJobSetted = true;
+                threadCallback = a;
+            });
+            watchdogThread.Setup(t => t.Start()).Callback(() => _watchDogThreadStarted = true);
+            watchdogThread.Setup(t => t.Abort()).Callback(() => _watchDogThreadStarted = false);
+
+            ComputerMonitoringManagerModel managerSubject =
+                new ComputerMonitoringManagerModel(eventManager, dataManager, watchdog.Object, reporter, timer, watchdogThread.Object);
+            Task callbackTask = Task.Run(() => threadCallback?.Invoke());
+            Thread.Sleep(1000);
+            managerSubject.IsWatchdogRunning = false;
+            callbackTask.Wait();
+
+            Assert.Empty(processCaptureName);
+            Assert.True(_processWatchWasInitialized);
+            Assert.True(_packetExchangedEventRegistered);
+            Assert.True(_watchDogJobSetted);
+            Assert.True(_watchDogThreadStarted);
+        }
+
         #region Private methods
-        
+
 
         private ProcessWatchDog GivenValidWatchDog()
+        {    
+            return GivenValidWatchDogMock().Object;
+        }
+
+        private Mock<ProcessWatchDog> GivenValidWatchDogMock()
         {
             Mock<ProcessWatchDog> watchDog = new Mock<ProcessWatchDog>();
             Process initialProcess = WatchDogTestHelper.GivenFirstRunningProcess();
-            
-            watchDog.Setup(w => w.GetInitialProcesses2Watch()).Returns(new List<string>() { PROCESS_NAME });
+            _expectedProcessName = initialProcess.ProcessName;
+
+            watchDog.Setup(w => w.GetInitialProcesses2Watch()).Returns(new List<string>() { initialProcess.ProcessName });
             watchDog.Setup(w => w.GetProcessesByName(It.IsAny<string>())).Returns(new List<Process>() { initialProcess });
-            watchDog.Setup(w => w.IsProcessCurrentlyRunning(PROCESS_NAME)).Returns(true);
+            watchDog.Setup(w => w.IsProcessCurrentlyRunning(It.IsAny<string>())).Returns(true);
+            watchDog.Setup(w => w.RefreshInfo()).Callback(() => _watchdogRefreshIssued = true);
             watchDog.Setup(w => w.InitializeWatchdogForProcess(It.IsAny<PacketCaptureProcessInfo>())).Callback(() => _processWatchWasInitialized = true);
             watchDog.SetupAdd(w => w.PacketsExchangedEvent += It.IsAny<PacketsExchanged>()).Callback(() => _packetExchangedEventRegistered = true);
             watchDog.SetupRemove(w => w.PacketsExchangedEvent -= It.IsAny<PacketsExchanged>()).Callback(() => _packetExchangedEventRegistered = false);
-            return watchDog.Object;
+            return watchDog;
         }
 
         private ProcessWatchDog GivenInvalidWatchDog()
@@ -359,7 +488,7 @@ namespace ComputerMonitoringTests.ComputerResourcesMonitoringTests.Models
             _processWatchWasInitialized = false;
             _watchDogJobSetted = false;
             _watchDogThreadStarted = false;
-            IEventAggregator eventManager = GivenEventAggregator();
+            IEventAggregator eventManager = ComputerMonitoringTestHelper.GivenEventAggregator();
             DataManager dataManager = GivenValidDataManager();
             ProcessWatchDog watchdog = GivenValidWatchDog();
             Reporter reporter = ComputerMonitoringTestHelper.GivenReporter();
@@ -399,20 +528,6 @@ namespace ComputerMonitoringTests.ComputerResourcesMonitoringTests.Models
             Reporter reporter = new Reporter(mailClient.Object);
 
             return reporter;
-        }
-
-        private IEventAggregator GivenEventAggregator()
-        {
-            Mock<IEventAggregator> eventAgg = new Mock<IEventAggregator>();
-            SetupEventAggMockBehaviour(eventAgg, new OnWatchdogTargetChangedEvent(), new OnMonitoringTargetsChangedEvent());
-            return eventAgg.Object;
-        }
-
-        private void SetupEventAggMockBehaviour(Mock<IEventAggregator> eventManager, OnWatchdogTargetChangedEvent watchdogEvent, 
-            OnMonitoringTargetsChangedEvent monitoringEvent)
-        {
-            eventManager.Setup(e => e.GetEvent<OnWatchdogTargetChangedEvent>()).Returns(watchdogEvent).Callback(() => _eventAggSubsribeCount += 1);
-            eventManager.Setup(e => e.GetEvent<OnMonitoringTargetsChangedEvent>()).Returns(monitoringEvent).Callback(() => _eventAggSubsribeCount += 1);
         }
 
         #endregion

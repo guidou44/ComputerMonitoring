@@ -10,7 +10,7 @@ namespace Common.UI.Infrastructure
    
     public class NotifyPropertyChanged : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public virtual event PropertyChangedEventHandler PropertyChanged;
         public void RaisePropertyChanged(string propertyname)
         {
             if (PropertyChanged != null)

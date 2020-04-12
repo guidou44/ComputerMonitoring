@@ -34,7 +34,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
                                                DataManager manager, ProcessWatchDog watchdog, Reporter reporter)
         {
             _reporter = reporter;
-            //watchdog---------
             _watchdog = watchdog;
             ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(watchdogProcesses);
             ProcessesUnderWatch.ToList().ForEach(PUW => 
@@ -43,25 +42,19 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 PUW.OnProcessWatchRemoveEvent += OnWatchdogRemoveTarget;
             });
 
-            //Monitoring-------
+
             MaxAllowedMonTargets = monTargets.Count();
             _eventHub = eventsHub;
-            _lruTargets = monTargets;
             _manager = manager;
+            _lruTargets = new List<MonitoringTarget>();
             InitializeComponents(monTargets);
-        }
-
-        ~SettingsDialogViewModel()
-        {
-            MonitoringOptionsCollection.ToList().ForEach(MVM => MVM.SelectionChangedEvent -= SetMonitoringDictionary);
-            ProcessesUnderWatch.ToList().ForEach(PUW => PUW.OnProcessNameChangedEvent -= OnWatchdogTargetChanged);
         }
 
         #endregion
 
         #region Monitoring Methods
 
-        private async void InitializeComponents(List<MonitoringTarget> monTargets)
+        private void InitializeComponents(List<MonitoringTarget> monTargets)
         {
             MotherBoardMake = (string)_manager.GetCalculatedValue(MonitoringTarget.Mother_Board_Make).MainValue;
             CpuMake = (string) _manager.GetCalculatedValue(MonitoringTarget.CPU_Make).MainValue;
@@ -69,6 +62,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
 
             MonitoringOptionsCollection = new ObservableCollection<MonitoringTargetViewModel>();
             targetDict = new Dictionary<MonitoringTarget, bool>();
+
             IEnumerable<MonitoringTarget> targetOptions;
             if (_manager.IsRemoteMonitoringEnabled()) targetOptions = _manager.GetAllTargets();
             else targetOptions = _manager.GetLocalTargets();
@@ -82,25 +76,22 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 MonitoringOptionsCollection.Add(mvm);
             }
 
-            for (int i = 0; i < _lruTargets.Count(); i++)
+            foreach (var target in monTargets)
             {
-                MonitoringTarget firstInLine = monTargets.First();
-                if (monTargets.Count() >= 1)
-                    monTargets.RemoveAt(0);
-                SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(firstInLine, true));
+                SetMonitoringDictionary(new KeyValuePair<MonitoringTarget, bool>(target, true));
             }
         }
 
-        private async void PublishQueue(List<MonitoringTarget> lruTargets)
+        private void PublishQueue(List<MonitoringTarget> lruTargets)
         {
-            await Task.Run(() =>_eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(lruTargets));
+            _eventHub.GetEvent<OnMonitoringTargetsChangedEvent>().Publish(lruTargets);
         }
 
-        private async void SetCheckboxValues()
+        private void SetCheckboxValues()
         {
             foreach(var monOption in MonitoringOptionsCollection)
             {
-                await Task.Run(() => monOption.IsSelected = targetDict[monOption.Type]);
+                monOption.IsSelected = targetDict[monOption.Type];
             }
         }
 
@@ -110,9 +101,7 @@ namespace ComputerRessourcesMonitoring.ViewModels
             if (target.Value) _lruTargets.Add(target.Key);
             else if (!target.Value && _lruTargets.Contains(target.Key))
             {
-                var lruTargetsList = _lruTargets.ToList();
-                lruTargetsList.Remove(target.Key);
-                _lruTargets = new List<MonitoringTarget>(lruTargetsList);
+                _lruTargets.Remove(target.Key);
             }
 
             while (_lruTargets.Count() > MaxAllowedMonTargets)
@@ -242,7 +231,6 @@ namespace ComputerRessourcesMonitoring.ViewModels
                 newProcessVm.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
                 newProcessVm.OnProcessWatchRemoveEvent += OnWatchdogRemoveTarget;
                 ProcessesUnderWatch.Add(newProcessVm); 
-
             }), 
             (() => { return ProcessesUnderWatch.Count() < 7 && !CanRemoveWatchdogTargets; })); }        
         }

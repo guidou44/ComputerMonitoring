@@ -141,6 +141,7 @@
     <Compile Include="CommonTests\Reports\ReporterTest.cs" />
     <Compile Include="ComputerResourcesMonitoringTests\Helper\ComputerMonitoringTestHelper.cs" />
     <Compile Include="ComputerResourcesMonitoringTests\Models\ComputerMonitoringManagerModelTest.cs" />
+    <Compile Include="ComputerResourcesMonitoringTests\ViewModels\Fixtures\WindowFixture.cs" />
     <Compile Include="ComputerResourcesMonitoringTests\ViewModels\MainViewModelTest.cs" />
     <Compile Include="ComputerResourcesMonitoringTests\ViewModels\MonitoringTargetViewModelTest.cs" />
     <Compile Include="ComputerResourcesMonitoringTests\ViewModels\ProcessViewModelTest.cs" />

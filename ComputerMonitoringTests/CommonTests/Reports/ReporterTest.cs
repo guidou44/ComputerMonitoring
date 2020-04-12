@@ -22,7 +22,7 @@ namespace ComputerMonitoringTests.CommonTests.Reports
         public void GivenCustomFilePath_WhenReportingException_ThenFileIsCreated()
         {
             const string cutomFilePath = @".\exceptionLogTest.txt";
-            Reporter reporterSubject = new Reporter(ProvideSmtpClient().Object);
+            Reporter reporterSubject = new Reporter(ComputerMonitoringTestHelper.ProvideSmtpClient().Object);
 
             reporterSubject.LogException(new Exception("ex"), cutomFilePath);
 
@@ -33,7 +33,7 @@ namespace ComputerMonitoringTests.CommonTests.Reports
         public void GivenInvalidFilePath_WhenTryReport_ThenItThrowsProper()
         {
             const string invalidFilePath = "......";
-            Reporter reporterSubject = new Reporter(ProvideSmtpClient().Object);
+            Reporter reporterSubject = new Reporter(ComputerMonitoringTestHelper.ProvideSmtpClient().Object);
 
             Assert.Throws<ReporterIOException>(() => reporterSubject.LogException(new Exception("ex"), invalidFilePath));
         }
@@ -44,7 +44,7 @@ namespace ComputerMonitoringTests.CommonTests.Reports
             string currentDirectory = Directory.GetCurrentDirectory();
             string directoryPath = Path.Combine(currentDirectory, "Exception_Logs");
             ComputerMonitoringTestHelper.GivenDeletedDirectoryIfAlreadyExists(directoryPath);
-            Reporter reporterSubject = new Reporter(ProvideSmtpClient().Object);
+            Reporter reporterSubject = new Reporter(ComputerMonitoringTestHelper.ProvideSmtpClient().Object);
 
             reporterSubject.LogException(new Exception("ex"));
 
@@ -54,7 +54,7 @@ namespace ComputerMonitoringTests.CommonTests.Reports
         [Fact]
         public void GivenEmailSwitchTrue_WhenLogException_ThenItSendsEmail()
         {
-            Mock<IMailClient> emailClient = ProvideSmtpClient();
+            Mock<IMailClient> emailClient = ComputerMonitoringTestHelper.ProvideSmtpClient();
             Reporter reporterSubject = new Reporter(emailClient.Object);
 
             reporterSubject.LogException(new Exception("ex"), addEmailreport: true, emailAlternateConfigPath: ALTERNATE_CONFIG_PATH);
@@ -65,20 +65,12 @@ namespace ComputerMonitoringTests.CommonTests.Reports
         [Fact]
         public void GivenTargetRecipient_WhenSendingMessage_ThenItSendsToProperRecipient()
         {
-            Mock<IMailClient> emailClient = ProvideSmtpClient();
+            Mock<IMailClient> emailClient = ComputerMonitoringTestHelper.ProvideSmtpClient();
             Reporter reporterSubject = new Reporter(emailClient.Object);
 
             reporterSubject.SendEmailReport("TEST SUBJECT", "SOME MESSAGE", ALTERNATE_CONFIG_PATH);
 
             emailClient.Verify(e => e.Send(It.Is<MailMessage>(m => m.To.Any(t => t.Address.Equals("TEST@hotmail.com")))), Times.Once);
-        }
-
-        private Mock<IMailClient> ProvideSmtpClient()
-        {
-            Mock<IMailClient> smtpClient = new Mock<IMailClient>();
-            smtpClient.Setup(s => s.Send(It.IsAny<MailMessage>())).Verifiable();
-            smtpClient.SetupGet(e => e.Credentials).Returns(new System.Net.NetworkCredential("TEST@gmail.com", "Password"));
-            return smtpClient;
         }
     }
 }
