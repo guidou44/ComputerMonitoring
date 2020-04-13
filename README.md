@@ -4,9 +4,11 @@
 
 ## Usage
 
+### EmailReports and PackageCapture
+
 - Only works with windows
 - Needs to be run as Administrator because of the higher privileges needed to access MSAcpi_ThermalZone
-- you need to add a ReporterConfiguration.xml file with your emails and credentials. (Otherwise, email notification for packet exchange wont work). It should look like this:
+- you need to add a ReporterConfiguration.xml file with your emails and credentials in directory [Configuration](ComputerRessourcesMonitoring\Configuration). (Otherwise, email notification for packet exchange wont work). It should look like this:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -25,7 +27,40 @@
 </configuration>
 ```
 
-- if you want packet capture to work, you need to have [WinPcap](https://www.winpcap.org/install/) installed on computer because pcap uses its dll, otherwise, it will just not monitor packet exchange.
+- If you want packet capture to work, you need to have [WinPcap](https://www.winpcap.org/install/) installed on computer because pcap uses its dll, otherwise, it will just not monitor packet exchange.
+
+### GPU
+
+- For GPU monitoring, there is 2 types of connectors possible: 
+1. For NVIDIA only GPUs, there is the *NVIDIA_Connector* that uses this [NvAPIWrapper](https://github.com/falahati/NvAPIWrapper). To set this connector for a specific
+resource, in the config file [MonitoringConfiguration.cfg](ComputerRessourcesMonitoring\Configuration\MonitoringConfiguration.cfg), specify the connector :
+```xml
+<ComputerRessource>
+	<TargetName>GPU_Load</TargetName>
+	<Connector>NVDIA_API</Connector>
+	<IsRemote>false</IsRemote>
+</ComputerRessource>
+```
+
+2. Otherwise, for all GPUs, there is the *OpenHardware_Connector*. It also works with NVIDIA GPUs. It uses [OpenHardwareMonitor](https://github.com/openhardwaremonitor/openhardwaremonitor),
+downloaded with Nuget. To set this connector for a GPU resource :
+```xml
+<ComputerRessource>
+	<TargetName>GPU_Clock</TargetName>
+	<Connector>OpenHardware</Connector>
+	<IsRemote>false</IsRemote>
+</ComputerRessource>
+```
+
+### Initial targets
+
+- You can set the initial resources to monitor in the config file [MonitoringConfiguration.cfg](ComputerRessourcesMonitoring\Configuration\MonitoringConfiguration.cfg), at the top:
+```xml
+<InitialTarget>CPU_Load</InitialTarget>
+<InitialTarget>GPU_Temp</InitialTarget>
+<InitialTarget>Server_CPU_Load</InitialTarget>
+```
+The maximum is 7 targets.
 
 ## Tests
 
