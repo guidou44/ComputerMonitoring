@@ -362,8 +362,8 @@ MigrationBackup/
 .ionide/
 
 !Debug/Configuration/MonitoringConfiguration.cfg
-!ComputerMonitoringTests/bin/Release/Configuration/MonitoringConfiguration.cfg
+!DesktopAssistant.Tests/bin/Release/Configuration/MonitoringConfiguration.cfg
 
 ReporterConfiguration.xml
-!ComputerMonitoringTests/Configuration/ReporterConfiguration.xml
+!DesktopAssistant.Tests/Configuration/ReporterConfiguration.xml
 
