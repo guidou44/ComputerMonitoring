@@ -214,52 +214,6 @@ namespace DesktopAssistantTests.DesktopAssistantTests.ViewModels
             Assert.NotEqual(ComputerMonitoringTestHelper.EXPECTED_PROCESS.Count(), updatedProcessWatch.Count());
         }
 
-        [Fact]
-        public void GivenCurrentlyWatchedProcesses_WhenChangeLastProcess_ThenProperEventRaisesAndCollectionIsUpdated()
-        {
-            ObservableCollection<ProcessViewModel> updatedProcessWatch = null;
-            int wantedElementCount = ComputerMonitoringTestHelper.EXPECTED_PROCESS.Count() - 1;
-            IEnumerable<ProcessViewModel> expectedProcessWatch = ComputerMonitoringTestHelper.EXPECTED_PROCESS.Take(wantedElementCount);
-            Process noteExpectedProcess = ComputerMonitoringTestHelper.EXPECTED_PROCESS.Last().Process;
-            Process expectedProcess = WatchDogTestHelper.GivenSecondRunningProcess();
-
-            Mock<IEventAggregator> eventManager = new Mock<IEventAggregator>();
-            Mock<OnWatchdogTargetChangedEvent> watchdogTargetChangedEvent = new Mock<OnWatchdogTargetChangedEvent>();
-            Mock<OnMonitoringTargetsChangedEvent> monTargetChangedEvent = new Mock<OnMonitoringTargetsChangedEvent>();
-            watchdogTargetChangedEvent.Setup(e => e.Publish(It.IsAny<ObservableCollection<ProcessViewModel>>())).Verifiable();
-            watchdogTargetChangedEvent.Setup(e => e.Publish(It.IsAny<ObservableCollection<ProcessViewModel>>()))
-                                      .Callback<ObservableCollection<ProcessViewModel>>(ptw => updatedProcessWatch = ptw);
-            ComputerMonitoringTestHelper.SetupEventAggMockBehaviour(eventManager,
-                                                                    watchdogTargetChangedEvent.Object,
-                                                                    monTargetChangedEvent.Object);
-
-            Mock<ProcessWatchDog> watchDog = new Mock<ProcessWatchDog>();
-            watchDog.Setup(w => w.GetProcessesByName(ComputerMonitoringTestHelper.EXPECTED_PROCESS.Last().ProcessName))
-                    .Returns(new List<Process>() { expectedProcess });
-
-
-            Mock<DataManager> dataManager = ComputerMonitoringTestHelper.GivenDataManagerMock();            
-            Reporter reporter = ComputerMonitoringTestHelper.GivenReporter();
-            SettingsDialogViewModel settingsVm = new SettingsDialogViewModel(ComputerMonitoringTestHelper.EXPECTED_PROCESS,
-                                                                             eventManager.Object,
-                                                                             _currentTargets,
-                                                                             dataManager.Object,
-                                                                             watchDog.Object, reporter);
-
-            settingsVm.ProcessesUnderWatch.Last().ChangeWatchdogTargetCommand.Execute(null);
-
-            Assert.Equal(expectedProcess, updatedProcessWatch.Last().Process);
-            Assert.NotEqual(noteExpectedProcess, updatedProcessWatch.Last().Process);
-            Assert.Equal(ComputerMonitoringTestHelper.EXPECTED_PROCESS.Count(), updatedProcessWatch.Count());
-        }
-
-
-
-
-
-
-
-
 
         #region Private Methods
 

@@ -36,11 +36,11 @@ namespace DesktopAssistant.ViewModels
             _reporter = reporter;
             _watchdog = watchdog;
             ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(watchdogProcesses);
-            ProcessesUnderWatch.ToList().ForEach(PUW => 
-            { 
-                PUW.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
-                PUW.OnProcessWatchRemoveEvent += OnWatchdogRemoveTarget;
-            });
+            foreach (ProcessViewModel processUnderWatch in ProcessesUnderWatch)
+            {
+                processUnderWatch.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
+                processUnderWatch.OnProcessWatchRemoveEvent += OnWatchdogRemoveTarget;
+            }
 
 
             MaxAllowedMonTargets = monTargets.Count();
