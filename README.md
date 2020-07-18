@@ -1,5 +1,5 @@
-# ComputerResourcesMonitoring
-![CI Status](https://github.com/guidou44/ComputerMonitoring/workflows/ComputerResourceMonitoring%20CI/badge.svg?branch=master)
+# DesktopAssistant
+![CI Status](https://github.com/guidou44/ComputerMonitoring/workflows/DesktopAssistant%20CI/badge.svg?branch=master)
 [![codecov](https://codecov.io/gh/guidou44/ComputerMonitoring/branch/master/graph/badge.svg)](https://codecov.io/gh/guidou44/ComputerMonitoring)
 
 ## Usage
@@ -54,7 +54,7 @@ downloaded with Nuget. To set this connector for a GPU resource :
 
 ### Initial targets
 
-- You can set the initial resources to monitor in the config file [MonitoringConfiguration.cfg](ComputerRessourcesMonitoring\Configuration\MonitoringConfiguration.cfg), at the top:
+- You can set the initial resources to monitor in the config file [MonitoringConfiguration.cfg](DesktopAssistant\Configuration\MonitoringConfiguration.cfg), at the top:
 ```xml
 <InitialTarget>CPU_Load</InitialTarget>
 <InitialTarget>GPU_Temp</InitialTarget>
@@ -64,10 +64,8 @@ The maximum is 7 targets.
 
 ## Tests
 
-Run the script [Run_Tests](ComputerRessourcesMonitoring\Run_Tests.bat) in folder [ComputerRessourcesMonitoring](ComputerRessourcesMonitoring)
+Run the script [Run_Tests](DesktopAssistant\Run_Tests.bat) in folder [DesktopAssistant](DesktopAssistant)
 
 ## Code coverage
 
 see on [CodeCov](https://codecov.io/gh/guidou44/ComputerMonitoring)
-
-<sub><sup>(I know about the typo in resource in projects names)</sup></sub>

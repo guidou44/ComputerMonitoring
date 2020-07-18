@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../../../Common.UI" />
+    <content url="file://$MODULE_DIR$/../../../Common/Common" />
+    <content url="file://$MODULE_DIR$/../../../ComputerMonitoringTests" />
+    <content url="file://$MODULE_DIR$/../.." />
+    <content url="file://$MODULE_DIR$/../../../HardwareManipulation" />
+    <content url="file://$MODULE_DIR$/../../../ProcessMonitoring" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

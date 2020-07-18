@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.2/build/net452/xunit.abstractions.dll" />
+    <content url="file://$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.2/build/net452/xunit.runner.reporters.net452.dll" />
+    <content url="file://$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.2/build/net452/xunit.runner.utility.net452.dll" />
+    <content url="file://$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.2/build/net452/xunit.runner.visualstudio.testadapter.dll" />
+    <content url="file://$MODULE_DIR$/../../../Common.UI" />
+    <content url="file://$MODULE_DIR$/../../../Common/Common" />
+    <content url="file://$MODULE_DIR$/../.." />
+    <content url="file://$MODULE_DIR$/../../../DesktopAssistant.Tests" />
+    <content url="file://$MODULE_DIR$/../../../Hardware" />
+    <content url="file://$MODULE_DIR$/../../../ProcessMonitoring" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

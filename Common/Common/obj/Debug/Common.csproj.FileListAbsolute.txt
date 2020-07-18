@@ -42,13 +42,13 @@ C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\UI\Views\MessageView.baml
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\Common.g.resources
 C:\Users\guim_\Documents\My_Projects\ComputerMonitoring\Common\Common\obj\Debug\Common.csproj.CopyComplete
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.dll.config
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.UI.exe
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.UI.pdb
+D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.UI.exe.config
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common.csprojAssemblyReference.cache
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common.csproj.CopyComplete
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common.dll
 D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\obj\Debug\Common.pdb
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.UI.exe
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.UI.pdb
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.UI.exe.config
-D:\Guillaume\Desktop\Internet Explorer\PROJECTS\C#\ComputerMonitoring\Common\Common\bin\Debug\Common.dll.config

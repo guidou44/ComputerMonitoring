@@ -1,4 +1,4 @@
-name: ComputerResourceMonitoring CI
+name: DesktopAssistant CI
 
  
 on: [push]
@@ -9,10 +9,10 @@ jobs:
     runs-on: windows-latest
     
     env:
-      Test_Project_Path: ComputerMonitoringTests\ComputerMonitoringTests.csproj
-      Test_Assembly_Path: ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll
-      Solution_File_Path: ComputerRessourcesMonitoring\ComputerRessourcesMonitoring.sln
-      XUnit_Console: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console
+      Test_Project_Path: DesktopAssistant.Tests\DesktopAssistant.Tests.csproj
+      Test_Assembly_Path: DesktopAssistant.Tests\bin\Debug\DesktopAssistant.Tests.dll
+      Solution_File_Path: DesktopAssistant\DesktopAssistant.sln
+      XUnit_Console: DesktopAssistant\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console
       # Wpf_Project_Path: MyWpfApp\MyWpfApp.csproj
       # Wap_Project_Directory: MyWpfApp.Package
       # Wap_Project_Name: MyWpfApp.Package.wapproj
@@ -38,10 +38,10 @@ jobs:
         run: msbuild $env:Solution_File_Path -p:Configuration=Debug -p:Platform=x64       
         
       - name: Execute Unit Tests
-        run: ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console $env:Test_Assembly_Path
+        run: DesktopAssistant\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console $env:Test_Assembly_Path
         
       - name: Generate_Code_Coverage_report
-        run: ComputerRessourcesMonitoring\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:path64 -target:"ComputerRessourcesMonitoring\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console.exe" -targetargs:"ComputerMonitoringTests\bin\Debug\ComputerMonitoringTests.dll -noshadow" -filter:"+[HardwareManipulation]* +[Common.UI]* +[Common]* +[ProcessMonitoring]* +[ComputerRessourcesMonitoring]* -[ComputerMonitoringTests]* -[HardwareManipulation]HardwareManipulation.Properties.* -[HardwareManipulation]HardwareManipulation.Wrappers.* -[Common]Common.Wrappers.* -[Common]Common.Properties.* -[ProcessMonitoring]ProcessMonitoring.Properties.* -[ProcessMonitoring]ProcessMonitoring.Wrappers.* -[Common.UI]Common.UI.Properties.* -[Common.UI]Common.UI.Views.* -[ComputerRessourcesMonitoring]ComputerRessourcesMonitoring.Properties.* -[ComputerRessourcesMonitoring]ComputerRessourcesMonitoring.Views.* -[ComputerRessourcesMonitoring]ComputerRessourcesMonitoring.Infrastructure.* -[ComputerRessourcesMonitoring]ComputerRessourcesMonitoring.Wrappers.*" -output:"./Code_Coverage.xml"
+        run: DesktopAssistant\packages\OpenCover.4.7.922\tools\OpenCover.Console.exe -register:path64 -target:"DesktopAssistant\packages\xunit.runner.console.2.4.1\tools\net472\xunit.console.exe" -targetargs:"DesktopAssistant.Tests\bin\Debug\DesktopAssistant.Tests.dll -noshadow" -filter:"+[Hardware]* +[Common.UI]* +[Common]* +[ProcessMonitoring]* +[DesktopAssistant]* -[DesktopAssistant.Tests]* -[Hardware]Hardware.Properties.* -[Hardware]Hardware.Wrappers.* -[Common]Common.Wrappers.* -[Common]Common.Properties.* -[ProcessMonitoring]ProcessMonitoring.Properties.* -[ProcessMonitoring]ProcessMonitoring.Wrappers.* -[Common.UI]Common.UI.Properties.* -[Common.UI]Common.UI.Views.* -[DesktopAssistant]DesktopAssistant.Properties.* -[DesktopAssistant]DesktopAssistant.Views.* -[DesktopAssistant]DesktopAssistant.Infrastructure.* -[DesktopAssistant]DesktopAssistant.Wrappers.*" -output:"./Code_Coverage.xml"
         
       - name: Upload_To_CodeCov
         uses: codecov/codecov-action@v1
@@ -49,3 +49,38 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: ./Code_Coverage.xml
           yml: ./codecov.yml
+          
+         # Create the release:  https://github.com/actions/create-release
+        - name: Create release
+          id: create_release
+          uses: actions/create-release@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            VERSION: 0.0.${{github.run_number}}
+          with:
+            tag_name: ${{env.VERSION}}
+            release_name:  Release ${{env.VERSION}}
+            draft: false
+            prerelease: false
+            
+        # Compress packaged release
+        - name: Compress package
+          uses: papeloto/action-zip@v1
+          env:
+            VERSION: 0.0.${{github.run_number}}
+          with:
+            files: DesktopAssistant\bin\Debug
+            dest: DesktopAssistant-release-${{env.VERSION}}.zip
+          
+        # Upload release asset:   https://github.com/actions/upload-release-asset
+        - name: Update release asset
+          id: upload-release-asset
+          uses: actions/upload-release-asset@v1
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            VERSION: 0.0.${{github.run_number}}
+          with:
+            upload_url: ${{ steps.create_release.outputs.upload_url }}  # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+            asset_path: DesktopAssistant-release-${{env.VERSION}}.zip
+            asset_name: DesktopAssistant-release-${{env.VERSION}}.zip
+            asset_content_type: application/zip
