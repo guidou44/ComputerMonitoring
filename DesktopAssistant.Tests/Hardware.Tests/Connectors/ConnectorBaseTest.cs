@@ -11,7 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DesktopAssistantTests.HardwareAccessTests.Connectors
+namespace DesktopAssistantTests.Hardware.Connectors
 {
     public abstract class ConnectorBaseTest
     {

@@ -1,7 +1,7 @@
 ﻿using Common.Reports;
 using Common.UI.WindowProperty;
-using DesktopAssistantTests.ComputerResourcesMonitoringTests.Helper;
-using DesktopAssistantTests.ComputerResourcesMonitoringTests.ViewModels.Fixtures;
+using DesktopAssistantTests.DesktopAssistantTests.Helper;
+using DesktopAssistantTests.DesktopAssistantTests.ViewModels.Fixtures;
 using ComputerResourcesMonitoring.Models;
 using DesktopAssistant.Models;
 using DesktopAssistant.ViewModels;
@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 using Xunit;
 using static ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel;
 
-namespace DesktopAssistantTests.ComputerResourcesMonitoringTests.ViewModels
+namespace DesktopAssistantTests.DesktopAssistantTests.ViewModels
 {
     public class MainViewModelTest
     {

@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAssistantTests.HardwareAccessTests.Factories
+namespace DesktopAssistantTests.Hardware.Factories
 {
     public static class ConnectorFactoryHelper
     {

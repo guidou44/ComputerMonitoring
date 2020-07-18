@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Xunit;
 using static DesktopAssistant.ViewModels.MonitoringTargetViewModel;
 
-namespace DesktopAssistantTests.ComputerResourcesMonitoringTests.ViewModels
+namespace DesktopAssistantTests.DesktopAssistantTests.ViewModels
 {
     public class MonitoringTargetViewModelTest
     {

@@ -1,6 +1,6 @@
 ﻿using Common.MailClient;
 using Common.Reports;
-using DesktopAssistantTests.ComputerResourcesMonitoringTests.Helper;
+using DesktopAssistantTests.DesktopAssistantTests.Helper;
 using DesktopAssistantTests.ProcessMonitoringTests.Helpers;
 using ComputerResourcesMonitoring.Models;
 using DesktopAssistant.Events;
@@ -29,7 +29,7 @@ using Xunit;
 using static ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel;
 using static ProcessMonitoring.ProcessWatchDog;
 
-namespace DesktopAssistantTests.ComputerResourcesMonitoringTests.Models
+namespace DesktopAssistantTests.DesktopAssistantTests.Models
 {
     public class ComputerMonitoringManagerModelTest
     {

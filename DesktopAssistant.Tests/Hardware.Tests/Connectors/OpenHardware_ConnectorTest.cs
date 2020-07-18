@@ -10,7 +10,7 @@ using Hardware.Wrappers;
 using Moq;
 using Xunit;
 
-namespace DesktopAssistantTests.HardwareAccessTests.Connectors
+namespace DesktopAssistantTests.Hardware.Connectors
 {
     public class OpenHardware_ConnectorTest : ConnectorBaseTest
     {

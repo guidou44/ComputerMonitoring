@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DesktopAssistantTests.HardwareAccessTests.Models
+namespace DesktopAssistantTests.Hardware.Models
 {
     public class HardwareInformationTest
     {

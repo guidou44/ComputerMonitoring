@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAssistantTests.ComputerResourcesMonitoringTests.ViewModels.Fixtures
+namespace DesktopAssistantTests.DesktopAssistantTests.ViewModels.Fixtures
 {
     public class WindowFixture : IRelocatable, ITopMost
     {

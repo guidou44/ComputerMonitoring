@@ -10,7 +10,7 @@ using Hardware.Wrappers;
 using Moq;
 using Xunit;
 
-namespace DesktopAssistantTests.HardwareAccessTests.Connectors
+namespace DesktopAssistantTests.Hardware.Connectors
 {
     public class NVDIA_API_ConnectorTest : ConnectorBaseTest
     {

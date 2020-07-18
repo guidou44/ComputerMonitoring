@@ -8,7 +8,7 @@ using Hardware.Enums;
 using Hardware.Components;
 using Moq;
 
-namespace DesktopAssistantTests.HardwareAccessTests.Connectors
+namespace DesktopAssistantTests.Hardware.Connectors
 {
     public class SystemIO_ConnectorTest : ConnectorBaseTest
     {

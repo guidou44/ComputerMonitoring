@@ -19,7 +19,7 @@ using Moq;
 using Newtonsoft.Json;
 using Xunit;
 
-namespace DesktopAssistantTests.HardwareAccessTests.Connectors
+namespace DesktopAssistantTests.Hardware.Connectors
 {
     public class ASPNET_API_ConnectorTest : ConnectorBaseTest
     {

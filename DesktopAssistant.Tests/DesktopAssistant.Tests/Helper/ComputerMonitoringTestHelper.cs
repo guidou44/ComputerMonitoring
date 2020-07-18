@@ -20,7 +20,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAssistantTests.ComputerResourcesMonitoringTests.Helper
+namespace DesktopAssistantTests.DesktopAssistantTests.Helper
 {
     public static class ComputerMonitoringTestHelper
     {

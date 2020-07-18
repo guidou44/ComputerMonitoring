@@ -10,7 +10,7 @@ using Hardware.Helpers;
 using Hardware.Components;
 using Moq;
 
-namespace DesktopAssistantTests.HardwareAccessTests.Connectors
+namespace DesktopAssistantTests.Hardware.Connectors
 {
     public class WMI_ConnectorTest : ConnectorBaseTest
     {

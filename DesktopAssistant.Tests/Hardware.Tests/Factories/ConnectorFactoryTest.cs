@@ -13,7 +13,7 @@ using Hardware.Components;
 using Hardware.Exceptions;
 using Moq;
 
-namespace DesktopAssistantTests.HardwareAccessTests.Factories
+namespace DesktopAssistantTests.Hardware.Factories
 {
     public class ConnectorFactoryTest : IFactoryTest
     {

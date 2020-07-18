@@ -1,6 +1,6 @@
 ﻿using Common.MailClient;
 using Common.Reports;
-using DesktopAssistantTests.ComputerResourcesMonitoringTests.Helper;
+using DesktopAssistantTests.DesktopAssistantTests.Helper;
 using DesktopAssistantTests.ProcessMonitoringTests.Helpers;
 using DesktopAssistant.ViewModels;
 using Moq;
@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DesktopAssistantTests.ComputerResourcesMonitoringTests.ViewModels
+namespace DesktopAssistantTests.DesktopAssistantTests.ViewModels
 {
     public class ProcessViewModelTest
     {

@@ -1,5 +1,5 @@
 ﻿using Common.Reports;
-using DesktopAssistantTests.ComputerResourcesMonitoringTests.Helper;
+using DesktopAssistantTests.DesktopAssistantTests.Helper;
 using DesktopAssistantTests.ProcessMonitoringTests.Helpers;
 using DesktopAssistant.Events;
 using DesktopAssistant.ViewModels;
@@ -17,7 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DesktopAssistantTests.ComputerResourcesMonitoringTests.ViewModels
+namespace DesktopAssistantTests.DesktopAssistantTests.ViewModels
 {
     public class SettingsDialogViewModelTest
     {

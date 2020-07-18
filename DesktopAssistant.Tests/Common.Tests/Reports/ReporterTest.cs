@@ -1,7 +1,7 @@
 ﻿using Common.Exceptions;
 using Common.MailClient;
 using Common.Reports;
-using DesktopAssistantTests.ComputerResourcesMonitoringTests.Helper;
+using DesktopAssistantTests.DesktopAssistantTests.Helper;
 using Moq;
 using System;
 using System.Collections.Generic;
