@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hardware.Connectors;
-using Hardware.Enums;
-using Hardware.Helpers;
+using DesktopAssistant.BL.Hardware;
 using Hardware.Components;
+using Hardware.Connectors;
+using Hardware.Helpers;
 using Moq;
 
-namespace DesktopAssistantTests.Hardware.Connectors
+namespace DesktopAssistant.Tests.Hardware.Tests.Connectors
 {
     public class WMI_ConnectorTest : ConnectorBaseTest
     {

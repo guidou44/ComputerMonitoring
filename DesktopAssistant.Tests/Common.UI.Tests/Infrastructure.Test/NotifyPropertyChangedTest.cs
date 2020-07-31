@@ -1,14 +1,14 @@
 ﻿using Common.UI.Infrastructure;
-using DesktopAssistantTests.Common.UI.Tests.Infrastructure.Test.Fixtures;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DesktopAssistant.Tests.Common.UI.Tests.Infrastructure.Test.Fixtures;
 using Xunit;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Infrastructure.Test
+namespace DesktopAssistant.Tests.Common.UI.Tests.Infrastructure.Test
 {
     public class NotifyPropertyChangedTest
     { 

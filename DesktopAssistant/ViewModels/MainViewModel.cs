@@ -1,81 +1,71 @@
-﻿using Common.Reports;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
+using Common.Reports;
 using Common.UI.Infrastructure;
 using Common.UI.ViewModels;
 using Common.UI.WindowProperty;
-using ComputerResourcesMonitoring.Models;
-using Hardware.Models;
+using DesktopAssistant.Assembler;
+using DesktopAssistant.BL;
+using DesktopAssistant.BL.Hardware;
+using DesktopAssistant.BL.ProcessWatch;
 using Prism.Events;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Reflection;
-using System.Windows.Input;
-using System.Windows.Threading;
-using static ComputerResourcesMonitoring.Models.ComputerMonitoringManagerModel;
 
 namespace DesktopAssistant.ViewModels
 {
-    public class MainViewModel : WindowViewModelBase
+    public class MainViewModel : WindowViewModelBase, IManagerObserver
     {
-        private ComputerMonitoringManagerModel _app_manager;
-        private Reporter _reporter;
+        private readonly IAppManager _appManager;
+        private readonly Reporter _reporter;
 
         public MainViewModel(IDialogService dialogService, 
-            ComputerMonitoringManagerModel manager, 
+            IAppManager manager, 
             IEventAggregator eventAgg,
             Reporter reporter) : base (dialogService, eventAgg)
         {
             IsApplicationVisible = true;
-            _app_manager = manager;
+            _appManager = manager;
             _dialogService = dialogService;
             _reporter = reporter;
-            SubscribeToEvents();
+            _appManager.RegisterManagerObserver(this);
+            _appManager.Start();
         }
 
-        #region Private Methods
-
-        private void OnAppManagerPropertyChangedEvent(object source, PropertyChangedEventArgs e)
+        public void OnHardwareInfoChange()
         {
-            if (e != null)
-            {
-                PropertyInfo prop = GetType().GetProperty(e.PropertyName, BindingFlags.Public | BindingFlags.Instance);
-                PropertyInfo managerProp = _app_manager.GetType().GetProperty(e.PropertyName, BindingFlags.Public | BindingFlags.Instance);
-                if (prop != null && prop.CanWrite && managerProp != null)
-                {
-                    prop.SetValue(this, managerProp.GetValue(_app_manager), null);
-                }
-            }
+            ICollection<IHardwareInfo> hardwareInfos = _appManager.HardwareValues;
+            HardwareValues = hardwareInfos.Select(HardwareAssembler.AssembleFromModel).ToList();
         }
 
-        private void OnMonitoringErrorOccuredEvent(Exception e)
+        public void OnProcessWatchInfoChange()
+        {
+            IEnumerable<IProcessWatch> processWatches = _appManager.ProcessesUnderWatch;
+            ProcessesUnderWatch = new ObservableCollection<ProcessViewModel>(processWatches.Select(ProcessWatchAssembler.AssembleFromModel));
+        }
+
+        public void OnError(Exception e)
         {
             _dialogService.ShowException(e);
         }
 
-        private void SubscribeToEvents()
-        {
-            _app_manager.PropertyChanged += new PropertyChangedEventHandler(OnAppManagerPropertyChangedEvent);
-            _app_manager.OnMonitoringErrorOccured += new MonitoringErrorOccuredEventHandler(OnMonitoringErrorOccuredEvent);
-        }
+        #region Properties
 
-        #endregion
+        private ICollection<HardwareViewModel> _hardwareValues;
 
-
-        #region porperties
-
-        private ICollection<HardwareInformation> _hardwareValues;
-        public ICollection<HardwareInformation> HardwareValues
+        public ICollection<HardwareViewModel> HardwareValues
         {
             get { return _hardwareValues; }
             set 
-            { 
+            {
                 _hardwareValues = value;
                 RaisePropertyChanged(nameof(HardwareValues));
             }
         }
 
         private bool _isApplicationVisible;
+
         public bool IsApplicationVisible
         {
             get { return _isApplicationVisible; }
@@ -87,6 +77,7 @@ namespace DesktopAssistant.ViewModels
         }
 
         private ObservableCollection<ProcessViewModel> _processesUnderWatch;
+
         public ObservableCollection<ProcessViewModel> ProcessesUnderWatch
         {
             get { return _processesUnderWatch; }
@@ -121,31 +112,43 @@ namespace DesktopAssistant.ViewModels
         {
             if (window != null)
             {
-                _app_manager.PropertyChanged -= OnAppManagerPropertyChangedEvent;
-                _app_manager.OnMonitoringErrorOccured -= OnMonitoringErrorOccuredEvent;
-                _app_manager.Dispose();
+                _appManager.Dispose();
                 window.Close();
             }
         }
 
-        public ICommand OpenSettingsWindowCommand
+        public ICommand OpenHardwareSettingsWindowCommand
         {
-            get { return new RelayCommand(OpenSettingsWindowCommandExecute); }
+            get { return new RelayCommand(OpenHardwareSettingsWindowCommandExecute); }
         }
 
-        public void OpenSettingsWindowCommandExecute()
+        public void OpenHardwareSettingsWindowCommandExecute()
         {
             try
             {
-                var viewModel = new SettingsDialogViewModel(ProcessesUnderWatch,
-                    _eventHub, 
-                    _app_manager.GetMonitoringQueue(), 
-                    manager: _app_manager.GetHardwareManager(), 
-                    watchdog: _app_manager.GetWatchDog(),
-                    _reporter);
-
+                HardwareSettingsViewModel viewModel = new HardwareSettingsViewModel(_eventHub, _appManager);
                 _dialogService.Instantiate(viewModel);
-                bool? result = _dialogService.ShowDialog(viewModel);
+                _dialogService.ShowDialog(viewModel);
+            }
+            catch (Exception e)
+            {
+                _reporter.LogException(e);
+                _dialogService.ShowException(e);
+            }
+        }
+        
+        public ICommand OpenProcessSettingsWindowCommand
+        {
+            get { return new RelayCommand(OpenProcessSettingsWindowCommandExecute); }
+        }
+
+        public void OpenProcessSettingsWindowCommandExecute()
+        {
+            try
+            {
+                ProcessWatchSettingsViewModel viewModel = new ProcessWatchSettingsViewModel(_eventHub, ProcessesUnderWatch);
+                _dialogService.Instantiate(viewModel);
+                _dialogService.ShowDialog(viewModel);
             }
             catch (Exception e)
             {
@@ -166,23 +169,19 @@ namespace DesktopAssistant.ViewModels
 
         private void ResizeWindow(object[] parameters)
         {
-            var stringData = parameters[0].ToString().Split(',');
-            var desktopWorkingAreaRight = double.Parse(stringData[2]);
-            var desktopWorkingAreaBottom = double.Parse(stringData[3]);
-            var actualWindow = parameters[1] as IRelocatable;
+            string[] stringData = parameters[0].ToString().Split(',');
+            double desktopWorkingAreaRight = double.Parse(stringData[2]);
+            double desktopWorkingAreaBottom = double.Parse(stringData[3]);
+            if (!(parameters[1] is IRelocatable actualWindow)) return;
             actualWindow.Left = desktopWorkingAreaRight - actualWindow.ActualWidth;
             actualWindow.Top = desktopWorkingAreaBottom - actualWindow.ActualHeight;
         }
 
         public ICommand SetWindowOnTopCommand
         {
-            get { return new RelayCommand<ITopMost>(W => W.Topmost = true); }
+            get { return new RelayCommand<ITopMost>(w => w.Topmost = true); }
         }
 
         #endregion
-
-
-
-
     }
 }

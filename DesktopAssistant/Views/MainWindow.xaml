@@ -87,7 +87,7 @@
     <Border BorderBrush="DarkGreen"
             BorderThickness="5"
             CornerRadius="30 30 30 30"
-        Visibility="{Binding IsApplicationVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collaspsed}">
+        Visibility="{Binding IsApplicationVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed}">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -184,10 +184,10 @@
                                                         <DataTrigger Binding="{Binding IsRunning}" Value="False">
                                                             <Setter Property="Background" Value="#B58628" />
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding Check4PacketExchange}" Value="False">
+                                                        <DataTrigger Binding="{Binding DoCapture}" Value="False">
                                                             <Setter Property="BorderBrush" Value="Black" />
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding Check4PacketExchange}" Value="True">
+                                                        <DataTrigger Binding="{Binding DoCapture}" Value="True">
                                                             <Setter Property="BorderBrush" Value="DarkGreen" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -221,7 +221,7 @@
                         </Grid>
                         <i:Interaction.Triggers>
                             <i:EventTrigger EventName="MouseDoubleClick">
-                                <i:InvokeCommandAction Command="{Binding OpenSettingsWindowCommand}"/>
+                                <i:InvokeCommandAction Command="{Binding OpenHardwareSettingsWindowCommand}"/>
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                     </ContentControl>

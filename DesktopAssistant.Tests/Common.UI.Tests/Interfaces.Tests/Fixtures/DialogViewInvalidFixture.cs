@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Interfaces.Fixtures
+namespace DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Fixtures
 {
     public class DialogViewInvalidFixture : IDialog
     {

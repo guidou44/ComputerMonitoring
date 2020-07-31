@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hardware.Connectors;
-using Hardware.Enums;
+using DesktopAssistant.BL.Hardware;
 using Hardware.Components;
+using Hardware.Connectors;
 using Moq;
 
-namespace DesktopAssistantTests.Hardware.Connectors
+namespace DesktopAssistant.Tests.Hardware.Tests.Connectors
 {
     public class SystemIO_ConnectorTest : ConnectorBaseTest
     {
@@ -20,6 +17,7 @@ namespace DesktopAssistantTests.Hardware.Connectors
         private const long TOTAL_SPACE_NETWORK1 = 50;
         private const long TOTAL_FREE_SPACE_NETWORK2 = 17;
         private const long TOTAL_SPACE_NETWORK2 = 300;
+
         protected override KeyValuePair<ConnectorBase, IDictionary<MonitoringTarget, object>> ProvideConnectorTargetsAndExpected()
         {
             SystemIO_Connector connector = GetConnector();

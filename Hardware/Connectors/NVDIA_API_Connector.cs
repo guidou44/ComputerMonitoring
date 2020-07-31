@@ -1,19 +1,15 @@
-﻿using Hardware.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using NvAPIWrapper;
-using NvAPIWrapper.Display;
-using NvAPIWrapper.GPU;
-using NvAPIWrapper.Mosaic;
-using Hardware.Enums;
+using DesktopAssistant.BL.Hardware;
 using Hardware.Components;
+using Hardware.Models;
 
 namespace Hardware.Connectors
 {
     public class NVDIA_API_Connector : ConnectorBase
     {
         INvidiaComponent _nvdiaComponent;
+
         public NVDIA_API_Connector(INvidiaComponent nvdiaComponent)
         {
             _nvdiaComponent = nvdiaComponent;
@@ -23,6 +19,24 @@ namespace Hardware.Connectors
         ~NVDIA_API_Connector()
         {
             _nvdiaComponent.Unload();
+        }
+
+        public override HardwareInformation GetValue(MonitoringTarget resource)
+        {
+            switch (resource)
+            {
+                case MonitoringTarget.GPU_Make:
+                    return GetFirstGpuMake();
+
+                case MonitoringTarget.GPU_Temp:
+                    return GetFirstGpuTemp();
+
+                case MonitoringTarget.GPU_Load:
+                    return GetFirstGpuLoad();
+
+                default:
+                    throw new NotImplementedException($"Monitoring target '{resource}' is not implemented for connector {nameof(NVDIA_API_Connector)}");
+            }
         }
 
         #region Private Methods
@@ -70,23 +84,5 @@ namespace Hardware.Connectors
         }
 
         #endregion
-
-        public override HardwareInformation GetValue(MonitoringTarget resource)
-        {
-            switch (resource)
-            {
-                case MonitoringTarget.GPU_Make:
-                    return GetFirstGpuMake();
-
-                case MonitoringTarget.GPU_Temp:
-                    return GetFirstGpuTemp();
-
-                case MonitoringTarget.GPU_Load:
-                    return GetFirstGpuLoad();
-
-                default:
-                    throw new NotImplementedException($"Monitoring target '{resource}' is not implemented for connector {nameof(NVDIA_API_Connector)}");
-            }
-        }
     }
 }

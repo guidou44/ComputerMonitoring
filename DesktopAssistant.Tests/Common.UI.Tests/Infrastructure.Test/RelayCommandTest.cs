@@ -1,5 +1,4 @@
 ﻿using Common.UI.Infrastructure;
-using DesktopAssistantTests.Common.UI.Tests.Infrastructure.Test.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Threading;
+using DesktopAssistant.Tests.Common.UI.Tests.Infrastructure.Test.Helper;
 using Xunit;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Infrastructure.Test
+namespace DesktopAssistant.Tests.Common.UI.Tests.Infrastructure.Test
 {   
     public class RelayCommandTest
     {

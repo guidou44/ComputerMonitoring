@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DesktopAssistantTests.CommonTests.Helpers
+namespace DesktopAssistant.Tests.CommonTests.Helpers
 {
     public class XmlHelperTest
     {

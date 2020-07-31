@@ -1,14 +1,14 @@
 ﻿using Common.UI.DialogServices;
-using DesktopAssistantTests.Common.UI.Tests.ViewModel.Tests.Events;
-using DesktopAssistantTests.Common.UI.Tests.ViewModel.Tests.Fixtures;
+using DesktopAssistant.Tests.Common.UI.Tests.ViewModel.Tests.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DesktopAssistant.Tests.Common.UI.Tests.ViewModel.Tests.Fixtures;
 using Xunit;
 
-namespace DesktopAssistantTests.Common.UI.Tests.ViewModel.Tests
+namespace DesktopAssistant.Tests.Common.UI.Tests.ViewModel.Tests
 {
     public class DialogViewModelBaseTest
     {

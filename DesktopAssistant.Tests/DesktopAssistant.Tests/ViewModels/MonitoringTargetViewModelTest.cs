@@ -1,14 +1,10 @@
-﻿using DesktopAssistant.ViewModels;
-using Hardware.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using DesktopAssistant.BL.Hardware;
+using DesktopAssistant.ViewModels;
 using Xunit;
 using static DesktopAssistant.ViewModels.MonitoringTargetViewModel;
 
-namespace DesktopAssistantTests.DesktopAssistantTests.ViewModels
+namespace DesktopAssistant.Tests.DesktopAssistant.Tests.ViewModels
 {
     public class MonitoringTargetViewModelTest
     {
@@ -19,13 +15,14 @@ namespace DesktopAssistantTests.DesktopAssistantTests.ViewModels
             MonitoringTargetViewModel targetSubject = new MonitoringTargetViewModel(MonitoringTarget.CPU_Load);
             targetSubject.IsSelected = true;
             targetSubject.DisplayName = "TEST";
-            targetSubject.SelectionChangedEvent += new SelectionChanged((arg) => eventResult = arg);
+            SelectionChanged selectionChangedTestHandler = new SelectionChanged((arg) => eventResult = arg);
 
+            targetSubject.SelectionChangedEvent += selectionChangedTestHandler;
             targetSubject.PublishMonitoringOptionStatusCommand.Execute(null);
 
             Assert.Equal(new KeyValuePair<MonitoringTarget, bool>(MonitoringTarget.CPU_Load, true), eventResult);
 
-            targetSubject.SelectionChangedEvent -= (arg) => eventResult = arg;
+            targetSubject.SelectionChangedEvent -= selectionChangedTestHandler;
         }
     }
 }

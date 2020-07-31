@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAssistantTests.Common.UI.Tests.ViewModel.Tests.Fixtures
+namespace DesktopAssistant.Tests.Common.UI.Tests.ViewModel.Tests.Fixtures
 {
     public class DialogViewModelBaseFixture : DialogViewModelBase { }
 }

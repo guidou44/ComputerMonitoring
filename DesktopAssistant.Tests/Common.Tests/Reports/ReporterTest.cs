@@ -1,7 +1,6 @@
 ﻿using Common.Exceptions;
 using Common.MailClient;
 using Common.Reports;
-using DesktopAssistantTests.DesktopAssistantTests.Helper;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -10,9 +9,10 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using DesktopAssistant.Tests.DesktopAssistant.Tests.Helper;
 using Xunit;
 
-namespace DesktopAssistantTests.CommonTests.Reports
+namespace DesktopAssistant.Tests.CommonTests.Reports
 {
     public class ReporterTest
     {

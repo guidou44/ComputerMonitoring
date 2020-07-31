@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DesktopAssistantTests.CommonTests.Helpers
+namespace DesktopAssistant.Tests.CommonTests.Helpers
 {
     public class CommandLineHelperTest
     {
@@ -27,11 +27,10 @@ namespace DesktopAssistantTests.CommonTests.Helpers
             List<string> lines = new List<string>();
 
             while ((line = reader.ReadLine()) != null)
-            {
-                if (line != null)
-                    lines.Add(line.Trim());
+            { 
+                lines.Add(line.Trim());
             }
-            Assert.True(lines.Count() > 0); //doest pass in github action otherwise
+            Assert.True(lines.Any()); //doest pass in github action otherwise
             //Assert.True(lines.Any(l => l.Contains("Gateway")));
         }
 

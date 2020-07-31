@@ -11,6 +11,6 @@ namespace ProcessMonitoring.Models
     public class WatchdogInitialization
     {
         [XmlElement("InitialProcess2Watch")]
-        public List<string> InitialProcess2watchNames { get; set; }
+        public List<string> InitialProcess2WatchNames { get; set; }
     }
 }

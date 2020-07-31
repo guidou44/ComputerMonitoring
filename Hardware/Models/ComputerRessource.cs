@@ -1,13 +1,7 @@
-﻿using Common.Reports;
-using Hardware.Connectors;
-using Hardware.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
+using DesktopAssistant.BL.Hardware;
 
 namespace Hardware.Models
 { 

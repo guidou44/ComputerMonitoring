@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Interfaces.Fixtures
+namespace DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Fixtures
 {
     public class DialogViewModelFixture : IDialogRequestClose
     {

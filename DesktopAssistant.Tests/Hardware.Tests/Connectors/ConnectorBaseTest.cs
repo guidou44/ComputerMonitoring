@@ -1,29 +1,27 @@
-﻿using Hardware.Connectors;
-using Hardware.Enums;
-using Hardware.Helpers;
-using Hardware.Models;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DesktopAssistant.BL.Hardware;
+using Hardware.Connectors;
+using Hardware.Models;
 using Xunit;
 
-namespace DesktopAssistantTests.Hardware.Connectors
+namespace DesktopAssistant.Tests.Hardware.Tests.Connectors
 {
     public abstract class ConnectorBaseTest
     {
+        protected abstract KeyValuePair<ConnectorBase, IDictionary<MonitoringTarget, object>> ProvideConnectorTargetsAndExpected();
+
+        protected abstract KeyValuePair<ConnectorBase, MonitoringTarget> ProvideConnectorWithTargetThatThrows();
+
         [Fact]
         public void GivenAcceptedResource_WhenGettingValue_ThenItReturnsExpectedValue()
         {
             var parameters = ProvideConnectorTargetsAndExpected();
             ConnectorBase connectorSubject = parameters.Key;
-            IDictionary<MonitoringTarget, object> targetsAndexpected = parameters.Value;
+            IDictionary<MonitoringTarget, object> targetsAndExpected = parameters.Value;
             Dictionary<HardwareInformation, object> results = new Dictionary<HardwareInformation, object>();
 
-            foreach (var target in targetsAndexpected)
+            foreach (var target in targetsAndExpected)
                 results.Add(connectorSubject.GetValue(target.Key), target.Value);
 
             Assert.All(results, r =>
@@ -40,11 +38,5 @@ namespace DesktopAssistantTests.Hardware.Connectors
 
             Assert.Throws<NotImplementedException>(() => given.Key.GetValue(given.Value));
         }
-
-        protected abstract KeyValuePair<ConnectorBase, IDictionary<MonitoringTarget, object>> ProvideConnectorTargetsAndExpected();
-
-        protected abstract KeyValuePair<ConnectorBase, MonitoringTarget> ProvideConnectorWithTargetThatThrows();
-
-
     }
 }

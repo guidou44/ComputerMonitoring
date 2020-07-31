@@ -1,12 +1,12 @@
 ﻿using Common.UI.WindowProperty;
-using DesktopAssistantTests.Common.UI.Tests.ViewModel.Tests.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DesktopAssistant.Tests.Common.UI.Tests.ViewModel.Tests.Events;
 
-namespace DesktopAssistantTests.Common.UI.Tests.ViewModel.Tests.Fixtures
+namespace DesktopAssistant.Tests.Common.UI.Tests.ViewModel.Tests.Fixtures
 {
     public class Dragable : IDragable
     {

@@ -1,22 +1,13 @@
-﻿using Common.Helpers;
-using Hardware.Enums;
+﻿using System;
+using DesktopAssistant.BL.Hardware;
+using Hardware.Components;
 using Hardware.Helpers;
 using Hardware.Models;
-using Hardware.Components;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Management;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Hardware.Connectors
 {
     public class WMI_Connector : ConnectorBase
-    {        
+    {
         private IPerformanceCounter all_Cpu_Idle;
         private WmiHelper wmiHelper;
 
@@ -79,9 +70,9 @@ namespace Hardware.Connectors
             var threadCount = wmiHelper.GetWmiValue<uint>("Win32_Processor", "ThreadCount");
             var cpuThreadCount = new HardwareInformation()
             {
-            MainValue = (double)threadCount,
-            ShortName = "CPU",
-            UnitSymbol = (threadCount > 1) ? "Threads" : "Thread",
+                MainValue = (double)threadCount,
+                ShortName = "CPU",
+                UnitSymbol = (threadCount > 1) ? "Threads" : "Thread",
             };
 
             return cpuThreadCount;

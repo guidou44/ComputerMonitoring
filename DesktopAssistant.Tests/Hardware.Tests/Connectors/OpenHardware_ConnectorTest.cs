@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hardware.Connectors;
-using Hardware.Enums;
+using DesktopAssistant.BL.Hardware;
 using Hardware.Components;
+using Hardware.Connectors;
 using Hardware.Wrappers;
 using Moq;
 using Xunit;
 
-namespace DesktopAssistantTests.Hardware.Connectors
+namespace DesktopAssistant.Tests.Hardware.Tests.Connectors
 {
     public class OpenHardware_ConnectorTest : ConnectorBaseTest
     {
@@ -26,16 +23,6 @@ namespace DesktopAssistantTests.Hardware.Connectors
         private const float TEMP_SENSOR_VALUE = 6.0f;
         private const float LOAD_SENSOR_VALUE = 77.0f;
         private const float VIDEO_ENG_LOAD_SENSOR_VALUE = 8.0f;
-
-        [Fact]
-        public void GivenWrapper_WhenInstantiateConnector_ThenItCallsWrapperOpen()
-        {
-            Mock<IOpenHardwareComputer> wrapper = new Mock<IOpenHardwareComputer>();
-            wrapper.Setup(c => c.Open()).Verifiable();
-            OpenHardware_Connector connector = new OpenHardware_Connector(wrapper.Object);
-
-            wrapper.Verify(c => c.Open(), Times.Once);
-        }
 
         protected override KeyValuePair<ConnectorBase, IDictionary<MonitoringTarget, object>> ProvideConnectorTargetsAndExpected()
         {
@@ -143,6 +130,16 @@ namespace DesktopAssistantTests.Hardware.Connectors
             computer.SetupGet(c => c.Hardware).Returns(new IOpenHardware[] { gpu.Object, motherboard.Object });
 
             return new OpenHardware_Connector(computer.Object);
+        }
+
+        [Fact]
+        public void GivenWrapper_WhenInstantiateConnector_ThenItCallsWrapperOpen()
+        {
+            Mock<IOpenHardwareComputer> wrapper = new Mock<IOpenHardwareComputer>();
+            wrapper.Setup(c => c.Open()).Verifiable();
+            OpenHardware_Connector connector = new OpenHardware_Connector(wrapper.Object);
+
+            wrapper.Verify(c => c.Open(), Times.Once);
         }
     }
 }

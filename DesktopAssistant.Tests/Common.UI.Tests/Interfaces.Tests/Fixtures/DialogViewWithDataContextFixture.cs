@@ -1,14 +1,14 @@
 ﻿using Common.UI.Interfaces;
-using DesktopAssistantTests.Common.UI.Tests.Interfaces.Exceptions;
-using DesktopAssistantTests.Common.UI.Tests.Interfaces.Tests.Events;
+using DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Tests.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Exceptions;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Interfaces.Fixtures
+namespace DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Fixtures
 {
     public class DialogViewWithDataContextFixture : DialogViewFixture
     {

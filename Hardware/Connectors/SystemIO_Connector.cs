@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hardware.Enums;
-using Hardware.Models;
+using DesktopAssistant.BL.Hardware;
 using Hardware.Components;
-using OpenHardwareMonitor.Hardware;
+using Hardware.Models;
 
 namespace Hardware.Connectors
 {
     public class SystemIO_Connector : ConnectorBase
     {
         private IDriveInfoProvider _provider;
+
         public SystemIO_Connector(IDriveInfoProvider provider)
         {
             _provider = provider;

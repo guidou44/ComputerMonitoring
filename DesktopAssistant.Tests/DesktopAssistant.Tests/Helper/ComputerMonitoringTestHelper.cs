@@ -1,26 +1,24 @@
-﻿using Common.MailClient;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using Common.MailClient;
 using Common.Reports;
 using Common.UI.WindowProperty;
-using DesktopAssistantTests.ProcessMonitoringTests.Helpers;
-using DesktopAssistant.Events;
+using DesktopAssistant.BL.Events;
+using DesktopAssistant.BL.Hardware;
+using DesktopAssistant.BL.ProcessWatch;
+using DesktopAssistant.Tests.ProcessMonitoring.Tests.Helpers;
 using DesktopAssistant.ViewModels;
-using Hardware.Enums;
-using Hardware.Models;
 using Hardware;
+using Hardware.Models;
 using Moq;
 using Prism.Events;
 using ProcessMonitoring;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Net.Mail;
-using System.Text;
-using System.Threading.Tasks;
+using ProcessMonitoring.Models;
 
-namespace DesktopAssistantTests.DesktopAssistantTests.Helper
+namespace DesktopAssistant.Tests.DesktopAssistant.Tests.Helper
 {
     public static class ComputerMonitoringTestHelper
     {
@@ -31,18 +29,18 @@ namespace DesktopAssistantTests.DesktopAssistantTests.Helper
                                                                                                MonitoringTarget.FAN_Speed
         };
 
-        public static List<HardwareInformation> EXPECTED_VALUES = new List<HardwareInformation>()
+        public static List<IHardwareInfo> EXPECTED_VALUES = new List<IHardwareInfo>()
         {
             new HardwareInformation() { MainValue = 2.0, ShortName = "CPU_TEST", UnitSymbol = "%"},
             new HardwareInformation() { MainValue = 3.0, ShortName = "TEMP_TEST", UnitSymbol = "°C"},
             new HardwareInformation() { MainValue = 5.0, ShortName = "RAM_TEST", UnitSymbol = "%"},
         };
 
-        public static ObservableCollection<ProcessViewModel> EXPECTED_PROCESS = new ObservableCollection<ProcessViewModel>()
+        public static List<IProcessWatch> EXPECTED_PROCESS = new List<IProcessWatch>()
         {
-            new ProcessViewModel(false, "TEST1", GivenReporter()) { Process = WatchDogTestHelper.GivenFirstRunningProcess()},
-            new ProcessViewModel(false, "TEST2", GivenReporter()) { Process = WatchDogTestHelper.GivenFirstRunningProcess()},
-            new ProcessViewModel(false, "TEST3", GivenReporter()) { Process = WatchDogTestHelper.GivenFirstRunningProcess()},
+            new ProcessWatch("TEST1", false),
+            new ProcessWatch("TEST2",false),
+            new ProcessWatch("TEST3", false),
         };
 
         public static HardwareInformation MotherboardMake = new HardwareInformation() { MainValue = "MotherBoardTest", ShortName = "Motherboard-make" };
@@ -75,27 +73,27 @@ namespace DesktopAssistantTests.DesktopAssistantTests.Helper
         {
             Mock<IMailClient> smtpClient = new Mock<IMailClient>();
             smtpClient.Setup(s => s.Send(It.IsAny<MailMessage>())).Verifiable();
-            smtpClient.SetupGet(e => e.Credentials).Returns(new System.Net.NetworkCredential("TEST@gmail.com", "Password"));
+            smtpClient.SetupGet(e => e.Credentials).Returns(new NetworkCredential("TEST@gmail.com", "Password"));
             return smtpClient;
         }
 
         public static Mock<IDialogService> GivenDialogServiceMock()
         {
             Mock<IDialogService> dialogService = new Mock<IDialogService>();
-            dialogService.Setup(ds => ds.ShowDialog(It.IsAny<SettingsDialogViewModel>())).Returns(true);
-            dialogService.Setup(ds => ds.Instantiate(It.IsAny<SettingsDialogViewModel>())).Verifiable();
+            dialogService.Setup(ds => ds.ShowDialog(It.IsAny<HardwareSettingsViewModel>())).Returns(true);
+            dialogService.Setup(ds => ds.Instantiate(It.IsAny<HardwareSettingsViewModel>())).Verifiable();
             return dialogService;
         }
 
-        public static ProcessWatchDog GivenValidWatchDog()
+        public static Mock<IProcessWatcher> GivenValidWatchDog()
         {
-            Mock<ProcessWatchDog> watchDog = new Mock<ProcessWatchDog>();
-            return watchDog.Object;
+            Mock<IProcessWatcher> watchDog = new Mock<IProcessWatcher>();
+            return watchDog;
         }
 
-        public static Mock<DataManager> GivenDataManagerMock()
+        public static Mock<IHardwareManager> GivenDataManagerMock()
         {
-            Mock<DataManager> dataManager = new Mock<DataManager>();
+            Mock<IHardwareManager> dataManager = new Mock<IHardwareManager>();
             dataManager.Setup(dm => dm.GetCalculatedValue(MonitoringTarget.Mother_Board_Make))
                        .Returns(MotherboardMake);
             dataManager.Setup(dm => dm.GetCalculatedValue(MonitoringTarget.CPU_Make))
@@ -103,8 +101,6 @@ namespace DesktopAssistantTests.DesktopAssistantTests.Helper
             dataManager.Setup(dm => dm.GetCalculatedValue(MonitoringTarget.GPU_Make))
                        .Returns(GpuMake);
             dataManager.Setup(dm => dm.GetAllTargets()).Returns(EXPECTED_TARGETS);
-            dataManager.Setup(dm => dm.GetLocalTargets()).Returns(EXPECTED_TARGETS);
-            dataManager.Setup(dm => dm.IsRemoteMonitoringEnabled()).Returns(false);
 
             return dataManager;
         }
@@ -115,6 +111,5 @@ namespace DesktopAssistantTests.DesktopAssistantTests.Helper
             eventManager.Setup(e => e.GetEvent<OnWatchdogTargetChangedEvent>()).Returns(watchdogEvent).Callback(() => EVENT_AGG_SUBSCRIBTION_COUNT += 1);
             eventManager.Setup(e => e.GetEvent<OnMonitoringTargetsChangedEvent>()).Returns(monitoringEvent).Callback(() => EVENT_AGG_SUBSCRIBTION_COUNT += 1);
         }
-
     }
 }

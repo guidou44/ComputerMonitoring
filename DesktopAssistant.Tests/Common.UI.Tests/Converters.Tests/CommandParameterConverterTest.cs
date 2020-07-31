@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Converters
+namespace DesktopAssistant.Tests.Common.UI.Tests.Converters
 {
     public class CommandParameterConverterTest
     {

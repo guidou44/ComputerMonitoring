@@ -1,6 +1,5 @@
 ﻿using Common.UI.Interfaces;
 using Common.UI.WindowProperty;
-using DesktopAssistantTests.Common.UI.Tests.Interfaces.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Exceptions;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Interfaces.Fixtures
+namespace DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Fixtures
 {
     public class DialogViewFixture : IDialog
     {

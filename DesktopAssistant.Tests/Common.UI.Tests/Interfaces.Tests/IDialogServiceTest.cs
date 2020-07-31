@@ -1,7 +1,5 @@
 ﻿using Common.UI.DialogServices.Exceptions;
 using Common.UI.WindowProperty;
-using DesktopAssistantTests.Common.UI.Tests.Interfaces.Exceptions;
-using DesktopAssistantTests.Common.UI.Tests.Interfaces.Fixtures;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -9,50 +7,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Exceptions;
+using DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Fixtures;
 using Xunit;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Interfaces
+namespace DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests
 {
     public abstract class IDialogServiceTest
     {
-        private IDialogService dialogServiceSubject;
+        private IDialogService _dialogServiceSubject;
 
         [Fact]
         public void GivenNewViewAndViewModel_WhenRegistering_ThenProperlyRegistered()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
 
-            Assert.True(dialogServiceSubject.Mappings[typeof(DialogViewModelFixture)] == typeof(DialogViewFixture));
+            Assert.True(_dialogServiceSubject.Mappings[typeof(DialogViewModelFixture)] == typeof(DialogViewFixture));
         }
 
         [Fact]
         public void GivenAlreadyRegisteredView_WhenRegisteringToNewViewModel_ThenItThrowsProper()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
             
-            Assert.Throws<ArgumentException>(() => dialogServiceSubject.Register<DialogViewModelFixture, DialogViewInvalidFixture>());
+            Assert.Throws<ArgumentException>(() => _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewInvalidFixture>());
         }
 
         [Fact]
         public void GivenNotRegisteredViewModel_WhenInstantiate_ThenItThrowsProper()
         {
-            dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject = ProvideDialogService();
 
-            Assert.Throws<NotRegisteredViewModelException>(() => dialogServiceSubject.Instantiate(new DialogViewModelFixture()));
+            Assert.Throws<NotRegisteredViewModelException>(() => _dialogServiceSubject.Instantiate(new DialogViewModelFixture()));
         }
 
         [Fact]
         public void GivenAlreadyRegisteredView_WhenClosingWithOk_ThenItReturnsProper()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
             DialogViewModelFixture vmFixture = new DialogViewModelFixture();
 
             bool? dialogResult = null;
-            dialogServiceSubject.Instantiate(vmFixture);
-            Task showTask = Task.Run(() => dialogResult = dialogServiceSubject.ShowDialog(vmFixture));
+            _dialogServiceSubject.Instantiate(vmFixture);
+            Task showTask = Task.Run(() => dialogResult = _dialogServiceSubject.ShowDialog(vmFixture));
             vmFixture.RequestCloseWithOk();
             showTask.Wait();
 
@@ -62,13 +62,13 @@ namespace DesktopAssistantTests.Common.UI.Tests.Interfaces
         [Fact]
         public void GivenAlreadyRegisteredView_WhenClosingWithCancel_ThenItReturnsProper()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
             DialogViewModelFixture vmFixture = new DialogViewModelFixture();
 
             bool? dialogResult = null;
-            dialogServiceSubject.Instantiate(vmFixture);
-            Task showTask = Task.Run(() => dialogResult = dialogServiceSubject.ShowDialog(vmFixture));
+            _dialogServiceSubject.Instantiate(vmFixture);
+            Task showTask = Task.Run(() => dialogResult = _dialogServiceSubject.ShowDialog(vmFixture));
             vmFixture.RequestCloseWithCancel();
             showTask.Wait();
 
@@ -78,13 +78,13 @@ namespace DesktopAssistantTests.Common.UI.Tests.Interfaces
         [Fact]
         public void GivenAlreadyRegisteredView_WhenClosingWithX_ThenItClosesWindow()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
             DialogViewModelFixture vmFixture = new DialogViewModelFixture();
 
             bool? dialogResult = null;
-            dialogServiceSubject.Instantiate(vmFixture);
-            Task showTask = Task.Run(() => dialogResult = dialogServiceSubject.ShowDialog(vmFixture));
+            _dialogServiceSubject.Instantiate(vmFixture);
+            Task showTask = Task.Run(() => dialogResult = _dialogServiceSubject.ShowDialog(vmFixture));
 
 
             Assert.Throws<DialogClosedException>(() =>
@@ -97,38 +97,38 @@ namespace DesktopAssistantTests.Common.UI.Tests.Interfaces
         [Fact]
         public void GivenMultipleRegisteredDialog_WhenShowException_ThenItUsesProperView()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
-            dialogServiceSubject.Register<ErrorDialogViewModelFixture, DialogViewWithDataContextFixture>();
-            dialogServiceSubject.Register<MessageDialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject.Register<ErrorDialogViewModelFixture, DialogViewWithDataContextFixture>();
+            _dialogServiceSubject.Register<MessageDialogViewModelFixture, DialogViewFixture>();
 
 
 
-            Assert.Throws<ErrorOrMessageDialogShownException>(() => dialogServiceSubject.ShowException(new Exception("TEST")));
+            Assert.Throws<ErrorOrMessageDialogShownException>(() => _dialogServiceSubject.ShowException(new Exception("TEST")));
         }
 
         [Fact]
         public void GivenMultipleRegisteredDialog_WhenShowMessage_ThenItUsesProperView()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
-            dialogServiceSubject.Register<ErrorDialogViewModelFixture, DialogViewWithDataContextFixture>();
-            dialogServiceSubject.Register<MessageDialogViewModelFixture, DialogViewWithDataContextFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject.Register<ErrorDialogViewModelFixture, DialogViewWithDataContextFixture>();
+            _dialogServiceSubject.Register<MessageDialogViewModelFixture, DialogViewWithDataContextFixture>();
 
-            Assert.Throws<ErrorOrMessageDialogShownException>(() => dialogServiceSubject.ShowMessageBox("MESSAGE"));
+            Assert.Throws<ErrorOrMessageDialogShownException>(() => _dialogServiceSubject.ShowMessageBox("MESSAGE"));
         }
 
         [Fact]
         public void GivenMultipleRegisteredDialog_WhenShowException_ThenItUsesProperViewModel()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
-            dialogServiceSubject.Register<ErrorDialogViewModelFixture, DialogViewWithDataContextFixture>();
-            dialogServiceSubject.Register<MessageDialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject.Register<ErrorDialogViewModelFixture, DialogViewWithDataContextFixture>();
+            _dialogServiceSubject.Register<MessageDialogViewModelFixture, DialogViewFixture>();
 
             try
             {
-                dialogServiceSubject.ShowException(new Exception("TEST"));
+                _dialogServiceSubject.ShowException(new Exception("TEST"));
             }
             catch (ErrorOrMessageDialogShownException e)
             {
@@ -139,14 +139,14 @@ namespace DesktopAssistantTests.Common.UI.Tests.Interfaces
         [Fact]
         public void GivenMultipleRegisteredDialog_WhenShowMessageBox_ThenItUsesProperViewModel()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
-            dialogServiceSubject.Register<ErrorDialogViewModelFixture, DialogViewWithDataContextFixture>();
-            dialogServiceSubject.Register<MessageDialogViewModelFixture, DialogViewWithDataContextFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewFixture>();
+            _dialogServiceSubject.Register<ErrorDialogViewModelFixture, DialogViewWithDataContextFixture>();
+            _dialogServiceSubject.Register<MessageDialogViewModelFixture, DialogViewWithDataContextFixture>();
 
             try
             {
-                dialogServiceSubject.ShowMessageBox("MESSAGE");
+                _dialogServiceSubject.ShowMessageBox("MESSAGE");
             }
             catch (ErrorOrMessageDialogShownException e)
             {
@@ -157,17 +157,17 @@ namespace DesktopAssistantTests.Common.UI.Tests.Interfaces
         [Fact]
         public void GivenAlreadyRegisteredViewModel_WhenInstantiateNewOne_ItRemovesOldOne()
         {
-            dialogServiceSubject = ProvideDialogService();
-            dialogServiceSubject.Register<DialogViewModelFixture, DialogViewWithDataContextFixture>();
+            _dialogServiceSubject = ProvideDialogService();
+            _dialogServiceSubject.Register<DialogViewModelFixture, DialogViewWithDataContextFixture>();
             DialogViewModelFixture vmFixture = new DialogViewModelFixture();
             DialogViewModelFixture vmFixture2 = new DialogViewModelFixture();
 
-            dialogServiceSubject.Instantiate(vmFixture);
-            dialogServiceSubject.Instantiate(vmFixture2);
+            _dialogServiceSubject.Instantiate(vmFixture);
+            _dialogServiceSubject.Instantiate(vmFixture2);
 
             try
             {
-                dialogServiceSubject.ShowDialog(vmFixture2);
+                _dialogServiceSubject.ShowDialog(vmFixture2);
             }
             catch (ErrorOrMessageDialogShownException e)
             {

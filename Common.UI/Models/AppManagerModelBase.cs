@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Common.UI.Models
 {
-    public abstract class AppManagerModelBase : NotifyPropertyChanged
+    public abstract class AppManagerModelBase
     {
-        protected IEventAggregator _eventHub;
+        protected IEventAggregator EventHub;
 
         public AppManagerModelBase(IEventAggregator eventHub)
         {
-            _eventHub = eventHub;
+            EventHub = eventHub;
         }
     }
 }

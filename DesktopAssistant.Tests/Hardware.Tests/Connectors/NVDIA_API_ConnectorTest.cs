@@ -1,32 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Hardware.Connectors;
-using Hardware.Enums;
+﻿using System.Collections.Generic;
+using DesktopAssistant.BL.Hardware;
 using Hardware.Components;
+using Hardware.Connectors;
 using Hardware.Wrappers;
 using Moq;
 using Xunit;
 
-namespace DesktopAssistantTests.Hardware.Connectors
+namespace DesktopAssistant.Tests.Hardware.Tests.Connectors
 {
     public class NVDIA_API_ConnectorTest : ConnectorBaseTest
     {
         const string GPU_MAKE = "N_V_D_I_A";
         const double GPU_LOAD = 100.0;
         const double GPU_TEMP = 77.0;
-
-        [Fact]
-        public void GivenWrapper_WhenInstantiateConnector_ThenItCallsWrapperInitialize()
-        {
-            Mock<INvidiaComponent> component = new Mock<INvidiaComponent>();
-            component.Setup(c => c.Initialize()).Verifiable();
-            NVDIA_API_Connector connector = new NVDIA_API_Connector(component.Object);
-
-            component.Verify(c => c.Initialize(), Times.Once);
-        }
 
         protected override KeyValuePair<ConnectorBase, IDictionary<MonitoringTarget, object>> ProvideConnectorTargetsAndExpected()
         {
@@ -58,6 +44,16 @@ namespace DesktopAssistantTests.Hardware.Connectors
             component.Setup(c => c.GetPhysicalGPUs()).Returns(new List<NvidiaGpuWrapper>() { gpu.Object });
 
             return new NVDIA_API_Connector(component.Object);
+        }
+
+        [Fact]
+        public void GivenWrapper_WhenInstantiateConnector_ThenItCallsWrapperInitialize()
+        {
+            Mock<INvidiaComponent> component = new Mock<INvidiaComponent>();
+            component.Setup(c => c.Initialize()).Verifiable();
+            NVDIA_API_Connector connector = new NVDIA_API_Connector(component.Object);
+
+            component.Verify(c => c.Initialize(), Times.Once);
         }
     }
 }

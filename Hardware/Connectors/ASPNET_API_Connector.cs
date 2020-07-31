@@ -1,21 +1,17 @@
-﻿using Hardware.Enums;
-using Hardware.Models;
-using Hardware.ServerDTOs.Models;
-using Hardware.Components;
-using Hardware.Wrappers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
+using DesktopAssistant.BL.Hardware;
+using Hardware.Models;
+using Hardware.ServerDTOs.Models;
+using Hardware.Wrappers;
 
 namespace Hardware.Connectors
 {
     public class ASPNET_API_Connector : ConnectorBase
     {
-        private const string SERVER_ADDRESS = "https://192.168.50.107";
+        private const string ServerAddress = "https://192.168.50.107";
         private static ServerResourceApiClientWrapper _client;
 
         public ASPNET_API_Connector(ServerResourceApiClientWrapper client)
@@ -23,9 +19,22 @@ namespace Hardware.Connectors
             InitializeClient(client);
         }
 
-        #region private Methods
+        public override HardwareInformation GetValue(MonitoringTarget resource)
+        {
+            switch (resource)
+            {
+                case MonitoringTarget.Server_CPU_Load:
+                case MonitoringTarget.Server_CPU_Temp:
+                case MonitoringTarget.Server_RAM_Usage:
+                    var resultDTO = Task.Run(() => GetSingleResourceInfo(resource)).Result;
+                    return MapDTO2Model(resultDTO);
 
-        
+                default:
+                    throw new NotImplementedException($"Monitoring target '{resource}' not implemented for connector {nameof(ASPNET_API_Connector)}");
+            }
+        }
+
+        #region private Methods
 
         private Uri GetUri(MonitoringTarget ressource)
         {
@@ -45,7 +54,7 @@ namespace Hardware.Connectors
         private void InitializeClient(ServerResourceApiClientWrapper client)
         {
             _client = client;
-            _client.BaseAddress = new Uri(SERVER_ADDRESS);
+            _client.BaseAddress = new Uri(ServerAddress);
             _client.DefaultRequestHeaders.Accept.Clear();
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
@@ -81,20 +90,5 @@ namespace Hardware.Connectors
         }
 
         #endregion
-
-        public override HardwareInformation GetValue(MonitoringTarget resource)
-        {
-            switch (resource)
-            {
-                case MonitoringTarget.Server_CPU_Load:
-                case MonitoringTarget.Server_CPU_Temp:
-                case MonitoringTarget.Server_RAM_Usage:
-                    var resultDTO = Task.Run(() => GetSingleResourceInfo(resource)).Result;
-                    return MapDTO2Model(resultDTO);
-
-                default:
-                    throw new NotImplementedException($"Monitoring target '{resource}' not implemented for connector {nameof(ASPNET_API_Connector)}");
-            }
-        }
     }
 }

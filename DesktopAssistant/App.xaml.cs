@@ -1,20 +1,10 @@
-﻿using Autofac;
-using Common.UI.DialogServices;
+﻿using System.Windows;
+using Autofac;
+using Common.Reports;
 using Common.UI.WindowProperty;
-using Common.UI.ViewModels;
-using Common.UI.Views;
-using ComputerResourcesMonitoring.Models;
-using DesktopAssistant.Infrastructure;
+using DesktopAssistant.BL;
 using DesktopAssistant.ViewModels;
 using DesktopAssistant.Views;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
-using Common.Reports;
 using Prism.Events;
 
 namespace DesktopAssistant
@@ -25,8 +15,10 @@ namespace DesktopAssistant
         {
             IContainer instanceContainer = ContainerResolver.Container;
             IDialogService dialogService = instanceContainer.Resolve<IDialogService>(new TypedParameter(typeof(Window), MainWindow));
-            dialogService.Register<SettingsDialogViewModel, SettingsDialogView>();
-            ComputerMonitoringManagerModel manager = instanceContainer.Resolve<ComputerMonitoringManagerModel>();
+            dialogService.Register<HardwareSettingsViewModel, HardwareSettingsView>();
+            dialogService.Register<ProcessWatchSettingsViewModel, ProcessWatchSettingsView>();
+            
+            IAppManager manager = instanceContainer.Resolve<IAppManager>();
             Reporter reporter = instanceContainer.Resolve<Reporter>();
             IEventAggregator eventAgg = instanceContainer.Resolve<IEventAggregator>();
 

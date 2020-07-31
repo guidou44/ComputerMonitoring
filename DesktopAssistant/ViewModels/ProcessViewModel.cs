@@ -1,6 +1,5 @@
 ﻿using Common.Reports;
 using Common.UI.Infrastructure;
-using ProcessMonitoring.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,28 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using DesktopAssistant.BL.ProcessWatch;
 
 namespace DesktopAssistant.ViewModels
 {
     public class ProcessViewModel : NotifyPropertyChanged
     {
-        private Reporter _reporter;
-
         public event EventHandler OnProcessNameChangedEvent;
         public event EventHandler OnProcessWatchRemoveEvent;
-        public bool WasInitialized { get; set; }
 
-        public ProcessViewModel(bool check4PacketExchange, string processName, Reporter reporter)
+        public ProcessViewModel(bool doCapture, string processName)
         {
-            _reporter = reporter;
-            Check4PacketExchange = check4PacketExchange;
+            DoCapture = doCapture;
             ProcessName = processName;
+        }
+        
+        public ProcessViewModel(bool doCapture, string processName, bool isRunning)
+        {
+            DoCapture = doCapture;
+            ProcessName = processName;
+            IsRunning = isRunning;
         }
 
         public override string ToString()
         {
-            var upperChars = ProcessName.Where(C => char.IsUpper(C));
-            string output = (upperChars.Count() > 1) ? (upperChars.FirstOrDefault().ToString() + upperChars.LastOrDefault().ToString()) :
+            var upperChars = ProcessName.Where(char.IsUpper);
+            string output = (upperChars.Count() > 1) ? (upperChars.FirstOrDefault() + upperChars.LastOrDefault().ToString()) :
                             (upperChars.Count() == 1) ? upperChars.SingleOrDefault().ToString() :
                             ProcessName[0].ToString();
             return (output);
@@ -48,41 +51,30 @@ namespace DesktopAssistant.ViewModels
             }
         }
 
-        private bool _check4PacketExchange;
-        public bool Check4PacketExchange
+        private bool _doCapture;
+        public virtual bool DoCapture
         {
-            get { return _check4PacketExchange; }
+            get { return _doCapture; }
             set
             {
-                _check4PacketExchange = value;
-                if (!_check4PacketExchange) WasInitialized = false;
-                RaisePropertyChanged(nameof(Check4PacketExchange));
+                _doCapture = value;
+                RaisePropertyChanged(nameof(DoCapture));
             }
         }
 
         private bool _isRunning;
-        public bool IsRunning
+        public virtual bool IsRunning
         {
             get { return _isRunning; }
             set 
             {
-#if !LOCAL
-                if (!_isRunning && value) _reporter.SendEmailReport(
-                    subject: $"ALARM: Detected process start for {ProcessName}",
-                    message: $"Activity detected report:\n" +
-                    $"----------------{ProcessName}---------------\n\n" +
-                    "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n");
-#endif
                 _isRunning = value;
-                if (!_isRunning) WasInitialized = false;
                 RaisePropertyChanged(nameof(IsRunning)); 
             }
         }
 
-        public Process Process { get; set; }
-
         private string _processName;
-        public string ProcessName
+        public virtual string ProcessName
         {
             get { return _processName; }
             set
@@ -103,8 +95,7 @@ namespace DesktopAssistant.ViewModels
 
         public bool CanChangeWatchdogTargetCommandExecute()
         {
-            if (ProcessName?.Length > 0 && ((Process == null) ? true : Process.ProcessName != ProcessName)) return true;
-            return false;
+            return ProcessName?.Length > 0;
         }
 
         public ICommand RemoveProcessWatchCommand
@@ -114,7 +105,7 @@ namespace DesktopAssistant.ViewModels
         
         public ICommand ToggleWatchdogRunStateCommand
         {
-            get { return new RelayCommand(() => { Check4PacketExchange = !Check4PacketExchange; }); }
+            get { return new RelayCommand(() => { DoCapture = !DoCapture; }); }
         }
 
         #endregion

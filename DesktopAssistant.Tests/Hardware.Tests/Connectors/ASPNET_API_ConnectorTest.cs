@@ -1,25 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Runtime.Serialization.Json;
 using System.Text;
-using System.Threading.Tasks;
-using System.Xml;
+using DesktopAssistant.BL.Hardware;
 using Hardware.Connectors;
-using Hardware.Enums;
-using Hardware.Models;
 using Hardware.ServerDTOs.Models;
-using Hardware.Components;
 using Hardware.Wrappers;
 using Moq;
 using Newtonsoft.Json;
-using Xunit;
 
-namespace DesktopAssistantTests.Hardware.Connectors
+namespace DesktopAssistant.Tests.Hardware.Tests.Connectors
 {
     public class ASPNET_API_ConnectorTest : ConnectorBaseTest
     {
@@ -91,7 +84,7 @@ namespace DesktopAssistantTests.Hardware.Connectors
 
             MemoryStream stream = new MemoryStream();
             using (var sw = new StreamWriter(stream, new UTF8Encoding(true), 1024, true))
-            using (var jtw = new JsonTextWriter(sw) { Formatting = Newtonsoft.Json.Formatting.None })
+            using (var jtw = new JsonTextWriter(sw) { Formatting = Formatting.None })
             {
                 var js = new JsonSerializer();
                 js.Serialize(jtw, dto);

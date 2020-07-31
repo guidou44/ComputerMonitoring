@@ -76,8 +76,9 @@
     <Reference Include="Microsoft.Expression.Interactions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
-    <Reference Include="Prism, Version=7.2.0.1422, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
-      <HintPath>packages\Prism.Core.7.2.0.1422\lib\net45\Prism.dll</HintPath>
+    <Reference Include="Prism, Version=8.0.0.1740, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59">
+      <HintPath>packages\Prism.Core.8.0.0.1740-pre\lib\net47\Prism.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -132,24 +133,24 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Events\Events.cs" />
-    <Compile Include="Factories\ConnectorFactory.cs" />
-    <Compile Include="Infrastructure\ContainerResolver.cs" />
-    <Compile Include="Models\ComputerMonitoringManagerModel.cs" />
-    <Compile Include="Models\IThread.cs" />
-    <Compile Include="Models\ITimer.cs" />
+    <Compile Include="Assembler\HardwareAssembler.cs" />
+    <Compile Include="Assembler\ProcessWatchAssembler.cs" />
+    <Compile Include="ContainerResolver.cs" />
+    <Compile Include="ViewModels\HardwareViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MonitoringTargetViewModel.cs" />
     <Compile Include="ViewModels\ProcessViewModel.cs" />
-    <Compile Include="ViewModels\SettingsDialogViewModel.cs" />
+    <Compile Include="ViewModels\ProcessWatchSettingsViewModel.cs" />
+    <Compile Include="ViewModels\HardwareSettingsViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SettingsDialogView.xaml.cs">
-      <DependentUpon>SettingsDialogView.xaml</DependentUpon>
+    <Compile Include="Views\HardwareSettingsView.xaml.cs">
+      <DependentUpon>HardwareSettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Wrappers\TimerWrapper.cs" />
-    <Compile Include="Wrappers\WatchdogThread.cs" />
+    <Compile Include="Views\ProcessWatchSettingsView.xaml.cs">
+      <DependentUpon>ProcessWatchSettingsView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -183,10 +184,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SettingsDialogView.xaml">
+    <Page Include="Views\HardwareSettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ProcessWatchSettingsView.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Images\Stalker018-Mmii-Flat-Settings-2.ico" />
@@ -210,8 +212,12 @@
       <Project>{85b27c12-9bb0-4641-90d2-68edd50580da}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DesktopAssistant.BL\DesktopAssistant.BL.csproj">
+      <Project>{8b9de4ab-f3f5-4bb1-b2b0-b1f9bc099996}</Project>
+      <Name>DesktopAssistant.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Hardware\Hardware.csproj">
-      <Project>{EACDD9E2-6A31-45D3-A281-57D3BE24219A}</Project>
+      <Project>{eacdd9e2-6a31-45d3-a281-57d3be24219a}</Project>
       <Name>Hardware</Name>
     </ProjectReference>
     <ProjectReference Include="..\ProcessMonitoring\ProcessMonitoring.csproj">
@@ -228,7 +234,6 @@
   <ItemGroup>
     <Resource Include="Views\Images\eye2.ico" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="eye2.ico" />
   </ItemGroup>

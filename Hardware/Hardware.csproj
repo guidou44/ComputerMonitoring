@@ -114,6 +114,10 @@
     <Reference Include="OpenHardwareMonitorLib, Version=0.7.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\DesktopAssistant\packages\OpenHardwareMonitor.0.7.1\lib\net40\OpenHardwareMonitorLib.dll</HintPath>
     </Reference>
+    <Reference Include="Prism, Version=8.0.0.1740, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59">
+      <HintPath>..\DesktopAssistant\packages\Prism.Core.8.0.0.1740-pre\lib\net47\Prism.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -139,6 +143,8 @@
     <Compile Include="Components\INvidiaComponent.cs" />
     <Compile Include="Components\IOpenSensor.cs" />
     <Compile Include="Components\IPerformanceCounter.cs" />
+    <Compile Include="Factories\ConnectorFactory.cs" />
+    <Compile Include="Models\HardwareInformation.cs" />
     <Compile Include="Wrappers\DriveInfoProvider.cs" />
     <Compile Include="Wrappers\DriveInfoWrapper.cs" />
     <Compile Include="Wrappers\NvidiaGpuWrapper.cs" />
@@ -153,14 +159,12 @@
     <Compile Include="Connectors\OpenHardware_Connector.cs" />
     <Compile Include="Connectors\SystemIO_Connector.cs" />
     <Compile Include="Connectors\ASPNET_API_Connector.cs" />
-    <Compile Include="DataManager.cs" />
-    <Compile Include="Enums\Enums.cs" />
+    <Compile Include="HardwareManager.cs" />
     <Compile Include="Exceptions\HardwareCommunicationException.cs" />
     <Compile Include="Exceptions\InvalidConnectorException.cs" />
     <Compile Include="Helpers\WmiHelper.cs" />
     <Compile Include="IFactory.cs" />
     <Compile Include="Models\ComputerRessource.cs" />
-    <Compile Include="Models\HardwareInformation.cs" />
     <Compile Include="Models\RessourceCollection.cs" />
     <Compile Include="Connectors\NVDIA_API_Connector.cs" />
     <Compile Include="Connectors\WMI_Connector.cs" />
@@ -182,6 +186,10 @@
     <ProjectReference Include="..\Common\Common\Common.csproj">
       <Project>{85B27C12-9BB0-4641-90D2-68EDD50580DA}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DesktopAssistant.BL\DesktopAssistant.BL.csproj">
+      <Project>{8b9de4ab-f3f5-4bb1-b2b0-b1f9bc099996}</Project>
+      <Name>DesktopAssistant.BL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

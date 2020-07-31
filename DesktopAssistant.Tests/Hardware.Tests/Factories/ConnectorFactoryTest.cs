@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
-using DesktopAssistant.Factories;
+﻿using Hardware;
 using Hardware.Connectors;
-using Hardware.Helpers;
-using Hardware;
-using Hardware.Components;
-using Hardware.Exceptions;
-using Moq;
+using Hardware.Factories;
 
-namespace DesktopAssistantTests.Hardware.Factories
+namespace DesktopAssistant.Tests.Hardware.Tests.Factories
 {
     public class ConnectorFactoryTest : IFactoryTest
     {

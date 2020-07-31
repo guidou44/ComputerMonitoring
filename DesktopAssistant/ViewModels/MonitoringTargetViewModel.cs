@@ -1,13 +1,7 @@
-﻿using Common.UI.Infrastructure;
-using DesktopAssistant.Events;
-using Hardware.Enums;
-using Prism.Events;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Windows.Input;
+using Common.UI.Infrastructure;
+using DesktopAssistant.BL.Hardware;
 
 namespace DesktopAssistant.ViewModels
 {
@@ -44,7 +38,7 @@ namespace DesktopAssistant.ViewModels
         public void PublishMonitoringOptionStatusCommandExecute()
         {
             var kvp = new KeyValuePair<MonitoringTarget, bool>(this.Type, this.IsSelected);
-            SelectionChangedEvent(kvp);
+            SelectionChangedEvent?.Invoke(kvp);
         }      
     }
 }

@@ -1,17 +1,12 @@
-﻿using Hardware.Connectors;
-using Hardware.Helpers;
+﻿using System;
 using Hardware.Components;
+using Hardware.Connectors;
 using Hardware.Exceptions;
+using Hardware.Helpers;
 using Hardware.Wrappers;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DesktopAssistantTests.Hardware.Factories
+namespace DesktopAssistant.Tests.Hardware.Tests.Factories
 {
     public static class ConnectorFactoryHelper
     {

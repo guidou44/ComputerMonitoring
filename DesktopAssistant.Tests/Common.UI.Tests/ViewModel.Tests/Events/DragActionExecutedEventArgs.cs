@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAssistantTests.Common.UI.Tests.ViewModel.Tests.Events
+namespace DesktopAssistant.Tests.Common.UI.Tests.ViewModel.Tests.Events
 {
     public class DragActionExecutedEventArgs : EventArgs
     {

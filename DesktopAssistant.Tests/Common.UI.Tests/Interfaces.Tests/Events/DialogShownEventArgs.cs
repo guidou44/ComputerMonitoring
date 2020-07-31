@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Interfaces.Tests.Events
+namespace DesktopAssistant.Tests.Common.UI.Tests.Interfaces.Tests.Tests.Events
 {
     public class DialogShownEventArgs : EventArgs
     {

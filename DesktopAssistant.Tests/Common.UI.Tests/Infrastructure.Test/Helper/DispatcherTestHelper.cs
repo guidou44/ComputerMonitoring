@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Infrastructure.Test.Helper
+namespace DesktopAssistant.Tests.Common.UI.Tests.Infrastructure.Test.Helper
 {
     public static class DispatcherTestHelper
     {

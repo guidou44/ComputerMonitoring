@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopAssistantTests.Common.UI.Tests.Infrastructure.Test.Fixtures
+namespace DesktopAssistant.Tests.Common.UI.Tests.Infrastructure.Test.Fixtures
 {
     public class NotifyPropertyChangedFixture : NotifyPropertyChanged
     {

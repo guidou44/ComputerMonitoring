@@ -1,21 +1,16 @@
 ﻿using Hardware.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
-namespace DesktopAssistantTests.Hardware.HelpersTest
+namespace DesktopAssistant.Tests.Hardware.Tests.HelpersTest
 {
     public class WmiHelperTest
     {
-        private WmiHelper wmiHelperSubject;
-
         public WmiHelperTest()
         {
             wmiHelperSubject = new WmiHelper();
         }
+
+        private WmiHelper wmiHelperSubject;
 
         [Fact]
         public void GivenValidWmiPathAndKey_WhenRequestingData_ThenItReturnsProper()
