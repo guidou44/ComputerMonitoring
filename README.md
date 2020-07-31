@@ -4,11 +4,11 @@
 
 ## Usage
 
-### EmailReports and PackageCapture
+### EmailReports
 
-- Only works with windows
+- Only works with windows, well it's .NET Framework!
 - Needs to be run as Administrator because of the higher privileges needed to access MSAcpi_ThermalZone
-- you need to add a ReporterConfiguration.xml file with your emails and credentials in directory [Configuration](ComputerRessourcesMonitoring\Configuration). (Otherwise, email notification for packet exchange wont work). It should look like this:
+- you need to add a ReporterConfiguration.xml file with your emails and credentials in directory [Configuration](ComputerRessourcesMonitoring\Configuration) if you want email notifications. (Otherwise, email notification for packet exchange wont work). It should look like this:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -27,7 +27,15 @@
 </configuration>
 ```
 
-- If you want packet capture to work, you need to have [WinPcap](https://www.winpcap.org/install/) installed on computer because pcap uses its dll, otherwise, it will just not monitor packet exchange.
+- If you want packet capture to work, you need to have [WinPcap](https://www.winpcap.org/install/) installed on computer because [SharpPcap](https://github.com/chmorgan/sharppcap) uses its dll, otherwise, it will just NOT monitor packet exchange.
+
+### Packets capture
+
+Usage documentation coming soon.
+
+### Hardware
+
+Hardware monitors are managed by the [HardwareManager](ComputerMonitoring/Hardware/HardwareManager.cs). It uses connectors to access resources. Connectors each have accessible MonitoringTargets.
 
 ### GPU
 
@@ -38,19 +46,21 @@ resource, in the config file [MonitoringConfiguration.cfg](ComputerRessourcesMon
 <ComputerRessource>
 	<TargetName>GPU_Load</TargetName>
 	<Connector>NVDIA_API</Connector>
-	<IsRemote>false</IsRemote>
 </ComputerRessource>
 ```
 
-2. Otherwise, for all GPUs, there is the *OpenHardware_Connector*. It also works with NVIDIA GPUs. It uses [OpenHardwareMonitor](https://github.com/openhardwaremonitor/openhardwaremonitor),
-downloaded with Nuget. To set this connector for a GPU resource :
+Thix NvAPIWrapper works well but has a limit to what it can extract from the GPU.
+
+2. Otherwise, for all GPUs, there is the *OpenHardware_Connector*. It also works with NVIDIA GPUs. It uses [OpenHardwareMonitor](https://github.com/openhardwaremonitor/openhardwaremonitor).
+To set this connector for a GPU resource :
 ```xml
 <ComputerRessource>
 	<TargetName>GPU_Clock</TargetName>
 	<Connector>OpenHardware</Connector>
-	<IsRemote>false</IsRemote>
 </ComputerRessource>
 ```
+
+This connector is more generic and has proved to work on more computers. This connector is recommended.
 
 ### Initial targets
 
@@ -58,7 +68,7 @@ downloaded with Nuget. To set this connector for a GPU resource :
 ```xml
 <InitialTarget>CPU_Load</InitialTarget>
 <InitialTarget>GPU_Temp</InitialTarget>
-<InitialTarget>Server_CPU_Load</InitialTarget>
+<InitialTarget>RAM_Usage</InitialTarget>
 ```
 The maximum is 7 targets.
 

@@ -11,25 +11,25 @@ namespace Hardware
 {
     public class HardwareManager : IHardwareManager
     {
-        private const string CONFIG_FILE_PATH = @".\Configuration\MonitoringConfiguration.cfg";
-        private IFactory<ConnectorBase> _connectorFactory;
+        private const string ConfigFilePath = @"..\..\Configuration\MonitoringConfiguration.cfg";
+        private readonly IFactory<ConnectorBase> _connectorFactory;
+        private readonly XmlHelper _xmlHelper;
 
         private IEnumerable<MonitoringTarget> _initialMonitoringTargets;
         private IDictionary<ComputerResource, ConnectorBase> _target2Connector;
-        private XmlHelper _xmlHelper;
 
         public HardwareManager(IFactory<ConnectorBase> factory, XmlHelper xmlHelper, string alternateConfigPath = null)
         {
             this._xmlHelper = xmlHelper;
             this._connectorFactory = factory;
-            SetMonitoringTargets(alternateConfigPath ?? CONFIG_FILE_PATH);
+            SetMonitoringTargets(alternateConfigPath ?? ConfigFilePath);
             SetAvailableTargets_Internal();
         }
 
         public virtual IEnumerable<MonitoringTarget> GetInitialTargets()
         {
             return _target2Connector.Where(t2C => _initialMonitoringTargets
-                                    .Contains(t2C.Key.TargetType) && t2C.Key.Com_Error == null)
+                                    .Contains(t2C.Key.TargetType) && t2C.Key.CommunicationError == null)
                                     .Select(t2C => t2C.Key.TargetType);
         }
 
@@ -59,7 +59,7 @@ namespace Hardware
             }
 
             var notUsedTargets = _target2Connector.Where(t2C => t2C.Value != null && !targets.Contains(t2C.Key.TargetType))
-                                                  .ToDictionary(t2C => t2C.Key, T2C => T2C.Value)
+                                                  .ToDictionary(t2C => t2C.Key, t2C => t2C.Value)
                                                   .Keys
                                                   .ToList();
 
@@ -103,13 +103,16 @@ namespace Hardware
 
         private IDictionary<ComputerResource, ConnectorBase> GetAvailableTargets_Internal()
         {
-            return _target2Connector.Where(T2C => T2C.Key.Com_Error == null).ToDictionary(T2C => T2C.Key, T2C => T2C.Value);
+            return _target2Connector.Where(T2C => T2C.Key.CommunicationError == null).ToDictionary(T2C => T2C.Key, T2C => T2C.Value);
         }
 
         private void SetAvailableTargets_Internal()
         {
-            IEnumerable<ComputerResource> t2CKeys;
-            t2CKeys = (IsRemoteMonitoringEnabled()) ? _target2Connector.Keys.ToList() : _target2Connector.Where(T2C => !T2C.Key.IsRemote).Select(T2C => T2C.Key).ToList();
+            IEnumerable<ComputerResource> t2CKeys = (IsRemoteMonitoringEnabled()) ? 
+                _target2Connector.Keys.ToList() : 
+                _target2Connector.Where(t2C => !t2C.Key.IsRemote)
+                                 .Select(t2C => t2C.Key)
+                                 .ToList();
 
             foreach (var target in t2CKeys)
             {
@@ -118,16 +121,20 @@ namespace Hardware
                     var testValue = GetCalculatedValue(target.TargetType);
                     if (testValue == null) throw new HardwareCommunicationException(target.TargetType);
                 }
-                catch (Exception e) { _target2Connector.SingleOrDefault(T2C => T2C.Key == target).Key.Com_Error = e; }
+                catch (Exception e)
+                {
+                    _target2Connector.SingleOrDefault(t2C => t2C.Key == target).Key.CommunicationError = e;
+                }
             }
         }
 
         private void SetMonitoringTargets(string xmlConfigPath)
         {
             _target2Connector = new Dictionary<ComputerResource, ConnectorBase>();
-            var ressourceCollection = _xmlHelper.DeserializeConfiguration<ResourceCollection>(xmlConfigPath);
-            foreach (var ressource in ressourceCollection.Ressources) _target2Connector.Add(ressource, null);
-            _initialMonitoringTargets = ressourceCollection.InitialTargets;
+            var resourceCollection = _xmlHelper.DeserializeConfiguration<ResourceCollection>(xmlConfigPath);
+            foreach (var resource in resourceCollection.Resources) 
+                _target2Connector.Add(resource, null);
+            _initialMonitoringTargets = resourceCollection.InitialTargets;
         }
 
         #endregion

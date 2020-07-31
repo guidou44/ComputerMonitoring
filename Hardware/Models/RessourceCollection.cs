@@ -10,7 +10,7 @@ namespace Hardware.Models
         [XmlElement("InitialTarget")]
         public List<MonitoringTarget> InitialTargets { get; set; }
 
-        [XmlElement("ComputerRessource")]
-        public virtual List<ComputerResource> Ressources { get; set; }
+        [XmlElement("ComputerResource")]
+        public virtual List<ComputerResource> Resources { get; set; }
     }
 }

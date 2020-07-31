@@ -27,7 +27,7 @@ namespace DesktopAssistant.Tests.CommonTests.Helpers
             ResourceCollection deserialized = xmlHelperSubject.DeserializeConfiguration<ResourceCollection>(ALTERNATE_CONFIG_PATH_WO_REMOTE);
 
             Assert.NotNull(deserialized);
-            Assert.True(deserialized.Ressources.Count() > 0);
+            Assert.NotEmpty(deserialized.Resources);
         }
 
         [Fact]

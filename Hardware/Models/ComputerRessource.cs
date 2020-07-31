@@ -7,6 +7,11 @@ namespace Hardware.Models
 { 
     public class ComputerResource
     {
+        public ComputerResource()
+        {
+            IsRemote = false;
+        }
+        
         [XmlElement("Connector")]
         public string ConnectorName { get; set; }
 
@@ -21,17 +26,16 @@ namespace Hardware.Models
         public string RemoteIp { get; set; }
 
         [XmlIgnore]
-        public Exception Com_Error { get; set; }
+        public Exception CommunicationError { get; set; }
 
         public virtual bool TryPing()
         {
             if (!IsRemote)
                 return false;
 
-            Ping pingHost;
             try
             {
-                pingHost = new Ping();
+                var pingHost = new Ping();
                 PingReply reply = pingHost.Send(RemoteIp);
                 return reply.Status == IPStatus.Success;
             }

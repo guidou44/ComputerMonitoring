@@ -17,22 +17,6 @@ namespace DesktopAssistant.Tests.Hardware.Tests
         private const string ALTERNATE_CONFIG_PATH_WO_REMOTE = @"..\..\Configuration\MonitoringConfigurationNoRemote.cfg";
 
         [Fact]
-        public void GivenCpuLoadAndHddUsageInConfigFile_WhenAskingForInitialTarget_ThenItReturnsProperTargets()
-        {
-            Mock<IFactory<ConnectorBase>> factoryMock = new Mock<IFactory<ConnectorBase>>();
-            Mock<ConnectorBase> connectorMock = new Mock<ConnectorBase>();
-            Mock<HardwareInformation> hardwreInfoMock = new Mock<HardwareInformation>();
-            connectorMock.Setup(c => c.GetValue(It.IsAny<MonitoringTarget>())).Returns(hardwreInfoMock.Object);
-            factoryMock.Setup(s => s.CreateInstance(It.IsAny<string>())).Returns(connectorMock.Object);
-
-            HardwareManager hardwareManagerSubject = new HardwareManager(factoryMock.Object, new XmlHelper(), ALTERNATE_CONFIG_PATH_WITH_REMOTE);
-            IEnumerable<MonitoringTarget> initialTarget = hardwareManagerSubject.GetInitialTargets();
-            Assert.True(initialTarget.Count() == 3);
-            Assert.Contains(MonitoringTarget.CPU_Load, initialTarget);
-            Assert.Contains(MonitoringTarget.Primary_HDD_Used_Space, initialTarget);
-        }
-
-        [Fact]
         public void GivenNonReachableRemoteTargetInConfigFile_WhenCheckingIfRemote_ThenItReturnsFalse()
         {
             IFactory<ConnectorBase> factory = GetMockFactory();
@@ -87,18 +71,6 @@ namespace DesktopAssistant.Tests.Hardware.Tests
 
             Assert.False(localTargets.Intersect(remoteTargets).Any());
             Assert.Contains(MonitoringTarget.RAM_Usage, localTargets);
-        }
-
-        [Fact]
-        public void GivenInitialTargets_WhenGettingAllTargets_ThenItReturnsMoreThanInitialTargets()
-        {
-            IFactory<ConnectorBase> factory = GetMockFactory();
-            HardwareManager hardwareManagerSubject = new HardwareManager(factory, new XmlHelper(), ALTERNATE_CONFIG_PATH_WITH_REMOTE);
-            IEnumerable<MonitoringTarget> initialTargets = hardwareManagerSubject.GetInitialTargets();
-
-            IEnumerable<MonitoringTarget> allTargets = hardwareManagerSubject.GetAllTargets();
-            
-            Assert.True(allTargets.Count() > initialTargets.Count());
         }
 
         [Fact]
@@ -161,7 +133,7 @@ namespace DesktopAssistant.Tests.Hardware.Tests
             Mock<ComputerResource> computerResourceMockCpuTemp = new Mock<ComputerResource>();
 
             xmlHelperMock.Setup(elm => elm.DeserializeConfiguration<ResourceCollection>(It.IsAny<string>())).Returns(resourceMock.Object);
-            resourceMock.SetupGet(rm => rm.Ressources).Returns(new List<ComputerResource>() { computerResourceMockRemote.Object, 
+            resourceMock.SetupGet(rm => rm.Resources).Returns(new List<ComputerResource>() { computerResourceMockRemote.Object, 
                 computerResourceMockLocal.Object, computerResourceMockGpuTemp.Object, computerResourceMockCpuTemp.Object });
             
             computerResourceMockRemote.SetupGet(crm => crm.IsRemote).Returns(true);

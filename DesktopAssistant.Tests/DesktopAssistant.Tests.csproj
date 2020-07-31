@@ -177,6 +177,7 @@
     <Compile Include="Common.Tests\Helpers\CommandLineHelperTest.cs" />
     <Compile Include="Common.Tests\Helpers\XmlHelperTest.cs" />
     <Compile Include="Common.Tests\Reports\ReporterTest.cs" />
+    <Compile Include="DesktopAssistant.BL.Tests\Hardware\IHardwareManagerTest.cs" />
     <Compile Include="DesktopAssistant.BL.Tests\ProcessWatch\Exceptions\FilterSetException.cs" />
     <Compile Include="DesktopAssistant.BL.Tests\ProcessWatch\IProcessWatcherTest.cs" />
     <Compile Include="DesktopAssistant.BL.Tests\ProcessWatch\IProcessWatchTest.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Hardware.Tests\HardManagerTest.cs" />
     <Compile Include="Hardware.Tests\Factories\ConnectorFactoryHelper.cs" />
     <Compile Include="Hardware.Tests\Factories\ConnectorFactoryTest.cs" />
+    <Compile Include="Hardware.Tests\HardwareManagerTest.cs" />
     <Compile Include="Hardware.Tests\HelpersTest\WmiHelperTest.cs" />
     <Compile Include="Hardware.Tests\IFactoryTest.cs" />
     <Compile Include="Hardware.Tests\Models\ComputerResourceTest.cs" />
@@ -239,6 +241,13 @@
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\DesktopAssistant\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\cmdOutput.txt" />
+    <Content Include="Configuration\MonitoringConfiguration.cfg" />
+    <Content Include="Configuration\MonitoringConfigurationNoRemote.cfg" />
+    <Content Include="Configuration\ReporterConfiguration.xml" />
+    <Content Include="Configuration\WatchdogConfiguration.cfg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
