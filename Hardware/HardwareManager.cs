@@ -37,7 +37,16 @@ namespace Hardware
         {
             var targetKey = _target2Connector.SingleOrDefault(t2C => t2C.Key.TargetType == target).Key;
             if (_target2Connector[targetKey] == null) _target2Connector[targetKey] = _connectorFactory.CreateInstance(targetKey.ConnectorName);
-            return _target2Connector[targetKey].GetValue(target);
+
+            try
+            {
+                return _target2Connector[targetKey].GetValue(target);
+            }
+            catch (Exception e)
+            {
+                throw  new HardwareCommunicationException(e.Message);
+            }
+            
         }
 
         public virtual IEnumerable<IHardwareInfo> GetCalculatedValues(ICollection<MonitoringTarget> targets)
@@ -52,7 +61,6 @@ namespace Hardware
                 }
                 catch (Exception e)
                 {
-                    output.Enqueue(new HardwareInformation() { MainValue = 0, UnitSymbol = $"COM ERR: {target.ToString()}", ShortName="ERR"});
                     if (targets.Any())
                         targets.Remove(target);
                 }
@@ -72,38 +80,34 @@ namespace Hardware
             if (IsRemoteMonitoringEnabled())
                 return GetAvailableTargets_Internal()
                     .Where(tar => (!tar.Key.ExcludeFromMonitoring ?? true))
-                    .Select(TAR => TAR.Key.TargetType).ToList();
+                    .Select(tar => tar.Key.TargetType).ToList();
 
             return GetLocalTargets();
         }
 
-        public virtual ICollection<MonitoringTarget> GetLocalTargets()
+        private ICollection<MonitoringTarget> GetLocalTargets()
         {
-            return GetAvailableTargets_Internal().Where(tar => !tar.Key.IsRemote && (!tar.Key.ExcludeFromMonitoring ?? true))
-                                                 .Select(tar => tar.Key.TargetType).ToList();
+            return GetAvailableTargets_Internal()
+                .Where(tar => !tar.Key.IsRemote && (!tar.Key.ExcludeFromMonitoring ?? true))
+                .Select(tar => tar.Key.TargetType).ToList();
         }
 
-        public virtual IEnumerable<MonitoringTarget> GetRemoteTargets()
-        {
-            return GetAvailableTargets_Internal().Where(tar => tar.Key.IsRemote && (!tar.Key.ExcludeFromMonitoring ?? true))
-                                                 .Select(tar => tar.Key.TargetType);
-        }
-
-        public virtual bool IsRemoteMonitoringEnabled()
+        private bool IsRemoteMonitoringEnabled()
         {
             foreach (KeyValuePair<ComputerResource, ConnectorBase> remoteTarget in _target2Connector.Where(tar => tar.Key.IsRemote))
             {
                 bool ping = remoteTarget.Key.TryPing();
-                if (!ping) return false;
+                if (!ping) 
+                    return false;
             }
-            return _target2Connector.Any(TAR => TAR.Key.IsRemote);
+            return _target2Connector.Any(tar => tar.Key.IsRemote);
         }
-
-        #region Private Methods
 
         private IDictionary<ComputerResource, ConnectorBase> GetAvailableTargets_Internal()
         {
-            return _target2Connector.Where(T2C => T2C.Key.CommunicationError == null).ToDictionary(T2C => T2C.Key, T2C => T2C.Value);
+            return _target2Connector.Where(t2C => t2C.Key.CommunicationError == null)
+                .ToDictionary(t2C => t2C.Key, 
+                    t2C => t2C.Value);
         }
 
         private void SetAvailableTargets_Internal()
@@ -136,7 +140,5 @@ namespace Hardware
                 _target2Connector.Add(resource, null);
             _initialMonitoringTargets = resourceCollection.InitialTargets;
         }
-
-        #endregion
     }
 }

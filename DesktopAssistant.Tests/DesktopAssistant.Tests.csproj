@@ -199,7 +199,6 @@
     <Compile Include="Hardware.Tests\Connectors\OpenHardware_ConnectorTest.cs" />
     <Compile Include="Hardware.Tests\Connectors\SystemIO_ConnectorTest.cs" />
     <Compile Include="Hardware.Tests\Connectors\WMI_ConnectorTest.cs" />
-    <Compile Include="Hardware.Tests\HardManagerTest.cs" />
     <Compile Include="Hardware.Tests\Factories\ConnectorFactoryHelper.cs" />
     <Compile Include="Hardware.Tests\Factories\ConnectorFactoryTest.cs" />
     <Compile Include="Hardware.Tests\HardwareManagerTest.cs" />

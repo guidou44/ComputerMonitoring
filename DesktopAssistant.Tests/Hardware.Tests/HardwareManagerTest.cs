@@ -13,6 +13,7 @@ namespace DesktopAssistant.Tests.Hardware.Tests
 {
     public class HardwareManagerTest : IHardwareManagerTest
     {
+        private readonly MonitoringTarget _notSupportedTarget = MonitoringTarget.FAN_Speed;
         private ResourceCollection _testConfig;
         
         protected override IEnumerable<MonitoringTarget> GetConfigurationInitialTargets()
@@ -33,6 +34,11 @@ namespace DesktopAssistant.Tests.Hardware.Tests
             return new HardwareManager(factory.Object, xmlHelper.Object);
         }
 
+        protected override MonitoringTarget GetNotSupportedTarget()
+        {
+            return _notSupportedTarget;
+        }
+
         private Mock<IFactory<ConnectorBase>> GivenConnectorFactoryMock()
         {
             Mock<IFactory<ConnectorBase>> factoryMock = new Mock<IFactory<ConnectorBase>>();
@@ -48,8 +54,8 @@ namespace DesktopAssistant.Tests.Hardware.Tests
             connectorMock.Setup(con => con.GetValue(MonitoringTarget.RAM_Usage)).Returns(hardwareInfoRamUsage);
             connectorMock.Setup(con => con.GetValue(MonitoringTarget.GPU_Temp)).Returns(hardwareInfoGpuTemp);
             connectorMock.Setup(con => con.GetValue(MonitoringTarget.Mother_Board_Make)).Returns(hardwareInfoMotherBoard);
-            connectorMock.Setup(con => con.GetValue(MonitoringTarget.FAN_Speed))
-                .Throws(new HardwareCommunicationException(MonitoringTarget.FAN_Speed));
+            connectorMock.Setup(con => con.GetValue(_notSupportedTarget))
+                .Throws(new HardwareCommunicationException(_notSupportedTarget));
 
             return factoryMock;
         }
