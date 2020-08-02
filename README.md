@@ -35,13 +35,13 @@ Usage documentation coming soon.
 
 ### Hardware
 
-Hardware monitors are managed by the [HardwareManager](ComputerMonitoring/Hardware/HardwareManager.cs). It uses connectors to access resources. Connectors each have accessible MonitoringTargets.
+Hardware monitors are managed by the [HardwareManager](https://github.com/guidou44/ComputerMonitoring/blob/master/Hardware/HardwareManager.cs). It uses connectors to access resources. Connectors each have accessible MonitoringTargets.
 
 ### GPU
 
 - For GPU monitoring, there is 2 types of connectors possible: 
 1. For NVIDIA only GPUs, there is the *NVIDIA_Connector* that uses this [NvAPIWrapper](https://github.com/falahati/NvAPIWrapper). To set this connector for a specific
-resource, in the config file [MonitoringConfiguration.cfg](ComputerRessourcesMonitoring\Configuration\MonitoringConfiguration.cfg), specify the connector :
+resource, in the config file [MonitoringConfiguration.cfg](https://github.com/guidou44/ComputerMonitoring/blob/master/DesktopAssistant/Configuration/MonitoringConfiguration.cfg), specify the connector :
 ```xml
 <ComputerRessource>
 	<TargetName>GPU_Load</TargetName>
@@ -64,7 +64,7 @@ This connector is more generic and has proved to work on more computers. This co
 
 ### Initial targets
 
-- You can set the initial resources to monitor in the config file [MonitoringConfiguration.cfg](DesktopAssistant\Configuration\MonitoringConfiguration.cfg), at the top:
+- You can set the initial resources to monitor in the config file [MonitoringConfiguration.cfg](https://github.com/guidou44/ComputerMonitoring/blob/master/DesktopAssistant/Configuration/MonitoringConfiguration.cfg), at the top:
 ```xml
 <InitialTarget>CPU_Load</InitialTarget>
 <InitialTarget>GPU_Temp</InitialTarget>
@@ -74,7 +74,7 @@ The maximum is 7 targets.
 
 ## Tests
 
-Run the script [Run_Tests](DesktopAssistant\Run_Tests.bat) in folder [DesktopAssistant](DesktopAssistant)
+Run the script [Run_Tests](https://github.com/guidou44/ComputerMonitoring/blob/master/DesktopAssistant/Run_Tests.bat) in folder [DesktopAssistant](https://github.com/guidou44/ComputerMonitoring/tree/master/DesktopAssistant)
 
 ## Code coverage
 
