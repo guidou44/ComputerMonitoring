@@ -68,6 +68,7 @@
     <Compile Include="Exceptions\XmlDeserializationException.cs" />
     <Compile Include="Helpers\CommandLineHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="MailClient\EmailSender.cs" />
     <Compile Include="MailClient\IMailClient.cs" />
     <Compile Include="Wrappers\SmptClientWrapper.cs" />
     <Compile Include="Reports\Reporter.cs" />

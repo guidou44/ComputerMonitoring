@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DesktopAssistant.Tests.CommonTests.Helpers
+namespace DesktopAssistant.Tests.Common.Tests.Helpers
 {
     public class CommandLineHelperTest
     {

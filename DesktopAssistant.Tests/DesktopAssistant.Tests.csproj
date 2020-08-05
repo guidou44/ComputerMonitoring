@@ -155,6 +155,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.Tests\MailClient\EmailSenderTest.cs" />
     <Compile Include="Common.UI.Tests\Converters.Tests\CommandParameterConverterTest.cs" />
     <Compile Include="Common.UI.Tests\DialogServices.Tests\DialogServiceTest.cs" />
     <Compile Include="Common.UI.Tests\Infrastructure.Test\Fixtures\NotifyPropertyChangedFixture.cs" />
@@ -181,12 +182,14 @@
     <Compile Include="Common.Tests\Helpers\XmlHelperTest.cs" />
     <Compile Include="Common.Tests\Reports\ReporterTest.cs" />
     <Compile Include="DesktopAssistant.BL.Tests\Hardware\IHardwareManagerTest.cs" />
+    <Compile Include="DesktopAssistant.BL.Tests\Persistence\IRepositoryTest.cs" />
     <Compile Include="DesktopAssistant.BL.Tests\ProcessWatch\Exceptions\FilterSetException.cs" />
     <Compile Include="DesktopAssistant.BL.Tests\ProcessWatch\IProcessWatcherTest.cs" />
     <Compile Include="DesktopAssistant.BL.Tests\ProcessWatch\IProcessWatchTest.cs" />
     <Compile Include="DesktopAssistant.Tests\Assembler\HardwareAssemblerTest.cs" />
     <Compile Include="DesktopAssistant.Tests\Assembler\ProcessWatchAssemblerTest.cs" />
     <Compile Include="DesktopAssistant.Tests\Helper\ComputerMonitoringTestHelper.cs" />
+    <Compile Include="DesktopAssistant.Tests\Repository\FlatFileRepositoryTest.cs" />
     <Compile Include="DesktopAssistant.Tests\ViewModels\Fixtures\WindowFixture.cs" />
     <Compile Include="DesktopAssistant.Tests\ViewModels\HardwareViewModelTest.cs" />
     <Compile Include="DesktopAssistant.Tests\ViewModels\MainViewModelTest.cs" />

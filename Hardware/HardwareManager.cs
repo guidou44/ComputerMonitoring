@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Common.Helpers;
 using DesktopAssistant.BL.Hardware;
+using DesktopAssistant.BL.Persistence;
 using Hardware.Connectors;
 using Hardware.Exceptions;
 using Hardware.Models;
@@ -11,18 +11,17 @@ namespace Hardware
 {
     public class HardwareManager : IHardwareManager
     {
-        private const string ConfigFilePath = @"..\..\Configuration\MonitoringConfiguration.cfg";
         private readonly IFactory<ConnectorBase> _connectorFactory;
-        private readonly XmlHelper _xmlHelper;
+        private readonly IRepository _repository;
 
         private IEnumerable<MonitoringTarget> _initialMonitoringTargets;
         private IDictionary<ComputerResource, ConnectorBase> _target2Connector;
 
-        public HardwareManager(IFactory<ConnectorBase> factory, XmlHelper xmlHelper, string alternateConfigPath = null)
+        public HardwareManager(IFactory<ConnectorBase> factory, IRepository repository)
         {
-            this._xmlHelper = xmlHelper;
-            this._connectorFactory = factory;
-            SetMonitoringTargets(alternateConfigPath ?? ConfigFilePath);
+            _repository = repository;
+            _connectorFactory = factory;
+            SetMonitoringTargets();
             SetAvailableTargets_Internal();
         }
 
@@ -132,10 +131,10 @@ namespace Hardware
             }
         }
 
-        private void SetMonitoringTargets(string xmlConfigPath)
+        private void SetMonitoringTargets()
         {
             _target2Connector = new Dictionary<ComputerResource, ConnectorBase>();
-            var resourceCollection = _xmlHelper.DeserializeConfiguration<ResourceCollection>(xmlConfigPath);
+            var resourceCollection = _repository.Read<ResourceCollection>();
             foreach (var resource in resourceCollection.Resources) 
                 _target2Connector.Add(resource, null);
             _initialMonitoringTargets = resourceCollection.InitialTargets;

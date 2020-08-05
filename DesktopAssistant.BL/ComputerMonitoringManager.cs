@@ -8,6 +8,7 @@ using Common.Reports;
 using Common.UI.Models;
 using DesktopAssistant.BL.Events;
 using DesktopAssistant.BL.Hardware;
+using DesktopAssistant.BL.Persistence;
 using DesktopAssistant.BL.ProcessWatch;
 using Prism.Events;
 
@@ -19,7 +20,7 @@ namespace DesktopAssistant.BL
 
         private readonly IHardwareManager _hardwareManager;
         private readonly ITimer _monitoringRefreshCounter;
-        private readonly Reporter _reporter;
+        private readonly IRepository _repository;
         private readonly IProcessWatcher _processWatcher;
 
         private IManagerObserver _observer;
@@ -30,14 +31,14 @@ namespace DesktopAssistant.BL
         public ComputerMonitoringManager(IEventAggregator eventHub, 
                                       IHardwareManager hardwareManager, 
                                       IProcessWatcher watchDog,
-                                      Reporter reporter,
+                                      IRepository repository,
                                       ITimer refreshCounter) : base(eventHub)
         {
             _monitoringRefreshCounter = refreshCounter;
             _hardwareManager = hardwareManager;
             _monitoringTargets = new List<MonitoringTarget>();
             _processWatcher = watchDog;
-            _reporter = reporter;
+            _repository = repository;
 
             SetInitialMonitoringTargets();
             SubscribeToEvents();
@@ -108,7 +109,7 @@ namespace DesktopAssistant.BL
             }
             catch (Exception e)
             {
-                _reporter.LogException(e);
+                _repository.Update(e);
                 _observer.OnError(e);
             }
         }

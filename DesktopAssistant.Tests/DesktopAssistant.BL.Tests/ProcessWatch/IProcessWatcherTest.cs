@@ -18,13 +18,13 @@ namespace DesktopAssistant.Tests.DesktopAssistant.BL.Tests.ProcessWatch
 {
     public abstract class IProcessWatcherTest
     {
-        private const string InitialTarget = "chrome";
+        protected const string INITIAL_TARGET = "chrome";
         
-        private bool _captureDeviceOpen = false;
-        private bool _jobTimerRunning = false;
-        private ElapsedEventHandler _watchJobHandler;
-        private string _captureDeviceFilter = string.Empty;
-        private readonly List<int> _openPorts = new List<int>(){1, 2, 3, 4};
+        protected bool CaptureDeviceOpen = false;
+        protected bool JobTimerRunning = false;
+        protected ElapsedEventHandler WatchJobHandler;
+        protected string CaptureDeviceFilter = string.Empty;
+        protected readonly List<int> OpenPorts = new List<int>(){1, 2, 3, 4};
 
         [Fact]
         public void GivenConfigFile_WhenGettingInitialProcessToWatch_ThenItReturnsProperProcessWatch()
@@ -35,7 +35,7 @@ namespace DesktopAssistant.Tests.DesktopAssistant.BL.Tests.ProcessWatch
 
             var processWatches = initialTargets as IProcessWatch[] ?? initialTargets.ToArray();
             Assert.Single(processWatches);
-            Assert.Contains(InitialTarget, processWatches.Single().ProcessName);
+            Assert.Contains(INITIAL_TARGET, processWatches.Single().ProcessName);
         }
         
         [Fact]
@@ -74,24 +74,24 @@ namespace DesktopAssistant.Tests.DesktopAssistant.BL.Tests.ProcessWatch
             
             watchdog.StartCapture();
 
-            Assert.True(_jobTimerRunning);
-            Assert.NotNull(_watchJobHandler);
+            Assert.True(JobTimerRunning);
+            Assert.NotNull(WatchJobHandler);
         }
 
         [Fact]
         public void GivenWatchJob_WhenStopWatch_ThenItUnregistersHandler()
         {
-            _watchJobHandler = null;
-            _jobTimerRunning = false;
-            _captureDeviceOpen = true;
+            WatchJobHandler = null;
+            JobTimerRunning = false;
+            CaptureDeviceOpen = true;
             IProcessWatcher watchdog = GivenProcessWatcher();
             
             watchdog.StartCapture();
             watchdog.StopCapture();
             
-            Assert.False(_jobTimerRunning);
-            Assert.Null(_watchJobHandler);
-            Assert.False(_captureDeviceOpen);
+            Assert.False(JobTimerRunning);
+            Assert.Null(WatchJobHandler);
+            Assert.False(CaptureDeviceOpen);
         }
 
         [Fact]
@@ -102,9 +102,9 @@ namespace DesktopAssistant.Tests.DesktopAssistant.BL.Tests.ProcessWatch
             watchdog.AddProcessToWatchList(runningProcess.ProcessName, false);
             watchdog.StartCapture();
             
-            _watchJobHandler.Invoke(null, new EventArgs() as ElapsedEventArgs);
+            WatchJobHandler.Invoke(null, new EventArgs() as ElapsedEventArgs);
             
-            Assert.Equal(string.Empty, _captureDeviceFilter);
+            Assert.Equal(string.Empty, CaptureDeviceFilter);
         }
 
         [Fact]
@@ -116,9 +116,9 @@ namespace DesktopAssistant.Tests.DesktopAssistant.BL.Tests.ProcessWatch
             watchdog.UpdateProcessCaptureInWatchList(runningProcess.ProcessName, false);
             watchdog.StartCapture();
             
-            _watchJobHandler.Invoke(null, new EventArgs() as ElapsedEventArgs);
+            WatchJobHandler.Invoke(null, new EventArgs() as ElapsedEventArgs);
             
-            Assert.Equal(string.Empty, _captureDeviceFilter);
+            Assert.Equal(string.Empty, CaptureDeviceFilter);
         }
 
         [Fact]
@@ -136,62 +136,7 @@ namespace DesktopAssistant.Tests.DesktopAssistant.BL.Tests.ProcessWatch
             Assert.Single(processWatches);
         }
 
-        #region Private Methods
+        protected abstract IProcessWatcher GivenProcessWatcher();
 
-        private IProcessWatcher GivenProcessWatcher()
-        {
-            Mock<NetworkHelper> networkHelperMock = GivenNetworkHelperMock();
-            Mock<XmlHelper> xmlHelper = GivenXmlHelperMock();
-            Mock<ICaptureDeviceFactory> factory = GivenCaptureDeviceFactoryMock();
-            Mock<ITimer> timerMock = GivenTimerMock();
-            return GivenProcessWatcher(networkHelperMock.Object, xmlHelper.Object, factory.Object, timerMock.Object);
-        }
-
-        private Mock<NetworkHelper> GivenNetworkHelperMock()
-        {
-            CommandLineHelper cmdHelper = new CommandLineHelper();
-            Mock<NetworkHelper> netHelperMock = new Mock<NetworkHelper>(cmdHelper);
-            netHelperMock.Setup(nh => nh.GetOpenTcpAndUdpPortsForProcess(It.IsAny<Process>(), null))
-                .Returns(_openPorts);
-            netHelperMock.Setup(nh => nh.GetOpenTcpAndUdpPortsForProcess(It.IsAny<Process>(), It.IsAny<int?>()))
-                .Returns(_openPorts);
-            return netHelperMock;
-        }
-        
-        private Mock<XmlHelper> GivenXmlHelperMock()
-        {
-            Mock<XmlHelper> xmlHelper = new Mock<XmlHelper>();
-            xmlHelper.Setup(x => x.DeserializeConfiguration<WatchdogInitialization>(It.IsAny<string>())).Returns(new WatchdogInitialization() { InitialProcess2WatchNames = new List<string>() { InitialTarget } });
-            return xmlHelper;
-        }
-        
-        private Mock<ICaptureDeviceFactory> GivenCaptureDeviceFactoryMock()
-        {
-            Mock<ICaptureDevice> device = new Mock<ICaptureDevice>();
-            Mock<ICaptureDeviceFactory> factory = new Mock<ICaptureDeviceFactory>();
-            device.Setup(d => d.Open()).Callback(() => _captureDeviceOpen = true);
-            device.Setup(d => d.Close()).Callback(() => _captureDeviceOpen = false);
-            device.SetupSet(d => d.Filter = It.IsAny<string>()).Callback<string>(s => _captureDeviceFilter = s);
-            factory.Setup(f => f.CreateInstance(It.IsAny<string>())).Returns(device.Object);
-            return factory;
-        }
-
-        private Mock<ITimer> GivenTimerMock()
-        {
-            Mock<ITimer> timerMock = new Mock<ITimer>();
-            timerMock.Setup(t => t.Start()).Callback(() => _jobTimerRunning = true);
-            timerMock.Setup(t => t.Stop()).Callback(() => _jobTimerRunning = false);
-            timerMock.SetupAdd(t => t.Elapsed += It.IsAny<ElapsedEventHandler>())
-                .Callback<ElapsedEventHandler>(eh => _watchJobHandler = eh);
-            timerMock.SetupRemove(t => t.Elapsed -= It.IsAny<ElapsedEventHandler>())
-                .Callback(() => _watchJobHandler = null);
-            return timerMock;
-        }
-
-        protected abstract IProcessWatcher GivenProcessWatcher(NetworkHelper networkHelper, XmlHelper xmlHelper,
-            ICaptureDeviceFactory captureDeviceFactory, ITimer jobTimer);
-        
-        
-        #endregion
     }
 }

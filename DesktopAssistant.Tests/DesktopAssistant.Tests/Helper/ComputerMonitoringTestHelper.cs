@@ -8,6 +8,7 @@ using Common.Reports;
 using Common.UI.WindowProperty;
 using DesktopAssistant.BL.Events;
 using DesktopAssistant.BL.Hardware;
+using DesktopAssistant.BL.Persistence;
 using DesktopAssistant.BL.ProcessWatch;
 using DesktopAssistant.Tests.ProcessMonitoring.Tests.Helpers;
 using DesktopAssistant.ViewModels;
@@ -53,6 +54,12 @@ namespace DesktopAssistant.Tests.DesktopAssistant.Tests.Helper
         {
             Mock<Reporter> reporter = new Mock<Reporter>();
             return reporter.Object;
+        }
+
+        public static IRepository GivenRepository()
+        {
+            Mock<IRepository> repoMock = new Mock<IRepository>();
+            return repoMock.Object;
         }
 
         public static IEventAggregator GivenEventAggregator()

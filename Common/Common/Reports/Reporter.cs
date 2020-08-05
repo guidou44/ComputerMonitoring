@@ -12,21 +12,11 @@ namespace Common.Reports
 {
     public class Reporter
     {
-        private const string CONFIG_FILE_PATH = @"..\..\Configuration\ReporterConfiguration.xml";
-        private IMailClient _smtpClient;
-
-        public Reporter(IMailClient smtpClient)
-        {
-            _smtpClient = smtpClient;
-        }
-
-        public Reporter() { }
-
-        public void LogException(Exception e, string logPath = null, bool addEmailreport = false, string emailAlternateConfigPath = null)
+        public void LogException(Exception e, string logDirectory)
         {
             var currentDirectory = Directory.GetCurrentDirectory();
-            if (!Directory.Exists(Path.Combine(currentDirectory, "Exception_Logs"))) Directory.CreateDirectory(Path.Combine(currentDirectory, "Exception_Logs"));
-            var defaultLogPath = Path.Combine(currentDirectory, "Exception_Logs");
+            if (!Directory.Exists(Path.Combine(currentDirectory, logDirectory))) Directory.CreateDirectory(Path.Combine(currentDirectory, logDirectory));
+            var defaultLogPath = Path.Combine(currentDirectory, logDirectory);
 
             string exEntry = "\n*************************Exception******************************\n" +
                              "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n" +
@@ -38,7 +28,7 @@ namespace Common.Reports
 
             try
             {
-                using (var writer = new StreamWriter(logPath ?? defaultLogPath + @"\GeneralExceptions.txt", append: true))
+                using (var writer = new StreamWriter(logDirectory + $@"\{logDirectory}.txt", append: true))
                 {
                     writer.WriteLine(exEntry);
                 }
@@ -47,41 +37,6 @@ namespace Common.Reports
             {
                 throw new ReporterIOException(ex.Message);
             }
-
-            if (addEmailreport) SendEmailReport("Exception thrown", exEntry, emailAlternateConfigPath);
-        }
-
-        public void SendEmailReport(string subject, string message, string configPath = null)
-        {
-            MailMessage email = new MailMessage();
-            InitializeSmtpClient(configPath ?? CONFIG_FILE_PATH);
-            var recipients = LoadEmailRecipents(configPath ?? CONFIG_FILE_PATH);
-            var sender = (_smtpClient.Credentials as System.Net.NetworkCredential).UserName;
-            email.From = new MailAddress(sender);
-            recipients.ToList().ForEach(R => email.To.Add(R));
-
-            email.Subject = subject;
-            email.Body = message;
-
-            _smtpClient.Send(email);
-        }
-
-        private void InitializeSmtpClient(string configPath)
-        {
-            _smtpClient.Port = 587;
-            _smtpClient.EnableSsl = true;
-            var configuration = XDocument.Load(configPath);
-            var sender = configuration.Descendants("Sender");
-            _smtpClient.Credentials = new System.Net.NetworkCredential(sender.Elements("Id").SingleOrDefault().Value, sender.Elements("Password").SingleOrDefault().Value);
-        }
-
-        private IEnumerable<string> LoadEmailRecipents(string configPath)
-        {
-            var configuration = XDocument.Load(configPath);
-
-            var recipients = (configuration.Descendants("Receivers").Elements("Target"));
-
-            return recipients.Select(XE => XE.Elements("Address").SingleOrDefault().Value);
         }
     }
 }

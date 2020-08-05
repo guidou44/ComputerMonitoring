@@ -2,6 +2,7 @@
 using System.Linq;
 using Common.Helpers;
 using DesktopAssistant.BL.Hardware;
+using DesktopAssistant.BL.Persistence;
 using DesktopAssistant.Tests.DesktopAssistant.BL.Tests.Hardware;
 using Hardware;
 using Hardware.Connectors;
@@ -28,10 +29,10 @@ namespace DesktopAssistant.Tests.Hardware.Tests
 
         protected override IHardwareManager GivenHardwareManager()
         {
-            Mock<XmlHelper> xmlHelper = GivenXmlHelperMock();
+            Mock<IRepository> repositoryMock = GivenRepositoryMock();
             Mock<IFactory<ConnectorBase>> factory = GivenConnectorFactoryMock();
 
-            return new HardwareManager(factory.Object, xmlHelper.Object);
+            return new HardwareManager(factory.Object, repositoryMock.Object);
         }
 
         protected override MonitoringTarget GetNotSupportedTarget()
@@ -60,13 +61,13 @@ namespace DesktopAssistant.Tests.Hardware.Tests
             return factoryMock;
         }
         
-        private Mock<XmlHelper> GivenXmlHelperMock()
+        private Mock<IRepository> GivenRepositoryMock()
         {
             BuildTestConfiguration();
             BuildComputerResources();
-            Mock<XmlHelper> xmlHelper = new Mock<XmlHelper>();
-            xmlHelper.Setup(x => x.DeserializeConfiguration<ResourceCollection>(It.IsAny<string>())).Returns(_testConfig);
-            return xmlHelper;
+            Mock<IRepository> repositoryMock = new Mock<IRepository>();
+            repositoryMock.Setup(x => x.Read<ResourceCollection>()).Returns(_testConfig);
+            return repositoryMock;
         }
         
         private void BuildTestConfiguration()

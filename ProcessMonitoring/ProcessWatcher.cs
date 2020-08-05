@@ -1,49 +1,43 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
-using Common.Helpers;
 using DesktopAssistant.BL;
+using DesktopAssistant.BL.Persistence;
 using DesktopAssistant.BL.ProcessWatch;
 using PacketDotNet;
 using ProcessMonitoring.Models;
-using ProcessMonitoring.Factory;
 using SharpPcap;
-using Timer = System.Timers.Timer;
 
 namespace ProcessMonitoring
 {
     public class ProcessWatcher : IProcessWatcher
     {
-        private const string XmlConfigPath = @"..\..\Configuration\WatchdogConfiguration.cfg";
         private const string NotSupportedCaptureDevice = "Atheros";
         private const int ExecutionThreadTimeout = 2000;
+        private readonly ICaptureDevice _captureDevice;
+        private readonly IPAddress _localHostIpV4;
 
         private readonly NetworkHelper _networkHelper;
-        private readonly XmlHelper _xmlHelper;
-        private readonly IPAddress _localHostIpV4;
-        private readonly ICaptureDevice _captureDevice;
-        private readonly ITimer _watchJobTimer;
         private readonly ICollection<ProcessWatch> _processWatches = new HashSet<ProcessWatch>();
-        
-        private List<int> _portsCurrentlyUnderWatch = new List<int>();
-
-        private IPacketObserver _packetObserver;
+        private readonly IRepository _repository;
+        private readonly ITimer _watchJobTimer;
 
         private PacketArrivalEventHandler _packetCaptureHandler;
 
+        private IPacketObserver _packetObserver;
 
-        public ProcessWatcher(NetworkHelper networkHelper, XmlHelper xmlHelper, 
+        private List<int> _portsCurrentlyUnderWatch = new List<int>();
+
+
+        public ProcessWatcher(NetworkHelper networkHelper, IRepository repository, 
             ICaptureDeviceFactory captureDeviceDeviceFactory, ITimer watchJobTimer)
         {
             _networkHelper = networkHelper;
-            _xmlHelper = xmlHelper;
+            _repository = repository;
             
             _watchJobTimer = watchJobTimer;
 
@@ -116,7 +110,7 @@ namespace ProcessMonitoring
             _watchJobTimer.Enabled = true;
             _watchJobTimer.Start();
         }
-        
+
         private void CheckForWatchListUpdate()
         {
             lock (_processWatches)
@@ -188,7 +182,7 @@ namespace ProcessMonitoring
                 return tcp.SourcePort.ToString();
             return udp != null ? udp.SourcePort.ToString() : "";
         }
-        
+
         private string GetDestinationAddressOrPort(Packet packet)
         {
             TcpPacket tcp = packet.Extract<TcpPacket>();
@@ -221,13 +215,13 @@ namespace ProcessMonitoring
 
             _captureDevice.Filter = baseFilter;
         }
-        
+
         private Process GetFirstProcessWithName(string processName)
         {
             Process[] allProcess = Process.GetProcesses();
             return allProcess.FirstOrDefault(p => p.ProcessName == processName);
         }
-        
+
         private IPAddress GetIpV4OfLocalHost()
         {
             IPAddress[] addrList = Dns.GetHostEntry(Dns.GetHostName()).AddressList;
@@ -236,7 +230,7 @@ namespace ProcessMonitoring
 
         private void BuildProcessWatches()
         {
-            WatchdogInitialization watchdogInit = _xmlHelper.DeserializeConfiguration<WatchdogInitialization>(XmlConfigPath);
+            WatchdogInitialization watchdogInit = _repository.Read<WatchdogInitialization>();
             foreach (string processName in watchdogInit.InitialProcess2WatchNames)
             {
                 BuildProcessWatch(processName, true);
@@ -245,14 +239,13 @@ namespace ProcessMonitoring
 
         private void BuildProcessWatch(string processName, bool withCapture)
         {
+            if (_processWatches.Any(p => p.ProcessName.Equals(processName)))
+                return;
             Process process = GetFirstProcessWithName(processName);
             ProcessWatch processWatch = new ProcessWatch(processName, withCapture, process);
             _processWatches.Add(processWatch);
         }
-        
-        
-        
+
         #endregion
-        
     }
 }

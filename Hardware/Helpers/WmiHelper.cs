@@ -1,11 +1,6 @@
-﻿using Common.Reports;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Linq;
 using System.Management;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hardware.Helpers
 {
@@ -17,7 +12,7 @@ namespace Hardware.Helpers
 
 
             var value = wmiObject.Get().Cast<ManagementObject>()
-                                    .Select(mo => mo[wmiKey].ToString()).FirstOrDefault();
+                .Select(mo => mo[wmiKey].ToString()).FirstOrDefault();
             var converter = TypeDescriptor.GetConverter(typeof(T));
             return (T)converter.ConvertFromString(value);
 
@@ -29,7 +24,7 @@ namespace Hardware.Helpers
 
 
             var value = wmiObject.Get().Cast<ManagementObject>()
-                                    .Select(mo => mo[wmiKey].ToString()).FirstOrDefault();
+                .Select(mo => mo[wmiKey].ToString()).FirstOrDefault();
             var converter = TypeDescriptor.GetConverter(typeof(T));
             return (T)converter.ConvertFromString(value);
 
