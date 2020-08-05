@@ -3,6 +3,7 @@ using Autofac;
 using Common.Reports;
 using Common.UI.WindowProperty;
 using DesktopAssistant.BL;
+using DesktopAssistant.UI;
 using DesktopAssistant.ViewModels;
 using DesktopAssistant.Views;
 using Prism.Events;
@@ -18,11 +19,7 @@ namespace DesktopAssistant
             dialogService.Register<HardwareSettingsViewModel, HardwareSettingsView>();
             dialogService.Register<ProcessWatchSettingsViewModel, ProcessWatchSettingsView>();
             
-            IAppManager manager = instanceContainer.Resolve<IAppManager>();
-            Reporter reporter = instanceContainer.Resolve<Reporter>();
-            IEventAggregator eventAgg = instanceContainer.Resolve<IEventAggregator>();
-
-            MainViewModel viewModel = new MainViewModel(dialogService, manager, eventAgg, reporter);
+            MainViewModel viewModel = instanceContainer.Resolve<MainViewModel>();
             MainWindow view = new MainWindow { DataContext = viewModel };
 
             view.ShowDialog();

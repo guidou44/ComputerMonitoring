@@ -175,12 +175,29 @@
         </Style>
 
     </Window.Resources>
+    
     <Border BorderBrush="DarkGreen"
             BorderThickness="5"
             CornerRadius="30 30 30 30">
         <Border.Background>
             <SolidColorBrush Color="LightGreen" Opacity="0.8" />
         </Border.Background>
+        <Border.Style>
+            <Style>
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:02" From="0" To="1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <Trigger Property="FrameworkElement.Visibility" Value="Collapsed">
+                        <Setter Property="FrameworkElement.Opacity" Value="0"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
 
         <Grid Margin="30">
             <Grid.RowDefinitions>

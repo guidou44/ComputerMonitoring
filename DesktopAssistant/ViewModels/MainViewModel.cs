@@ -10,7 +10,9 @@ using Common.UI.WindowProperty;
 using DesktopAssistant.Assembler;
 using DesktopAssistant.BL;
 using DesktopAssistant.BL.Hardware;
+using DesktopAssistant.BL.Persistence;
 using DesktopAssistant.BL.ProcessWatch;
+using DesktopAssistant.UI;
 using Prism.Events;
 
 namespace DesktopAssistant.ViewModels
@@ -18,20 +20,24 @@ namespace DesktopAssistant.ViewModels
     public class MainViewModel : WindowViewModelBase, IManagerObserver
     {
         private readonly IAppManager _appManager;
-        private readonly Reporter _reporter;
+        private readonly IRepository _repository;
 
         public MainViewModel(IDialogService dialogService, 
             IAppManager manager, 
-            IEventAggregator eventAgg,
-            Reporter reporter) : base (dialogService, eventAgg)
+            IEventAggregator eventAgg, 
+            IRepository repository,
+            IUiSettings uiSettings) : base (dialogService, eventAgg)
         {
             IsApplicationVisible = true;
             _appManager = manager;
             _dialogService = dialogService;
-            _reporter = reporter;
+            _repository = repository;
             _appManager.RegisterManagerObserver(this);
             _appManager.Start();
+            UiSettings = uiSettings;
         }
+        
+        public IUiSettings UiSettings { get; set; }
 
         public void OnHardwareInfoChange()
         {
@@ -90,7 +96,6 @@ namespace DesktopAssistant.ViewModels
 
         #endregion
 
-
         #region Commands
 
         public ICommand ShowApplicationCommand
@@ -132,11 +137,11 @@ namespace DesktopAssistant.ViewModels
             }
             catch (Exception e)
             {
-                _reporter.LogException(e);
+                _repository.Update(e);
                 _dialogService.ShowException(e);
             }
         }
-        
+
         public ICommand OpenProcessSettingsWindowCommand
         {
             get { return new RelayCommand(OpenProcessSettingsWindowCommandExecute); }
@@ -152,7 +157,7 @@ namespace DesktopAssistant.ViewModels
             }
             catch (Exception e)
             {
-                _reporter.LogException(e);
+                _repository.Update(e);
                 _dialogService.ShowException(e);
             }
         }

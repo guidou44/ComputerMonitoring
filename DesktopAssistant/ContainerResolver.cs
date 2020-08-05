@@ -8,8 +8,12 @@ using Common.UI.WindowProperty;
 using Common.Wrappers;
 using DesktopAssistant.BL;
 using DesktopAssistant.BL.Hardware;
+using DesktopAssistant.BL.Persistence;
 using DesktopAssistant.BL.ProcessWatch;
 using DesktopAssistant.BL.Wrappers;
+using DesktopAssistant.Repository;
+using DesktopAssistant.UI;
+using DesktopAssistant.ViewModels;
 using Hardware;
 using Hardware.Components;
 using Hardware.Connectors;
@@ -43,16 +47,19 @@ namespace DesktopAssistant
 
         private static void RegisterTypes(ContainerBuilder builder)
         {
+            //DesktopAssistant
+            builder.RegisterType<UiSetting>().As<IUiSettings>();
+            builder.RegisterType<MainViewModel>().AsSelf();
+            builder.RegisterType<FlatFileRepository>().As<IRepository>();
+            
             //Common.UI
             builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
             //Common
             builder.RegisterType<CommandLineHelper>().AsSelf();
-            builder.RegisterType<XmlHelper>().AsSelf();
-            builder.RegisterType<Reporter>().AsSelf();
-            builder.Register(c => new SmptClientWrapper("smtp.gmail.com")).As<IMailClient>();
-                        
+            builder.RegisterType<EmailSender>().AsSelf();
+
             //Process Monitoring
             builder.RegisterType<ProcessWatcher>().As<IProcessWatcher>();
             builder.RegisterType<CaptureDeviceFactory>().As<ICaptureDeviceFactory>();

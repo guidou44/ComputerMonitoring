@@ -6,7 +6,15 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
         xmlns:local="clr-namespace:DesktopAssistant.Views"
         mc:Ignorable="d"
-        Title="ProcessWatchSettingsView" Height="450" Width="800">
+        x:Name="DialogWindow"
+        Title="Settings"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True"
+        Background="Transparent"
+        SizeToContent="WidthAndHeight"
+        MinHeight="400"
+        MinWidth="410">
     <Window.Resources>
         
           <BooleanToVisibilityConverter x:Key="BoolToVis" />
@@ -172,6 +180,24 @@
         <Border.Background>
             <SolidColorBrush Color="LightGreen" Opacity="0.8" />
         </Border.Background>
+
+        <Border.Style>
+            <Style>
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:02" From="0" To="1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                    <Trigger Property="FrameworkElement.Visibility" Value="Collapsed">
+                        <Setter Property="FrameworkElement.Opacity" Value="0"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        
         <Grid Margin="30">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
