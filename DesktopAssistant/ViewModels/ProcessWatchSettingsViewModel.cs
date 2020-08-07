@@ -10,6 +10,7 @@ using DesktopAssistant.Assembler;
 using DesktopAssistant.BL;
 using DesktopAssistant.BL.Events;
 using DesktopAssistant.BL.ProcessWatch;
+using DesktopAssistant.UI;
 using Prism.Events;
 
 namespace DesktopAssistant.ViewModels
@@ -18,7 +19,9 @@ namespace DesktopAssistant.ViewModels
     {
         private readonly IEventAggregator _eventHub;
 
-        public ProcessWatchSettingsViewModel(IEventAggregator eventHub, IEnumerable<ProcessViewModel> processViewModels)
+        public ProcessWatchSettingsViewModel(IEventAggregator eventHub, 
+            IEnumerable<ProcessViewModel> processViewModels,
+            IUiSettings uiSettings)
         {
             _eventHub = eventHub;
 
@@ -28,7 +31,11 @@ namespace DesktopAssistant.ViewModels
                 processUnderWatch.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
                 processUnderWatch.OnProcessWatchRemoveEvent += OnWatchdogRemoveTarget;
             }
+
+            UiSettings = uiSettings;
         }
+
+        public IUiSettings UiSettings { get; set; }
         
         private void OnWatchdogRemoveTarget(object sender, EventArgs e)
         {

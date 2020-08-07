@@ -277,6 +277,10 @@
     <Content Include="Configuration\ReporterConfiguration.xml" />
     <Content Include="Configuration\UIConfig.xml" />
     <Content Include="Configuration\WatchdogConfiguration.cfg" />
+    <Resource Include="Views\Images\terminal_shell.ico" />
+    <Resource Include="Views\Images\hardware.ico" />
+    <Resource Include="Views\Images\paint.ico" />
+    <Resource Include="Views\Images\process.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -160,7 +160,7 @@ namespace DesktopAssistant.ViewModels
         {
             try
             {
-                ProcessWatchSettingsViewModel viewModel = new ProcessWatchSettingsViewModel(_eventHub, ProcessesUnderWatch);
+                ProcessWatchSettingsViewModel viewModel = new ProcessWatchSettingsViewModel(_eventHub, ProcessesUnderWatch, UiSettings);
                 _dialogService.Instantiate(viewModel);
                 _dialogService.ShowDialog(viewModel);
             }
