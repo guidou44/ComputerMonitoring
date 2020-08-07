@@ -44,7 +44,7 @@ namespace DesktopAssistant.Tests.DesktopAssistant.BL.Tests.Persistence
         {
             IRepository repository = GivenRepository();
             Exception exception = new Exception("TEST");
-            
+
             repository.Update(exception);
             AssertEntityUpdated(exception);
         }

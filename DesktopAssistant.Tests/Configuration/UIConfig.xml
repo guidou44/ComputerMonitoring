@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UserInterfaceConfiguration>
+    <Coloration>
+        <Main>#29a65b</Main>
+        <FontMain>#29a65b</FontMain>
+        <BackGroundMain>#00FFFFFF</BackGroundMain>
+        <BackGroundSecondary>#349e52</BackGroundSecondary>
+        <BackGroundMainOpacity>0</BackGroundMainOpacity>>
+        <BackGroundSecondaryOpacity>0.8</BackGroundSecondaryOpacity>>
+    </Coloration>
+</UserInterfaceConfiguration>

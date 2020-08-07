@@ -12,6 +12,7 @@ using DesktopAssistant.BL;
 using DesktopAssistant.BL.Hardware;
 using DesktopAssistant.BL.Persistence;
 using DesktopAssistant.BL.ProcessWatch;
+using DesktopAssistant.Configuration;
 using DesktopAssistant.UI;
 using Prism.Events;
 
@@ -25,8 +26,7 @@ namespace DesktopAssistant.ViewModels
         public MainViewModel(IDialogService dialogService, 
             IAppManager manager, 
             IEventAggregator eventAgg, 
-            IRepository repository,
-            IUiSettings uiSettings) : base (dialogService, eventAgg)
+            IRepository repository) : base (dialogService, eventAgg)
         {
             IsApplicationVisible = true;
             _appManager = manager;
@@ -34,10 +34,10 @@ namespace DesktopAssistant.ViewModels
             _repository = repository;
             _appManager.RegisterManagerObserver(this);
             _appManager.Start();
-            UiSettings = uiSettings;
+            UiSettings = repository.Read<UserInterfaceConfiguration>();
         }
         
-        public IUiSettings UiSettings { get; set; }
+        public IUiSettings UiSettings { get;  }
 
         public void OnHardwareInfoChange()
         {

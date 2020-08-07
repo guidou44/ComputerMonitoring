@@ -41,7 +41,7 @@ namespace DesktopAssistant.Tests.DesktopAssistant.Tests.ViewModels
             IRepository repository = ComputerMonitoringTestHelper.GivenRepository();
             Mock<IDialogService> dialogService = ComputerMonitoringTestHelper.GivenDialogServiceMock();
             Mock<IUiSettings> ui = new Mock<IUiSettings>();
-            MainViewModel mainViewModel = new MainViewModel(dialogService.Object, appManager.Object, eventManager, repository, ui.Object);
+            MainViewModel mainViewModel = new MainViewModel(dialogService.Object, appManager.Object, eventManager, repository);
             return mainViewModel;
         }
 
@@ -65,8 +65,7 @@ namespace DesktopAssistant.Tests.DesktopAssistant.Tests.ViewModels
             Mock<IDialogService> dialogService = ComputerMonitoringTestHelper.GivenDialogServiceMock();
             dialogService.Setup(ds => ds.Instantiate(It.IsAny<HardwareSettingsViewModel>())).Verifiable();
             dialogService.Setup(ds => ds.ShowDialog(It.IsAny<HardwareSettingsViewModel>())).Verifiable();
-            Mock<IUiSettings> ui = new Mock<IUiSettings>();
-            MainViewModel mainViewModel = new MainViewModel(dialogService.Object, appManager.Object, eventManager, repository, ui.Object);
+            MainViewModel mainViewModel = new MainViewModel(dialogService.Object, appManager.Object, eventManager, repository);
 
 
             mainViewModel.OpenHardwareSettingsWindowCommand.Execute(null);
@@ -87,8 +86,8 @@ namespace DesktopAssistant.Tests.DesktopAssistant.Tests.ViewModels
             dialogService.Setup(ds => ds.ShowException(It.IsAny<Exception>())).Callback<Exception>(e => managerError = e);
             dialogService.Setup(ds => ds.Instantiate(It.IsAny<HardwareSettingsViewModel>())).Verifiable();
             dialogService.Setup(ds => ds.ShowDialog(It.IsAny<HardwareSettingsViewModel>())).Throws(expectedException);
-            Mock<IUiSettings> ui = new Mock<IUiSettings>();
-            MainViewModel mainViewModel = new MainViewModel(dialogService.Object, appManager.Object, eventManager, repository, ui.Object);
+
+            MainViewModel mainViewModel = new MainViewModel(dialogService.Object, appManager.Object, eventManager, repository);
 
             mainViewModel.OpenHardwareSettingsWindowCommand.Execute(null);
 
@@ -110,8 +109,8 @@ namespace DesktopAssistant.Tests.DesktopAssistant.Tests.ViewModels
             IEventAggregator eventManager = ComputerMonitoringTestHelper.GivenEventAggregator();
             IRepository repository = ComputerMonitoringTestHelper.GivenRepository();
             Mock<IDialogService> dialogService = ComputerMonitoringTestHelper.GivenDialogServiceMock();
-            Mock<IUiSettings> ui = new Mock<IUiSettings>();
-            MainViewModel mainViewModel = new MainViewModel(dialogService.Object, appManager.Object, eventManager, repository, ui.Object);
+
+            MainViewModel mainViewModel = new MainViewModel(dialogService.Object, appManager.Object, eventManager, repository);
 
             mainViewModel.KillAppCommand.Execute(closable.Object);
 

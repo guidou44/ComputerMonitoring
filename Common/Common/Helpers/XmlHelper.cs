@@ -6,30 +6,53 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace Common.Helpers
 {
     public class XmlHelper
     {
-        public virtual T DeserializeConfiguration<T>(string xmlFilePath)
+        public virtual T Deserialize<T>(string path)
         {
             T returnObject = default(T);
-            if (string.IsNullOrEmpty(xmlFilePath)) return default(T);
+            if (string.IsNullOrEmpty(path)) return default(T);
 
             try
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(T));
-                using (var xmlStream = new StreamReader(xmlFilePath))
+                using (var xmlStream = new StreamReader(path))
                 {
                     returnObject = (T)serializer.Deserialize(xmlStream);
                 }
             }
             catch (Exception e)
             {
-                throw new XmlDeserializationException($"Path: {xmlFilePath}\n{e.Message}");
+                throw new XmlDeserializationException($"Path: {path}\n{e.Message}");
             }
             return returnObject;
+        }
+
+        public void SerializeOverwrite<T>(T serializable, string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return;
+            try
+            {
+                XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+                using (FileStream stream = File.Open(path, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    using (XmlWriter writer = XmlWriter.Create(stream))
+                    {
+                        serializer.Serialize(writer, serializable);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                throw new XmlSerializationException($"Path: {path}\n{e.Message}");
+            }
         }
     }
 }

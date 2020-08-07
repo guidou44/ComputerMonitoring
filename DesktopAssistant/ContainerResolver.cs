@@ -11,6 +11,7 @@ using DesktopAssistant.BL.Hardware;
 using DesktopAssistant.BL.Persistence;
 using DesktopAssistant.BL.ProcessWatch;
 using DesktopAssistant.BL.Wrappers;
+using DesktopAssistant.Configuration;
 using DesktopAssistant.Repository;
 using DesktopAssistant.UI;
 using DesktopAssistant.ViewModels;
@@ -48,7 +49,6 @@ namespace DesktopAssistant
         private static void RegisterTypes(ContainerBuilder builder)
         {
             //DesktopAssistant
-            builder.RegisterType<UiSetting>().As<IUiSettings>();
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<FlatFileRepository>().As<IRepository>();
             

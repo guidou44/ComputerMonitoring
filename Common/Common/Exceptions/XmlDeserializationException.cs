@@ -10,4 +10,9 @@ namespace Common.Exceptions
     {
         public XmlDeserializationException(string message) : base($"{nameof(XmlDeserializationException)}:\n" + message) { }
     }
+    
+    public class XmlSerializationException : Exception
+    {
+        public XmlSerializationException(string message) : base($"{nameof(XmlSerializationException)}:\n" + message) { }
+    }
 }

@@ -8,7 +8,9 @@ using System.Runtime.CompilerServices;
 using Common.Helpers;
 using Common.Reports;
 using DesktopAssistant.BL.Persistence;
+using DesktopAssistant.Configuration;
 using DesktopAssistant.Exceptions;
+using DesktopAssistant.UI;
 using Hardware.Models;
 using ProcessMonitoring.Models;
 
@@ -24,7 +26,8 @@ namespace DesktopAssistant.Repository
         {
             ValueTuple.Create(typeof(ResourceCollection), XmlHelper, ConfigurationManager.AppSettings["hardwareConfiguration"]),
             ValueTuple.Create(typeof(WatchdogInitialization), XmlHelper, ConfigurationManager.AppSettings["processWatchConfiguration"]),
-            ValueTuple.Create(typeof(Exception), Reporter, ConfigurationManager.AppSettings["reporterDirectory"])
+            ValueTuple.Create(typeof(Exception), Reporter, ConfigurationManager.AppSettings["reporterDirectory"]),
+            ValueTuple.Create(typeof(UserInterfaceConfiguration), XmlHelper, ConfigurationManager.AppSettings["userInterfaceConfiguration"])
         };
 
         public TObject Read<TObject>()
@@ -36,7 +39,7 @@ namespace DesktopAssistant.Repository
                 throw new ArgumentException($"Could not load config path for type : {typeof(TObject)}");
             
             if (accessor is XmlHelper helper)
-                return helper.DeserializeConfiguration<TObject>(configPath);
+                return helper.Deserialize<TObject>(configPath);
             throw new NoFlatFileRepositoryDelegateException($"Found invalid type for delegate access : {accessor.GetType().Name}");
         }
 
@@ -50,6 +53,8 @@ namespace DesktopAssistant.Repository
             
             if (accessor is Reporter reporter && updatedEntity is Exception exception)
                 reporter.LogException(exception, configPath);
+            else if (accessor is XmlHelper xmlHelper)
+                xmlHelper.SerializeOverwrite(updatedEntity, configPath);
         }
         
         public static object SelectAccessDelegate(Type targetType)

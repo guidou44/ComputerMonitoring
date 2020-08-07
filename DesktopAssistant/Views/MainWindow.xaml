@@ -34,13 +34,13 @@
                     <ControlTemplate TargetType="ProgressBar">
                         <Border BorderBrush="Black" 
                                 BorderThickness="2" 
-                                Background="#FF0C0B0B" 
+                                Background="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.ProgressBarBackGround}" 
                                 CornerRadius="5" 
                                 Padding="0">
                             <Grid x:Name="PART_Track">
                                 <Rectangle x:Name="PART_Indicator" 
                                            HorizontalAlignment="Left" 
-                                           Fill="#9BBEF1" 
+                                           Fill="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.ProgressBar}" 
                                            RadiusX="5" 
                                            RadiusY="5"/>
                             </Grid>
@@ -55,19 +55,19 @@
             <Setter Property="FontFamily" Value="Consola"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="Foreground" Value="DarkGreen"/>
+            <Setter Property="Foreground" Value="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.FontMain}"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{Binding UiSettings.BorderBrush}"/>
-            <Setter Property="Background" Value="{Binding UiSettings.Background}"/>
+            <Setter Property="BorderBrush" Value="{Binding UiSettings.Main}"/>
+            <Setter Property="Background" Value="{Binding UiSettings.BackGroundMain}"/>
             <Setter Property="BorderThickness" Value="5"/>
             <Setter Property="CornerRadius" Value="30"/>
         </Style>
 
         <Style x:Key="TextStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.Foreground}"/>
+            <Setter Property="Foreground" Value="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.FontMain}"/>
         </Style>
     </Window.Resources> 
 
@@ -119,8 +119,8 @@
                     <tb:TaskbarIcon.TrayToolTip>
                         <Border
 
-                        Background="LightGreen"
-                        BorderBrush="DarkGreen"
+                        Background="{Binding UiSettings.BackGroundSecondary}"
+                        BorderBrush="{Binding UiSettings.Main}"
                         BorderThickness="1"
                         CornerRadius="4"
                         Opacity="0.8"
@@ -129,17 +129,17 @@
                             Text="Computer Monitoring&#10;Computer Watchdog"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
-                            Foreground="DarkGreen"
+                            Foreground="{Binding UiSettings.FontMain}"
                             FontSize="14"
                         />
                         </Border>
                     </tb:TaskbarIcon.TrayToolTip>
                     <tb:TaskbarIcon.ContextMenu>
                         <ContextMenu
-                        Background="LightGreen"
+                        Background="{Binding UiSettings.BackGroundSecondary}"
                         FontSize="14"
                         FontWeight="Medium"
-                        BorderBrush="DarkGreen"
+                        BorderBrush="{Binding UiSettings.Main}"
                         BorderThickness="3">
                             <MenuItem Header="Show Monitoring" Command="{Binding ShowApplicationCommand}">
                                 <MenuItem.Icon>

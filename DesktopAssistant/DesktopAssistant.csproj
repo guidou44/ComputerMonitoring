@@ -154,11 +154,11 @@
     </Compile>
     <Compile Include="Assembler\HardwareAssembler.cs" />
     <Compile Include="Assembler\ProcessWatchAssembler.cs" />
+    <Compile Include="Configuration\UserInterfaceConfiguration.cs" />
     <Compile Include="ContainerResolver.cs" />
     <Compile Include="Exceptions\NoFlatFileRepositoryDelegateException.cs" />
     <Compile Include="Repository\FlatFileRepository.cs" />
     <Compile Include="UI\IUiSettings.cs" />
-    <Compile Include="UI\UiSetting.cs" />
     <Compile Include="ViewModels\HardwareViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MonitoringTargetViewModel.cs" />
@@ -271,6 +271,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\MonitoringConfiguration.cfg" />
+    <Content Include="Configuration\ReporterConfiguration.xml" />
+    <Content Include="Configuration\UIConfig.xml" />
+    <Content Include="Configuration\WatchdogConfiguration.cfg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
