@@ -176,11 +176,11 @@
 
     </Window.Resources>
     
-    <Border BorderBrush="DarkGreen"
+    <Border BorderBrush="{Binding UiSettings.Main}"
             BorderThickness="5"
             CornerRadius="30 30 30 30">
         <Border.Background>
-            <SolidColorBrush Color="LightGreen" Opacity="0.8" />
+            <SolidColorBrush Color="{Binding UiSettings.BackGroundSecondary}" Opacity="{Binding UiSettings.BackGroundSecondaryOpacity}" />
         </Border.Background>
         <Border.Style>
             <Style>
@@ -233,7 +233,7 @@
                                 VerticalAlignment="Center"
                                 FontFamily="Consola"
                                 FontSize="20"
-                                Foreground="DarkGreen"
+                                Foreground="{Binding UiSettings.FontMain}"
                                 FontWeight="Bold"
                                 TextDecorations="Underline"
                                 Text ="Hardware Information"
@@ -246,7 +246,7 @@
                             VerticalAlignment="Center"
                             FontFamily="Consola"
                             FontSize="16"
-                            Foreground="DarkGreen"
+                            Foreground="{Binding UiSettings.FontMain}"
                             FontWeight="Bold"
                             Text ="{Binding MotherBoardMake, StringFormat='{}Mother Board : {0}'}"
                             TextWrapping="Wrap"
@@ -258,7 +258,7 @@
                             VerticalAlignment="Center"
                             FontFamily="Consola"
                             FontSize="16"
-                            Foreground="DarkGreen"
+                            Foreground="{Binding UiSettings.FontMain}"
                             FontWeight="Bold"
                             Text ="{Binding CpuMake, StringFormat={}CPU : {0}}"
                             TextWrapping="Wrap"
@@ -270,7 +270,7 @@
                             VerticalAlignment="Center"
                             FontFamily="Consola"
                             FontSize="16"
-                            Foreground="DarkGreen"
+                            Foreground="{Binding UiSettings.FontMain}"
                             FontWeight="Bold"
                             Text ="{Binding GpuMake, StringFormat={}GPU : {0}}"
                             TextWrapping="Wrap"
@@ -284,7 +284,7 @@
                                 Background="Transparent"
                                 FontFamily="Consola"
                                 FontSize="20"
-                                Foreground="DarkGreen"
+                                Foreground="{Binding UiSettings.FontMain}"
                                 FontWeight="Bold"
                                 TextDecorations="Underline"
                                 Text ="Monitoring Options"
@@ -293,9 +293,9 @@
                         <xctk:IntegerUpDown 
                             FontSize="16"
                             FontWeight="DemiBold"
-                            Foreground="DarkGreen"
-                            Background="LightGreen"
-                            BorderBrush="DarkGreen"
+                            Foreground="{Binding UiSettings.FontMain}"
+                            Background="{Binding UiSettings.BackGroundSecondary}"
+                            BorderBrush="{Binding UiSettings.Main}"
                             BorderThickness="2"
                             Minimum="1"
                             Maximum="{Binding MonitoringOptionsCollection.Count}"
@@ -319,7 +319,7 @@
                                     IsChecked="{Binding IsSelected}" 
                                     Content="{Binding DisplayName}"
                                     Command="{Binding PublishMonitoringOptionStatusCommand}"
-                                    Foreground="DarkGreen"
+                                    Foreground="{Binding UiSettings.FontMain}"
                                     FontWeight="Bold"
                                     FontSize="10">
                                     <CheckBox.LayoutTransform>

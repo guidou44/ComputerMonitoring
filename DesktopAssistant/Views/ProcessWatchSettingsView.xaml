@@ -173,12 +173,12 @@
             </Setter>
         </Style>
     </Window.Resources>
-    
-    <Border BorderBrush="DarkGreen"
+
+    <Border BorderBrush="{Binding UiSettings.Main}"
             BorderThickness="5"
             CornerRadius="30 30 30 30">
         <Border.Background>
-            <SolidColorBrush Color="LightGreen" Opacity="0.8" />
+            <SolidColorBrush Color="{Binding UiSettings.BackGroundMain}" Opacity="{Binding UiSettings.BackGroundMainOpacity}" />
         </Border.Background>
 
         <Border.Style>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Common.Reports;
 using Common.UI.Infrastructure;
@@ -59,7 +60,6 @@ namespace DesktopAssistant.ViewModels
         #region Properties
 
         private ICollection<HardwareViewModel> _hardwareValues;
-
         public ICollection<HardwareViewModel> HardwareValues
         {
             get { return _hardwareValues; }
@@ -71,7 +71,6 @@ namespace DesktopAssistant.ViewModels
         }
 
         private bool _isApplicationVisible;
-
         public bool IsApplicationVisible
         {
             get { return _isApplicationVisible; }
@@ -83,7 +82,6 @@ namespace DesktopAssistant.ViewModels
         }
 
         private ObservableCollection<ProcessViewModel> _processesUnderWatch;
-
         public ObservableCollection<ProcessViewModel> ProcessesUnderWatch
         {
             get { return _processesUnderWatch; }
@@ -91,6 +89,17 @@ namespace DesktopAssistant.ViewModels
             { 
                 _processesUnderWatch = value;
                 RaisePropertyChanged(nameof(ProcessesUnderWatch));
+            }
+        }
+
+        private bool _isOptionMenuVisible = false;
+        public bool IsOptionMenuVisible
+        {
+            get => _isOptionMenuVisible;
+            set
+            {
+                _isOptionMenuVisible = value;
+                RaisePropertyChanged(nameof(IsOptionMenuVisible));
             }
         }
 
@@ -131,7 +140,7 @@ namespace DesktopAssistant.ViewModels
         {
             try
             {
-                HardwareSettingsViewModel viewModel = new HardwareSettingsViewModel(_eventHub, _appManager);
+                HardwareSettingsViewModel viewModel = new HardwareSettingsViewModel(_eventHub, _appManager, UiSettings);
                 _dialogService.Instantiate(viewModel);
                 _dialogService.ShowDialog(viewModel);
             }
@@ -162,6 +171,18 @@ namespace DesktopAssistant.ViewModels
             }
         }
 
+        public ICommand UpdateOptionMenuDisplayCommand
+        {
+            get { return new RelayCommand<string>(SetOptionMenuVisibility);}
+        }
+
+        public void SetOptionMenuVisibility(string visibility)
+        {
+            IsOptionMenuVisible = bool.Parse(visibility);
+        }
+        
+        #region UI location
+        
         public ICommand ResizeWindowCommand
         {
             get { return new RelayCommand<object[]>(ResizeWindowCommandExecute); }
@@ -186,6 +207,8 @@ namespace DesktopAssistant.ViewModels
         {
             get { return new RelayCommand<ITopMost>(w => w.Topmost = true); }
         }
+        
+        #endregion
 
         #endregion
     }

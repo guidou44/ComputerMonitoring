@@ -10,6 +10,7 @@ using DesktopAssistant.BL;
 using DesktopAssistant.BL.Events;
 using DesktopAssistant.BL.Hardware;
 using DesktopAssistant.BL.ProcessWatch;
+using DesktopAssistant.UI;
 using Prism.Events;
 
 namespace DesktopAssistant.ViewModels
@@ -23,14 +24,17 @@ namespace DesktopAssistant.ViewModels
         private readonly List<MonitoringTarget> _lruTargets;
         private IDictionary<MonitoringTarget, bool> _targetDict;
 
-        public HardwareSettingsViewModel(IEventAggregator eventsHub, IAppManager manager)
+        public HardwareSettingsViewModel(IEventAggregator eventsHub, IAppManager manager, IUiSettings uiSettings)
         {
             _manager = manager;
             MaxAllowedMonTargets = _manager.GetMonitoringQueue().Count();
             _eventHub = eventsHub;
             _lruTargets = new List<MonitoringTarget>();
             InitializeMonitoringTargets(_manager.GetMonitoringQueue());
+            UiSettings = uiSettings;
         }
+
+        public IUiSettings UiSettings { get; set; }
 
         #endregion
 

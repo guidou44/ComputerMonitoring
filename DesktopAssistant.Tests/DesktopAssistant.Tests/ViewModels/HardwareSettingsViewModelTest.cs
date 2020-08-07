@@ -4,6 +4,7 @@ using DesktopAssistant.BL;
 using DesktopAssistant.BL.Events;
 using DesktopAssistant.BL.Hardware;
 using DesktopAssistant.Tests.DesktopAssistant.Tests.Helper;
+using DesktopAssistant.UI;
 using DesktopAssistant.ViewModels;
 using Hardware.Models;
 using Moq;
@@ -48,7 +49,7 @@ namespace DesktopAssistant.Tests.DesktopAssistant.Tests.ViewModels
                 monTargetChangedEvent.Object);
             Mock<IAppManager> appManagerMock = GivenAppManagerMock();
             
-            HardwareSettingsViewModel hardwareSettingsVm = new HardwareSettingsViewModel(eventManager.Object, appManagerMock.Object);
+            HardwareSettingsViewModel hardwareSettingsVm = new HardwareSettingsViewModel(eventManager.Object, appManagerMock.Object, Mock.Of<IUiSettings>());
             return hardwareSettingsVm;
         }
 
@@ -64,7 +65,7 @@ namespace DesktopAssistant.Tests.DesktopAssistant.Tests.ViewModels
             ComputerMonitoringTestHelper.SetupEventAggMockBehaviour(eventManager, watchdogTargetChangedEvent.Object, monTargetChangedEvent.Object);
             Mock<IAppManager> appManagerMock = GivenAppManagerMock();
             
-            HardwareSettingsViewModel hardwareSettingsVm = new HardwareSettingsViewModel(eventManager.Object, appManagerMock.Object);
+            HardwareSettingsViewModel hardwareSettingsVm = new HardwareSettingsViewModel(eventManager.Object, appManagerMock.Object,Mock.Of<IUiSettings>());
             updatedTargets = null;
             MonitoringTargetViewModel elementToUpdate = hardwareSettingsVm.MonitoringOptionsCollection.SingleOrDefault(mo => mo.Type == _currentTargets.LastOrDefault());
             elementToUpdate.IsSelected = false;
@@ -103,7 +104,7 @@ namespace DesktopAssistant.Tests.DesktopAssistant.Tests.ViewModels
             ComputerMonitoringTestHelper.SetupEventAggMockBehaviour(eventManager, watchdogTargetChangedEvent.Object, monTargetChangedEvent.Object);
             Mock<IAppManager> appManagerMock = GivenAppManagerMock();
 
-            HardwareSettingsViewModel hardwareSettingsVm = new HardwareSettingsViewModel(eventManager.Object, appManagerMock.Object);
+            HardwareSettingsViewModel hardwareSettingsVm = new HardwareSettingsViewModel(eventManager.Object, appManagerMock.Object, Mock.Of<IUiSettings>());
             MonitoringTargetViewModel elementToAdd = hardwareSettingsVm.MonitoringOptionsCollection.SingleOrDefault(mo => mo.Type == notCurrentlyMonitored);
             elementToAdd.IsSelected = true;
             
@@ -129,7 +130,7 @@ namespace DesktopAssistant.Tests.DesktopAssistant.Tests.ViewModels
             ComputerMonitoringTestHelper.SetupEventAggMockBehaviour(eventManager, watchdogTargetChangedEvent.Object, monTargetChangedEvent.Object);
             Mock<IAppManager> appManagerMock = GivenAppManagerMock();
 
-            HardwareSettingsViewModel hardwareSettingsVm = new HardwareSettingsViewModel(eventManager.Object, appManagerMock.Object);
+            HardwareSettingsViewModel hardwareSettingsVm = new HardwareSettingsViewModel(eventManager.Object, appManagerMock.Object, Mock.Of<IUiSettings>());
             hardwareSettingsVm.MaxAllowedMonTargets++;
             MonitoringTargetViewModel elementToAdd = hardwareSettingsVm.MonitoringOptionsCollection.SingleOrDefault(mo => mo.Type == notCurrentlyMonitored);
             elementToAdd.IsSelected = true;

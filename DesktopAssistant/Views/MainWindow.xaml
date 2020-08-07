@@ -60,8 +60,7 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
         </Style>
         <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{Binding UiSettings.Main}"/>
-            <Setter Property="Background" Value="{Binding UiSettings.BackGroundMain}"/>
+            <Setter Property="BorderBrush" Value="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.Main}"/>
             <Setter Property="BorderThickness" Value="5"/>
             <Setter Property="CornerRadius" Value="30"/>
         </Style>
@@ -98,11 +97,59 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <StackPanel Orientation="Horizontal">
-        <!--Visibility="{Binding IsApplicationVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed}">-->
+    <Grid Visibility="{Binding IsApplicationVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
         
         <Border 
-            Style="{StaticResource BorderStyle}">
+            x:Name="OptionMenu"
+            Grid.Column="0"
+            BorderBrush="{Binding UiSettings.Main}"
+            BorderThickness="5"
+            CornerRadius="30"
+            Width="70"
+            Margin="0 0 -70 0"
+            Visibility="{Binding IsOptionMenuVisible, Converter={StaticResource BoolToVis}, FallbackValue=Collapsed, NotifyOnSourceUpdated=True}">
+            
+            <Border.Background>
+                <SolidColorBrush Color="{Binding UiSettings.BackGroundSecondary}" Opacity="{Binding UiSettings.BackGroundSecondaryOpacity}" />
+            </Border.Background>
+            
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeave">
+                    <i:InvokeCommandAction Command="{Binding UpdateOptionMenuDisplayCommand}" CommandParameter="false"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+
+            <Border.Style>
+                <Style>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsOptionMenuVisible}" Value="True">
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard >
+                                        <ThicknessAnimationUsingKeyFrames
+                                            Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+                                            <SplineThicknessKeyFrame KeyTime="00:00:00" Value="0 0 -70 0" />
+                                            <SplineThicknessKeyFrame KeyTime="00:00:00.2" Value="0 0 0 0" />
+                                        </ThicknessAnimationUsingKeyFrames>
+                                        <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:00.5" From="0" To="1"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Border.Style>
+        </Border>
+        <Border 
+            Style="{StaticResource BorderStyle}"
+            Grid.Column="1">
+            <Border.Background>
+                <SolidColorBrush Color="{Binding UiSettings.BackGroundMain}" Opacity="{Binding UiSettings.BackGroundMainOpacity}" />
+            </Border.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"/>
@@ -162,18 +209,33 @@
                     </tb:TaskbarIcon.ContextMenu>
                 </tb:TaskbarIcon>
 
-
                 <DockPanel  Grid.Row="1"
-                        Grid.Column="0">
+                            Grid.Column="0">
+                                    <DockPanel
+                            HorizontalAlignment="Left" Dock="Left">
+                    <ContentControl HorizontalAlignment="Left" Margin="10 0 10 10">
+                        <Grid>
+
+                            <Ellipse Height="27" Width="27" Fill="{Binding UiSettings.Main}"/>
+                            <Image Source="Images/settings_simple.ico" Height="27"/>
+                        </Grid>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="MouseEnter">
+                                <i:InvokeCommandAction Command="{Binding UpdateOptionMenuDisplayCommand}" CommandParameter="true"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ContentControl>
+                </DockPanel>
+                <DockPanel HorizontalAlignment="Right" Dock="Right">
                     <Grid Margin="0 0 20 10"  
-                      HorizontalAlignment="Right"
-                      >
+                      HorizontalAlignment="Right">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
+
                         <ItemsControl ItemsSource="{Binding ProcessesUnderWatch}"
-                                  Grid.Column="0">
+                                      Grid.Column="0">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal"/>
@@ -228,21 +290,11 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-                        <ContentControl Grid.Column="1" Margin="5 0 0 0">
-                            <Grid>
-
-                                <Ellipse Height="27" Width="27" Fill="DarkGreen"/>
-                                <Image Source="Images/eye2.ico" Height="27"/>
-                            </Grid>
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger EventName="MouseDoubleClick">
-                                    <i:InvokeCommandAction Command="{Binding OpenHardwareSettingsWindowCommand}"/>
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </ContentControl>
                     </Grid>
                 </DockPanel>
-
+                    
+                </DockPanel>
+                
                 <ItemsControl 
                 Grid.Row="0"
                 Grid.Column="0"
@@ -289,5 +341,5 @@
 
             </Grid>
         </Border>
-    </StackPanel>
+    </Grid>
 </Window>
