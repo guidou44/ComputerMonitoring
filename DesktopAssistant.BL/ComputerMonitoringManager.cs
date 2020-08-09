@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -133,6 +134,7 @@ namespace DesktopAssistant.BL
             IEnumerable<IProcessWatch> processToRemove = ProcessesUnderWatch.Except(processWatches);
             IEnumerable<IProcessWatch> processToAdd = processWatches.Except(ProcessesUnderWatch);
             IEnumerable<IProcessWatch> processToUpdate = ProcessesUnderWatch.Union(processWatches);
+            
             processToAdd.ToList().ForEach(p => _processWatcher.AddProcessToWatchList(p.ProcessName, p.DoCapture));
             processToRemove.ToList().ForEach(p => _processWatcher.RemoveProcessFromWatchList(p.ProcessName));
             processToUpdate.ToList().ForEach(p => _processWatcher.UpdateProcessCaptureInWatchList(p.ProcessName, p.DoCapture));

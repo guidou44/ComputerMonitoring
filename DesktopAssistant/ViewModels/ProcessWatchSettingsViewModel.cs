@@ -46,7 +46,8 @@ namespace DesktopAssistant.ViewModels
                 ProcessesUnderWatch.Remove(processVm);
             }
 
-            IEnumerable<IProcessWatch> models = ProcessesUnderWatch.Select(ProcessWatchAssembler.AssembleFromViewModel);
+            IEnumerable<IProcessWatch> models = ProcessesUnderWatch.Where(p => p.IsValidProcessViewModel)
+                .Select(ProcessWatchAssembler.AssembleFromViewModel);
             _eventHub.GetEvent<OnWatchdogTargetChangedEvent>().Publish(models);
         }
 
@@ -62,7 +63,7 @@ namespace DesktopAssistant.ViewModels
         {
             get { return new RelayCommand((() => 
                 {
-                    var newProcessVm = new ProcessViewModel(true, "#NAME# ENTER2APPLY");
+                    var newProcessVm = new ProcessViewModel(true);
                     newProcessVm.OnProcessNameChangedEvent += OnWatchdogTargetChanged;
                     newProcessVm.OnProcessWatchRemoveEvent += OnWatchdogRemoveTarget;
                     ProcessesUnderWatch.Add(newProcessVm); 

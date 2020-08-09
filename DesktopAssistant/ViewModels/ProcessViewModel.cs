@@ -13,10 +13,11 @@ namespace DesktopAssistant.ViewModels
 {
     public class ProcessViewModel : NotifyPropertyChanged
     {
+        private const string DefaultEmptyName = "#NAME# ENTER2APPLY";
         public event EventHandler OnProcessNameChangedEvent;
         public event EventHandler OnProcessWatchRemoveEvent;
 
-        public ProcessViewModel(bool doCapture, string processName)
+        public ProcessViewModel(bool doCapture, string processName = DefaultEmptyName)
         {
             DoCapture = doCapture;
             ProcessName = processName;
@@ -39,6 +40,8 @@ namespace DesktopAssistant.ViewModels
         }
 
         #region Properties
+
+        public bool IsValidProcessViewModel => ProcessName != DefaultEmptyName;
 
         private bool _canRemoveProcessWatch;
         public bool CanRemoveProcessWatch

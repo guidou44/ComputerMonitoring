@@ -182,22 +182,6 @@
         <Border.Background>
             <SolidColorBrush Color="{Binding UiSettings.BackGroundSecondary}" Opacity="{Binding UiSettings.BackGroundSecondaryOpacity}" />
         </Border.Background>
-        <Border.Style>
-            <Style>
-                <Style.Triggers>
-                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="Opacity" Duration="00:00:02" From="0" To="1"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <Trigger Property="FrameworkElement.Visibility" Value="Collapsed">
-                        <Setter Property="FrameworkElement.Opacity" Value="0"/>
-                    </Trigger>
-                </Style.Triggers>
-            </Style>
-        </Border.Style>
 
         <Grid Margin="30">
             <Grid.RowDefinitions>

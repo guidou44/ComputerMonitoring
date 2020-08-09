@@ -53,7 +53,21 @@ namespace ProcessMonitoring.Models
         public string ProcessName { get; }
         
         public byte Data { get; set; }
-        public IEnumerable<int> Ports { get; set; }        
-        
+        public IEnumerable<int> Ports { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            return obj is ProcessWatch pWatch && this.ProcessName.Equals(pWatch.ProcessName);
+        }
+
+        protected bool Equals(ProcessWatch other)
+        {
+            return ProcessName == other.ProcessName;
+        }
+
+        public override int GetHashCode()
+        {
+            return (ProcessName != null ? ProcessName.GetHashCode() : 0);
+        }
     }
 }
