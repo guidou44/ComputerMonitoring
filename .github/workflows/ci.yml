@@ -26,6 +26,8 @@ jobs:
           
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.1
+            with:
+              vs-version: '[16.7]'
           
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
@@ -40,7 +42,7 @@ jobs:
         run: Sys.getenv('USERPROFILE')\.nuget\packages\xunit.runner.console\2.4.1\tools\net472\xunit.console $env:Test_Assembly_Path
         
       - name: Generate_Code_Coverage_report
-        run: file.path(Sys.getenv('USERPROFILE'), "\.nuget\packages\OpenCover\4.7.922\tools\OpenCover.Console.exe") -register:path64 -target:"file.path(Sys.getenv('USERPROFILE'), "\.nuget\packages\xunit.runner.console\2.4.1\tools\net472\xunit.console.exe")" -targetargs:"DesktopAssistant.Tests\bin\Debug\DesktopAssistant.Tests.dll -noshadow" -filter:"+[Hardware]* +[DesktopAssistant.BL]* +[Common.UI]* +[Common]* +[ProcessMonitoring]* +[DesktopAssistant]* -[DesktopAssistant.Tests]* -[Hardware]Hardware.Properties.* -[Hardware]Hardware.Wrappers.* -[Common]Common.Wrappers.* -[Common]Common.Properties.* -[ProcessMonitoring]ProcessMonitoring.Properties.* -[ProcessMonitoring]ProcessMonitoring.Wrappers.* -[Common.UI]Common.UI.Properties.* -[Common.UI]Common.UI.Views.* -[DesktopAssistant]DesktopAssistant.Properties.* -[DesktopAssistant.BL]DesktopAssistant.BL.Wrappers.* -[DesktopAssistant]DesktopAssistant.Views.*" -output:"./Code_Coverage.xml"
+        run: Sys.getenv('USERPROFILE')\.nuget\packages\OpenCover\4.7.922\tools\OpenCover.Console.exe -register:path64 -target:"Sys.getenv('USERPROFILE')\.nuget\packages\xunit.runner.console\2.4.1\tools\net472\xunit.console.exe" -targetargs:"DesktopAssistant.Tests\bin\Debug\DesktopAssistant.Tests.dll -noshadow" -filter:"+[Hardware]* +[DesktopAssistant.BL]* +[Common.UI]* +[Common]* +[ProcessMonitoring]* +[DesktopAssistant]* -[DesktopAssistant.Tests]* -[Hardware]Hardware.Properties.* -[Hardware]Hardware.Wrappers.* -[Common]Common.Wrappers.* -[Common]Common.Properties.* -[ProcessMonitoring]ProcessMonitoring.Properties.* -[ProcessMonitoring]ProcessMonitoring.Wrappers.* -[Common.UI]Common.UI.Properties.* -[Common.UI]Common.UI.Views.* -[DesktopAssistant]DesktopAssistant.Properties.* -[DesktopAssistant.BL]DesktopAssistant.BL.Wrappers.* -[DesktopAssistant]DesktopAssistant.Views.*" -output:"./Code_Coverage.xml"
         
       - name: Upload_To_CodeCov
         uses: codecov/codecov-action@v1
