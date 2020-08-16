@@ -12,7 +12,6 @@ jobs:
       Test_Project_Path: DesktopAssistant.Tests\DesktopAssistant.Tests.csproj
       Test_Assembly_Path: DesktopAssistant.Tests\bin\Debug\DesktopAssistant.Tests.dll
       Solution_File_Path: DesktopAssistant\DesktopAssistant.sln
-      XUnit_Console: %userprofile%\.nuget\packages\xunit.runner.console\2.4.1\tools\net472\xunit.console
       # Wpf_Project_Path: MyWpfApp\MyWpfApp.csproj
       # Wap_Project_Directory: MyWpfApp.Package
       # Wap_Project_Name: MyWpfApp.Package.wapproj
