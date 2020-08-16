@@ -26,8 +26,8 @@ jobs:
           
       - name: Setup MSBuild.exe
         uses: microsoft/setup-msbuild@v1.0.1
-            with:
-              vs-version: '[16.7]'
+        with:
+          vs-version: '[16.7]'
           
       - name: Setup NuGet
         uses: NuGet/setup-nuget@v1.0.2
