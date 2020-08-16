@@ -12,16 +12,12 @@ jobs:
       Test_Project_Path: DesktopAssistant.Tests\DesktopAssistant.Tests.csproj
       Test_Assembly_Path: DesktopAssistant.Tests\bin\Debug\net472\DesktopAssistant.Tests.dll
       Solution_File_Path: DesktopAssistant\DesktopAssistant.sln
-      User_Profile_Path: Sys.getenv('USERPROFILE')
       # Wpf_Project_Path: MyWpfApp\MyWpfApp.csproj
       # Wap_Project_Directory: MyWpfApp.Package
       # Wap_Project_Name: MyWpfApp.Package.wapproj
  
     steps:
       - uses: actions/checkout@v1   
-      
-      - name: checkUserProfileExists
-        run: echo $env:USERPROFILE
       
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
@@ -44,7 +40,7 @@ jobs:
         run: $env:USERPROFILE\.nuget\packages\xunit.runner.console\2.4.1\tools\net472\xunit.console $env:Test_Assembly_Path
         
       - name: Generate_Code_Coverage_report
-        run: Sys.getenv('USERPROFILE')\.nuget\packages\OpenCover\4.7.922\tools\OpenCover.Console.exe -register:path64 -target:"Sys.getenv('USERPROFILE')\.nuget\packages\xunit.runner.console\2.4.1\tools\net472\xunit.console.exe" -targetargs:"DesktopAssistant.Tests\bin\Debug\DesktopAssistant.Tests.dll -noshadow" -filter:"+[Hardware]* +[DesktopAssistant.BL]* +[Common.UI]* +[Common]* +[ProcessMonitoring]* +[DesktopAssistant]* -[DesktopAssistant.Tests]* -[Hardware]Hardware.Properties.* -[Hardware]Hardware.Wrappers.* -[Common]Common.Wrappers.* -[Common]Common.Properties.* -[ProcessMonitoring]ProcessMonitoring.Properties.* -[ProcessMonitoring]ProcessMonitoring.Wrappers.* -[Common.UI]Common.UI.Properties.* -[Common.UI]Common.UI.Views.* -[DesktopAssistant]DesktopAssistant.Properties.* -[DesktopAssistant.BL]DesktopAssistant.BL.Wrappers.* -[DesktopAssistant]DesktopAssistant.Views.*" -output:"./Code_Coverage.xml"
+        run: $env:USERPROFILE\.nuget\packages\OpenCover\4.7.922\tools\OpenCover.Console.exe -register:path64 -target:"$env:USERPROFILE\.nuget\packages\xunit.runner.console\2.4.1\tools\net472\xunit.console.exe" -targetargs:"DesktopAssistant.Tests\bin\Debug\DesktopAssistant.Tests.dll -noshadow" -filter:"+[Hardware]* +[DesktopAssistant.BL]* +[Common.UI]* +[Common]* +[ProcessMonitoring]* +[DesktopAssistant]* -[DesktopAssistant.Tests]* -[Hardware]Hardware.Properties.* -[Hardware]Hardware.Wrappers.* -[Common]Common.Wrappers.* -[Common]Common.Properties.* -[ProcessMonitoring]ProcessMonitoring.Properties.* -[ProcessMonitoring]ProcessMonitoring.Wrappers.* -[Common.UI]Common.UI.Properties.* -[Common.UI]Common.UI.Views.* -[DesktopAssistant]DesktopAssistant.Properties.* -[DesktopAssistant.BL]DesktopAssistant.BL.Wrappers.* -[DesktopAssistant]DesktopAssistant.Views.*" -output:"./Code_Coverage.xml"
         
       - name: Upload_To_CodeCov
         uses: codecov/codecov-action@v1
