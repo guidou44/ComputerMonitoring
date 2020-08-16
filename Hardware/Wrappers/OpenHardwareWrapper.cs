@@ -1,16 +1,16 @@
 ﻿using Hardware.Components;
-using OpenHardwareMonitor.Hardware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OpenHardwareMonitor.Hardware;
 
 namespace Hardware.Wrappers
 {
     public class OpenHardwareWrapper : IOpenHardware
     {
-        private IHardware _hardware;
+        private readonly IHardware _hardware;
         public OpenHardwareWrapper(IHardware hardware)
         {
             _hardware = hardware;
@@ -18,7 +18,7 @@ namespace Hardware.Wrappers
 
         public OpenHardwareType HardwareType
         {
-            get { return MapHarwareType(_hardware.HardwareType); }
+            get { return MapHardwareType(_hardware.HardwareType); }
         }
 
         public string Name
@@ -62,11 +62,10 @@ namespace Hardware.Wrappers
             return output;
         }
 
-        private OpenHardwareType MapHarwareType(HardwareType type)
+        private OpenHardwareType MapHardwareType(HardwareType type)
         {
             switch (type)
             {
-
                 case OpenHardwareMonitor.Hardware.HardwareType.GpuNvidia:
                     return OpenHardwareType.GpuNvidia;
                 case OpenHardwareMonitor.Hardware.HardwareType.GpuAti:

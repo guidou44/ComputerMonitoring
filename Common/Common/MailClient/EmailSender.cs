@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Net;
 using System.Net.Mail;
 using System.Xml.Linq;
 using Common.Wrappers;
@@ -9,8 +10,8 @@ namespace Common.MailClient
 {
     public class EmailSender
     {
-        private readonly IMailClient _smtpClient;
         private readonly IEnumerable<string> _recipients;
+        private readonly IMailClient _smtpClient;
 
         public EmailSender()
         {
@@ -32,7 +33,7 @@ namespace Common.MailClient
         public void SendEmailReport(string subject, string message)
         {
             MailMessage email = new MailMessage();
-            var sender = (_smtpClient.Credentials as System.Net.NetworkCredential)?.UserName;
+            var sender = (_smtpClient.Credentials as NetworkCredential)?.UserName;
             email.From = new MailAddress(sender);
             _recipients.ToList().ForEach(r => email.To.Add(r));
             email.Subject = subject;
@@ -46,7 +47,7 @@ namespace Common.MailClient
             _smtpClient.EnableSsl = true;
             var configuration = XDocument.Load(configPath);
             var sender = configuration.Descendants("Sender");
-            _smtpClient.Credentials = new System.Net.NetworkCredential(sender.Elements("Id").SingleOrDefault().Value, sender.Elements("Password").SingleOrDefault().Value);
+            _smtpClient.Credentials = new NetworkCredential(sender.Elements("Id").SingleOrDefault().Value, sender.Elements("Password").SingleOrDefault().Value);
         }
 
         private static IEnumerable<string> LoadEmailRecipients(string configPath)

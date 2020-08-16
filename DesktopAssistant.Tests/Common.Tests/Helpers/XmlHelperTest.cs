@@ -12,8 +12,8 @@ namespace DesktopAssistant.Tests.Common.Tests.Helpers
 {
     public class XmlHelperTest
     {
-        private const string AlternateConfigPathWoRemote = @"..\..\Configuration\MonitoringConfigurationNoRemote.cfg";
-        private const string RandomFilePath = @"..\..\Configuration\TEST.xml";
+        private const string AlternateConfigPathWoRemote = @"..\..\..\Configuration\MonitoringConfigurationNoRemote.cfg";
+        private const string RandomFilePath = @"..\..\..\Configuration\TEST.xml";
         private readonly XmlHelper _xmlHelperSubject;
 
         public XmlHelperTest()

@@ -12,7 +12,7 @@ namespace DesktopAssistant.Tests.ProcessMonitoring.Tests.Helpers
 {
     public static class ProcessWatchTestHelper
     {
-        private const string CMD_OUTPUT_TXT_FILE = @"..\..\Configuration\cmdOutput.txt";
+        private const string CMD_OUTPUT_TXT_FILE = @"..\..\..\Configuration\cmdOutput.txt";
 
         public static CommandLineHelper GivenCommandLineHelper()
         {

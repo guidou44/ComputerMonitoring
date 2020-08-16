@@ -58,7 +58,7 @@ namespace Hardware
                 {
                     output.Enqueue(GetCalculatedValue(target));
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     if (targets.Any())
                         targets.Remove(target);

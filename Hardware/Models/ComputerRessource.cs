@@ -39,7 +39,7 @@ namespace Hardware.Models
                 PingReply reply = pingHost.Send(RemoteIp);
                 return reply.Status == IPStatus.Success;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

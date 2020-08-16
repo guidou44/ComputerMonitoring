@@ -1,12 +1,6 @@
-﻿using Common.Exceptions;
-using Common.MailClient;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
+﻿using System;
 using System.IO;
-using System.Linq;
-using System.Net.Mail;
-using System.Xml.Linq;
+using Common.Exceptions;
 
 namespace Common.Reports
 {

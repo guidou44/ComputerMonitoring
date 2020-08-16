@@ -1,13 +1,13 @@
-﻿using Common.UI.WindowProperty;
-using Common.UI.ViewModels;
-using Common.UI.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using Common.UI.DialogServices.Exceptions;
 using Common.UI.Interfacea;
 using Common.UI.Interfaces;
-using Common.UI.DialogServices.Exceptions;
+using Common.UI.ViewModels;
+using Common.UI.Views;
+using Common.UI.WindowProperty;
 
 namespace Common.UI.DialogServices
 {

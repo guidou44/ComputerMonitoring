@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Common.Helpers
 {
     public class CommandLineHelper
     {
         private Process _process_cmd;
+
         public CommandLineHelper()
         {
             InitializeProcess();

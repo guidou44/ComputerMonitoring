@@ -1,268 +1,46 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\DesktopAssistant\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\DesktopAssistant\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props')" />
-  <Import Project="..\DesktopAssistant\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props" Condition="Exists('..\DesktopAssistant\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props')" />
-  <Import Project="..\DesktopAssistant\packages\xunit.core.2.4.1\build\xunit.core.props" Condition="Exists('..\DesktopAssistant\packages\xunit.core.2.4.1\build\xunit.core.props')" />
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B0731BB8-B384-4387-AA4F-68AD222A6F5D}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DesktopAssistant.Tests</RootNamespace>
-    <AssemblyName>DesktopAssistant.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x64</PlatformTarget>
+    <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=5.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\Autofac.5.2.0\lib\net461\Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\Castle.Core.4.4.1\lib\net45\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="Moq, Version=4.14.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\Moq.4.14.5\lib\net45\Moq.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenHardwareMonitorLib, Version=0.7.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\DesktopAssistant\packages\OpenHardwareMonitor.0.7.1\lib\net40\OpenHardwareMonitorLib.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PacketDotNet, Version=1.0.1.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\DesktopAssistant\packages\PacketDotNet.1.0.1\lib\net45\PacketDotNet.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="PresentationCore">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationCore.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationFramework">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\PresentationFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="Prism, Version=8.0.0.1740, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59">
-      <HintPath>..\DesktopAssistant\packages\Prism.Core.8.0.0.1740-pre\lib\net47\Prism.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SharpPcap, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\DesktopAssistant\packages\SharpPcap.5.0.0\lib\netstandard2.0\SharpPcap.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.Composition">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ComponentModel.Composition.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Configuration">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Core">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Private.DataContractSerialization, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\System.Private.DataContractSerialization.4.3.0\lib\netstandard1.3\System.Private.DataContractSerialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reflection.TypeExtensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\System.Reflection.TypeExtensions.4.3.0\lib\net462\System.Reflection.TypeExtensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Runtime.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.DataSetExtensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.CSharp">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\Microsoft.CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml">
-      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.Xml.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml.XmlDocument, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\System.Xml.XmlDocument.4.3.0\lib\net46\System.Xml.XmlDocument.dll</HintPath>
-      <Private>True</Private>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="WindowsBase, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\WindowsBase.4.6.1055.0\lib\WindowsBase.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.assert, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\xunit.assert.2.4.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\xunit.extensibility.core.2.4.1\lib\net452\xunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.execution.desktop, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\DesktopAssistant\packages\xunit.extensibility.execution.2.4.1\lib\net452\xunit.execution.desktop.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Common.UI\Common.UI.csproj" />
+    <ProjectReference Include="..\Common\Common\Common.csproj" />
+    <ProjectReference Include="..\DesktopAssistant.BL\DesktopAssistant.BL.csproj" />
+    <ProjectReference Include="..\DesktopAssistant\DesktopAssistant.csproj" />
+    <ProjectReference Include="..\Hardware\Hardware.csproj" />
+    <ProjectReference Include="..\ProcessMonitoring\ProcessMonitoring.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.Tests\MailClient\EmailSenderTest.cs" />
-    <Compile Include="Common.UI.Tests\Converters.Tests\CommandParameterConverterTest.cs" />
-    <Compile Include="Common.UI.Tests\DialogServices.Tests\DialogServiceTest.cs" />
-    <Compile Include="Common.UI.Tests\Infrastructure.Test\Fixtures\NotifyPropertyChangedFixture.cs" />
-    <Compile Include="Common.UI.Tests\Infrastructure.Test\Helper\DispatcherTestHelper.cs" />
-    <Compile Include="Common.UI.Tests\Infrastructure.Test\NotifyPropertyChangedTest.cs" />
-    <Compile Include="Common.UI.Tests\Infrastructure.Test\RelayCommandTest.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\Events\DialogShownEventArgs.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\Exceptions\DialogClosedException.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\Exceptions\ErrorOrMessageDialogShownException.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\DialogViewFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\DialogViewModelFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\DialogViewInvalidFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\DialogViewWithDataContextFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\ErrorDialogViewModelFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\Fixtures\MessageDialogViewModelFixture.cs" />
-    <Compile Include="Common.UI.Tests\Interfaces.Tests\IDialogServiceTest.cs" />
-    <Compile Include="Common.UI.Tests\ViewModel.Tests\DialogViewModelBaseTest.cs" />
-    <Compile Include="Common.UI.Tests\ViewModel.Tests\ErrorDialogViewModelTest.cs" />
-    <Compile Include="Common.UI.Tests\ViewModel.Tests\Events\DragActionExecutedEventArgs.cs" />
-    <Compile Include="Common.UI.Tests\ViewModel.Tests\Fixtures\DialogViewModelBaseFixture.cs" />
-    <Compile Include="Common.UI.Tests\ViewModel.Tests\Fixtures\Dragable.cs" />
-    <Compile Include="Common.UI.Tests\ViewModel.Tests\MessageDialogViewModelTest.cs" />
-    <Compile Include="Common.Tests\Helpers\CommandLineHelperTest.cs" />
-    <Compile Include="Common.Tests\Helpers\XmlHelperTest.cs" />
-    <Compile Include="Common.Tests\Reports\ReporterTest.cs" />
-    <Compile Include="DesktopAssistant.BL.Tests\Hardware\IHardwareManagerTest.cs" />
-    <Compile Include="DesktopAssistant.BL.Tests\Persistence\IRepositoryTest.cs" />
-    <Compile Include="DesktopAssistant.BL.Tests\ProcessWatch\Exceptions\FilterSetException.cs" />
-    <Compile Include="DesktopAssistant.BL.Tests\ProcessWatch\IProcessWatcherTest.cs" />
-    <Compile Include="DesktopAssistant.BL.Tests\ProcessWatch\IProcessWatchTest.cs" />
-    <Compile Include="DesktopAssistant.Tests\Assembler\HardwareAssemblerTest.cs" />
-    <Compile Include="DesktopAssistant.Tests\Assembler\ProcessWatchAssemblerTest.cs" />
-    <Compile Include="DesktopAssistant.Tests\Helper\ComputerMonitoringTestHelper.cs" />
-    <Compile Include="DesktopAssistant.Tests\Repository\FlatFileRepositoryTest.cs" />
-    <Compile Include="DesktopAssistant.Tests\ViewModels\Fixtures\WindowFixture.cs" />
-    <Compile Include="DesktopAssistant.Tests\ViewModels\HardwareViewModelTest.cs" />
-    <Compile Include="DesktopAssistant.Tests\ViewModels\MainViewModelTest.cs" />
-    <Compile Include="DesktopAssistant.Tests\ViewModels\MonitoringTargetViewModelTest.cs" />
-    <Compile Include="DesktopAssistant.Tests\ViewModels\ProcessViewModelTest.cs" />
-    <Compile Include="DesktopAssistant.Tests\ViewModels\HardwareSettingsViewModelTest.cs" />
-    <Compile Include="Hardware.Tests\Connectors\ASPNET_API_ConnectorTest.cs" />
-    <Compile Include="Hardware.Tests\Connectors\ConnectorBaseTest.cs" />
-    <Compile Include="Hardware.Tests\Connectors\NVDIA_API_ConnectorTest.cs" />
-    <Compile Include="Hardware.Tests\Connectors\OpenHardware_ConnectorTest.cs" />
-    <Compile Include="Hardware.Tests\Connectors\SystemIO_ConnectorTest.cs" />
-    <Compile Include="Hardware.Tests\Connectors\WMI_ConnectorTest.cs" />
-    <Compile Include="Hardware.Tests\Factories\ConnectorFactoryHelper.cs" />
-    <Compile Include="Hardware.Tests\Factories\ConnectorFactoryTest.cs" />
-    <Compile Include="Hardware.Tests\HardwareManagerTest.cs" />
-    <Compile Include="Hardware.Tests\HelpersTest\WmiHelperTest.cs" />
-    <Compile Include="Hardware.Tests\IFactoryTest.cs" />
-    <Compile Include="Hardware.Tests\Models\ComputerResourceTest.cs" />
-    <Compile Include="ProcessMonitoring.Tests\Helpers\ProcessWatchTestHelper.cs" />
-    <Compile Include="ProcessMonitoring.Tests\Models\NetworkHelperTest.cs" />
-    <Compile Include="ProcessMonitoring.Tests\Models\ProcessWatchTest.cs" />
-    <Compile Include="ProcessMonitoring.Tests\ProcessWatcherTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="Castle.Core" Version="4.4.1" />
+    <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="1.1.0" />
+    <PackageReference Include="Moq" Version="4.14.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="OpenCover" Version="4.7.922" />
+    <PackageReference Include="PacketDotNet" Version="1.0.1" />
+    <PackageReference Include="Prism.Core" Version="7.2.0.1422" />
+    <PackageReference Include="SharpPcap" Version="5.0.0" />
+    <PackageReference Include="System.Private.DataContractSerialization" Version="4.3.0" />
+    <PackageReference Include="System.Reflection" Version="4.3.0" />
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.3" />
+    <PackageReference Include="System.Runtime.Serialization.Primitives" Version="4.3.0" />
+    <PackageReference Include="System.Threading.Tasks.Extensions" Version="4.5.4" />
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="System.Xml.XmlDocument" Version="4.3.0" />
+    <PackageReference Include="WindowsBase" Version="4.6.1055" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.abstractions" Version="2.0.3" />
+    <PackageReference Include="xunit.analyzers" Version="0.10.0" />
+    <PackageReference Include="xunit.assert" Version="2.4.1" />
+    <PackageReference Include="xunit.core" Version="2.4.1" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
+    <PackageReference Include="xunit.extensibility.execution" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.console" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
+    <Reference Include="PresentationFramework" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Common.UI\Common.UI.csproj">
-      <Project>{7C5B2B07-96C6-4B17-B32F-AD2E2A344750}</Project>
-      <Name>Common.UI</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Common\Common\Common.csproj">
-      <Project>{85B27C12-9BB0-4641-90D2-68EDD50580DA}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DesktopAssistant.BL\DesktopAssistant.BL.csproj">
-      <Project>{8b9de4ab-f3f5-4bb1-b2b0-b1f9bc099996}</Project>
-      <Name>DesktopAssistant.BL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DesktopAssistant\DesktopAssistant.csproj">
-      <Project>{6af884a3-7830-4ef0-bd49-87b3b21447f4}</Project>
-      <Name>DesktopAssistant</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Hardware\Hardware.csproj">
-      <Project>{EACDD9E2-6A31-45D3-A281-57D3BE24219A}</Project>
-      <Name>Hardware</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProcessMonitoring\ProcessMonitoring.csproj">
-      <Project>{cebc4844-0c7f-4a01-a799-0a149d87e960}</Project>
-      <Name>ProcessMonitoring</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Analyzer Include="..\DesktopAssistant\packages\xunit.analyzers.0.10.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Configuration\cmdOutput.txt" />
-    <Content Include="Configuration\MonitoringConfiguration.cfg" />
-    <Content Include="Configuration\MonitoringConfigurationNoRemote.cfg" />
-    <Content Include="Configuration\ReporterConfiguration.xml" />
-    <Content Include="Configuration\WatchdogConfiguration.cfg" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\DesktopAssistant\packages\xunit.core.2.4.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\DesktopAssistant\packages\xunit.core.2.4.1\build\xunit.core.props'))" />
-    <Error Condition="!Exists('..\DesktopAssistant\packages\xunit.core.2.4.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\DesktopAssistant\packages\xunit.core.2.4.1\build\xunit.core.targets'))" />
-    <Error Condition="!Exists('..\DesktopAssistant\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props')" Text="$([System.String]::Format('$(ErrorText)', '..\DesktopAssistant\packages\xunit.runner.console.2.4.1\build\xunit.runner.console.props'))" />
-    <Error Condition="!Exists('..\DesktopAssistant\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\DesktopAssistant\packages\xunit.runner.visualstudio.2.4.1\build\net20\xunit.runner.visualstudio.props'))" />
-  </Target>
-  <Import Project="..\DesktopAssistant\packages\xunit.core.2.4.1\build\xunit.core.targets" Condition="Exists('..\DesktopAssistant\packages\xunit.core.2.4.1\build\xunit.core.targets')" />
 </Project>

@@ -179,7 +179,7 @@
                 </Grid.RowDefinitions>
 
                 <tb:TaskbarIcon
-              IconSource="Images/Green_circle.ico"
+              IconSource="Images/green_circle.ico"
                 MenuActivation="RightClick"
                 PopupActivation="LeftClick">
                     <tb:TaskbarIcon.TrayToolTip>
