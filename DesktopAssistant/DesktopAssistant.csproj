@@ -5,6 +5,7 @@
     <AssemblyName>DesktopAssistant</AssemblyName>
     <TargetFramework>net472</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Views/Images/eye2.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Resource Include="Views/Images/eye2.ico" />

@@ -31,7 +31,7 @@ namespace DesktopAssistant.Tests.Common.Tests.Reports
         [Fact]
         public void GivenInvalidFilePath_WhenTryReport_ThenItThrowsProper()
         {
-            const string invalidFilePath = "......";
+            const string invalidFilePath = "/////";
             Reporter reporterSubject = new Reporter();
 
             Assert.Throws<ReporterIOException>(() => reporterSubject.LogException(new Exception("ex"), invalidFilePath));

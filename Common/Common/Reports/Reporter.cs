@@ -8,20 +8,21 @@ namespace Common.Reports
     {
         public void LogException(Exception e, string logDirectory)
         {
-            var currentDirectory = Directory.GetCurrentDirectory();
-            if (!Directory.Exists(Path.Combine(currentDirectory, logDirectory))) Directory.CreateDirectory(Path.Combine(currentDirectory, logDirectory));
-            var defaultLogPath = Path.Combine(currentDirectory, logDirectory);
-
-            string exEntry = "\n*************************Exception******************************\n" +
-                             "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n" +
-                             "Type: " + e.GetType().ToString() + "\n" +
-                             "Source: " + e.Source + "\n" +
-                             "TargetSite: " + e.TargetSite + "\n" +
-                             "Message: " + e.Message + "\n" +
-                             "Stacktrace: " + e.StackTrace + "\n";
-
             try
             {
+                var currentDirectory = Directory.GetCurrentDirectory();
+                if (!Directory.Exists(Path.Combine(currentDirectory, logDirectory))) Directory.CreateDirectory(Path.Combine(currentDirectory, logDirectory));
+                var defaultLogPath = Path.Combine(currentDirectory, logDirectory);
+
+                string exEntry = "\n*************************Exception******************************\n" +
+                                 "DateTime: " + DateTime.Now.ToString("dd/MM/yyyy H:mm:ss") + "\n" +
+                                 "Type: " + e.GetType().ToString() + "\n" +
+                                 "Source: " + e.Source + "\n" +
+                                 "TargetSite: " + e.TargetSite + "\n" +
+                                 "Message: " + e.Message + "\n" +
+                                 "Stacktrace: " + e.StackTrace + "\n";
+
+
                 using (var writer = new StreamWriter(logDirectory + $@"\{logDirectory}.txt", append: true))
                 {
                     writer.WriteLine(exEntry);
