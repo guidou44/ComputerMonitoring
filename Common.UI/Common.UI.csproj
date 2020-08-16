@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7C5B2B07-96C6-4B17-B32F-AD2E2A344750}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <RootNamespace>Common.UI</RootNamespace>
     <AssemblyName>Common.UI</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -70,14 +70,6 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Converters\CommandParameterConverter.cs" />
     <Compile Include="DialogServices\DialogCloseRequestedEventArgs.cs" />
     <Compile Include="DialogServices\DialogService.cs" />
@@ -130,8 +122,13 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
+    <Page Include="Converters\Converters.xaml" />
+    <Page Include="MergedStyles.xaml" />
+    <Page Include="Styles\ButtonStyles.xaml" />
+    <Page Include="Styles\DialogStyles.xaml" />
+    <Page Include="Styles\OtherControlStyles.xaml" />
+    <Page Include="Styles\TextStyles.xaml" />
     <Page Include="Views\ErrorMessageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

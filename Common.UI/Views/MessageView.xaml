@@ -6,61 +6,16 @@
         xmlns:local="clr-namespace:Common.UI.Views"
         mc:Ignorable="d"
         Title="Message Box"
-        SizeToContent="Height"
-        Width="350"
-        Background="#32353d"
+        Style="{StaticResource BaseDialogStyle}"
         WindowStartupLocation="CenterScreen">
     <Window.Resources>
-        <Style x:Key="{x:Type Button}"
-               TargetType="{x:Type Button}">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Border x:Name="ButtonBorder"
-                                    BorderThickness="2" 
-                                    CornerRadius="2" 
-                                    Margin="0" 
-                                    Padding="6"
-                                    Background="{TemplateBinding Background}"
-                                    BorderBrush="Black"
-                                    Opacity="0.9">
-
-                                <TextBlock x:Name="ButtonContentTemplate"
-                                               Text="{TemplateBinding Content}" 
-                                               FontSize="16"
-                                               FontFamily="Consola"
-                                               FontWeight="DemiBold"
-                                               Foreground="{TemplateBinding Foreground}"
-                                               Background="{TemplateBinding Background}"
-                                               HorizontalAlignment="Center"
-                                               VerticalAlignment="Center"
-                                               Margin="0"
-                                               />
-
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.5"/>
-                                <Setter TargetName="ButtonBorder" Property="Background" Value="Gray"/>
-                                <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="DarkGray"/>
-                                <Setter TargetName="ButtonContentTemplate" Property="Foreground" Value="DarkGray"/>
-                                <Setter TargetName="ButtonContentTemplate" Property="Background" Value="Transparent"/>
-                            </Trigger>
-                            <MultiTrigger>
-                                <MultiTrigger.Conditions>
-                                    <Condition Property="IsMouseOver" Value="True"/>
-                                    <Condition Property="IsEnabled" Value="True"/>
-                                </MultiTrigger.Conditions>
-                                <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.4"/>
-                            </MultiTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        <ResourceDictionary>            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MergedStyles.xaml" />
+            </ResourceDictionary.MergedDictionaries>   
+        </ResourceDictionary>
     </Window.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

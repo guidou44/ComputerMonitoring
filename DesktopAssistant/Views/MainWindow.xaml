@@ -7,7 +7,6 @@
         xmlns:ViewModels="clr-namespace:DesktopAssistant.ViewModels"
         xmlns:tb="http://www.hardcodet.net/taskbar" 
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-        xmlns:Converters="clr-namespace:Common.UI.Converters;assembly=Common.UI"
         mc:Ignorable="d"
         x:Name="WatchdogWindow"
         WindowStyle="None"
@@ -19,56 +18,7 @@
         ResizeMode="NoResize"
         Topmost="True"
         MinHeight="80"
-        MinWidth="350"
-        >
-  
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BoolToVis" />
-        <Converters:CommandParameterConverter x:Key="CommandParameterConverter" />
-        
-        <Style x:Key="{x:Type ProgressBar}"
-               TargetType="{x:Type ProgressBar}">
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ProgressBar">
-                        <Border BorderBrush="Black" 
-                                BorderThickness="2" 
-                                Background="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.ProgressBarBackGround}" 
-                                CornerRadius="5" 
-                                Padding="0">
-                            <Grid x:Name="PART_Track">
-                                <Rectangle x:Name="PART_Indicator" 
-                                           HorizontalAlignment="Left" 
-                                           Fill="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.ProgressBar}" 
-                                           RadiusX="5" 
-                                           RadiusY="5"/>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Width" Value="220"/>
-        </Style>
-        <Style x:Key="{x:Type TextBlock}"
-               TargetType="{x:Type TextBlock}">
-            <Setter Property="FontFamily" Value="Consola"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontWeight" Value="DemiBold"/>
-            <Setter Property="Foreground" Value="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.FontMain}"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
-        <Style x:Key="BorderStyle" TargetType="{x:Type Border}">
-            <Setter Property="BorderBrush" Value="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.Main}"/>
-            <Setter Property="BorderThickness" Value="5"/>
-            <Setter Property="CornerRadius" Value="30"/>
-        </Style>
-
-        <Style x:Key="TextStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="Foreground" Value="{Binding ElementName=WatchdogWindow, Path=DataContext.UiSettings.FontMain}"/>
-        </Style>
-    </Window.Resources> 
+        MinWidth="350">
 
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="SizeChanged">
@@ -387,13 +337,14 @@
                                 </TextBlock>
                                 <Grid>
                                     <ProgressBar
-                                 HorizontalAlignment="Right" 
-                                 VerticalAlignment="Center"
-                                 Margin="20 0 0 0"
-                                 Height="25"
-                                 BorderThickness="1" 
-                                 Background="Transparent"
-                                 Value="{Binding MainValue}"/>
+                                        Style="{StaticResource BorderProgressBar}"
+                                         HorizontalAlignment="Right" 
+                                         VerticalAlignment="Center"
+                                         Margin="20 0 0 0"
+                                         Height="25"
+                                         BorderThickness="1" 
+                                         Background="Transparent"
+                                         Value="{Binding MainValue}"/>
                                     <TextBlock 
                                    FontSize="15"
                                    Style="{StaticResource TextStyle}"

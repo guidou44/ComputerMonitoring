@@ -1,0 +1,15 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="BaseDialogStyle" TargetType="{x:Type Window}">
+        <Setter Property="Background" Value="#32353d"/>
+        <Setter Property="Width" Value="700"/>
+        <Setter Property="SizeToContent" Value="Height"/>
+    </Style>
+    
+    <Style x:Key="CustomDialogStyle" TargetType="{x:Type Window}">
+        <Setter Property="WindowStyle" Value="None"/>
+        <Setter Property="AllowsTransparency" Value="True"/>
+        <Setter Property="SizeToContent" Value="WidthAndHeight"/>
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
+</ResourceDictionary>
