@@ -22,7 +22,7 @@ jobs:
       - name: Set env var
         run: echo ::set-env name=UP::$(echo $env:USERPROFILE)          
       - name: check env var value
-        run: echo $UP
+        run: echo ${UP}
       
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
