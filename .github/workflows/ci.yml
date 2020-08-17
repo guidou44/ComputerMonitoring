@@ -20,9 +20,9 @@ jobs:
       - uses: actions/checkout@v1  
 
       - name: Set env var
-        run: echo ::set-env name=UP::$(echo $env:USERPROFILE)          
-      - name: check env var value
-        run: echo ${{env.UP}}
+        env:
+          UP: $(echo $env:USERPROFILE)
+        run: echp ${{env.UP}}
       
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
