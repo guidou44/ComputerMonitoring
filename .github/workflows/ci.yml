@@ -20,7 +20,7 @@ jobs:
       - uses: actions/checkout@v1  
 
       - name: Set env var
-        run: ::set-env name=UP::$(echo $env:USERPROFILE)
+        run: echo ::set-env name=UP::$(echo $env:USERPROFILE)
         
       - name: test env
         run: echo $UP
