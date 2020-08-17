@@ -19,8 +19,10 @@ jobs:
     steps:
       - uses: actions/checkout@v1  
 
-      - name: Set env test
+      - name: Set env var
         run: echo ::set-env name=UP::$(echo $env:USERPROFILE)          
+      - name: check env var value
+        run: echo $UP
       
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
