@@ -8,7 +8,7 @@
   <ItemGroup>
     <PackageReference Include="CUDAfy.NET" Version="1.29.5576.13786" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Newtonsoft.Json" Version="6.0.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="NvAPIWrapper.Net" Version="0.7.0.57" />
     <PackageReference Include="OpenHardwareMonitor" Version="0.7.1" />
     <PackageReference Include="Prism.Core" Version="7.2.0.1422" />
